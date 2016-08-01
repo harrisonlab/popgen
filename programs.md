@@ -24,7 +24,7 @@ and libraries stored in ```/home/sobczm/R/x86_64-pc-linux-gnu-library/3.2```
 [BayeScan ver. 2.1] (http://cmpg.unibe.ch/software/BayeScan/): detecting natural selection from population-based genetic data
 `/home/sobczm/bin/bayescan2.1/binaries/bayescan_2.1`
 
-[BEAST ver. 1.8.3] (http://beast.bio.ed.ac.uk/) package - Bayesian analysis of molecular sequences using MCMC. Includes: BEAST, BEAUti, LogCombiner, TreeAnnotator.  `/home/sobczm/bin/beast/BEASTv1.8.3/bin``
+[BEAST ver. 1.8.3] (http://beast.bio.ed.ac.uk/) package - Bayesian analysis of molecular sequences using MCMC. Includes: BEAST, BEAUti, LogCombiner, TreeAnnotator.  `/home/sobczm/bin/beast/BEASTv1.8.3/bin`
 
 [BEAST ver. 2.4.2] (http://beast2.org/) package. Includes: BEAST, BEAUti, LogCombiner, TreeAnnotator, DensiTree. `/home/sobczm/bin/beast/BEASTv2.4.2/bin`
 
