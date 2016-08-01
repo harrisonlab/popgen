@@ -70,3 +70,20 @@ export PATH=/home/armita/prog/emboss/EMBOSS-4.0.0/bin:${PATH}
 
 [Treemix ver. 1.12] (https://bitbucket.org/nygcresearch/treemix/wiki/Home): estimation of population trees with admixture.
 `/home/sobczm/bin/treemix-1.12` 
+
+[vcflib] (https://github.com/vcflib/vcflib): a simple C++ library for parsing and manipulating VCF files, + many command-line utilities. `/home/sobczm/bin/vcflib/bin`
+[VCFtools] (https://vcftools.github.io): another set of C++ and Perl libraries for analysing VCF files. 
+```
+/home/sobczm/bin/vcftools/bin`  
+#SET PERL PATH
+export PERL5LIB=/home/sobczm/bin/vcftools/share/perl/5.14.2
+```
+[PyVCF] (https://github.com/jamescasbon/PyVCF) A VCF v. 4.0 and 4.1 parser for Python.
+```
+/home/sobczm/bin/PyVCF/scripts
+#SET PYTHON PATH
+export PYTHONPATH="$PYTHONPATH:/home/sobczm/bin/PyVCF/lib/python2.7/site-packages/"
+```
+
+
+
