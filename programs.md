@@ -46,12 +46,16 @@ export PATH=/home/armita/prog/emboss/EMBOSS-4.0.0/bin:${PATH}
 ```
 [EIGENSOFT ver. 6.1.2] (https://genetics.med.harvard.edu/reich/Reich_Lab/Software.html) A set of population structure dectection methods. `/home/sobczm/bin/EIG/bin`
 
+[FigTree ver. 1.4.2] (http://tree.bio.ed.ac.uk/software/figtree/) Viewing of phylogenetic trees and production of publication-ready figures. 
+
 [MAFFT ver. 7.222] (http://mafft.cbrc.jp/alignment/software/) Rapid multiple sequence alignment based on fast Fourier transform
 `/home/sobczm/bin/mafft-7.222/bin`
 
 [PAML ver. 4.8] (http://abacus.gene.ucl.ac.uk/software/paml.html) A package of programs for phylogenetic analyses of DNA or protein sequences using maximum likelihood. `/home/sobczm/bin/paml4.8/bin`
 
 [PhyloNet ver. 3.5.5] (http://bioinfo.cs.rice.edu/phylonet) & [PhyloNetHMM ver. 0.1] (http://bioinfo.cs.rice.edu/software/phmm) Bayesian inference of reticulate phylogenies under the multispecies network coalescent `/home/sobczm/bin/phmm`
+
+[SplitsTree ver. 4] (http://www.splitstree.org/) Program for computing unrooted phylogenetic networks from molecular sequence data. `/home/sobczm/bin/splitstree4` 
 
 [STRUCTURE ver. 2.3.4] (http://pritchardlab.stanford.edu/structure.html) A package for using multi-locus genotype data to investigate population structure `/home/sobczm/bin/structure`
 
