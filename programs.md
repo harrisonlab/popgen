@@ -21,15 +21,20 @@ and libraries stored in ```/home/sobczm/R/x86_64-pc-linux-gnu-library/3.2```
 [WhopGenome] (https://cran.r-project.org/web/packages/WhopGenome/index.html): High-Speed Processing of VCF, FASTA and Alignment Data
 
 ##Standalone
+[BayeScan ver. 2.1] (http://cmpg.unibe.ch/software/BayeScan/): detecting natural selection from population-based genetic data
+`/home/sobczm/bin/bayescan2.1/binaries/bayescan_2.1`
 [BUSCO ver 1.22] (http://busco.ezlab.org/): Assessing genome assembly and annotation completeness with Benchmarking Universal Single-Copy Orthologs
+`/home/sobczm/bin/BUSCO_v1.22/BUSCO_v1.22.py`
 
-***Dependencies***:
+
+**Dependencies**:
 ```
 export PATH=/home/sobczm/bin/hmmer-3.1b2/binaries:${PATH}
 export PATH=/home/armita/prog/python3/Python-3.3.5/bin:${PATH}
 export PATH=/home/armita/prog/ncbi-rmblastn-2.2.28/bin:${PATH}
 export AUGUSTUS_CONFIG_PATH=/home/armita/prog/augustus-3.1/config
-PATH=${PATH}:/home/armita/prog/augustus-3.1/bin
-PATH=${PATH}:/home/armita/prog/augustus-3.1/scripts
-PATH=${PATH}:/home/armita/prog/emboss/EMBOSS-4.0.0/bin
+export PATH=/home/armita/prog/augustus-3.1/bin:${PATH}
+export PATH=/home/armita/prog/augustus-3.1/scripts:${PATH}
+export PATH=/home/armita/prog/emboss/EMBOSS-4.0.0/bin:${PATH}
+
 ```
