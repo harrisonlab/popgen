@@ -4,11 +4,16 @@ Using R version 3.2.2 installed locally:
 ```export PATH=/home/armita/prog/R/R-3.2.2/bin:${PATH}```
 and libraries stored in ```/home/sobczm/R/x86_64-pc-linux-gnu-library/3.2```
 
+[ABRA ver. 0.97] (https://github.com/mozack/abra): Improved coding indel detection via assembly-based
+realignment `/home/sobczm/bin/abra/bin`
+
 [ade4] (https://cran.r-project.org/web/packages/ade4/index.html): Analysis of Ecological Data : Exploratory and Euclidean Methods in Environmental Sciences
 
 [adegenet] (http://adegenet.r-forge.r-project.org/): a R package for the multivariate analysis of genetic markers
 
 [ggplot2] (http://ggplot2.org/): graphing package implemented on top of the R statistical package
+
+[PAL2NAL] (http://www.bork.embl.de/pal2nal/): Robust conversion of protein sequence alignments into the corresponding codon alignments/home. `/sobczm/bin/pal2nal.v14`
 
 [pegas] (https://cran.r-project.org/web/packages/pegas/index.html): Population and Evolutionary Genetics Analysis System
 
