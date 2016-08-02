@@ -4,16 +4,11 @@ Using R version 3.2.2 installed locally:
 ```export PATH=/home/armita/prog/R/R-3.2.2/bin:${PATH}```
 and libraries stored in ```/home/sobczm/R/x86_64-pc-linux-gnu-library/3.2```
 
-[ABRA ver. 0.97] (https://github.com/mozack/abra): Improved coding indel detection via assembly-based
-realignment `/home/sobczm/bin/abra/bin`
-
 [ade4] (https://cran.r-project.org/web/packages/ade4/index.html): Analysis of Ecological Data : Exploratory and Euclidean Methods in Environmental Sciences
 
 [adegenet] (http://adegenet.r-forge.r-project.org/): a R package for the multivariate analysis of genetic markers
 
 [ggplot2] (http://ggplot2.org/): graphing package implemented on top of the R statistical package
-
-[PAL2NAL] (http://www.bork.embl.de/pal2nal/): Robust conversion of protein sequence alignments into the corresponding codon alignments/home. `/sobczm/bin/pal2nal.v14`
 
 [pegas] (https://cran.r-project.org/web/packages/pegas/index.html): Population and Evolutionary Genetics Analysis System
 
@@ -26,6 +21,9 @@ realignment `/home/sobczm/bin/abra/bin`
 [WhopGenome] (https://cran.r-project.org/web/packages/WhopGenome/index.html): High-Speed Processing of VCF, FASTA and Alignment Data
 
 ##Standalone
+[ABRA ver. 0.97] (https://github.com/mozack/abra): Improved coding indel detection via assembly-based
+realignment `/home/sobczm/bin/abra/bin`
+
 [BayeScan ver. 2.1] (http://cmpg.unibe.ch/software/BayeScan/): detecting natural selection from population-based genetic data
 `/home/sobczm/bin/bayescan2.1/binaries/bayescan_2.1`
 
@@ -59,6 +57,8 @@ export PATH=/home/armita/prog/emboss/EMBOSS-4.0.0/bin:${PATH}
 
 [MAFFT ver. 7.222] (http://mafft.cbrc.jp/alignment/software/) Rapid multiple sequence alignment based on fast Fourier transform
 `/home/sobczm/bin/mafft-7.222/bin`
+
+[PAL2NAL] (http://www.bork.embl.de/pal2nal/): Robust conversion of protein sequence alignments into the corresponding codon alignments/home. `/sobczm/bin/pal2nal.v14`
 
 [PAML ver. 4.8] (http://abacus.gene.ucl.ac.uk/software/paml.html) A package of programs for phylogenetic analyses of DNA or protein sequences using maximum likelihood. `/home/sobczm/bin/paml4.8/bin`
 
