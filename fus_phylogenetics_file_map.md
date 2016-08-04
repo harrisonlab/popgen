@@ -23,20 +23,54 @@ cp -r 4287/Fusox1 $o_dir
 ```
 Download remaining *F. oxysporum* genomes (CDS)
 ```
-##F. oxysporum f. sp. lycopersici (FoL)
+##F. oxysporum f. sp. raphani - assembly FO_PHW815_V1
+cd $o_dir
+mkdir raphani
+cd raphani
+wget ftp://ftp.ensemblgenomes.org/pub/fungi/release-32/fasta/fungi_ascomycota1_collection/fusarium_oxysporum_f_sp_raphani_54005/cds/Fusarium_oxysporum_f_sp_raphani_54005.FO_PHW815_V1.cds.all.fa.gz
+gunzip -d Fusarium_oxysporum_f_sp_raphani_54005.FO_PHW815_V1.cds.all.fa.gz
 
-##F. oxysporum f. sp. pisi (FoPi)
+##F. oxysporum f. sp. pisi (FoPi) - assembly FO_HDV247_V1
+cd $o_dir
+mkdir pisi
+cd pisi
+wget ftp://ftp.ensemblgenomes.org/pub/fungi/release-32/fasta/fungi_ascomycota1_collection/fusarium_oxysporum_f_sp_pisi_hdv247/cds/Fusarium_oxysporum_f_sp_pisi_hdv247.FO_HDV247_V1.cds.all.fa.gz
+gunzip -d Fusarium_oxysporum_f_sp_pisi_hdv247.FO_HDV247_V1.cds.all.fa.gz
 
-##F. oxysporum f. sp. radices-lycopersici (FoRL)
+##F. oxysporum f. sp. radices-lycopersici (FoRL) - assembly FO_CL57_V1
+cd $o_dir
+mkdir radices-lycopersici
+cd radices-lycopersici
+wget ftp://ftp.ensemblgenomes.org/pub/fungi/release-32/fasta/fungi_ascomycota1_collection/fusarium_oxysporum_f_sp_radicis_lycopersici_26381/cds/Fusarium_oxysporum_f_sp_radicis_lycopersici_26381.FO_CL57_V1.cds.all.fa.gz
+gunzip -d Fusarium_oxysporum_f_sp_radicis_lycopersici_26381.FO_CL57_V1.cds.all.fa.gz
 
-##F. oxysporum f. sp. cubense (FoCub)
+##F. oxysporum f. sp. cubense (FoCub) - assembly Foc1_1.0
+cd $o_dir
+mkdir cubense
+cd cubense
+wget ftp://ftp.ensemblgenomes.org/pub/fungi/release-32/fasta/fungi_ascomycota1_collection/fusarium_oxysporum_f_sp_cubense_race_1/cds/Fusarium_oxysporum_f_sp_cubense_race_1.Foc1_1.0.cds.all.fa.gz
+gunzip -d Fusarium_oxysporum_f_sp_cubense_race_1.Foc1_1.0.cds.all.fa.gz 
 
-##F. oxysporum f. sp. vasinifectum (FoV)
+##F. oxysporum f. sp. vasinifectum (FoV) - assembly FO_Cotton_V1
+cd $o_dir
+mkdir vasinifectum
+cd vasinifectum
+wget ftp://ftp.ensemblgenomes.org/pub/fungi/release-32/fasta/fungi_ascomycota1_collection/fusarium_oxysporum_f_sp_vasinfectum_25433/cds/Fusarium_oxysporum_f_sp_vasinfectum_25433.FO_Cotton_V1.cds.all.fa.gz
+gunzip -d Fusarium_oxysporum_f_sp_vasinfectum_25433.FO_Cotton_V1.cds.all.fa.gz
 
-##F. oxysporum f. sp. melonis (FoM)
+##F. oxysporum f. sp. melonis (FoM) - assembly FO_melonis_V1
+cd $o_dir
+mkdir melonis
+cd melonis
+wget ftp://ftp.ensemblgenomes.org/pub/fungi/release-32/fasta/fungi_ascomycota1_collection/fusarium_oxysporum_f_sp_melonis_26406/cds/Fusarium_oxysporum_f_sp_melonis_26406.FO_melonis_V1.cds.all.fa.gz
+gunzip -d Fusarium_oxysporum_f_sp_melonis_26406.FO_melonis_V1.cds.all.fa.gz
 
-##F. oxysporum f. sp. conlutinans (FoCo)
-
+##F. oxysporum f. sp. conglutinans (FoCo) - assembly FO_PHW808_V1 
+cd $o_dir
+mkdir conglutians 
+cd conglutians
+wget ftp://ftp.ensemblgenomes.org/pub/fungi/release-32/fasta/fungi_ascomycota1_collection/fusarium_oxysporum_f_sp_conglutinans_race_2_54008/cds/Fusarium_oxysporum_f_sp_conglutinans_race_2_54008.FO_PHW808_V1.cds.all.fa.gz
+gunzip -d Fusarium_oxysporum_f_sp_conglutinans_race_2_54008.FO_PHW808_V1.cds.all.fa.gz
 ##F. oxysporum f. sp. phaseoli (FoPh)
 
 ```
