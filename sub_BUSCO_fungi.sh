@@ -9,8 +9,9 @@
 
 busco=/home/sobczm/bin/BUSCO_v1.22/BUSCO_v1.22.py
 db=/home/sobczm/bin/BUSCO_v1.22/fungi
+name=${PWD##*/} #current directory name
+
 ## To change:
-name=RUN/NAME
 assembly=PATH/TO/ASSEMBLY/INVESTIGATED
 
 python $busco -o $name -in $assembly -l $db -m genome
