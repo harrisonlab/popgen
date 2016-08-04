@@ -21,7 +21,27 @@ cd $s_dir
 cd F.oxysporum_fsp_lycopersici
 cp -r 4287/Fusox1 $o_dir
 ```
-Download remaining *F. oxysporum* genomes
+Download remaining *F. oxysporum* genomes (CDS)
+```
+##F. oxysporum f. sp. lycopersici (FoL)
+
+##F. oxysporum f. sp. pisi (FoPi)
+
+##F. oxysporum f. sp. radices-lycopersici (FoRL)
+
+##F. oxysporum f. sp. cubense (FoCub)
+
+##F. oxysporum f. sp. vasinifectum (FoV)
+
+##F. oxysporum f. sp. melonis (FoM)
+
+##F. oxysporum f. sp. conlutinans (FoCo)
+
+##F. oxysporum f. sp. phaseoli (FoPh)
+
+```
+
+Download remaining outgroup genomes (CDS)
 ```
 ##F. fujikuroi  (assembly EF 1)
 cd $o_dir
