@@ -1,4 +1,3 @@
-#!/bin/bash
 #$ -S /bin/bash
 #$ -cwd 
 #$ -pe smp 1
