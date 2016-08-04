@@ -64,6 +64,8 @@ export PATH=/home/armita/prog/emboss/EMBOSS-4.0.0/bin:${PATH}
 
 [PAML ver. 4.8] (http://abacus.gene.ucl.ac.uk/software/paml.html) A package of programs for phylogenetic analyses of DNA or protein sequences using maximum likelihood. `/home/sobczm/bin/paml4.8/bin`
 
+[PartitionFinder ver. 1.1.1] (http://www.robertlanfear.com/partitionfinder/) A program to select best-fit partitioning schemes and models of molecular evolution for phylogenetic analyses `/home/sobczm/bin/PartitionFinder1.1.1` *Needs to be run with Anaconda Python distribution installed in `/home/sobczm/bin/anaconda2/bin`
+
 [PicardTools ver. 2.5.0] (https://broadinstitute.github.io/picard/) A set of command line tools for manipulating formats such as SAM/BAM/CRAM and VCF. `/home/sobczm/bin/picard-tools-2.5.0`
 
 [PhyloNet ver. 3.5.5] (http://bioinfo.cs.rice.edu/phylonet) & [PhyloNetHMM ver. 0.1] (http://bioinfo.cs.rice.edu/software/phmm) Bayesian inference of reticulate phylogenies under the multispecies network coalescent `/home/sobczm/bin/phmm`
