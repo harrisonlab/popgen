@@ -13,7 +13,7 @@ db=/home/sobczm/bin/BUSCO_v1.22/fungi
 name=RUN/NAME
 assembly=PATH/TO/ASSEMBLY/INVESTIGATED
 
-python $busco -o $name -in $assembly -l $db -m trans
+python $busco -o $name -in $assembly -l $db -m genome
 
 
 
