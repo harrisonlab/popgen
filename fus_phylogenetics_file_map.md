@@ -23,5 +23,9 @@ cp -r 4287/Fusox1 $o_dir
 ```
 Download remaining *F.oxysporum* genomes
 ```
-
+cd $o_dir
+mkdir fujikuroi
+cd fujikuroi
+wget ftp://ftp.ensemblgenomes.org/pub/fungi/release-32/fasta/fusarium_fujikuroi/cds/Fusarium_fujikuroi.EF1.cds.all.fa.gz
+gunzip -d Fusarium_fujikuroi.EF1.cds.all.fa.gz
 ```
