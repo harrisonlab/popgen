@@ -1,5 +1,5 @@
 
-Copy gene models of sequenced *Fusarium oxysporum fsp. cepae* and outgroup *F. proliferatum*
+Copy gene models of sequenced *Fusarium oxysporum* f.sp. *cepae* and outgroup *F. proliferatum*
 ```
 s_dir=/home/groups/harrisonlab/project_files/fusarium/gene_pred/codingquary
 o_dir=/home/sobczm/popgen/input
@@ -21,11 +21,19 @@ cd $s_dir
 cd F.oxysporum_fsp_lycopersici
 cp -r 4287/Fusox1 $o_dir
 ```
-Download remaining *F.oxysporum* genomes
+Download remaining *F. oxysporum* genomes
 ```
+##F. fujikuroi  (assembly EF 1)
 cd $o_dir
 mkdir fujikuroi
 cd fujikuroi
 wget ftp://ftp.ensemblgenomes.org/pub/fungi/release-32/fasta/fusarium_fujikuroi/cds/Fusarium_fujikuroi.EF1.cds.all.fa.gz
 gunzip -d Fusarium_fujikuroi.EF1.cds.all.fa.gz
+
+##F. verticillioides (assembly ASM14955v1) 
+cd $o_dir
+mkdir verticillioides
+cd verticillioides
+wget ftp://ftp.ensemblgenomes.org/pub/fungi/release-32/fasta/fusarium_verticillioides/cds/Fusarium_verticillioides.ASM14955v1.cds.all.fa.gz
+gunzip -d Fusarium_verticillioides.ASM14955v1.cds.all.fa.gz
 ```
