@@ -17,7 +17,7 @@ temp_dir="$TMPDIR"
 
 busco=/home/sobczm/bin/BUSCO_v1.22/BUSCO_v1.22.py
 db=/home/sobczm/bin/BUSCO_v1.22/fungi
-name=${PWD##*/} #current directory name
+name="${PWD##*/}.$(date +%F_%R)" #current directory name + timestamp
 
 ### Prep
 mkdir -p $temp_dir
