@@ -10,19 +10,23 @@ cd $s_dir
 cd F.proliferatum
 cp -r A8 $o_dir
 ```
-Copy gene models from *F. oxysporum* reference sequences 
-```
-s_dir=/home/groups/harrisonlab/project_files/fusarium/assembly/external_group
-## Fusarium oxysporum fo47
-cd $s_dir
-cp -r F.oxysporum/fo47 $o_dir
-## F.oxysporum fsp lycopersici (FoL)
-cd $s_dir
-cd F.oxysporum_fsp_lycopersici
-cp -r 4287/Fusox1 $o_dir
-```
+
 Download remaining *F. oxysporum* genomes (CDS)
 ```
+## Fusarium oxysporum fo47 - assembly FO_Fo47_V1
+cd $o_dir
+mkdir fo47
+cd fo47
+wget ftp://ftp.ensemblgenomes.org/pub/fungi/release-32/fasta/fungi_ascomycota1_collection/fusarium_oxysporum_fo47/cds/Fusarium_oxysporum_fo47.FO_Fo47_V1.cds.all.fa.gz
+gunzip -d Fusarium_oxysporum_fo47.FO_Fo47_V1.cds.all.fa.gz
+
+## Fusarium oxysporum f. sp. lycopersici - assembly FO_MN25_V1
+cd $o_dir
+mkdir lycopersici
+cd lycopersici
+wget ftp://ftp.ensemblgenomes.org/pub/fungi/release-32/fasta/fungi_ascomycota1_collection/fusarium_oxysporum_f_sp_lycopersici_mn25/cds/Fusarium_oxysporum_f_sp_lycopersici_mn25.FO_MN25_V1.cds.all.fa.gz
+gunzip -d Fusarium_oxysporum_f_sp_lycopersici_mn25.FO_MN25_V1.cds.all.fa.gz
+
 ##F. oxysporum f. sp. raphani - assembly FO_PHW815_V1
 cd $o_dir
 mkdir raphani
