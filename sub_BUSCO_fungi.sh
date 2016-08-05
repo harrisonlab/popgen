@@ -8,7 +8,7 @@
 ### BUSCO analysis to identify single copy genes conserved in Fungi in all genomes in the study. Sample submission script for one genome:
 ### Note: use the genome mode for the transcriptome contigs, otherwise get all contigs re-named as Transcript 1 in the output!
 
-### Do not forget to input the path to assembly
+### Do not forget to input the filename with the assembly (in the current dir)
 assembly=$1
 
 ### Setting variables
