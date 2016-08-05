@@ -17,3 +17,5 @@ sub_BUSCO_fungi.sh $input/vasinifectum/Fusarium_oxysporum_f_sp_vasinfectum_25433
 
 ##Process in-house genomes
 ```
+
+Find the intersect of single-copy, complete genes 
