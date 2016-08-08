@@ -1,6 +1,6 @@
 ```
 input=/home/sobczm/popgen/input
-cd $input
+cd /home/sobczm/popgen/busco
 
 ##Process reference genomes
 sub_BUSCO_fungi.sh $input/conglutians/Fusarium_oxysporum_f_sp_conglutinans_race_2_54008.FO_PHW808_V1.cds.all.fa
