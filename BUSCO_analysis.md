@@ -1,7 +1,6 @@
 ```
 input=/home/sobczm/popgen/input
 
-
 ##Process reference genomes
 ### Rename sequences in all FASTA files by prefixing with the species name:
 cd $input/fo47
