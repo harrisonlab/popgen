@@ -19,8 +19,8 @@ cd $input/vasinifectum
 for fasta in *.fa; do sed -i -e 's/>/>vasinifectum_/' $fasta; done; 
 cd $input/melonis
 for fasta in *.fa; do sed -i -e 's/>/>melonis_/' $fasta; done; 
-cd $input/conglutinans 
-for fasta in *.fa; do sed -i -e 's/>/>conglutinans_/' $fasta; done; 
+cd $input/conglutians 
+for fasta in *.fa; do sed -i -e 's/>/>conglutians_/' $fasta; done; 
 ### Run BUSCO
 cd /home/sobczm/popgen/busco
 qsub sub_BUSCO_fungi.sh $input/conglutians/Fusarium_oxysporum_f_sp_conglutinans_race_2_54008.FO_PHW808_V1.cds.all.fa
