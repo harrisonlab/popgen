@@ -81,7 +81,7 @@ cd $input/proliferatum/final
 for filename in *; do mv "$filename" "proliferatum_$filename"; done;
 for fasta in *.fasta; do sed -i -e 's/>/>proliferatum_/' $fasta; done; 
 
-### Run BUSCO
+## Run BUSCO
 cd /home/sobczm/popgen/busco
 qsub sub_BUSCO_fungi.sh $input/125/final/125_final_genes_combined.cdna.fasta
 qsub sub_BUSCO_fungi.sh $input/55/final/55_final_genes_combined.cdna.fasta
@@ -95,5 +95,28 @@ qsub sub_BUSCO_fungi.sh $input/Fus2_canu_new/final/Fus2_final_genes_combined.cdn
 qsub sub_BUSCO_fungi.sh $input/HB6/final/HB6_final_genes_combined.cdna.fasta
 qsub sub_BUSCO_fungi.sh $input/PG/final/PG_final_genes_combined.cdna.fasta
 qsub sub_BUSCO_fungi.sh $input/proliferatum/final/proliferatum_final_genes_combined.cdna.fasta
+
+## Find the intersect of single-copy, complete genes 
+### Create a list of all fungal BUSCO IDs
+
+cd /home/sobczm/bin/BUSCO_v1.22/fungi/hmms
+ls -1 | sed -e 's/\..*$//' >../all_buscos_fungi
+
+### Iteratively find the intersect of IDs of all 'complete' BUSCO genes present in the runs in the current directory 
+
+#!/bin/bash
+cat /home/sobczm/bin/BUSCO_v1.22/all_buscos_fungi >temp_ref
+for d in */ 
+do
+awk -F"\t" '$2 == "Complete" { print $1}' $d/full_table* >temp
+grep -Fx -f temp temp_ref >final_list_ssc
+cat final_list_ssc >temp_ref
+done
+
+### Pick random 30 IDs of all 'complete' BUSCO genes present in the intersect
+sort -R final_list_ssc | head -n 30 >align_input_list.txt
+
+
+## Create FASTA files with separate alignment input for each of the 30 selected genes. 
+perl get_alignments.pl
 ```
-Find the intersect of single-copy, complete genes 
