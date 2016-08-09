@@ -91,6 +91,7 @@ qsub sub_BUSCO_fungi.sh $input/A23/final/A23_final_genes_combined.cdna.fasta
 qsub sub_BUSCO_fungi.sh $input/A28/final/A28_final_genes_combined.cdna.fasta
 qsub sub_BUSCO_fungi.sh $input/CB3/final/CB3_final_genes_combined.cdna.fasta
 qsub sub_BUSCO_fungi.sh $input/D2/final/D2_final_genes_combined.cdna.fasta
+qsub sub_BUSCO_fungi.sh $input/Fus2_canu_new/final/Fus2_final_genes_combined.cdna.fasta
 qsub sub_BUSCO_fungi.sh $input/HB6/final/HB6_final_genes_combined.cdna.fasta
 qsub sub_BUSCO_fungi.sh $input/PG/final/PG_final_genes_combined.cdna.fasta
 qsub sub_BUSCO_fungi.sh $input/proliferatum/final/proliferatum_final_genes_combined.cdna.fasta
