@@ -1,7 +1,28 @@
 ```
 input=/home/sobczm/popgen/input
 
-##Process reference genomes: run BUSCO
+
+##Process reference genomes
+### Rename sequences in all FASTA files by prefixing with the species name:
+cd $input/fo47
+for fasta in *.fasta; do sed -i -e 's/>/>fo47_/' $fasta; done; 
+cd $input/lycopersici
+for fasta in *.fasta; do sed -i -e 's/>/>lycopersici_/' $fasta; done; 
+cd $input/raphani
+for fasta in *.fasta; do sed -i -e 's/>/>raphani_/' $fasta; done; 
+cd $input/pisi
+for fasta in *.fasta; do sed -i -e 's/>/>pisi_/' $fasta; done; 
+cd $input/radices-lycopersici
+for fasta in *.fasta; do sed -i -e 's/>/>radices-lycopersici_/' $fasta; done; 
+cd $input/cubense
+for fasta in *.fasta; do sed -i -e 's/>/>cubense_/' $fasta; done; 
+cd $input/vasinifectum
+for fasta in *.fasta; do sed -i -e 's/>/>vasinifectum_/' $fasta; done; 
+cd $input/melonis
+for fasta in *.fasta; do sed -i -e 's/>/>melonis_/' $fasta; done; 
+cd $input/conglutinans 
+for fasta in *.fasta; do sed -i -e 's/>/>conglutinans_/' $fasta; done; 
+### Run BUSCO
 cd /home/sobczm/popgen/busco
 qsub sub_BUSCO_fungi.sh $input/conglutians/Fusarium_oxysporum_f_sp_conglutinans_race_2_54008.FO_PHW808_V1.cds.all.fa
 qsub sub_BUSCO_fungi.sh $input/cubense/Fusarium_oxysporum_f_sp_cubense_race_1.Foc1_1.0.cds.all.fa
@@ -16,7 +37,8 @@ qsub sub_BUSCO_fungi.sh $input/vasinifectum/Fusarium_oxysporum_f_sp_vasinfectum_
 qsub sub_BUSCO_fungi.sh $input/vasinifectum/Fusarium_oxysporum_f_sp_vasinfectum_25433.FO_Cotton_V1.cds.all.fa
 
 ##Process in-house genomes
-### Prepare input CDS assembly files (exon = CDS = cDNA identical in Braker and CodingQuary outputs) & using the file "final_genes_combined.cdna.fasta" from each genome for phylogenetic analysis
+### Prepare input CDS assembly files (exon = CDS = cDNA identical in Braker and CodingQuary outputs) 
+& using the file "final_genes_combined.cdna.fasta" from each genome for phylogenetic analysis
 ### Rename input files in each folder by prefixing with the strain ID, and the same for sequences in all FASTA files:
 cd $input/125/final
 for filename in *; do mv "$filename" "125_$filename"; done;
