@@ -60,9 +60,7 @@ for my $d (@dirs)
 			print FS (">$b\n$cdna{$b}\n");
 			close FS;
 		}
-					
 	}
 	
 	close FT;
-		
-	}
+}
