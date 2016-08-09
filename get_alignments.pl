@@ -61,6 +61,5 @@ for my $d (@dirs)
 			close FS;
 		}
 	}
-	
 	close FT;
 }
