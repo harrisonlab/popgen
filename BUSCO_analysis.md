@@ -4,23 +4,23 @@ input=/home/sobczm/popgen/input
 ##Process reference genomes
 ### Rename sequences in all FASTA files by prefixing with the species name:
 cd $input/fo47
-for fasta in *.fasta; do sed -i -e 's/>/>fo47_/' $fasta; done; 
+for fasta in *.fa; do sed -i -e 's/>/>fo47_/' $fasta; done; 
 cd $input/lycopersici
-for fasta in *.fasta; do sed -i -e 's/>/>lycopersici_/' $fasta; done; 
+for fasta in *.fa; do sed -i -e 's/>/>lycopersici_/' $fasta; done; 
 cd $input/raphani
-for fasta in *.fasta; do sed -i -e 's/>/>raphani_/' $fasta; done; 
+for fasta in *.fa; do sed -i -e 's/>/>raphani_/' $fasta; done; 
 cd $input/pisi
-for fasta in *.fasta; do sed -i -e 's/>/>pisi_/' $fasta; done; 
+for fasta in *.fa; do sed -i -e 's/>/>pisi_/' $fasta; done; 
 cd $input/radices-lycopersici
-for fasta in *.fasta; do sed -i -e 's/>/>radices-lycopersici_/' $fasta; done; 
+for fasta in *.fa; do sed -i -e 's/>/>radices-lycopersici_/' $fasta; done; 
 cd $input/cubense
-for fasta in *.fasta; do sed -i -e 's/>/>cubense_/' $fasta; done; 
+for fasta in *.fa; do sed -i -e 's/>/>cubense_/' $fasta; done; 
 cd $input/vasinifectum
-for fasta in *.fasta; do sed -i -e 's/>/>vasinifectum_/' $fasta; done; 
+for fasta in *.fa; do sed -i -e 's/>/>vasinifectum_/' $fasta; done; 
 cd $input/melonis
-for fasta in *.fasta; do sed -i -e 's/>/>melonis_/' $fasta; done; 
+for fasta in *.fa; do sed -i -e 's/>/>melonis_/' $fasta; done; 
 cd $input/conglutinans 
-for fasta in *.fasta; do sed -i -e 's/>/>conglutinans_/' $fasta; done; 
+for fasta in *.fa; do sed -i -e 's/>/>conglutinans_/' $fasta; done; 
 ### Run BUSCO
 cd /home/sobczm/popgen/busco
 qsub sub_BUSCO_fungi.sh $input/conglutians/Fusarium_oxysporum_f_sp_conglutinans_race_2_54008.FO_PHW808_V1.cds.all.fa
