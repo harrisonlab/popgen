@@ -68,15 +68,15 @@ for fasta in *.fasta; do sed -i -e 's/>/>CB3_/' $fasta; done;
 cd $input/D2/final
 for filename in *; do mv "$filename" "D2_$filename"; done;
 for fasta in *.fasta; do sed -i -e 's/>/>D2_/' $fasta; done; 
+cd $input/Fus2_canu_new/final
+for filename in *; do mv "$filename" "Fus2_$filename"; done;
+for fasta in *.fasta; do sed -i -e 's/>/>Fus2_/' $fasta; done; 
 cd $input/HB6/final
 for filename in *; do mv "$filename" "HB6_$filename"; done;
 for fasta in *.fasta; do sed -i -e 's/>/>HB6_/' $fasta; done; 
 cd $input/PG/final
 for filename in *; do mv "$filename" "PG_$filename"; done;
 for fasta in *.fasta; do sed -i -e 's/>/>PG_/' $fasta; done; 
-cd $input/Fus2_canu_new/final
-for filename in *; do mv "$filename" "Fus2_$filename"; done;
-for fasta in *.fasta; do sed -i -e 's/>/>Fus2_/' $fasta; done; 
 cd $input/proliferatum/final
 for filename in *; do mv "$filename" "proliferatum_$filename"; done;
 for fasta in *.fasta; do sed -i -e 's/>/>proliferatum_/' $fasta; done; 
