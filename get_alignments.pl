@@ -43,6 +43,7 @@ for my $d (@dirs)
 # sequences to individual files
 
 	open (FT, $full_table[0]);
+	undef $count;
 	while (<FT>)
 	{
 		my $line = $_;
@@ -59,7 +60,9 @@ for my $d (@dirs)
 			open (FS, ">>$fhs");
 			print FS (">$b\n$cdna{$b}\n");
 			close FS;
+			++$count;
 		}
 	}
 	close FT;
+	print "The number of gene sequences found in the assembly $fasta[0] is $count.";
 }
