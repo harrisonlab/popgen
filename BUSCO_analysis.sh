@@ -105,17 +105,21 @@ ls -1 | sed -e 's/\..*$//' >../all_buscos_fungi
 ### Iteratively find the intersect of IDs of all 'complete' BUSCO genes present in the runs in the current directory 
 
 #!/bin/bash
-cat /home/sobczm/bin/BUSCO_v1.22/all_buscos_fungi >temp_ref
+cat align_input_list.txt >temp_ref
 for d in $PWD/run*
 do
-awk -F"\t" '$2 == "Complete" { print $1}' $d/full_table* >temp
-grep -Fx -f temp temp_ref >final_list_ssc
-cat final_list_ssc >temp_ref
+    if test -n "$(find $d -maxdepth 1 -name 'full_table*' -print -quit)"
+    then
+        awk -F"\t" '$2 == "Complete" { print $1}' $d/full_table* >temp
+        grep -Fx -f temp temp_ref >final_list_ssc
+        cat final_list_ssc >temp_ref
+    else 
+        echo "There is no full_table result in $d."
+    fi
 done
 
 ### Pick random 100 IDs of all 'complete' BUSCO genes present in the intersect
-sort -R final_list_ssc | head -n 100 >align_input_list.txt
-
+sort -R final_list_ssc | head -n 50 >align_input_list.txt
 
 ## Create FASTA files with separate alignment input for each of the 30 selected genes. 
 perl get_alignments.pl
