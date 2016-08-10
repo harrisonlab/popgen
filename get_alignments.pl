@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w
-
+use lib '/home/marynia/BioPerl-1.6.924';
 use Bio::SeqIO;
 use Cwd;
 
@@ -28,8 +28,8 @@ for my $d (@dirs)
 	undef @fasta;
 	undef @full_table;
 	
-	my @fasta = <*.fa*>;
-	my @full_table = <full_table*>;
+	@fasta = <*.fa*>;
+	@full_table = <full_table*>;
 	
 	$seqin = Bio::SeqIO->new(-file => "<$fasta[0]", '-format' => 'Fasta');
 	while (my $seq = $seqin->next_seq)
@@ -48,9 +48,10 @@ for my $d (@dirs)
 	{
 		my $line = $_;
 		chomp $line;
-		my @lines = split (/\t+/, $line); 	
+		my @lines = split (/\s+/, $line); 	
 		# BUSCO ID
 		$a = $lines[0];
+		print "$a\n";
 		# Assembly gene ID
 		$b = $lines[2];
 		
@@ -62,7 +63,8 @@ for my $d (@dirs)
 			close FS;
 			++$count;
 		}
+	
 	}
 	close FT;
-	print "The number of gene sequences found in the assembly $fasta[0] is $count.";
+	print "The number of gene sequences found in the assembly $fasta[0] is $count.\n";
 }
