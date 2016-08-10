@@ -122,5 +122,5 @@ done
 sort -R final_list_ssc | head -n 50 >align_input_list.txt
 
 ## Create FASTA files with separate alignment input for each of the 30 selected genes. 
-perl get_alignments.pl
+perl /home/sobczm/bin/scripts/get_alignments.pl
 ```
