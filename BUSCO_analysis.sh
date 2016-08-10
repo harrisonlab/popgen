@@ -113,8 +113,8 @@ grep -Fx -f temp temp_ref >final_list_ssc
 cat final_list_ssc >temp_ref
 done
 
-### Pick random 30 IDs of all 'complete' BUSCO genes present in the intersect
-sort -R final_list_ssc | head -n 30 >align_input_list.txt
+### Pick random 100 IDs of all 'complete' BUSCO genes present in the intersect
+sort -R final_list_ssc | head -n 100 >align_input_list.txt
 
 
 ## Create FASTA files with separate alignment input for each of the 30 selected genes. 
