@@ -31,6 +31,6 @@ cp $assembly $temp_dir
 python $busco -o $name -in $assembly -l $db -m genome
 
 ### Cleanup
-mv $temp_dir/$assembly $temp_dir/run_$name $cpath
+mv $temp_dir/$filename $temp_dir/run_$name $cpath
 rm -r $temp_dir
 
