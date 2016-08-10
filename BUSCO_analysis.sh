@@ -106,7 +106,7 @@ ls -1 | sed -e 's/\..*$//' >../all_buscos_fungi
 
 #!/bin/bash
 cat /home/sobczm/bin/BUSCO_v1.22/all_buscos_fungi >temp_ref
-for d in */
+for d in $PWD/run*
 do
 awk -F"\t" '$2 == "Complete" { print $1}' $d/full_table* >temp
 grep -Fx -f temp temp_ref >final_list_ssc
