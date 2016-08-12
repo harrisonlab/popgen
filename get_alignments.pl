@@ -51,7 +51,6 @@ for my $d (@dirs)
 		my @lines = split (/\s+/, $line); 	
 		# BUSCO ID
 		$a = $lines[0];
-		print "$a\n";
 		# Assembly gene ID
 		$b = $lines[2];
 		
