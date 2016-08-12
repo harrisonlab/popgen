@@ -47,6 +47,8 @@ export PATH=/home/armita/prog/augustus-3.1/bin:${PATH}
 export PATH=/home/armita/prog/augustus-3.1/scripts:${PATH}
 export PATH=/home/armita/prog/emboss/EMBOSS-4.0.0/bin:${PATH}
 ```
+[DendroPy ver. 4.1.0] (https://pythonhosted.org/DendroPy/) Python library for phylogenetic computing. `/home/sobczm/bin/DendroPy` *Need to export it to PYTHONPATH*
+
 [EIGENSOFT ver. 6.1.2] (https://genetics.med.harvard.edu/reich/Reich_Lab/Software.html) A set of population structure dectection methods. `/home/sobczm/bin/EIG/bin`
 
 [FastTree ver. 2.1.9] (http://www.microbesonline.org/fasttree/) Approximately Maximum-Likelihood Trees for Large Alignments `/home/sobczm/bin/FastTree2.1.9`  
@@ -69,6 +71,8 @@ export PATH=/home/armita/prog/emboss/EMBOSS-4.0.0/bin:${PATH}
 [PicardTools ver. 2.5.0] (https://broadinstitute.github.io/picard/) A set of command line tools for manipulating formats such as SAM/BAM/CRAM and VCF. `/home/sobczm/bin/picard-tools-2.5.0`
 
 [PhyloNet ver. 3.5.5] (http://bioinfo.cs.rice.edu/phylonet) & [PhyloNetHMM ver. 0.1] (http://bioinfo.cs.rice.edu/software/phmm) Bayesian inference of reticulate phylogenies under the multispecies network coalescent `/home/sobczm/bin/phmm`
+
+[PyVCF ver. 0.6.3] (https://pyvcf.readthedocs.io/en/latest/) A Variant Call Format Parser for Python `/home/sobczm/PyVCF`
 
 [RAxML ver. 8.2.9] (http://sco.h-its.org/exelixis/web/software/raxml/index.html) a ML a tool for phylogenetic analysis and post-analysis of large phylogenies `/home/sobczm/bin/RAxML8.2.9`
 
