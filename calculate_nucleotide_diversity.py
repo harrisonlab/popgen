@@ -8,8 +8,8 @@ from dendropy.calculate import popgenstat
 script, regex = argv
 
 ##loop over all fasta files in a dir and calculate basic sequence diversity stats and print to file
-f = open('sequence_stats.txt', 'w')
-e = open('excel_stats.txt', 'w')
+f = open('sequence_stats.txt', 'a')
+e = open('excel_stats.txt', 'a')
 files = ["fileID"]
 pis = ["Pi"]
 segs = ["SegregatingSites"]
