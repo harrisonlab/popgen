@@ -15,4 +15,4 @@ for f in *.fasta; do qsub $scripts/sub_mafft_alignment.sh $f; done
 
 ## Identify genes with high nucleotide diversity
 
-python $scripts/calculate_nucleotide_diversity.py
+for f in *_aligned.fasta; do python $scripts/calculate_nucleotide_diversity.py $f; done
