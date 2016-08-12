@@ -15,6 +15,7 @@ pis = ["Pi"]
 segs = ["SegregatingSites"]
 pdiffs = ["PairwiseDiffs"]
 lists = [files, pis, segs, pdiffs]
+
 for filename in glob.iglob(regex):
     seqs = dendropy.DnaCharacterMatrix.get(
     path= filename,
