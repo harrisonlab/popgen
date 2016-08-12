@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w
-use lib '/home/marynia/BioPerl-1.6.924';
+use lib '/home/sobczm/local/BioPerl-1.6.924';
 use Bio::SeqIO;
 use Cwd;
 
