@@ -99,18 +99,20 @@ qsub sub_BUSCO_fungi.sh $input/proliferatum/final/proliferatum_final_genes_combi
 ## Find the intersect of single-copy, complete genes 
 ### Create a list of all fungal BUSCO IDs
 
-cd /home/sobczm/bin/BUSCO_v1.22/fungi/hmms
+pushd /home/sobczm/bin/BUSCO_v1.22/fungi/hmms
 ls -1 | sed -e 's/\..*$//' >../all_buscos_fungi
+cp ../all_buscos_fungi /home/sobczm/popgen/busco
+popd
 
 ### Iteratively find the intersect of IDs of all 'complete' BUSCO genes present in the runs in the current directory 
 
 #!/bin/bash
-cat align_input_list.txt >temp_ref
+cat all_buscos_fungi >temp_ref
 for d in $PWD/run*
 do
     if test -n "$(find $d -maxdepth 1 -name 'full_table*' -print -quit)"
     then
-        awk -F"\t" '$2 == "Complete" { print $1}' $d/full_table* >temp
+        awk '$2 == "Complete" { print $1}' $d/full_table* >temp
         grep -Fx -f temp temp_ref >final_list_ssc
         cat final_list_ssc >temp_ref
     else 
