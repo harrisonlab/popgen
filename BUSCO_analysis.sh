@@ -121,9 +121,9 @@ do
     fi
 done
 
-### Pick random 100 IDs of all 'complete' BUSCO genes present in the intersect
+### Pick random 50 IDs of all 'complete' BUSCO genes present in the intersect
 sort -R final_list_ssc | head -n 50 >align_input_list.txt
 
-## Create FASTA files with separate alignment input for each of the 30 selected genes. 
+## Create FASTA files with separate alignment input for each of the 50 selected genes. 
 perl /home/sobczm/bin/scripts/get_alignments.pl
 ```
