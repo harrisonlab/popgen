@@ -128,5 +128,5 @@ sort -R final_list_ssc | head -n 50 >align_input_list.txt
 #in the range of 0.1-0.15 so will have to do the following steps for ALL shared BUSCOs.
 
 ## Create FASTA files with separate alignment input for each of the 50 selected genes. 
-perl /home/sobczm/bin/scripts/get_alignments.pl
+perl $scripts/get_alignments.pl
 ```
