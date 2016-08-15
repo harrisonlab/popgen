@@ -37,6 +37,7 @@ dir="${f%_trimmed*}"
 
 mkdir $dir
 cp $config_template $dir
+mv $config_template partition_finder.cfg
 
 # Substitute the name of the alignment file and the sequence length in the config file to become correct for the current run.
 
