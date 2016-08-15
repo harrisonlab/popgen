@@ -31,7 +31,6 @@ realignment `/home/sobczm/bin/abra/bin`
 ```
 export JAVA_HOME=/home/sobczm/bin/jre1.8.0_101
 export PATH="$JAVA_HOME/bin:$PATH"
-
 ```
 [BEAST ver. 1.8.3] (http://beast.bio.ed.ac.uk/) package - Bayesian analysis of molecular sequences using MCMC. Includes: BEAST, BEAUti, LogCombiner, TreeAnnotator.  `/home/sobczm/bin/beast/BEASTv1.8.3/bin`
 
