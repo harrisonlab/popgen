@@ -27,7 +27,7 @@ realignment `/home/sobczm/bin/abra/bin`
 [BayeScan ver. 2.1] (http://cmpg.unibe.ch/software/BayeScan/): detecting natural selection from population-based genetic data
 `/home/sobczm/bin/bayescan2.1/binaries/bayescan_2.1`
 
-**BEAST requires Java 8 - downloaded it to a local directory and change path for default Java in my profile:**
+**BEAST requires Java 8 - downloaded it to a local directory and changed path for default Java in my profile:**
 ```
 export JAVA_HOME=/home/sobczm/bin/jre1.8.0_101
 export PATH="$JAVA_HOME/bin:$PATH"
