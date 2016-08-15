@@ -124,6 +124,9 @@ done
 ### Pick random 50 IDs of all 'complete' BUSCO genes present in the intersect
 sort -R final_list_ssc | head -n 50 >align_input_list.txt
 
+#Note to self: having done this, the nucleotide diversity of 50 random genes is very consistent, with most of them
+#in the range of 0.1-0.15 so will have to do the following steps for ALL shared BUSCOs.
+
 ## Create FASTA files with separate alignment input for each of the 50 selected genes. 
 perl /home/sobczm/bin/scripts/get_alignments.pl
 ```
