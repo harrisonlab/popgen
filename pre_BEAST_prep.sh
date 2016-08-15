@@ -32,6 +32,7 @@ for f in *trimmed.fasta
 do
 c="$(cat $f | awk 'NR%2==0' | awk '{print length($1)}' | head -1)"
 p="${f%.fasta}.phy"
+p="${n%.fasta}.phy"
 dir="${f%_trimmed*}"
 
 mkdir $dir
@@ -44,9 +45,12 @@ sed -i 's,^\(Gene1_pos1 = \).*,\1'"1-$c\\\3;"',' $dir/$ct
 sed -i 's,^\(Gene1_pos2 = \).*,\1'"2-$c\\\3;"',' $dir/$ct
 sed -i 's,^\(Gene1_pos3 = \).*,\1'"3-$c\\\3;"',' $dir/$ct
 
-# Convert FASTA to phylip for the run
+# Convert FASTA to phylip for the Partition Finder run
 $scripts/fasta2phylip.pl $f>$p
 mv $p $dir 
+
+# Convert FASTA to NEXUS for the BEAST run
+$scripts/Fasta2Nexus.pl $f>$n
 
 qsub $scripts/sub_partition_finder.sh $dir
 
