@@ -32,7 +32,7 @@ for f in *trimmed.fasta
 do
 c="$(cat $f | awk 'NR%2==0' | awk '{print length($1)}' | head -1)"
 p="${f%.fasta}.phy"
-p="${n%.fasta}.phy"
+p="${n%.fasta}.NEXUS"
 dir="${f%_trimmed*}"
 
 mkdir $dir
