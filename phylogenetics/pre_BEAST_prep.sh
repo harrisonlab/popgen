@@ -22,7 +22,7 @@ python $scripts/calculate_nucleotide_diversity.py "*aligned.fasta"
 
 ##PartitionFinder (nucleotide sequence evolution model)
 
-config_template=/home/sobczm/bin/PartitionFinder1.1.1/fus.cfg
+config_template=/home/sobczm/bin/PartitionFinder1.1.1/partition_finder.cfg
 ct=$(basename "$config_template")
 
 cd $path/beast_runs
@@ -37,7 +37,6 @@ dir="${f%_trimmed*}"
 
 mkdir $dir
 cp $config_template $dir
-mv $dir/$config_template partition_finder.cfg
 
 # Substitute the name of the alignment file and the sequence length in the config file to become correct for the current run.
 
