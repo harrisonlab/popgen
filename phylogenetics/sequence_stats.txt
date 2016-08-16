@@ -1,0 +1,2392 @@
+BUSCOfEOG7008JM_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0167334707066
+Number of segregating sites for sequences in the file is 132
+Average number of pairwise differences for sequences in the file is 20.8181818182
+BUSCOfEOG7008JT_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0169114523626
+Number of segregating sites for sequences in the file is 175
+Average number of pairwise differences for sequences in the file is 25.8774703557
+BUSCOfEOG7034SQ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0164511620687
+Number of segregating sites for sequences in the file is 110
+Average number of pairwise differences for sequences in the file is 17.1106719368
+BUSCOfEOG7034T8_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0129229528833
+Number of segregating sites for sequences in the file is 116
+Average number of pairwise differences for sequences in the file is 17.7154150198
+BUSCOfEOG7034TX_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0110834707373
+Number of segregating sites for sequences in the file is 34
+Average number of pairwise differences for sequences in the file is 6.74308300395
+BUSCOfEOG70610P_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.015128930138
+Number of segregating sites for sequences in the file is 214
+Average number of pairwise differences for sequences in the file is 32.8814229249
+BUSCOfEOG706113_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0179661152333
+Number of segregating sites for sequences in the file is 170
+Average number of pairwise differences for sequences in the file is 30.9565217391
+BUSCOfEOG706142_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0175656764177
+Number of segregating sites for sequences in the file is 34
+Average number of pairwise differences for sequences in the file is 6.06719367589
+BUSCOfEOG708W9G_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0167099554601
+Number of segregating sites for sequences in the file is 172
+Average number of pairwise differences for sequences in the file is 26.9367588933
+BUSCOfEOG70CRJQ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00842164823675
+Number of segregating sites for sequences in the file is 41
+Average number of pairwise differences for sequences in the file is 7.09090909091
+BUSCOfEOG70GMV4_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00992137972949
+Number of segregating sites for sequences in the file is 33
+Average number of pairwise differences for sequences in the file is 5.39130434783
+BUSCOfEOG70KH1C_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0112430039276
+Number of segregating sites for sequences in the file is 68
+Average number of pairwise differences for sequences in the file is 9.8023715415
+BUSCOfEOG70PC60_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0149180033622
+Number of segregating sites for sequences in the file is 196
+Average number of pairwise differences for sequences in the file is 34.0039525692
+BUSCOfEOG70PC6X_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0143524505913
+Number of segregating sites for sequences in the file is 116
+Average number of pairwise differences for sequences in the file is 21.3003952569
+BUSCOfEOG70W3NS_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0132133856283
+Number of segregating sites for sequences in the file is 343
+Average number of pairwise differences for sequences in the file is 58.7786561265
+BUSCOfEOG70W3R5_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00765316036316
+Number of segregating sites for sequences in the file is 39
+Average number of pairwise differences for sequences in the file is 6.49011857708
+BUSCOfEOG70W3S0_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0178043914248
+Number of segregating sites for sequences in the file is 93
+Average number of pairwise differences for sequences in the file is 16.628458498
+BUSCOfEOG70ZZWZ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00772313232458
+Number of segregating sites for sequences in the file is 87
+Average number of pairwise differences for sequences in the file is 12.4664031621
+BUSCOfEOG712V6Z_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0125065155736
+Number of segregating sites for sequences in the file is 54
+Average number of pairwise differences for sequences in the file is 8.54545454545
+BUSCOfEOG715QCC_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0179617496002
+Number of segregating sites for sequences in the file is 568
+Average number of pairwise differences for sequences in the file is 87.1936758893
+BUSCOfEOG715QCD_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0121883107299
+Number of segregating sites for sequences in the file is 314
+Average number of pairwise differences for sequences in the file is 51.4347826087
+BUSCOfEOG715QCZ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0133601973907
+Number of segregating sites for sequences in the file is 175
+Average number of pairwise differences for sequences in the file is 29.3675889328
+BUSCOfEOG715QDR_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0157526580153
+Number of segregating sites for sequences in the file is 100
+Average number of pairwise differences for sequences in the file is 16.6442687747
+BUSCOfEOG715QF5_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0301923074487
+Number of segregating sites for sequences in the file is 213
+Average number of pairwise differences for sequences in the file is 43.6166007905
+BUSCOfEOG715QG8_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0129072742666
+Number of segregating sites for sequences in the file is 71
+Average number of pairwise differences for sequences in the file is 10.9683794466
+BUSCOfEOG71CFZ8_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0108083463002
+Number of segregating sites for sequences in the file is 41
+Average number of pairwise differences for sequences in the file is 6.1185770751
+BUSCOfEOG71GB3B_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0129012599501
+Number of segregating sites for sequences in the file is 202
+Average number of pairwise differences for sequences in the file is 33.2766798419
+BUSCOfEOG71GB4R_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0117835765474
+Number of segregating sites for sequences in the file is 175
+Average number of pairwise differences for sequences in the file is 27.8814229249
+BUSCOfEOG71GB67_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00399193866994
+Number of segregating sites for sequences in the file is 20
+Average number of pairwise differences for sequences in the file is 2.86956521739
+BUSCOfEOG71GB6Z_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0115977617885
+Number of segregating sites for sequences in the file is 42
+Average number of pairwise differences for sequences in the file is 6.60079051383
+BUSCOfEOG71K6FR_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00659902916519
+Number of segregating sites for sequences in the file is 33
+Average number of pairwise differences for sequences in the file is 4.11067193676
+BUSCOfEOG71P2KM_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00947430022845
+Number of segregating sites for sequences in the file is 125
+Average number of pairwise differences for sequences in the file is 18.418972332
+BUSCOfEOG71P2KZ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0110684158596
+Number of segregating sites for sequences in the file is 117
+Average number of pairwise differences for sequences in the file is 17.95256917
+BUSCOfEOG71P2Q2_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0063379659144
+Number of segregating sites for sequences in the file is 13
+Average number of pairwise differences for sequences in the file is 2.37154150198
+BUSCOfEOG71RXT9_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0125046242658
+Number of segregating sites for sequences in the file is 168
+Average number of pairwise differences for sequences in the file is 27.8221343874
+BUSCOfEOG71RXTM_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0185049474502
+Number of segregating sites for sequences in the file is 206
+Average number of pairwise differences for sequences in the file is 31.8260869565
+BUSCOfEOG71RXXP_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0128119467077
+Number of segregating sites for sequences in the file is 31
+Average number of pairwise differences for sequences in the file is 5.17786561265
+BUSCOfEOG71VT21_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0145172231203
+Number of segregating sites for sequences in the file is 324
+Average number of pairwise differences for sequences in the file is 59.3833992095
+BUSCOfEOG71VT28_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0160068835426
+Number of segregating sites for sequences in the file is 242
+Average number of pairwise differences for sequences in the file is 41.9920948617
+BUSCOfEOG71VT48_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0108391178129
+Number of segregating sites for sequences in the file is 86
+Average number of pairwise differences for sequences in the file is 12.9881422925
+BUSCOfEOG71VT4B_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.021708503989
+Number of segregating sites for sequences in the file is 342
+Average number of pairwise differences for sequences in the file is 57.837944664
+BUSCOfEOG71VT57_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00498548564302
+Number of segregating sites for sequences in the file is 20
+Average number of pairwise differences for sequences in the file is 2.42687747036
+BUSCOfEOG71ZPBN_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0134666722999
+Number of segregating sites for sequences in the file is 81
+Average number of pairwise differences for sequences in the file is 12.4664031621
+BUSCOfEOG71ZPC8_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0143465174126
+Number of segregating sites for sequences in the file is 86
+Average number of pairwise differences for sequences in the file is 15.8695652174
+BUSCOfEOG722JJC_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0192500513154
+Number of segregating sites for sequences in the file is 178
+Average number of pairwise differences for sequences in the file is 33.0158102767
+BUSCOfEOG722JJW_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0153304054875
+Number of segregating sites for sequences in the file is 137
+Average number of pairwise differences for sequences in the file is 21.0039525692
+BUSCOfEOG722JN6_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00825310493074
+Number of segregating sites for sequences in the file is 33
+Average number of pairwise differences for sequences in the file is 4.02371541502
+BUSCOfEOG725DVD_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0134609879082
+Number of segregating sites for sequences in the file is 138
+Average number of pairwise differences for sequences in the file is 23.652173913
+BUSCOfEOG72891J_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0124875432624
+Number of segregating sites for sequences in the file is 177
+Average number of pairwise differences for sequences in the file is 28.8814229249
+BUSCOfEOG72892M_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0133523365114
+Number of segregating sites for sequences in the file is 117
+Average number of pairwise differences for sequences in the file is 18.4940711462
+BUSCOfEOG72C5BH_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00767814766785
+Number of segregating sites for sequences in the file is 39
+Average number of pairwise differences for sequences in the file is 5.88932806324
+BUSCOfEOG72G1JR_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0204478611569
+Number of segregating sites for sequences in the file is 226
+Average number of pairwise differences for sequences in the file is 37.766798419
+BUSCOfEOG72G1KS_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0107886151512
+Number of segregating sites for sequences in the file is 39
+Average number of pairwise differences for sequences in the file is 5.62055335968
+BUSCOfEOG72NS06_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00808774747047
+Number of segregating sites for sequences in the file is 84
+Average number of pairwise differences for sequences in the file is 12.5612648221
+BUSCOfEOG72NS1Q_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0159528130496
+Number of segregating sites for sequences in the file is 113
+Average number of pairwise differences for sequences in the file is 18.9209486166
+BUSCOfEOG72RN9W_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00836621338303
+Number of segregating sites for sequences in the file is 36
+Average number of pairwise differences for sequences in the file is 5.61264822134
+BUSCOfEOG72VHFN_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.009632816296
+Number of segregating sites for sequences in the file is 125
+Average number of pairwise differences for sequences in the file is 20.162055336
+BUSCOfEOG72VHGT_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0078897275954
+Number of segregating sites for sequences in the file is 47
+Average number of pairwise differences for sequences in the file is 7.61264822134
+BUSCOfEOG72ZCPJ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0344756856706
+Number of segregating sites for sequences in the file is 382
+Average number of pairwise differences for sequences in the file is 76.5533596838
+BUSCOfEOG72ZCPN_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0138171108277
+Number of segregating sites for sequences in the file is 195
+Average number of pairwise differences for sequences in the file is 32.233201581
+BUSCOfEOG72ZCQ7_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0147251144855
+Number of segregating sites for sequences in the file is 136
+Average number of pairwise differences for sequences in the file is 19.4071146245
+BUSCOfEOG72ZCQF_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00911592784172
+Number of segregating sites for sequences in the file is 86
+Average number of pairwise differences for sequences in the file is 14.2411067194
+BUSCOfEOG7327X6_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0140273201697
+Number of segregating sites for sequences in the file is 275
+Average number of pairwise differences for sequences in the file is 46.9920948617
+BUSCOfEOG735483_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0234659122309
+Number of segregating sites for sequences in the file is 94
+Average number of pairwise differences for sequences in the file is 16.1422924901
+BUSCOfEOG735492_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00628319135579
+Number of segregating sites for sequences in the file is 17
+Average number of pairwise differences for sequences in the file is 2.55335968379
+BUSCOfEOG7380D3_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0123188096213
+Number of segregating sites for sequences in the file is 277
+Average number of pairwise differences for sequences in the file is 42.9328063241
+BUSCOfEOG7380D8_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0123392202474
+Number of segregating sites for sequences in the file is 321
+Average number of pairwise differences for sequences in the file is 53.7035573123
+BUSCOfEOG7380HP_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0126933025121
+Number of segregating sites for sequences in the file is 58
+Average number of pairwise differences for sequences in the file is 9.96442687747
+BUSCOfEOG73BVMX_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0164896258291
+Number of segregating sites for sequences in the file is 382
+Average number of pairwise differences for sequences in the file is 64.790513834
+BUSCOfEOG73BVNX_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0183162691823
+Number of segregating sites for sequences in the file is 241
+Average number of pairwise differences for sequences in the file is 35.9090909091
+BUSCOfEOG73BVP8_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0199460485707
+Number of segregating sites for sequences in the file is 114
+Average number of pairwise differences for sequences in the file is 25.9090909091
+BUSCOfEOG73BVPK_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0166251843394
+Number of segregating sites for sequences in the file is 101
+Average number of pairwise differences for sequences in the file is 16.5177865613
+BUSCOfEOG73JM5T_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0112707251282
+Number of segregating sites for sequences in the file is 66
+Average number of pairwise differences for sequences in the file is 9.79446640316
+BUSCOfEOG73JM66_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0124889418131
+Number of segregating sites for sequences in the file is 137
+Average number of pairwise differences for sequences in the file is 23.1936758893
+BUSCOfEOG73JM6G_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00995120829714
+Number of segregating sites for sequences in the file is 34
+Average number of pairwise differences for sequences in the file is 5.51383399209
+BUSCOfEOG73RBMM_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0138887135869
+Number of segregating sites for sequences in the file is 125
+Average number of pairwise differences for sequences in the file is 22.4466403162
+BUSCOfEOG73RBMT_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0144999055367
+Number of segregating sites for sequences in the file is 235
+Average number of pairwise differences for sequences in the file is 42.6996047431
+BUSCOfEOG73RBQ5_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00766335264514
+Number of segregating sites for sequences in the file is 38
+Average number of pairwise differences for sequences in the file is 5.45059288538
+BUSCOfEOG741Z9G_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.016727694152
+Number of segregating sites for sequences in the file is 455
+Average number of pairwise differences for sequences in the file is 72.2885375494
+BUSCOfEOG744TM6_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00945584251488
+Number of segregating sites for sequences in the file is 54
+Average number of pairwise differences for sequences in the file is 8.78656126482
+BUSCOfEOG747PS9_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.014069667999
+Number of segregating sites for sequences in the file is 388
+Average number of pairwise differences for sequences in the file is 60.0079051383
+BUSCOfEOG747PT4_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0158238656694
+Number of segregating sites for sequences in the file is 147
+Average number of pairwise differences for sequences in the file is 23.1304347826
+BUSCOfEOG747PVB_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.014283474618
+Number of segregating sites for sequences in the file is 92
+Average number of pairwise differences for sequences in the file is 15.5731225296
+BUSCOfEOG74BK1D_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0136412006918
+Number of segregating sites for sequences in the file is 324
+Average number of pairwise differences for sequences in the file is 53.2964426877
+BUSCOfEOG74FFB1_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0148759726119
+Number of segregating sites for sequences in the file is 108
+Average number of pairwise differences for sequences in the file is 15.2924901186
+BUSCOfEOG74J9H5_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.012071234532
+Number of segregating sites for sequences in the file is 487
+Average number of pairwise differences for sequences in the file is 82.7391304348
+BUSCOfEOG74J9HK_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0142181531386
+Number of segregating sites for sequences in the file is 195
+Average number of pairwise differences for sequences in the file is 32.8537549407
+BUSCOfEOG74N5S8_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0122406399392
+Number of segregating sites for sequences in the file is 107
+Average number of pairwise differences for sequences in the file is 17.0276679842
+BUSCOfEOG74N5SR_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0184212023722
+Number of segregating sites for sequences in the file is 136
+Average number of pairwise differences for sequences in the file is 24.9644268775
+BUSCOfEOG74N5V2_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0107818399058
+Number of segregating sites for sequences in the file is 40
+Average number of pairwise differences for sequences in the file is 5.94071146245
+BUSCOfEOG74N5VT_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0127786312582
+Number of segregating sites for sequences in the file is 50
+Average number of pairwise differences for sequences in the file is 7.42687747036
+BUSCOfEOG74R203_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0128200650151
+Number of segregating sites for sequences in the file is 167
+Average number of pairwise differences for sequences in the file is 28.9486166008
+BUSCOfEOG74R219_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0114265660661
+Number of segregating sites for sequences in the file is 157
+Average number of pairwise differences for sequences in the file is 22.7154150198
+BUSCOfEOG74R21C_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0193932403546
+Number of segregating sites for sequences in the file is 201
+Average number of pairwise differences for sequences in the file is 32.6837944664
+BUSCOfEOG74R22W_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0156862528614
+Number of segregating sites for sequences in the file is 43
+Average number of pairwise differences for sequences in the file is 8.45849802372
+BUSCOfEOG74R247_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00362593804137
+Number of segregating sites for sequences in the file is 11
+Average number of pairwise differences for sequences in the file is 1.10671936759
+BUSCOfEOG74TX76_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0172891842618
+Number of segregating sites for sequences in the file is 239
+Average number of pairwise differences for sequences in the file is 40.233201581
+BUSCOfEOG74XSH4_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0123153209616
+Number of segregating sites for sequences in the file is 114
+Average number of pairwise differences for sequences in the file is 17.7786561265
+BUSCOfEOG74XSH8_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00872276821038
+Number of segregating sites for sequences in the file is 77
+Average number of pairwise differences for sequences in the file is 12.5533596838
+BUSCOfEOG74XSHP_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0115963403503
+Number of segregating sites for sequences in the file is 70
+Average number of pairwise differences for sequences in the file is 10.7391304348
+BUSCOfEOG751NRJ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00754332793602
+Number of segregating sites for sequences in the file is 73
+Average number of pairwise differences for sequences in the file is 11.1225296443
+BUSCOfEOG751NSD_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0192512473015
+Number of segregating sites for sequences in the file is 168
+Average number of pairwise differences for sequences in the file is 29.1264822134
+BUSCOfEOG751NSQ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0174196732837
+Number of segregating sites for sequences in the file is 60
+Average number of pairwise differences for sequences in the file is 11.1343873518
+BUSCOfEOG751NTH_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00496993150666
+Number of segregating sites for sequences in the file is 13
+Average number of pairwise differences for sequences in the file is 1.73913043478
+BUSCOfEOG754HXV_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0118457282293
+Number of segregating sites for sequences in the file is 269
+Average number of pairwise differences for sequences in the file is 43.023715415
+BUSCOfEOG754J1M_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0118718890765
+Number of segregating sites for sequences in the file is 58
+Average number of pairwise differences for sequences in the file is 8.14229249012
+BUSCOfEOG757D5Q_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0177458976773
+Number of segregating sites for sequences in the file is 621
+Average number of pairwise differences for sequences in the file is 95.6640316206
+BUSCOfEOG75J0WK_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0192558902853
+Number of segregating sites for sequences in the file is 372
+Average number of pairwise differences for sequences in the file is 62.1422924901
+BUSCOfEOG75J0WR_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0171925853541
+Number of segregating sites for sequences in the file is 116
+Average number of pairwise differences for sequences in the file is 20.1739130435
+BUSCOfEOG75MW6R_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0151147372966
+Number of segregating sites for sequences in the file is 156
+Average number of pairwise differences for sequences in the file is 16.7826086957
+BUSCOfEOG75MW7H_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0103608637554
+Number of segregating sites for sequences in the file is 44
+Average number of pairwise differences for sequences in the file is 7.45454545455
+BUSCOfEOG75MW8C_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0127359564246
+Number of segregating sites for sequences in the file is 40
+Average number of pairwise differences for sequences in the file is 6.21343873518
+BUSCOfEOG75TMNG_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0135681668908
+Number of segregating sites for sequences in the file is 163
+Average number of pairwise differences for sequences in the file is 26.5256916996
+BUSCOfEOG75XGVQ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0148410403623
+Number of segregating sites for sequences in the file is 243
+Average number of pairwise differences for sequences in the file is 41.6442687747
+BUSCOfEOG75XGZ9_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00838411013989
+Number of segregating sites for sequences in the file is 44
+Average number of pairwise differences for sequences in the file is 5.57707509881
+BUSCOfEOG761C50_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0147386079274
+Number of segregating sites for sequences in the file is 117
+Average number of pairwise differences for sequences in the file is 23.4229249012
+BUSCOfEOG7647BG_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0347969767647
+Number of segregating sites for sequences in the file is 332
+Average number of pairwise differences for sequences in the file is 62.2529644269
+BUSCOfEOG7647C5_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0166401284904
+Number of segregating sites for sequences in the file is 119
+Average number of pairwise differences for sequences in the file is 20.0632411067
+BUSCOfEOG7647D5_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0186962167161
+Number of segregating sites for sequences in the file is 215
+Average number of pairwise differences for sequences in the file is 36.2292490119
+BUSCOfEOG7647F3_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00893679629565
+Number of segregating sites for sequences in the file is 33
+Average number of pairwise differences for sequences in the file is 5.73122529644
+BUSCOfEOG7673K1_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0154796283247
+Number of segregating sites for sequences in the file is 388
+Average number of pairwise differences for sequences in the file is 59.8102766798
+BUSCOfEOG7673K5_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.010838344684
+Number of segregating sites for sequences in the file is 198
+Average number of pairwise differences for sequences in the file is 31.3003952569
+BUSCOfEOG7673KQ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0131841428432
+Number of segregating sites for sequences in the file is 136
+Average number of pairwise differences for sequences in the file is 20.2766798419
+BUSCOfEOG769ZXC_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00985667418027
+Number of segregating sites for sequences in the file is 42
+Average number of pairwise differences for sequences in the file is 6.11067193676
+BUSCOfEOG76DV2B_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0162603444221
+Number of segregating sites for sequences in the file is 155
+Average number of pairwise differences for sequences in the file is 27.5691699605
+BUSCOfEOG76DV5T_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00447668273755
+Number of segregating sites for sequences in the file is 7
+Average number of pairwise differences for sequences in the file is 1.21739130435
+BUSCOfEOG76HQBV_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0100880616732
+Number of segregating sites for sequences in the file is 81
+Average number of pairwise differences for sequences in the file is 13.2727272727
+BUSCOfEOG76HQDG_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.011104071739
+Number of segregating sites for sequences in the file is 78
+Average number of pairwise differences for sequences in the file is 10.6837944664
+BUSCOfEOG76HQDT_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00979534950671
+Number of segregating sites for sequences in the file is 17
+Average number of pairwise differences for sequences in the file is 3.75494071146
+BUSCOfEOG76MKJK_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0181729617878
+Number of segregating sites for sequences in the file is 146
+Average number of pairwise differences for sequences in the file is 23.418972332
+BUSCOfEOG76MKK1_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0143976008514
+Number of segregating sites for sequences in the file is 99
+Average number of pairwise differences for sequences in the file is 16.7588932806
+BUSCOfEOG76QFST_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0184483343842
+Number of segregating sites for sequences in the file is 124
+Average number of pairwise differences for sequences in the file is 21.5138339921
+BUSCOfEOG76TB4G_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0187423864333
+Number of segregating sites for sequences in the file is 55
+Average number of pairwise differences for sequences in the file is 8.69565217391
+BUSCOfEOG76X682_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0221379707667
+Number of segregating sites for sequences in the file is 221
+Average number of pairwise differences for sequences in the file is 37.8774703557
+BUSCOfEOG76X68V_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0150807008592
+Number of segregating sites for sequences in the file is 106
+Average number of pairwise differences for sequences in the file is 15.3675889328
+BUSCOfEOG76X699_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.019091162621
+Number of segregating sites for sequences in the file is 142
+Average number of pairwise differences for sequences in the file is 23.0079051383
+BUSCOfEOG76X69V_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0102783545198
+Number of segregating sites for sequences in the file is 80
+Average number of pairwise differences for sequences in the file is 9.95256916996
+BUSCOfEOG7712J9_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0109502514795
+Number of segregating sites for sequences in the file is 71
+Average number of pairwise differences for sequences in the file is 11.4940711462
+BUSCOfEOG7712KX_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00807445638563
+Number of segregating sites for sequences in the file is 19
+Average number of pairwise differences for sequences in the file is 2.92490118577
+BUSCOfEOG7712MK_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0128601072266
+Number of segregating sites for sequences in the file is 35
+Average number of pairwise differences for sequences in the file is 6.74308300395
+BUSCOfEOG773XSZ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0134793561241
+Number of segregating sites for sequences in the file is 73
+Average number of pairwise differences for sequences in the file is 12.162055336
+BUSCOfEOG776SZ7_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.015431159645
+Number of segregating sites for sequences in the file is 718
+Average number of pairwise differences for sequences in the file is 113.972332016
+BUSCOfEOG776SZQ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0139349395869
+Number of segregating sites for sequences in the file is 179
+Average number of pairwise differences for sequences in the file is 27.9960474308
+BUSCOfEOG77DJGM_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0106960617157
+Number of segregating sites for sequences in the file is 67
+Average number of pairwise differences for sequences in the file is 9.87351778656
+BUSCOfEOG77DJGT_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.018612872153
+Number of segregating sites for sequences in the file is 126
+Average number of pairwise differences for sequences in the file is 23.4743083004
+BUSCOfEOG77DJHZ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0144036874124
+Number of segregating sites for sequences in the file is 141
+Average number of pairwise differences for sequences in the file is 21.0316205534
+BUSCOfEOG77DJJM_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00956231551603
+Number of segregating sites for sequences in the file is 37
+Average number of pairwise differences for sequences in the file is 5.92885375494
+BUSCOfEOG77DJK9_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00691837276954
+Number of segregating sites for sequences in the file is 13
+Average number of pairwise differences for sequences in the file is 1.81818181818
+BUSCOfEOG77HDQG_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.013885770061
+Number of segregating sites for sequences in the file is 89
+Average number of pairwise differences for sequences in the file is 14.5256916996
+BUSCOfEOG77HDS9_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00815552238969
+Number of segregating sites for sequences in the file is 34
+Average number of pairwise differences for sequences in the file is 5.88932806324
+BUSCOfEOG77HDTF_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.011083709873
+Number of segregating sites for sequences in the file is 15
+Average number of pairwise differences for sequences in the file is 3.09881422925
+BUSCOfEOG77M8XG_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0107184361123
+Number of segregating sites for sequences in the file is 129
+Average number of pairwise differences for sequences in the file is 19.604743083
+BUSCOfEOG77M90N_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00973204144486
+Number of segregating sites for sequences in the file is 55
+Average number of pairwise differences for sequences in the file is 8.83794466403
+BUSCOfEOG77Q55C_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0123364805382
+Number of segregating sites for sequences in the file is 130
+Average number of pairwise differences for sequences in the file is 24.4980237154
+BUSCOfEOG77Q571_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00881511972162
+Number of segregating sites for sequences in the file is 39
+Average number of pairwise differences for sequences in the file is 6.48616600791
+BUSCOfEOG77T1G6_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0159107400406
+Number of segregating sites for sequences in the file is 195
+Average number of pairwise differences for sequences in the file is 30.3913043478
+BUSCOfEOG77T1GJ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00850387513093
+Number of segregating sites for sequences in the file is 40
+Average number of pairwise differences for sequences in the file is 6.49011857708
+BUSCOfEOG77T1H5_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0142368548225
+Number of segregating sites for sequences in the file is 66
+Average number of pairwise differences for sequences in the file is 10.9249011858
+BUSCOfEOG77WWMQ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0127369690577
+Number of segregating sites for sequences in the file is 341
+Average number of pairwise differences for sequences in the file is 55.6719367589
+BUSCOfEOG77WWMR_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.021587366694
+Number of segregating sites for sequences in the file is 157
+Average number of pairwise differences for sequences in the file is 27.5059288538
+BUSCOfEOG77WWNF_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0167808042191
+Number of segregating sites for sequences in the file is 311
+Average number of pairwise differences for sequences in the file is 52.7628458498
+BUSCOfEOG77WWPJ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0114885595408
+Number of segregating sites for sequences in the file is 87
+Average number of pairwise differences for sequences in the file is 14.1897233202
+BUSCOfEOG77WWPP_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0239053187718
+Number of segregating sites for sequences in the file is 119
+Average number of pairwise differences for sequences in the file is 20.8695652174
+BUSCOfEOG77WWR5_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0130087797506
+Number of segregating sites for sequences in the file is 35
+Average number of pairwise differences for sequences in the file is 7.48221343874
+BUSCOfEOG77WWRD_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00809622590381
+Number of segregating sites for sequences in the file is 25
+Average number of pairwise differences for sequences in the file is 3.41501976285
+BUSCOfEOG780RWX_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0123478743098
+Number of segregating sites for sequences in the file is 116
+Average number of pairwise differences for sequences in the file is 18.6126482213
+BUSCOfEOG780RXX_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0108616570286
+Number of segregating sites for sequences in the file is 72
+Average number of pairwise differences for sequences in the file is 11.0158102767
+BUSCOfEOG780RZC_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0057395738805
+Number of segregating sites for sequences in the file is 24
+Average number of pairwise differences for sequences in the file is 4.49011857708
+BUSCOfEOG783N3S_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0173667500196
+Number of segregating sites for sequences in the file is 376
+Average number of pairwise differences for sequences in the file is 57.2371541502
+BUSCOfEOG783N4K_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0144741845765
+Number of segregating sites for sequences in the file is 160
+Average number of pairwise differences for sequences in the file is 26.6916996047
+BUSCOfEOG783N5X_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0153864356774
+Number of segregating sites for sequences in the file is 166
+Average number of pairwise differences for sequences in the file is 26.7114624506
+BUSCOfEOG783N68_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0162023591688
+Number of segregating sites for sequences in the file is 145
+Average number of pairwise differences for sequences in the file is 24.0948616601
+BUSCOfEOG783N6S_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0130524525928
+Number of segregating sites for sequences in the file is 65
+Average number of pairwise differences for sequences in the file is 11.0671936759
+BUSCOfEOG786HCM_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0100443872658
+Number of segregating sites for sequences in the file is 72
+Average number of pairwise differences for sequences in the file is 11.743083004
+BUSCOfEOG789CM7_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0174749896641
+Number of segregating sites for sequences in the file is 144
+Average number of pairwise differences for sequences in the file is 23.162055336
+BUSCOfEOG789CMF_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0144239796267
+Number of segregating sites for sequences in the file is 141
+Average number of pairwise differences for sequences in the file is 24.3913043478
+BUSCOfEOG789CPC_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0152628864033
+Number of segregating sites for sequences in the file is 70
+Average number of pairwise differences for sequences in the file is 10.442687747
+BUSCOfEOG78D7VT_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0178967359158
+Number of segregating sites for sequences in the file is 196
+Average number of pairwise differences for sequences in the file is 34.6442687747
+BUSCOfEOG78H45S_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00927101647054
+Number of segregating sites for sequences in the file is 48
+Average number of pairwise differences for sequences in the file is 7.86166007905
+BUSCOfEOG78M09B_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0171727561391
+Number of segregating sites for sequences in the file is 349
+Average number of pairwise differences for sequences in the file is 56.9486166008
+BUSCOfEOG78M09C_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.014064832034
+Number of segregating sites for sequences in the file is 176
+Average number of pairwise differences for sequences in the file is 29.8814229249
+BUSCOfEOG78SQSW_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0144815446349
+Number of segregating sites for sequences in the file is 135
+Average number of pairwise differences for sequences in the file is 24.6126482213
+BUSCOfEOG78SQVJ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.016312593228
+Number of segregating sites for sequences in the file is 106
+Average number of pairwise differences for sequences in the file is 17.7549407115
+BUSCOfEOG78SQWR_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0140989219203
+Number of segregating sites for sequences in the file is 190
+Average number of pairwise differences for sequences in the file is 32.9367588933
+BUSCOfEOG78WM1Q_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0115188852265
+Number of segregating sites for sequences in the file is 162
+Average number of pairwise differences for sequences in the file is 26.3122529644
+BUSCOfEOG78WM1V_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0168077269371
+Number of segregating sites for sequences in the file is 156
+Average number of pairwise differences for sequences in the file is 29.9367588933
+BUSCOfEOG78WM3D_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0195857354709
+Number of segregating sites for sequences in the file is 79
+Average number of pairwise differences for sequences in the file is 13.2964426877
+BUSCOfEOG790G80_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0103265621968
+Number of segregating sites for sequences in the file is 452
+Average number of pairwise differences for sequences in the file is 66.652173913
+BUSCOfEOG790G83_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00960154699225
+Number of segregating sites for sequences in the file is 163
+Average number of pairwise differences for sequences in the file is 23.8023715415
+BUSCOfEOG790GCB_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0165288347691
+Number of segregating sites for sequences in the file is 107
+Average number of pairwise differences for sequences in the file is 18.2806324111
+BUSCOfEOG793BHN_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0160605176696
+Number of segregating sites for sequences in the file is 132
+Average number of pairwise differences for sequences in the file is 21.7114624506
+BUSCOfEOG793BHT_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0208844879035
+Number of segregating sites for sequences in the file is 250
+Average number of pairwise differences for sequences in the file is 40.3003952569
+BUSCOfEOG793BK3_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00943841322471
+Number of segregating sites for sequences in the file is 49
+Average number of pairwise differences for sequences in the file is 7.66403162055
+BUSCOfEOG7966R0_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0189181600501
+Number of segregating sites for sequences in the file is 218
+Average number of pairwise differences for sequences in the file is 47.3320158103
+BUSCOfEOG7966RM_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0265835637299
+Number of segregating sites for sequences in the file is 730
+Average number of pairwise differences for sequences in the file is 118.391304348
+BUSCOfEOG7966T3_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0128384066607
+Number of segregating sites for sequences in the file is 117
+Average number of pairwise differences for sequences in the file is 17.743083004
+BUSCOfEOG7966TJ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00988697688626
+Number of segregating sites for sequences in the file is 49
+Average number of pairwise differences for sequences in the file is 7.25691699605
+BUSCOfEOG7966V3_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00506169420598
+Number of segregating sites for sequences in the file is 15
+Average number of pairwise differences for sequences in the file is 2.37944664032
+BUSCOfEOG79930D_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0164736705565
+Number of segregating sites for sequences in the file is 166
+Average number of pairwise differences for sequences in the file is 29.4387351779
+BUSCOfEOG79930X_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0129932164715
+Number of segregating sites for sequences in the file is 197
+Average number of pairwise differences for sequences in the file is 31.2490118577
+BUSCOfEOG799312_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0107550371571
+Number of segregating sites for sequences in the file is 74
+Average number of pairwise differences for sequences in the file is 12.3162055336
+BUSCOfEOG79CZ70_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0112793771202
+Number of segregating sites for sequences in the file is 217
+Average number of pairwise differences for sequences in the file is 33.5731225296
+BUSCOfEOG79CZ7K_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0130924104279
+Number of segregating sites for sequences in the file is 241
+Average number of pairwise differences for sequences in the file is 38.8695652174
+BUSCOfEOG79CZ8V_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0130156754073
+Number of segregating sites for sequences in the file is 62
+Average number of pairwise differences for sequences in the file is 11.4703557312
+BUSCOfEOG79GTFQ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0162626763472
+Number of segregating sites for sequences in the file is 363
+Average number of pairwise differences for sequences in the file is 61.9367588933
+BUSCOfEOG79GTGF_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0135956295837
+Number of segregating sites for sequences in the file is 122
+Average number of pairwise differences for sequences in the file is 22.3399209486
+BUSCOfEOG79GTGW_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0188950866182
+Number of segregating sites for sequences in the file is 243
+Average number of pairwise differences for sequences in the file is 39.5098814229
+BUSCOfEOG79KPPX_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0115080527388
+Number of segregating sites for sequences in the file is 136
+Average number of pairwise differences for sequences in the file is 21.7312252964
+BUSCOfEOG79KPTV_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0198082756475
+Number of segregating sites for sequences in the file is 47
+Average number of pairwise differences for sequences in the file is 7.69960474308
+BUSCOfEOG79PJXZ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0148838968331
+Number of segregating sites for sequences in the file is 330
+Average number of pairwise differences for sequences in the file is 54.0355731225
+BUSCOfEOG79PK0S_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0101292011337
+Number of segregating sites for sequences in the file is 44
+Average number of pairwise differences for sequences in the file is 7.9209486166
+BUSCOfEOG79SF6H_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0125415389104
+Number of segregating sites for sequences in the file is 143
+Average number of pairwise differences for sequences in the file is 22.0355731225
+BUSCOfEOG79SF7X_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0111893284037
+Number of segregating sites for sequences in the file is 42
+Average number of pairwise differences for sequences in the file is 7.24110671937
+BUSCOfEOG79W9DR_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0128795523989
+Number of segregating sites for sequences in the file is 163
+Average number of pairwise differences for sequences in the file is 27.2292490119
+BUSCOfEOG79W9FD_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0101456821336
+Number of segregating sites for sequences in the file is 106
+Average number of pairwise differences for sequences in the file is 16.4624505929
+BUSCOfEOG79W9HK_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.014481684313
+Number of segregating sites for sequences in the file is 65
+Average number of pairwise differences for sequences in the file is 10.8458498024
+BUSCOfEOG79W9HQ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0101351147315
+Number of segregating sites for sequences in the file is 41
+Average number of pairwise differences for sequences in the file is 5.12648221344
+BUSCOfEOG7B05P0_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0139230383741
+Number of segregating sites for sequences in the file is 207
+Average number of pairwise differences for sequences in the file is 34.0869565217
+BUSCOfEOG7B05QM_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0106725009331
+Number of segregating sites for sequences in the file is 82
+Average number of pairwise differences for sequences in the file is 13.5652173913
+BUSCOfEOG7B31W6_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0157674496843
+Number of segregating sites for sequences in the file is 671
+Average number of pairwise differences for sequences in the file is 101.750988142
+BUSCOfEOG7B320D_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0121574173348
+Number of segregating sites for sequences in the file is 46
+Average number of pairwise differences for sequences in the file is 7.61264822134
+BUSCOfEOG7B5X6H_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.01498727554
+Number of segregating sites for sequences in the file is 164
+Average number of pairwise differences for sequences in the file is 25.7865612648
+BUSCOfEOG7B5X74_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00839606269558
+Number of segregating sites for sequences in the file is 54
+Average number of pairwise differences for sequences in the file is 8.17786561265
+BUSCOfEOG7BCNMN_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0148322276639
+Number of segregating sites for sequences in the file is 263
+Average number of pairwise differences for sequences in the file is 43.5494071146
+BUSCOfEOG7BGHW7_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0164788844043
+Number of segregating sites for sequences in the file is 158
+Average number of pairwise differences for sequences in the file is 28.3241106719
+BUSCOfEOG7BGHWR_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0100508371944
+Number of segregating sites for sequences in the file is 63
+Average number of pairwise differences for sequences in the file is 11.2371541502
+BUSCOfEOG7BP8B9_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0206234784029
+Number of segregating sites for sequences in the file is 210
+Average number of pairwise differences for sequences in the file is 35.7312252964
+BUSCOfEOG7BP8F0_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0161160219624
+Number of segregating sites for sequences in the file is 67
+Average number of pairwise differences for sequences in the file is 11.5889328063
+BUSCOfEOG7BS4JW_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.015570614976
+Number of segregating sites for sequences in the file is 283
+Average number of pairwise differences for sequences in the file is 44.7272727273
+BUSCOfEOG7BS4KJ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0194490863157
+Number of segregating sites for sequences in the file is 153
+Average number of pairwise differences for sequences in the file is 26.766798419
+BUSCOfEOG7BS4M9_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0121667871711
+Number of segregating sites for sequences in the file is 106
+Average number of pairwise differences for sequences in the file is 17.6916996047
+BUSCOfEOG7BS4NR_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0366431286553
+Number of segregating sites for sequences in the file is 184
+Average number of pairwise differences for sequences in the file is 34.6758893281
+BUSCOfEOG7BW0V6_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0109557082662
+Number of segregating sites for sequences in the file is 95
+Average number of pairwise differences for sequences in the file is 15.6324110672
+BUSCOfEOG7BW0WH_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0117468265487
+Number of segregating sites for sequences in the file is 82
+Average number of pairwise differences for sequences in the file is 13.7944664032
+BUSCOfEOG7C2RBK_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00939577113122
+Number of segregating sites for sequences in the file is 47
+Average number of pairwise differences for sequences in the file is 8.33596837945
+BUSCOfEOG7C5MHX_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0119291403188
+Number of segregating sites for sequences in the file is 152
+Average number of pairwise differences for sequences in the file is 26.1264822134
+BUSCOfEOG7C8GWB_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0125454663923
+Number of segregating sites for sequences in the file is 83
+Average number of pairwise differences for sequences in the file is 12.4624505929
+BUSCOfEOG7CCC0D_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0109878557626
+Number of segregating sites for sequences in the file is 325
+Average number of pairwise differences for sequences in the file is 54.4150197628
+BUSCOfEOG7CCC0Z_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0120259714627
+Number of segregating sites for sequences in the file is 194
+Average number of pairwise differences for sequences in the file is 32.7509881423
+BUSCOfEOG7CCC10_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0174827191125
+Number of segregating sites for sequences in the file is 275
+Average number of pairwise differences for sequences in the file is 44.4980237154
+BUSCOfEOG7CCC29_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00757744400959
+Number of segregating sites for sequences in the file is 51
+Average number of pairwise differences for sequences in the file is 7.10671936759
+BUSCOfEOG7CG77Z_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0111420191784
+Number of segregating sites for sequences in the file is 138
+Average number of pairwise differences for sequences in the file is 22.4861660079
+BUSCOfEOG7CG78C_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0154952075632
+Number of segregating sites for sequences in the file is 118
+Average number of pairwise differences for sequences in the file is 19.8893280632
+BUSCOfEOG7CK3H3_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.020375736626
+Number of segregating sites for sequences in the file is 164
+Average number of pairwise differences for sequences in the file is 24.9209486166
+BUSCOfEOG7CK3JD_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0116987543524
+Number of segregating sites for sequences in the file is 63
+Average number of pairwise differences for sequences in the file is 9.14624505929
+BUSCOfEOG7CNZQV_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0196787216035
+Number of segregating sites for sequences in the file is 171
+Average number of pairwise differences for sequences in the file is 29.5375494071
+BUSCOfEOG7CRTZN_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0132976318771
+Number of segregating sites for sequences in the file is 157
+Average number of pairwise differences for sequences in the file is 23.1106719368
+BUSCOfEOG7CRTZV_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0144522192577
+Number of segregating sites for sequences in the file is 205
+Average number of pairwise differences for sequences in the file is 32.1146245059
+BUSCOfEOG7CRV06_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0128215789186
+Number of segregating sites for sequences in the file is 102
+Average number of pairwise differences for sequences in the file is 19.95256917
+BUSCOfEOG7CVQ6R_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.021828244492
+Number of segregating sites for sequences in the file is 176
+Average number of pairwise differences for sequences in the file is 32.5256916996
+BUSCOfEOG7CVQ76_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00845040349916
+Number of segregating sites for sequences in the file is 57
+Average number of pairwise differences for sequences in the file is 9.29644268775
+BUSCOfEOG7CVQ7K_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.124165044052
+Number of segregating sites for sequences in the file is 297
+Average number of pairwise differences for sequences in the file is 121.019762846
+BUSCOfEOG7CZKF1_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.019772254961
+Number of segregating sites for sequences in the file is 316
+Average number of pairwise differences for sequences in the file is 56.5059288538
+BUSCOfEOG7CZKGD_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0129775815918
+Number of segregating sites for sequences in the file is 172
+Average number of pairwise differences for sequences in the file is 27.6245059289
+BUSCOfEOG7CZKHC_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.011780109811
+Number of segregating sites for sequences in the file is 64
+Average number of pairwise differences for sequences in the file is 9.63241106719
+BUSCOfEOG7D2FNZ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0162855438431
+Number of segregating sites for sequences in the file is 355
+Average number of pairwise differences for sequences in the file is 61.3754940711
+BUSCOfEOG7D2FRW_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0153639221475
+Number of segregating sites for sequences in the file is 263
+Average number of pairwise differences for sequences in the file is 43.1225296443
+BUSCOfEOG7D59ZK_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.019984819843
+Number of segregating sites for sequences in the file is 130
+Average number of pairwise differences for sequences in the file is 22.0632411067
+BUSCOfEOG7D5B0C_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0181675379969
+Number of segregating sites for sequences in the file is 131
+Average number of pairwise differences for sequences in the file is 20.9249011858
+BUSCOfEOG7DC2CX_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0131500543293
+Number of segregating sites for sequences in the file is 252
+Average number of pairwise differences for sequences in the file is 39.7035573123
+BUSCOfEOG7DC2FJ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0139747117049
+Number of segregating sites for sequences in the file is 75
+Average number of pairwise differences for sequences in the file is 11.4308300395
+BUSCOfEOG7DFXNZ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.011006834498
+Number of segregating sites for sequences in the file is 120
+Average number of pairwise differences for sequences in the file is 20.4268774704
+BUSCOfEOG7DFXP0_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0125023433744
+Number of segregating sites for sequences in the file is 107
+Average number of pairwise differences for sequences in the file is 18.2924901186
+BUSCOfEOG7DFXQ2_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0354042635826
+Number of segregating sites for sequences in the file is 187
+Average number of pairwise differences for sequences in the file is 34.0592885375
+BUSCOfEOG7DFXRB_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0150836606449
+Number of segregating sites for sequences in the file is 55
+Average number of pairwise differences for sequences in the file is 10.347826087
+BUSCOfEOG7DJSVM_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0149006097221
+Number of segregating sites for sequences in the file is 227
+Average number of pairwise differences for sequences in the file is 38.1027667984
+BUSCOfEOG7DJSVT_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0158412532158
+Number of segregating sites for sequences in the file is 231
+Average number of pairwise differences for sequences in the file is 38.8023715415
+BUSCOfEOG7DJSW7_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0153300711367
+Number of segregating sites for sequences in the file is 158
+Average number of pairwise differences for sequences in the file is 25.3992094862
+BUSCOfEOG7DNP5M_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.011794988606
+Number of segregating sites for sequences in the file is 66
+Average number of pairwise differences for sequences in the file is 10.8893280632
+BUSCOfEOG7DRJDW_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0134363335267
+Number of segregating sites for sequences in the file is 148
+Average number of pairwise differences for sequences in the file is 24.2766798419
+BUSCOfEOG7DRJF3_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0136324704142
+Number of segregating sites for sequences in the file is 60
+Average number of pairwise differences for sequences in the file is 8.25691699605
+BUSCOfEOG7DVDN4_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0119285332721
+Number of segregating sites for sequences in the file is 100
+Average number of pairwise differences for sequences in the file is 15.9328063241
+BUSCOfEOG7DVDQ1_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00902459066906
+Number of segregating sites for sequences in the file is 48
+Average number of pairwise differences for sequences in the file is 7.27272727273
+BUSCOfEOG7DVDQB_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0101190237947
+Number of segregating sites for sequences in the file is 31
+Average number of pairwise differences for sequences in the file is 5.69960474308
+BUSCOfEOG7DZ8VC_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0117210907566
+Number of segregating sites for sequences in the file is 122
+Average number of pairwise differences for sequences in the file is 17.371541502
+BUSCOfEOG7DZ8XP_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0170201663302
+Number of segregating sites for sequences in the file is 54
+Average number of pairwise differences for sequences in the file is 8.56126482213
+BUSCOfEOG7DZ8XZ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0132718787208
+Number of segregating sites for sequences in the file is 64
+Average number of pairwise differences for sequences in the file is 10.0988142292
+BUSCOfEOG7F2524_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.014393941153
+Number of segregating sites for sequences in the file is 301
+Average number of pairwise differences for sequences in the file is 47.1146245059
+BUSCOfEOG7F2528_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0169598239097
+Number of segregating sites for sequences in the file is 282
+Average number of pairwise differences for sequences in the file is 48.814229249
+BUSCOfEOG7F2542_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0102077556691
+Number of segregating sites for sequences in the file is 65
+Average number of pairwise differences for sequences in the file is 10.4071146245
+BUSCOfEOG7F51BJ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0113380038468
+Number of segregating sites for sequences in the file is 94
+Average number of pairwise differences for sequences in the file is 15.5217391304
+BUSCOfEOG7F51DN_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0069807280186
+Number of segregating sites for sequences in the file is 20
+Average number of pairwise differences for sequences in the file is 3.88932806324
+BUSCOfEOG7F7WJ5_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0590901088139
+Number of segregating sites for sequences in the file is 1805
+Average number of pairwise differences for sequences in the file is 184.126482213
+BUSCOfEOG7F7WKM_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0135834902464
+Number of segregating sites for sequences in the file is 118
+Average number of pairwise differences for sequences in the file is 19.8418972332
+BUSCOfEOG7F7WKS_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0133986231377
+Number of segregating sites for sequences in the file is 298
+Average number of pairwise differences for sequences in the file is 49.7707509881
+BUSCOfEOG7F7WMJ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0161065240492
+Number of segregating sites for sequences in the file is 153
+Average number of pairwise differences for sequences in the file is 24.9644268775
+BUSCOfEOG7FBRS6_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0134712306503
+Number of segregating sites for sequences in the file is 287
+Average number of pairwise differences for sequences in the file is 49.3833992095
+BUSCOfEOG7FBRWF_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0118549601928
+Number of segregating sites for sequences in the file is 65
+Average number of pairwise differences for sequences in the file is 9.01976284585
+BUSCOfEOG7FBRWV_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0150946335306
+Number of segregating sites for sequences in the file is 37
+Average number of pairwise differences for sequences in the file is 5.19367588933
+BUSCOfEOG7FFN2S_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0215949052827
+Number of segregating sites for sequences in the file is 257
+Average number of pairwise differences for sequences in the file is 44.7075098814
+BUSCOfEOG7FFN53_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00624927035907
+Number of segregating sites for sequences in the file is 11
+Average number of pairwise differences for sequences in the file is 1.49407114625
+BUSCOfEOG7FJH7Z_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00847921240164
+Number of segregating sites for sequences in the file is 136
+Average number of pairwise differences for sequences in the file is 22.2727272727
+BUSCOfEOG7FJH8N_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0255711639941
+Number of segregating sites for sequences in the file is 303
+Average number of pairwise differences for sequences in the file is 53.0869565217
+BUSCOfEOG7FJHC6_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0182248023382
+Number of segregating sites for sequences in the file is 85
+Average number of pairwise differences for sequences in the file is 13.3201581028
+BUSCOfEOG7FJHC7_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0104223353277
+Number of segregating sites for sequences in the file is 45
+Average number of pairwise differences for sequences in the file is 7.6837944664
+BUSCOfEOG7FNCGS_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0108644035096
+Number of segregating sites for sequences in the file is 226
+Average number of pairwise differences for sequences in the file is 34.9288537549
+BUSCOfEOG7FNCGZ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0142182798906
+Number of segregating sites for sequences in the file is 185
+Average number of pairwise differences for sequences in the file is 31.6324110672
+BUSCOfEOG7FNCK0_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00429269120767
+Number of segregating sites for sequences in the file is 33
+Average number of pairwise differences for sequences in the file is 4.11067193676
+BUSCOfEOG7FR7QW_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0150453606621
+Number of segregating sites for sequences in the file is 198
+Average number of pairwise differences for sequences in the file is 34.5177865613
+BUSCOfEOG7FR7RC_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0138800406941
+Number of segregating sites for sequences in the file is 235
+Average number of pairwise differences for sequences in the file is 37.4071146245
+BUSCOfEOG7FR7S9_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0143144369522
+Number of segregating sites for sequences in the file is 104
+Average number of pairwise differences for sequences in the file is 17.4703557312
+BUSCOfEOG7FV406_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0222482483494
+Number of segregating sites for sequences in the file is 196
+Average number of pairwise differences for sequences in the file is 33.256916996
+BUSCOfEOG7FV415_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00643281512847
+Number of segregating sites for sequences in the file is 34
+Average number of pairwise differences for sequences in the file is 5.01185770751
+BUSCOfEOG7FZ099_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0131307732397
+Number of segregating sites for sequences in the file is 111
+Average number of pairwise differences for sequences in the file is 17.4782608696
+BUSCOfEOG7FZ09D_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0109987540175
+Number of segregating sites for sequences in the file is 44
+Average number of pairwise differences for sequences in the file is 7.63241106719
+BUSCOfEOG7G1VFT_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0190096467093
+Number of segregating sites for sequences in the file is 551
+Average number of pairwise differences for sequences in the file is 93.0158102767
+BUSCOfEOG7G4QR4_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0139229803795
+Number of segregating sites for sequences in the file is 126
+Average number of pairwise differences for sequences in the file is 21.604743083
+BUSCOfEOG7G4QRH_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0178469137214
+Number of segregating sites for sequences in the file is 144
+Average number of pairwise differences for sequences in the file is 21.9920948617
+BUSCOfEOG7G4QSH_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0153046462052
+Number of segregating sites for sequences in the file is 104
+Average number of pairwise differences for sequences in the file is 18.2055335968
+BUSCOfEOG7G4QT6_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00338543350966
+Number of segregating sites for sequences in the file is 9
+Average number of pairwise differences for sequences in the file is 1.50197628458
+BUSCOfEOG7G7KZ1_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0119673232904
+Number of segregating sites for sequences in the file is 254
+Average number of pairwise differences for sequences in the file is 40.9011857708
+BUSCOfEOG7G7M2F_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0157597836647
+Number of segregating sites for sequences in the file is 93
+Average number of pairwise differences for sequences in the file is 15.5691699605
+BUSCOfEOG7GBG58_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0152211845274
+Number of segregating sites for sequences in the file is 280
+Average number of pairwise differences for sequences in the file is 43.9802371542
+BUSCOfEOG7GBG70_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00794152311746
+Number of segregating sites for sequences in the file is 58
+Average number of pairwise differences for sequences in the file is 9.22924901186
+BUSCOfEOG7GBG86_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00460012593108
+Number of segregating sites for sequences in the file is 17
+Average number of pairwise differences for sequences in the file is 2.395256917
+BUSCOfEOG7GBG8F_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00911869441795
+Number of segregating sites for sequences in the file is 33
+Average number of pairwise differences for sequences in the file is 5.40711462451
+BUSCOfEOG7GJ6NN_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00676014749382
+Number of segregating sites for sequences in the file is 82
+Average number of pairwise differences for sequences in the file is 12.6245059289
+BUSCOfEOG7GJ6PG_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0108472968063
+Number of segregating sites for sequences in the file is 133
+Average number of pairwise differences for sequences in the file is 20.7114624506
+BUSCOfEOG7GN2WM_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0197109893089
+Number of segregating sites for sequences in the file is 183
+Average number of pairwise differences for sequences in the file is 34.2252964427
+BUSCOfEOG7GQZ3Z_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0179973683694
+Number of segregating sites for sequences in the file is 558
+Average number of pairwise differences for sequences in the file is 90.7786561265
+BUSCOfEOG7GQZ4F_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00976543763885
+Number of segregating sites for sequences in the file is 105
+Average number of pairwise differences for sequences in the file is 19.3280632411
+BUSCOfEOG7GQZ5S_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00904256799461
+Number of segregating sites for sequences in the file is 65
+Average number of pairwise differences for sequences in the file is 9.32015810277
+BUSCOfEOG7GTTCP_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0184933022253
+Number of segregating sites for sequences in the file is 280
+Average number of pairwise differences for sequences in the file is 46.1422924901
+BUSCOfEOG7GXPKT_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0123155161692
+Number of segregating sites for sequences in the file is 314
+Average number of pairwise differences for sequences in the file is 51.3517786561
+BUSCOfEOG7GXPKZ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0213025633017
+Number of segregating sites for sequences in the file is 405
+Average number of pairwise differences for sequences in the file is 73.976284585
+BUSCOfEOG7GXPM5_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0100593371555
+Number of segregating sites for sequences in the file is 178
+Average number of pairwise differences for sequences in the file is 28.0869565217
+BUSCOfEOG7GXPNJ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0202870964016
+Number of segregating sites for sequences in the file is 116
+Average number of pairwise differences for sequences in the file is 21.790513834
+BUSCOfEOG7GXPR2_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0101147342995
+Number of segregating sites for sequences in the file is 27
+Average number of pairwise differences for sequences in the file is 4.26086956522
+BUSCOfEOG7H1JV1_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0230392495458
+Number of segregating sites for sequences in the file is 323
+Average number of pairwise differences for sequences in the file is 57.9367588933
+BUSCOfEOG7H4F2V_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.011117603354
+Number of segregating sites for sequences in the file is 256
+Average number of pairwise differences for sequences in the file is 40.256916996
+BUSCOfEOG7H4F3W_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0117907378149
+Number of segregating sites for sequences in the file is 115
+Average number of pairwise differences for sequences in the file is 18.3833992095
+BUSCOfEOG7H79BV_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0129696436282
+Number of segregating sites for sequences in the file is 141
+Average number of pairwise differences for sequences in the file is 20.7628458498
+BUSCOfEOG7H79F8_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0168004174297
+Number of segregating sites for sequences in the file is 116
+Average number of pairwise differences for sequences in the file is 18.7707509881
+BUSCOfEOG7HB5JX_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.016957919052
+Number of segregating sites for sequences in the file is 218
+Average number of pairwise differences for sequences in the file is 34.8498023715
+BUSCOfEOG7HB5K7_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0118276128591
+Number of segregating sites for sequences in the file is 123
+Average number of pairwise differences for sequences in the file is 18.7588932806
+BUSCOfEOG7HB5M4_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0125618994105
+Number of segregating sites for sequences in the file is 89
+Average number of pairwise differences for sequences in the file is 16.3083003953
+BUSCOfEOG7HB5P3_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0256632456029
+Number of segregating sites for sequences in the file is 111
+Average number of pairwise differences for sequences in the file is 20.604743083
+BUSCOfEOG7HHX1P_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0122734904323
+Number of segregating sites for sequences in the file is 132
+Average number of pairwise differences for sequences in the file is 22.8181818182
+BUSCOfEOG7HHX2C_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00999631010084
+Number of segregating sites for sequences in the file is 139
+Average number of pairwise differences for sequences in the file is 19.7114624506
+BUSCOfEOG7HHX3R_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0151013951404
+Number of segregating sites for sequences in the file is 114
+Average number of pairwise differences for sequences in the file is 20.0830039526
+BUSCOfEOG7HHX4K_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.012123423542
+Number of segregating sites for sequences in the file is 22
+Average number of pairwise differences for sequences in the file is 4.49802371542
+BUSCOfEOG7HHX51_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00718688634391
+Number of segregating sites for sequences in the file is 25
+Average number of pairwise differences for sequences in the file is 3.82608695652
+BUSCOfEOG7HMS8K_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0100691596684
+Number of segregating sites for sequences in the file is 140
+Average number of pairwise differences for sequences in the file is 22.5256916996
+BUSCOfEOG7HMS8M_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.012532954187
+Number of segregating sites for sequences in the file is 205
+Average number of pairwise differences for sequences in the file is 34.4308300395
+BUSCOfEOG7HMS90_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0231550024781
+Number of segregating sites for sequences in the file is 396
+Average number of pairwise differences for sequences in the file is 69.9644268775
+BUSCOfEOG7HMSC2_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0131234904773
+Number of segregating sites for sequences in the file is 59
+Average number of pairwise differences for sequences in the file is 10.0197628458
+BUSCOfEOG7HQNJB_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0171838127475
+Number of segregating sites for sequences in the file is 292
+Average number of pairwise differences for sequences in the file is 45.604743083
+BUSCOfEOG7HQNM2_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.011398946975
+Number of segregating sites for sequences in the file is 57
+Average number of pairwise differences for sequences in the file is 9.35968379447
+BUSCOfEOG7HQNM6_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0175589684213
+Number of segregating sites for sequences in the file is 154
+Average number of pairwise differences for sequences in the file is 25.743083004
+BUSCOfEOG7HTHSD_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0163102443606
+Number of segregating sites for sequences in the file is 137
+Average number of pairwise differences for sequences in the file is 23.4703557312
+BUSCOfEOG7HXD0B_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0172152690473
+Number of segregating sites for sequences in the file is 311
+Average number of pairwise differences for sequences in the file is 46.2411067194
+BUSCOfEOG7HXD2Z_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0086100339085
+Number of segregating sites for sequences in the file is 41
+Average number of pairwise differences for sequences in the file is 6.24505928854
+BUSCOfEOG7J188V_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0109366161438
+Number of segregating sites for sequences in the file is 38
+Average number of pairwise differences for sequences in the file is 6.4743083004
+BUSCOfEOG7J1896_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.01593248712
+Number of segregating sites for sequences in the file is 172
+Average number of pairwise differences for sequences in the file is 30.347826087
+BUSCOfEOG7J1899_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00877336204571
+Number of segregating sites for sequences in the file is 76
+Average number of pairwise differences for sequences in the file is 11.5889328063
+BUSCOfEOG7J44H6_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0130750806449
+Number of segregating sites for sequences in the file is 154
+Average number of pairwise differences for sequences in the file is 23.7865612648
+BUSCOfEOG7J44MH_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0116272820606
+Number of segregating sites for sequences in the file is 143
+Average number of pairwise differences for sequences in the file is 24.1067193676
+BUSCOfEOG7J70SV_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0125573407527
+Number of segregating sites for sequences in the file is 63
+Average number of pairwise differences for sequences in the file is 10.581027668
+BUSCOfEOG7J9W0X_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0112187737588
+Number of segregating sites for sequences in the file is 66
+Average number of pairwise differences for sequences in the file is 10.3557312253
+BUSCOfEOG7J9W1K_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.011265546511
+Number of segregating sites for sequences in the file is 92
+Average number of pairwise differences for sequences in the file is 13.371541502
+BUSCOfEOG7J9W1T_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0126606080317
+Number of segregating sites for sequences in the file is 47
+Average number of pairwise differences for sequences in the file is 8.83003952569
+BUSCOfEOG7JDR61_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00941569594323
+Number of segregating sites for sequences in the file is 158
+Average number of pairwise differences for sequences in the file is 23.9446640316
+BUSCOfEOG7JDR6J_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.018151308032
+Number of segregating sites for sequences in the file is 201
+Average number of pairwise differences for sequences in the file is 30.5059288538
+BUSCOfEOG7JDR96_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0174404775438
+Number of segregating sites for sequences in the file is 87
+Average number of pairwise differences for sequences in the file is 12.5612648221
+BUSCOfEOG7JHMH7_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0156773368502
+Number of segregating sites for sequences in the file is 102
+Average number of pairwise differences for sequences in the file is 16.1739130435
+BUSCOfEOG7JHMJ1_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00669419111284
+Number of segregating sites for sequences in the file is 26
+Average number of pairwise differences for sequences in the file is 3.40711462451
+BUSCOfEOG7JMGNQ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0158721757574
+Number of segregating sites for sequences in the file is 1384
+Average number of pairwise differences for sequences in the file is 233.418972332
+BUSCOfEOG7JMGRN_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0111490163383
+Number of segregating sites for sequences in the file is 48
+Average number of pairwise differences for sequences in the file is 6.92490118577
+BUSCOfEOG7JMGRX_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0119526578591
+Number of segregating sites for sequences in the file is 56
+Average number of pairwise differences for sequences in the file is 10.652173913
+BUSCOfEOG7JQBXJ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0153812583368
+Number of segregating sites for sequences in the file is 156
+Average number of pairwise differences for sequences in the file is 28.7509881423
+BUSCOfEOG7JQC05_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0181540532233
+Number of segregating sites for sequences in the file is 89
+Average number of pairwise differences for sequences in the file is 15.395256917
+BUSCOfEOG7JT755_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0196412953846
+Number of segregating sites for sequences in the file is 189
+Average number of pairwise differences for sequences in the file is 33.6996047431
+BUSCOfEOG7JX3DQ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0158619151426
+Number of segregating sites for sequences in the file is 166
+Average number of pairwise differences for sequences in the file is 27.6798418972
+BUSCOfEOG7JX3GH_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00949728345346
+Number of segregating sites for sequences in the file is 68
+Average number of pairwise differences for sequences in the file is 10.3596837945
+BUSCOfEOG7K0ZQ9_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0211502776501
+Number of segregating sites for sequences in the file is 103
+Average number of pairwise differences for sequences in the file is 16.6798418972
+BUSCOfEOG7K3TW0_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0168478369603
+Number of segregating sites for sequences in the file is 155
+Average number of pairwise differences for sequences in the file is 25.652173913
+BUSCOfEOG7K3TX9_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00823685300969
+Number of segregating sites for sequences in the file is 74
+Average number of pairwise differences for sequences in the file is 10.9881422925
+BUSCOfEOG7K3V05_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0145224809348
+Number of segregating sites for sequences in the file is 52
+Average number of pairwise differences for sequences in the file is 9.04347826087
+BUSCOfEOG7K6Q40_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0236115960885
+Number of segregating sites for sequences in the file is 185
+Average number of pairwise differences for sequences in the file is 35.8498023715
+BUSCOfEOG7K6Q48_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0119878126287
+Number of segregating sites for sequences in the file is 121
+Average number of pairwise differences for sequences in the file is 19.0118577075
+BUSCOfEOG7K9KC2_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0146034672979
+Number of segregating sites for sequences in the file is 155
+Average number of pairwise differences for sequences in the file is 23.9644268775
+BUSCOfEOG7K9KD0_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.014224430815
+Number of segregating sites for sequences in the file is 162
+Average number of pairwise differences for sequences in the file is 27.0118577075
+BUSCOfEOG7K9KDQ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0141593989443
+Number of segregating sites for sequences in the file is 265
+Average number of pairwise differences for sequences in the file is 41.0632411067
+BUSCOfEOG7K9KFM_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00696200449416
+Number of segregating sites for sequences in the file is 30
+Average number of pairwise differences for sequences in the file is 4.12648221344
+BUSCOfEOG7KDFPN_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0156467209717
+Number of segregating sites for sequences in the file is 61
+Average number of pairwise differences for sequences in the file is 10.2845849802
+BUSCOfEOG7KH9TB_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0142222861607
+Number of segregating sites for sequences in the file is 286
+Average number of pairwise differences for sequences in the file is 45.3162055336
+BUSCOfEOG7KH9V5_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0195103013754
+Number of segregating sites for sequences in the file is 136
+Average number of pairwise differences for sequences in the file is 21.6996047431
+BUSCOfEOG7KH9VN_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0122293172946
+Number of segregating sites for sequences in the file is 108
+Average number of pairwise differences for sequences in the file is 18.6166007905
+BUSCOfEOG7KM64K_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0131607422881
+Number of segregating sites for sequences in the file is 67
+Average number of pairwise differences for sequences in the file is 10.0553359684
+BUSCOfEOG7KM654_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0196618305698
+Number of segregating sites for sequences in the file is 95
+Average number of pairwise differences for sequences in the file is 18.8458498024
+BUSCOfEOG7KQ29H_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0145710604662
+Number of segregating sites for sequences in the file is 208
+Average number of pairwise differences for sequences in the file is 32.3399209486
+BUSCOfEOG7KQ2CS_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.011894974546
+Number of segregating sites for sequences in the file is 44
+Average number of pairwise differences for sequences in the file is 6.48221343874
+BUSCOfEOG7KSXJQ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0141653878151
+Number of segregating sites for sequences in the file is 120
+Average number of pairwise differences for sequences in the file is 20.5968379447
+BUSCOfEOG7KWSTM_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0124779642532
+Number of segregating sites for sequences in the file is 68
+Average number of pairwise differences for sequences in the file is 12.5296442688
+BUSCOfEOG7M0P3P_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0157189487691
+Number of segregating sites for sequences in the file is 46
+Average number of pairwise differences for sequences in the file is 8.11067193676
+BUSCOfEOG7M3J7M_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0156996449728
+Number of segregating sites for sequences in the file is 287
+Average number of pairwise differences for sequences in the file is 49.3596837945
+BUSCOfEOG7M3J7T_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.012014083594
+Number of segregating sites for sequences in the file is 401
+Average number of pairwise differences for sequences in the file is 65.5335968379
+BUSCOfEOG7M3J9X_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00653277599518
+Number of segregating sites for sequences in the file is 29
+Average number of pairwise differences for sequences in the file is 4.52964426877
+BUSCOfEOG7M6DJ5_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0162798105062
+Number of segregating sites for sequences in the file is 154
+Average number of pairwise differences for sequences in the file is 24.1383399209
+BUSCOfEOG7MD4ZH_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0205220111506
+Number of segregating sites for sequences in the file is 358
+Average number of pairwise differences for sequences in the file is 64.3201581028
+BUSCOfEOG7MD52F_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0153462890807
+Number of segregating sites for sequences in the file is 86
+Average number of pairwise differences for sequences in the file is 14.628458498
+BUSCOfEOG7MD52N_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00182629934649
+Number of segregating sites for sequences in the file is 9
+Average number of pairwise differences for sequences in the file is 1.16996047431
+BUSCOfEOG7MD52Z_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0114141309209
+Number of segregating sites for sequences in the file is 57
+Average number of pairwise differences for sequences in the file is 5.64822134387
+BUSCOfEOG7MH16T_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0128007717434
+Number of segregating sites for sequences in the file is 93
+Average number of pairwise differences for sequences in the file is 15.3873517787
+BUSCOfEOG7MKWFS_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00905351688369
+Number of segregating sites for sequences in the file is 95
+Average number of pairwise differences for sequences in the file is 15.7233201581
+BUSCOfEOG7MKWHH_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0199658112119
+Number of segregating sites for sequences in the file is 255
+Average number of pairwise differences for sequences in the file is 44.5454545455
+BUSCOfEOG7MPRRD_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0160149745018
+Number of segregating sites for sequences in the file is 234
+Average number of pairwise differences for sequences in the file is 37.0592885375
+BUSCOfEOG7MPRRX_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0138386004715
+Number of segregating sites for sequences in the file is 60
+Average number of pairwise differences for sequences in the file is 9.30830039526
+BUSCOfEOG7MSMX7_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0160932373272
+Number of segregating sites for sequences in the file is 405
+Average number of pairwise differences for sequences in the file is 70.6086956522
+BUSCOfEOG7MSMX8_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0141523550416
+Number of segregating sites for sequences in the file is 282
+Average number of pairwise differences for sequences in the file is 44.2173913043
+BUSCOfEOG7MWH56_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0102601918163
+Number of segregating sites for sequences in the file is 211
+Average number of pairwise differences for sequences in the file is 33.2015810277
+BUSCOfEOG7MWH6S_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0138955268923
+Number of segregating sites for sequences in the file is 118
+Average number of pairwise differences for sequences in the file is 19.9130434783
+BUSCOfEOG7N0CDV_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0109415051137
+Number of segregating sites for sequences in the file is 107
+Average number of pairwise differences for sequences in the file is 17.8300395257
+BUSCOfEOG7N0CF5_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0141436786971
+Number of segregating sites for sequences in the file is 95
+Average number of pairwise differences for sequences in the file is 15.8853754941
+BUSCOfEOG7N0CHC_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0093267904028
+Number of segregating sites for sequences in the file is 34
+Average number of pairwise differences for sequences in the file is 3.91304347826
+BUSCOfEOG7N0CHQ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0100638836088
+Number of segregating sites for sequences in the file is 90
+Average number of pairwise differences for sequences in the file is 12.8735177866
+BUSCOfEOG7N0CHT_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0116480176931
+Number of segregating sites for sequences in the file is 28
+Average number of pairwise differences for sequences in the file is 5.37154150198
+BUSCOfEOG7N63XC_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0220875010403
+Number of segregating sites for sequences in the file is 179
+Average number of pairwise differences for sequences in the file is 35.9169960474
+BUSCOfEOG7N9059_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0152214187745
+Number of segregating sites for sequences in the file is 138
+Average number of pairwise differences for sequences in the file is 23.9130434783
+BUSCOfEOG7N905X_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0193082753085
+Number of segregating sites for sequences in the file is 120
+Average number of pairwise differences for sequences in the file is 16.3913043478
+BUSCOfEOG7NGQQW_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00906665243602
+Number of segregating sites for sequences in the file is 27
+Average number of pairwise differences for sequences in the file is 4.15019762846
+BUSCOfEOG7NKKX2_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0198684823786
+Number of segregating sites for sequences in the file is 253
+Average number of pairwise differences for sequences in the file is 40.4980237154
+BUSCOfEOG7NPG2G_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0111109068899
+Number of segregating sites for sequences in the file is 465
+Average number of pairwise differences for sequences in the file is 72.3992094862
+BUSCOfEOG7NPG3K_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0162874540298
+Number of segregating sites for sequences in the file is 84
+Average number of pairwise differences for sequences in the file is 16.8418972332
+BUSCOfEOG7NSB9K_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0123167678206
+Number of segregating sites for sequences in the file is 625
+Average number of pairwise differences for sequences in the file is 97.3043478261
+BUSCOfEOG7NSB9S_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0219818041823
+Number of segregating sites for sequences in the file is 630
+Average number of pairwise differences for sequences in the file is 104.632411067
+BUSCOfEOG7NSBBG_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0206123826079
+Number of segregating sites for sequences in the file is 186
+Average number of pairwise differences for sequences in the file is 33.2806324111
+BUSCOfEOG7NW6JR_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0113964537351
+Number of segregating sites for sequences in the file is 149
+Average number of pairwise differences for sequences in the file is 23.3754940711
+BUSCOfEOG7NW6JS_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0132375784628
+Number of segregating sites for sequences in the file is 179
+Average number of pairwise differences for sequences in the file is 30.3043478261
+BUSCOfEOG7NW6K7_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0137080619987
+Number of segregating sites for sequences in the file is 110
+Average number of pairwise differences for sequences in the file is 20.1027667984
+BUSCOfEOG7NW6NN_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00445094557192
+Number of segregating sites for sequences in the file is 18
+Average number of pairwise differences for sequences in the file is 2.02371541502
+BUSCOfEOG7P02SB_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.014671246012
+Number of segregating sites for sequences in the file is 265
+Average number of pairwise differences for sequences in the file is 43.1818181818
+BUSCOfEOG7P02T6_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0119360281291
+Number of segregating sites for sequences in the file is 101
+Average number of pairwise differences for sequences in the file is 14.7391304348
+BUSCOfEOG7P02TS_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0131735342272
+Number of segregating sites for sequences in the file is 97
+Average number of pairwise differences for sequences in the file is 14.4505928854
+BUSCOfEOG7P2Z1R_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0208550887536
+Number of segregating sites for sequences in the file is 289
+Average number of pairwise differences for sequences in the file is 49.8221343874
+BUSCOfEOG7P2Z21_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0174889979977
+Number of segregating sites for sequences in the file is 160
+Average number of pairwise differences for sequences in the file is 28.8932806324
+BUSCOfEOG7P2Z35_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.011880070087
+Number of segregating sites for sequences in the file is 71
+Average number of pairwise differences for sequences in the file is 11.3241106719
+BUSCOfEOG7P5TBG_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0202702778977
+Number of segregating sites for sequences in the file is 301
+Average number of pairwise differences for sequences in the file is 50.6245059289
+BUSCOfEOG7PCJRV_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0173699056837
+Number of segregating sites for sequences in the file is 126
+Average number of pairwise differences for sequences in the file is 23.0711462451
+BUSCOfEOG7PGF35_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.011714498482
+Number of segregating sites for sequences in the file is 52
+Average number of pairwise differences for sequences in the file is 7.26086956522
+BUSCOfEOG7PK96V_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0138792750147
+Number of segregating sites for sequences in the file is 578
+Average number of pairwise differences for sequences in the file is 98.628458498
+BUSCOfEOG7PK99N_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0151324342029
+Number of segregating sites for sequences in the file is 102
+Average number of pairwise differences for sequences in the file is 16.4071146245
+BUSCOfEOG7PK9B1_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0143726655069
+Number of segregating sites for sequences in the file is 91
+Average number of pairwise differences for sequences in the file is 16.4901185771
+BUSCOfEOG7PVX27_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0104849881389
+Number of segregating sites for sequences in the file is 118
+Average number of pairwise differences for sequences in the file is 18.0553359684
+BUSCOfEOG7PZS5P_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0122607352922
+Number of segregating sites for sequences in the file is 317
+Average number of pairwise differences for sequences in the file is 47.4308300395
+BUSCOfEOG7PZS9D_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0027745497886
+Number of segregating sites for sequences in the file is 9
+Average number of pairwise differences for sequences in the file is 1.32015810277
+BUSCOfEOG7Q2NHQ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0112562993212
+Number of segregating sites for sequences in the file is 49
+Average number of pairwise differences for sequences in the file is 7.68774703557
+BUSCOfEOG7Q8CXK_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0166887930721
+Number of segregating sites for sequences in the file is 148
+Average number of pairwise differences for sequences in the file is 24.3162055336
+BUSCOfEOG7Q8CZ1_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0142766421084
+Number of segregating sites for sequences in the file is 158
+Average number of pairwise differences for sequences in the file is 26.6719367589
+BUSCOfEOG7Q8CZB_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0136099503923
+Number of segregating sites for sequences in the file is 87
+Average number of pairwise differences for sequences in the file is 13.4584980237
+BUSCOfEOG7Q8D04_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0116162253108
+Number of segregating sites for sequences in the file is 43
+Average number of pairwise differences for sequences in the file is 6.85375494071
+BUSCOfEOG7QC85Z_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.013669432363
+Number of segregating sites for sequences in the file is 79
+Average number of pairwise differences for sequences in the file is 13.581027668
+BUSCOfEOG7QC871_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0137220689183
+Number of segregating sites for sequences in the file is 93
+Average number of pairwise differences for sequences in the file is 16.4624505929
+BUSCOfEOG7QC87H_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.006415128316
+Number of segregating sites for sequences in the file is 29
+Average number of pairwise differences for sequences in the file is 3.66798418972
+BUSCOfEOG7QG4CT_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0124664001627
+Number of segregating sites for sequences in the file is 159
+Average number of pairwise differences for sequences in the file is 27.9644268775
+BUSCOfEOG7QG4GR_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00976234443517
+Number of segregating sites for sequences in the file is 26
+Average number of pairwise differences for sequences in the file is 4.44268774704
+BUSCOfEOG7QK0MM_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0090065164596
+Number of segregating sites for sequences in the file is 129
+Average number of pairwise differences for sequences in the file is 20.2252964427
+BUSCOfEOG7QK0P7_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0610992901053
+Number of segregating sites for sequences in the file is 644
+Average number of pairwise differences for sequences in the file is 66.4940711462
+BUSCOfEOG7QNVVM_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0240663570962
+Number of segregating sites for sequences in the file is 264
+Average number of pairwise differences for sequences in the file is 46.6007905138
+BUSCOfEOG7QNVX7_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0148494785561
+Number of segregating sites for sequences in the file is 128
+Average number of pairwise differences for sequences in the file is 17.8893280632
+BUSCOfEOG7QNVZZ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0176659823694
+Number of segregating sites for sequences in the file is 106
+Average number of pairwise differences for sequences in the file is 18.3754940711
+BUSCOfEOG7QZGMD_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0111733109088
+Number of segregating sites for sequences in the file is 83
+Average number of pairwise differences for sequences in the file is 12.4624505929
+BUSCOfEOG7QZGNM_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0278383368253
+Number of segregating sites for sequences in the file is 139
+Average number of pairwise differences for sequences in the file is 26.1225296443
+BUSCOfEOG7R2BV4_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0113664884586
+Number of segregating sites for sequences in the file is 70
+Average number of pairwise differences for sequences in the file is 12.3043478261
+BUSCOfEOG7R2BVR_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0157736465898
+Number of segregating sites for sequences in the file is 141
+Average number of pairwise differences for sequences in the file is 24.4466403162
+BUSCOfEOG7R83BB_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00860623742028
+Number of segregating sites for sequences in the file is 61
+Average number of pairwise differences for sequences in the file is 9.20948616601
+BUSCOfEOG7R83CB_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0174195816708
+Number of segregating sites for sequences in the file is 94
+Average number of pairwise differences for sequences in the file is 16.9683794466
+BUSCOfEOG7R83CW_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0119668286907
+Number of segregating sites for sequences in the file is 64
+Average number of pairwise differences for sequences in the file is 9.43083003953
+BUSCOfEOG7RBZJB_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0131183933905
+Number of segregating sites for sequences in the file is 190
+Average number of pairwise differences for sequences in the file is 31.7075098814
+BUSCOfEOG7RBZK3_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0140305862663
+Number of segregating sites for sequences in the file is 124
+Average number of pairwise differences for sequences in the file is 18.0592885375
+BUSCOfEOG7RBZKK_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0176861271112
+Number of segregating sites for sequences in the file is 125
+Average number of pairwise differences for sequences in the file is 17.9169960474
+BUSCOfEOG7RBZMH_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.020549008385
+Number of segregating sites for sequences in the file is 194
+Average number of pairwise differences for sequences in the file is 28.9565217391
+BUSCOfEOG7RBZN0_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0102342323833
+Number of segregating sites for sequences in the file is 209
+Average number of pairwise differences for sequences in the file is 35.0276679842
+BUSCOfEOG7RFTTM_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0117174106793
+Number of segregating sites for sequences in the file is 106
+Average number of pairwise differences for sequences in the file is 16.4387351779
+BUSCOfEOG7RFTVM_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0112220474972
+Number of segregating sites for sequences in the file is 33
+Average number of pairwise differences for sequences in the file is 6.12648221344
+BUSCOfEOG7RFTVR_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.023750315778
+Number of segregating sites for sequences in the file is 85
+Average number of pairwise differences for sequences in the file is 16.0830039526
+BUSCOfEOG7RJQ17_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0142351579851
+Number of segregating sites for sequences in the file is 138
+Average number of pairwise differences for sequences in the file is 22.3636363636
+BUSCOfEOG7RJQ25_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0157984889353
+Number of segregating sites for sequences in the file is 136
+Average number of pairwise differences for sequences in the file is 23.4584980237
+BUSCOfEOG7RJQ36_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0108604151319
+Number of segregating sites for sequences in the file is 50
+Average number of pairwise differences for sequences in the file is 7.93675889328
+BUSCOfEOG7RNKBD_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00903060507116
+Number of segregating sites for sequences in the file is 47
+Average number of pairwise differences for sequences in the file is 7.47035573123
+BUSCOfEOG7RRFGJ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0142469806366
+Number of segregating sites for sequences in the file is 207
+Average number of pairwise differences for sequences in the file is 34.1660079051
+BUSCOfEOG7RRFJ7_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00974013953973
+Number of segregating sites for sequences in the file is 60
+Average number of pairwise differences for sequences in the file is 11.5098814229
+BUSCOfEOG7RV9QQ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0120826166137
+Number of segregating sites for sequences in the file is 180
+Average number of pairwise differences for sequences in the file is 28.0790513834
+BUSCOfEOG7RV9S3_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0135593154222
+Number of segregating sites for sequences in the file is 82
+Average number of pairwise differences for sequences in the file is 13.8102766798
+BUSCOfEOG7RV9TT_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0168442343055
+Number of segregating sites for sequences in the file is 119
+Average number of pairwise differences for sequences in the file is 18.1976284585
+BUSCOfEOG7RZ5ZF_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0159887689843
+Number of segregating sites for sequences in the file is 146
+Average number of pairwise differences for sequences in the file is 25.6956521739
+BUSCOfEOG7S4XJ3_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00275250001756
+Number of segregating sites for sequences in the file is 9
+Average number of pairwise differences for sequences in the file is 1.89328063241
+BUSCOfEOG7S7SSS_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0064998766175
+Number of segregating sites for sequences in the file is 31
+Average number of pairwise differences for sequences in the file is 3.23320158103
+BUSCOfEOG7SBNX9_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0150562486155
+Number of segregating sites for sequences in the file is 193
+Average number of pairwise differences for sequences in the file is 31.4822134387
+BUSCOfEOG7SBP20_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0133942543081
+Number of segregating sites for sequences in the file is 23
+Average number of pairwise differences for sequences in the file is 4.18972332016
+BUSCOfEOG7SFJ58_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0091731406191
+Number of segregating sites for sequences in the file is 169
+Average number of pairwise differences for sequences in the file is 28.395256917
+BUSCOfEOG7SFJ59_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0119883565201
+Number of segregating sites for sequences in the file is 333
+Average number of pairwise differences for sequences in the file is 55.2055335968
+BUSCOfEOG7SFJ5H_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0137052777863
+Number of segregating sites for sequences in the file is 106
+Average number of pairwise differences for sequences in the file is 15.8498023715
+BUSCOfEOG7SFJ6P_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0140375899014
+Number of segregating sites for sequences in the file is 102
+Average number of pairwise differences for sequences in the file is 15.5612648221
+BUSCOfEOG7SFJ6V_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0142195937208
+Number of segregating sites for sequences in the file is 87
+Average number of pairwise differences for sequences in the file is 14.023715415
+BUSCOfEOG7SJDFS_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0159595779827
+Number of segregating sites for sequences in the file is 97
+Average number of pairwise differences for sequences in the file is 16.743083004
+BUSCOfEOG7SJDGT_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00961191777864
+Number of segregating sites for sequences in the file is 29
+Average number of pairwise differences for sequences in the file is 5.49011857708
+BUSCOfEOG7SN8MQ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0128765162787
+Number of segregating sites for sequences in the file is 489
+Average number of pairwise differences for sequences in the file is 79.5256916996
+BUSCOfEOG7SN8MT_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0196525686705
+Number of segregating sites for sequences in the file is 409
+Average number of pairwise differences for sequences in the file is 67.9960474308
+BUSCOfEOG7SN8P3_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0117295137982
+Number of segregating sites for sequences in the file is 62
+Average number of pairwise differences for sequences in the file is 9.8418972332
+BUSCOfEOG7SN8PR_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0108515820931
+Number of segregating sites for sequences in the file is 71
+Average number of pairwise differences for sequences in the file is 10.8300395257
+BUSCOfEOG7SV15G_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.011111712152
+Number of segregating sites for sequences in the file is 66
+Average number of pairwise differences for sequences in the file is 10.8577075099
+BUSCOfEOG7SXWFH_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.020025982502
+Number of segregating sites for sequences in the file is 211
+Average number of pairwise differences for sequences in the file is 36.1818181818
+BUSCOfEOG7T1RN4_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0117912944693
+Number of segregating sites for sequences in the file is 169
+Average number of pairwise differences for sequences in the file is 29.976284585
+BUSCOfEOG7T7H3X_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0141595973075
+Number of segregating sites for sequences in the file is 82
+Average number of pairwise differences for sequences in the file is 13.1541501976
+BUSCOfEOG7TJ3SJ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0127671852406
+Number of segregating sites for sequences in the file is 141
+Average number of pairwise differences for sequences in the file is 23.4268774704
+BUSCOfEOG7TJ3TZ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0125128896349
+Number of segregating sites for sequences in the file is 110
+Average number of pairwise differences for sequences in the file is 18.8695652174
+BUSCOfEOG7TJ3V6_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00610536979327
+Number of segregating sites for sequences in the file is 35
+Average number of pairwise differences for sequences in the file is 4.95652173913
+BUSCOfEOG7TJ3VQ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00892750026161
+Number of segregating sites for sequences in the file is 31
+Average number of pairwise differences for sequences in the file is 5.32411067194
+BUSCOfEOG7TN03Q_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0132839311609
+Number of segregating sites for sequences in the file is 91
+Average number of pairwise differences for sequences in the file is 15.0316205534
+BUSCOfEOG7TN04K_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0203448542512
+Number of segregating sites for sequences in the file is 154
+Average number of pairwise differences for sequences in the file is 30.7747035573
+BUSCOfEOG7TN05B_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00899334936602
+Number of segregating sites for sequences in the file is 27
+Average number of pairwise differences for sequences in the file is 3.99209486166
+BUSCOfEOG7TTQKB_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0104238316551
+Number of segregating sites for sequences in the file is 43
+Average number of pairwise differences for sequences in the file is 7.71541501976
+BUSCOfEOG7TTQKW_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0127282940851
+Number of segregating sites for sequences in the file is 104
+Average number of pairwise differences for sequences in the file is 17.6837944664
+BUSCOfEOG7TXKW3_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0123696777789
+Number of segregating sites for sequences in the file is 27
+Average number of pairwise differences for sequences in the file is 4.44268774704
+BUSCOfEOG7V1G00_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0202465235851
+Number of segregating sites for sequences in the file is 255
+Average number of pairwise differences for sequences in the file is 44.6442687747
+BUSCOfEOG7V1G0D_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00923766506855
+Number of segregating sites for sequences in the file is 89
+Average number of pairwise differences for sequences in the file is 14.9011857708
+BUSCOfEOG7V1G10_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0126817770794
+Number of segregating sites for sequences in the file is 87
+Average number of pairwise differences for sequences in the file is 15.9683794466
+BUSCOfEOG7V1G1D_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0152991750937
+Number of segregating sites for sequences in the file is 111
+Average number of pairwise differences for sequences in the file is 17.2173913043
+BUSCOfEOG7V4B7X_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0238756007454
+Number of segregating sites for sequences in the file is 167
+Average number of pairwise differences for sequences in the file is 32.2924901186
+BUSCOfEOG7V4B9M_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0129228095185
+Number of segregating sites for sequences in the file is 74
+Average number of pairwise differences for sequences in the file is 11.8102766798
+BUSCOfEOG7V76FR_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0130367174803
+Number of segregating sites for sequences in the file is 109
+Average number of pairwise differences for sequences in the file is 17.7826086957
+BUSCOfEOG7V76HM_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0129131188589
+Number of segregating sites for sequences in the file is 76
+Average number of pairwise differences for sequences in the file is 13.0079051383
+BUSCOfEOG7VB2QK_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0167768073784
+Number of segregating sites for sequences in the file is 159
+Average number of pairwise differences for sequences in the file is 32.8774703557
+BUSCOfEOG7VB2QQ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0104344349545
+Number of segregating sites for sequences in the file is 134
+Average number of pairwise differences for sequences in the file is 22.5296442688
+BUSCOfEOG7VB2RC_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0167505760683
+Number of segregating sites for sequences in the file is 115
+Average number of pairwise differences for sequences in the file is 18.4110671937
+BUSCOfEOG7VB2SH_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0185526806445
+Number of segregating sites for sequences in the file is 100
+Average number of pairwise differences for sequences in the file is 17.9644268775
+BUSCOfEOG7VDZ15_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0105193235405
+Number of segregating sites for sequences in the file is 52
+Average number of pairwise differences for sequences in the file is 9.14229249012
+BUSCOfEOG7VHT6S_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00654485167229
+Number of segregating sites for sequences in the file is 56
+Average number of pairwise differences for sequences in the file is 7.96442687747
+BUSCOfEOG7VHT6T_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0103174849702
+Number of segregating sites for sequences in the file is 97
+Average number of pairwise differences for sequences in the file is 14.9090909091
+BUSCOfEOG7VMPFD_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0110681616276
+Number of segregating sites for sequences in the file is 107
+Average number of pairwise differences for sequences in the file is 16.1936758893
+BUSCOfEOG7VQJQ2_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0207825345636
+Number of segregating sites for sequences in the file is 140
+Average number of pairwise differences for sequences in the file is 25.2213438735
+BUSCOfEOG7VQJQC_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0119925050622
+Number of segregating sites for sequences in the file is 181
+Average number of pairwise differences for sequences in the file is 29.4466403162
+BUSCOfEOG7VTDXX_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00699253655277
+Number of segregating sites for sequences in the file is 42
+Average number of pairwise differences for sequences in the file is 7.33596837945
+BUSCOfEOG7VTDZ9_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0166052766365
+Number of segregating sites for sequences in the file is 279
+Average number of pairwise differences for sequences in the file is 38.9841897233
+BUSCOfEOG7W15C7_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00968068382361
+Number of segregating sites for sequences in the file is 197
+Average number of pairwise differences for sequences in the file is 30.8181818182
+BUSCOfEOG7W15FV_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0154967813521
+Number of segregating sites for sequences in the file is 89
+Average number of pairwise differences for sequences in the file is 15.9486166008
+BUSCOfEOG7W41MC_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0142124897058
+Number of segregating sites for sequences in the file is 236
+Average number of pairwise differences for sequences in the file is 38.3162055336
+BUSCOfEOG7W41N8_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0172560884766
+Number of segregating sites for sequences in the file is 259
+Average number of pairwise differences for sequences in the file is 44.2964426877
+BUSCOfEOG7W6WZX_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0109896872141
+Number of segregating sites for sequences in the file is 63
+Average number of pairwise differences for sequences in the file is 9.09090909091
+BUSCOfEOG7W9S31_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00998586319605
+Number of segregating sites for sequences in the file is 204
+Average number of pairwise differences for sequences in the file is 32.0553359684
+BUSCOfEOG7W9S33_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0159173282047
+Number of segregating sites for sequences in the file is 291
+Average number of pairwise differences for sequences in the file is 52.1818181818
+BUSCOfEOG7W9S4R_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0124822225037
+Number of segregating sites for sequences in the file is 132
+Average number of pairwise differences for sequences in the file is 19.6837944664
+BUSCOfEOG7W9S6F_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00609111336496
+Number of segregating sites for sequences in the file is 26
+Average number of pairwise differences for sequences in the file is 3.84980237154
+BUSCOfEOG7WDN9T_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0125696296421
+Number of segregating sites for sequences in the file is 273
+Average number of pairwise differences for sequences in the file is 42.95256917
+BUSCOfEOG7WDN9V_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.009900100238
+Number of segregating sites for sequences in the file is 245
+Average number of pairwise differences for sequences in the file is 36.8181818182
+BUSCOfEOG7WDNC5_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0113716840073
+Number of segregating sites for sequences in the file is 120
+Average number of pairwise differences for sequences in the file is 21.5731225296
+BUSCOfEOG7WDNF7_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0165892353034
+Number of segregating sites for sequences in the file is 58
+Average number of pairwise differences for sequences in the file is 10.1383399209
+BUSCOfEOG7WHHNP_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0100517565956
+Number of segregating sites for sequences in the file is 34
+Average number of pairwise differences for sequences in the file is 4.93675889328
+BUSCOfEOG7WMCVV_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0241388347748
+Number of segregating sites for sequences in the file is 151
+Average number of pairwise differences for sequences in the file is 26.3399209486
+BUSCOfEOG7WMCW5_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0167025570379
+Number of segregating sites for sequences in the file is 126
+Average number of pairwise differences for sequences in the file is 24.0671936759
+BUSCOfEOG7WQ83F_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0121969765164
+Number of segregating sites for sequences in the file is 101
+Average number of pairwise differences for sequences in the file is 16.233201581
+BUSCOfEOG7WQ83P_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0121519303273
+Number of segregating sites for sequences in the file is 57
+Average number of pairwise differences for sequences in the file is 11.1462450593
+BUSCOfEOG7WQ83Z_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.013134498262
+Number of segregating sites for sequences in the file is 90
+Average number of pairwise differences for sequences in the file is 13.5691699605
+BUSCOfEOG7WT49D_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.063198443689
+Number of segregating sites for sequences in the file is 1274
+Average number of pairwise differences for sequences in the file is 135.964426877
+BUSCOfEOG7WX0KP_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0197687631059
+Number of segregating sites for sequences in the file is 157
+Average number of pairwise differences for sequences in the file is 29.2173913043
+BUSCOfEOG7WX0MV_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0118399575194
+Number of segregating sites for sequences in the file is 42
+Average number of pairwise differences for sequences in the file is 7.16600790514
+BUSCOfEOG7X0VRZ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0119076551053
+Number of segregating sites for sequences in the file is 126
+Average number of pairwise differences for sequences in the file is 18.8221343874
+BUSCOfEOG7X0VV3_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0197772071782
+Number of segregating sites for sequences in the file is 75
+Average number of pairwise differences for sequences in the file is 14.3992094862
+BUSCOfEOG7X3R27_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0244744660277
+Number of segregating sites for sequences in the file is 526
+Average number of pairwise differences for sequences in the file is 90.2727272727
+BUSCOfEOG7X3R34_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0196370272062
+Number of segregating sites for sequences in the file is 92
+Average number of pairwise differences for sequences in the file is 17.5375494071
+BUSCOfEOG7X3R3C_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0129297465958
+Number of segregating sites for sequences in the file is 59
+Average number of pairwise differences for sequences in the file is 7.93675889328
+BUSCOfEOG7X6M8Z_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.015308853904
+Number of segregating sites for sequences in the file is 127
+Average number of pairwise differences for sequences in the file is 20.5177865613
+BUSCOfEOG7X6M97_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0157713895071
+Number of segregating sites for sequences in the file is 164
+Average number of pairwise differences for sequences in the file is 27.209486166
+BUSCOfEOG7X6MB3_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0126924320141
+Number of segregating sites for sequences in the file is 113
+Average number of pairwise differences for sequences in the file is 18.766798419
+BUSCOfEOG7X9GGC_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0174024746843
+Number of segregating sites for sequences in the file is 383
+Average number of pairwise differences for sequences in the file is 60.3636363636
+BUSCOfEOG7X9GJ0_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00968099675557
+Number of segregating sites for sequences in the file is 45
+Average number of pairwise differences for sequences in the file is 8.09486166008
+BUSCOfEOG7X9GK1_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0131278003054
+Number of segregating sites for sequences in the file is 44
+Average number of pairwise differences for sequences in the file is 7.58893280632
+BUSCOfEOG7XDBSV_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00726176662016
+Number of segregating sites for sequences in the file is 34
+Average number of pairwise differences for sequences in the file is 4.96442687747
+BUSCOfEOG7XM380_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0196410411563
+Number of segregating sites for sequences in the file is 219
+Average number of pairwise differences for sequences in the file is 31.6166007905
+BUSCOfEOG7XM38H_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0185446945077
+Number of segregating sites for sequences in the file is 173
+Average number of pairwise differences for sequences in the file is 30.5019762846
+BUSCOfEOG7XM38T_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0340545576031
+Number of segregating sites for sequences in the file is 151
+Average number of pairwise differences for sequences in the file is 28.2529644269
+BUSCOfEOG7XPZJ6_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00828064136227
+Number of segregating sites for sequences in the file is 35
+Average number of pairwise differences for sequences in the file is 5.8814229249
+BUSCOfEOG7XSTPB_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0151367403375
+Number of segregating sites for sequences in the file is 227
+Average number of pairwise differences for sequences in the file is 39.371541502
+BUSCOfEOG7XSTQ5_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0142751031815
+Number of segregating sites for sequences in the file is 97
+Average number of pairwise differences for sequences in the file is 15.418972332
+BUSCOfEOG7XSTS0_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0176860717473
+Number of segregating sites for sequences in the file is 69
+Average number of pairwise differences for sequences in the file is 11.7154150198
+BUSCOfEOG7XWPZ7_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.010287305168
+Number of segregating sites for sequences in the file is 122
+Average number of pairwise differences for sequences in the file is 20.8221343874
+BUSCOfEOG7XWQ0B_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00629434405834
+Number of segregating sites for sequences in the file is 24
+Average number of pairwise differences for sequences in the file is 4.45059288538
+BUSCOfEOG7Z0K7M_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00927704885435
+Number of segregating sites for sequences in the file is 44
+Average number of pairwise differences for sequences in the file is 6.99604743083
+BUSCOfEOG7Z3FFT_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0081616930026
+Number of segregating sites for sequences in the file is 51
+Average number of pairwise differences for sequences in the file is 7.18972332016
+BUSCOfEOG7Z95VF_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0116794019502
+Number of segregating sites for sequences in the file is 398
+Average number of pairwise differences for sequences in the file is 66.8181818182
+BUSCOfEOG7Z95VX_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0207951580228
+Number of segregating sites for sequences in the file is 189
+Average number of pairwise differences for sequences in the file is 35.7312252964
+BUSCOfEOG7Z95WZ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0100875738784
+Number of segregating sites for sequences in the file is 66
+Average number of pairwise differences for sequences in the file is 11.0434782609
+BUSCOfEOG7Z95X9_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00641530365034
+Number of segregating sites for sequences in the file is 39
+Average number of pairwise differences for sequences in the file is 6.45454545455
+BUSCOfEOG7Z95XB_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0121882811371
+Number of segregating sites for sequences in the file is 53
+Average number of pairwise differences for sequences in the file is 8.72727272727
+BUSCOfEOG7Z95XP_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0151916948553
+Number of segregating sites for sequences in the file is 65
+Average number of pairwise differences for sequences in the file is 10.3201581028
+BUSCOfEOG7Z95XS_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0230015061686
+Number of segregating sites for sequences in the file is 142
+Average number of pairwise differences for sequences in the file is 20.5691699605
+BUSCOfEOG7ZD249_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0118043101888
+Number of segregating sites for sequences in the file is 99
+Average number of pairwise differences for sequences in the file is 16.7984189723
+BUSCOfEOG7ZD251_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0124674506818
+Number of segregating sites for sequences in the file is 83
+Average number of pairwise differences for sequences in the file is 14.0158102767
+BUSCOfEOG7ZD25S_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.016547287199
+Number of segregating sites for sequences in the file is 112
+Average number of pairwise differences for sequences in the file is 19.2964426877
+BUSCOfEOG7ZD27J_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00283106231731
+Number of segregating sites for sequences in the file is 9
+Average number of pairwise differences for sequences in the file is 1.16205533597
+BUSCOfEOG7ZGXC2_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0128631261317
+Number of segregating sites for sequences in the file is 138
+Average number of pairwise differences for sequences in the file is 22.0790513834
+BUSCOfEOG7ZGXCT_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0115047209528
+Number of segregating sites for sequences in the file is 81
+Average number of pairwise differences for sequences in the file is 12.8577075099
+BUSCOfEOG7ZGXF1_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0149030721271
+Number of segregating sites for sequences in the file is 93
+Average number of pairwise differences for sequences in the file is 15.2055335968
+BUSCOfEOG7ZKSP0_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0160732943851
+Number of segregating sites for sequences in the file is 122
+Average number of pairwise differences for sequences in the file is 20.1146245059
+BUSCOfEOG7ZKSPV_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0115498595083
+Number of segregating sites for sequences in the file is 60
+Average number of pairwise differences for sequences in the file is 10.3833992095
+BUSCOfEOG7ZPNWZ_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.00904627673212
+Number of segregating sites for sequences in the file is 53
+Average number of pairwise differences for sequences in the file is 8.89328063241
+BUSCOfEOG7ZWDCC_aligned.fasta
+Nucleotide diversity for sequences in the file is 0.0147245999808
+Number of segregating sites for sequences in the file is 110
+Average number of pairwise differences for sequences in the file is 19.1897233202
