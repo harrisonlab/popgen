@@ -28,7 +28,7 @@ cd $input/verticillioides
 for fasta in *.fa; do sed -i -e 's/>/>verticillioides_/' $fasta; done; 
 
 ### Run BUSCO
-cd /home/sobczm/popgen/busco
+cd /home/sobczm/popgen/phylogenetics/busco
 qsub $scripts/sub_BUSCO_fungi.sh $input/conglutians/Fusarium_oxysporum_f_sp_conglutinans_race_2_54008.FO_PHW808_V1.cds.all.fa
 qsub $scripts/sub_BUSCO_fungi.sh $input/cubense/Fusarium_oxysporum_f_sp_cubense_race_1.Foc1_1.0.cds.all.fa
 qsub $scripts/sub_BUSCO_fungi.sh $input/fo47/Fusarium_oxysporum_fo47.FO_Fo47_V1.cds.all.fa
@@ -102,7 +102,7 @@ qsub $scripts/sub_BUSCO_fungi.sh $input/proliferatum/final/proliferatum_final_ge
 
 pushd /home/sobczm/bin/BUSCO_v1.22/fungi/hmms
 ls -1 | sed -e 's/\..*$//' >../all_buscos_fungi
-cp ../all_buscos_fungi /home/sobczm/popgen/busco
+cp ../all_buscos_fungi /home/sobczm/popgen/phylogenetics/busco
 popd
 
 ### Iteratively find the intersect of IDs of all 'complete' BUSCO genes present in the runs in the current directory 
