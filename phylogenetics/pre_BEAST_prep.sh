@@ -32,11 +32,11 @@ ct=$(basename "$config_template")
 cd $path/beast_runs
 
 # prepare directory for PartitionFinder run:
-for f in *trimmed.fasta
+for f in *trimmed.fas*
 do
 c="$(cat $f | awk 'NR%2==0' | awk '{print length($1)}' | head -1)"
-p="${f%.fasta}.phy"
-n="${f%.fasta}.NEXUS"
+p="${f%.fas*}.phy"
+n="${f%.fas*}.NEXUS"
 dir="${f%_trimmed*}"
 
 mkdir $dir
