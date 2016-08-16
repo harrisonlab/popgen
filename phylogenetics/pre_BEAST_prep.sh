@@ -2,7 +2,7 @@
  
 ###Preparing alignments and finding best-fit nucleotide sequence evolution models
 
-path=/home/sobczm/popgen
+path=/home/sobczm/popgen/phylogenetics
 scripts=/home/sobczm/bin/scripts
 
 ##MAFFT (alignments)
@@ -16,6 +16,9 @@ for f in *.fasta; do qsub $scripts/sub_mafft_alignment.sh $f; done
 ## Identify genes with high nucleotide diversity
 
 python $scripts/calculate_nucleotide_diversity.py "*aligned.fasta"
+
+mkdir results
+mv sequence_stats.txt excel_stats.txt results/
 
 ## Visually inspect the alignments of select genes to be used in constructing the phylogenies and trim them as necessary in MEGA6.
 ## Copy the relevant trimmed alignment FASTA files into $path/beast_runs
