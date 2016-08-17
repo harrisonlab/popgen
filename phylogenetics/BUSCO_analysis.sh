@@ -1,4 +1,5 @@
-```
+#!/bin/bash
+
 input=/home/sobczm/popgen/input
 scripts=/home/sobczm/bin/scripts
 
@@ -129,4 +130,3 @@ sort -R final_list_ssc | head -n 50 >align_input_list.txt
 
 ## Create FASTA files with separate alignment input for each of the 50 selected genes. 
 perl $scripts/get_alignments.pl
-```
