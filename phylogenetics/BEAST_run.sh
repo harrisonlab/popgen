@@ -14,4 +14,4 @@ input=/<input_xml_here>/
 cd $path
 $beast -threads -1 $input
 
-#After the run, check convergence with Tracer, visualise the trees with DensiTree and TreeAnnotator-Figtree.
+#After the run, check convergence with Tracer, visualise the trees with DensiTree and TreeAnnotator-FigTree.
