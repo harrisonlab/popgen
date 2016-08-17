@@ -37,7 +37,7 @@ do
 c="$(cat $f | awk 'NR%2==0' | awk '{print length($1)}' | head -1)"
 p="${f%.fas}.phy"
 n="${f%.fas}.NEXUS"
-dir="${f%_trimmed*}"
+dir="${f%.fas}"
 
 mkdir $dir
 cp $config_template $dir
