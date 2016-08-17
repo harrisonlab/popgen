@@ -9,9 +9,17 @@
 
 path=/home/sobczm/popgen/phylogenetics/beast_runs
 beast=/home/sobczm/bin/beast/BEASTv2.4.2/bin/beast
-input=/<input_xml_here>/
+input=/<input_xml_file_here>/
 
 cd $path
 $beast -threads -1 $input
+burnin=10 #percentage of states to be considered as burnin
 
-#After the run, check convergence with Tracer, visualise the trees with DensiTree and TreeAnnotator-FigTree.
+TreeAnnotator=/home/sobczm/bin/beast/BEASTv2.4.2/bin/treeannotator
+
+#After the run, check convergence with Tracer, summarise with TreeAnnotator and visualise with FigTree
+for t in *.trees
+do
+output2="${t%.trees}_summary.tree"
+$TreeAnnotator -heights median -burnin $burnin $t $output2
+done
