@@ -96,3 +96,23 @@ cd verticillioides
 wget ftp://ftp.ensemblgenomes.org/pub/fungi/release-32/fasta/fusarium_verticillioides/cds/Fusarium_verticillioides.ASM14955v1.cds.all.fa.gz
 gunzip -d Fusarium_verticillioides.ASM14955v1.cds.all.fa.gz
 ```
+
+Copy the bowtie mappings and the reference (Fus2 unmasked genome)
+```
+mkdir mappings
+cp /home/groups/harrisonlab/project_files/fusarium/repeat_masked/F.oxysporum_fsp_cepae/Fus2_canu_new/edited_contigs_repmask/Fus2_canu_contigs_unmasked.fa $o_dir/mappings
+bowtie_mp=/home/groups/harrisonlab/project_files/fusarium/analysis/genome_alignment/bowtie/F.oxysporum_fsp_cepae/
+cp -r $bowtie_mp/125/vs_Fus2_unmasked_max1200 $o_dir/mappings/125
+cp -r $bowtie_mp/55/vs_Fus2_unmasked_max1200 $o_dir/mappings/55
+cp -r $bowtie_mp/A1-2/vs_Fus2_unmasked_max1200 $o_dir/mappings/A1-2
+cp -r $bowtie_mp/A13/vs_Fus2_unmasked_max1200 $o_dir/mappings/A13
+cp -r $bowtie_mp/A23/vs_Fus2_unmasked_max1200 $o_dir/mappings/A23
+cp -r $bowtie_mp/A28/vs_Fus2_unmasked_max1200 $o_dir/mappings/A28
+cp -r $bowtie_mp/CB3/vs_Fus2_unmasked_max1200 $o_dir/mappings/CB3
+cp -r $bowtie_mp/D2/vs_Fus2_unmasked_max1200 $o_dir/mappings/D2
+cp -r $bowtie_mp/HB6/vs_Fus2_unmasked_max1200 $o_dir/mappings/HB6
+cp -r $bowtie_mp/PG/vs_Fus2_unmasked_max1200 $o_dir/mappings/PG
+
+cp -r $bowtie_mp/Fus2/vs_Fus2_unmasked_mixed $o_dir/mappings/Fus2
+
+```
