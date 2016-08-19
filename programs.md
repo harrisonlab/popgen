@@ -21,6 +21,9 @@ and libraries stored in ```/home/sobczm/R/x86_64-pc-linux-gnu-library/3.2```
 [WhopGenome] (https://cran.r-project.org/web/packages/WhopGenome/index.html): High-Speed Processing of VCF, FASTA and Alignment Data
 
 ##Standalone
+[4P] (https://github.com/anbena/4p): 4P (Parallel Processing of Polymorphism Panels) is a software for computing 
+population genetics statistics from large SNPs dataset. `/home/sobczm/bin/4p/bin`
+
 [ABRA ver. 0.97] (https://github.com/mozack/abra): Improved coding indel detection via assembly-based
 realignment `/home/sobczm/bin/abra/bin`
 
@@ -54,6 +57,9 @@ export PATH=/home/armita/prog/emboss/EMBOSS-4.0.0/bin:${PATH}
 ```
 [DendroPy ver. 4.1.0] (https://pythonhosted.org/DendroPy/) Python library for phylogenetic computing. `/home/sobczm/bin/DendroPy` *Need to export it to PYTHONPATH
 
+[DivStat] (http://www.portugene.com/DivStat.html): A User-Friendly Tool for Single Nucleotide Polymorphism Analysis of
+Genomic Diversity `/home/sobczm/bin/DivStat`
+
 [EIGENSOFT ver. 6.1.2] (https://genetics.med.harvard.edu/reich/Reich_Lab/Software.html) A set of population structure dectection methods. `/home/sobczm/bin/EIG/bin`
 
 [FastTree ver. 2.1.9] (http://www.microbesonline.org/fasttree/) Approximately Maximum-Likelihood Trees for Large Alignments `/home/sobczm/bin/FastTree2.1.9`  
@@ -72,6 +78,8 @@ export PATH=/home/armita/prog/emboss/EMBOSS-4.0.0/bin:${PATH}
 [PAML ver. 4.8] (http://abacus.gene.ucl.ac.uk/software/paml.html) A package of programs for phylogenetic analyses of DNA or protein sequences using maximum likelihood. `/home/sobczm/bin/paml4.8/bin`
 
 [PartitionFinder ver. 1.1.1] (http://www.robertlanfear.com/partitionfinder/) A program to select best-fit partitioning schemes and models of molecular evolution for phylogenetic analyses `/home/sobczm/bin/PartitionFinder1.1.1` *Needs to be run with Anaconda Python distribution installed in `/home/sobczm/bin/anaconda2/bin`
+
+[PGDSpider ver. 2.1.0.3] (http://www.cmpg.unibe.ch/software/PGDSpider/) An automated data conversion tool for connecting population genetics and genomics programs `/home/sobczm/bin/PGDSpider_2.1.0.3`
 
 [PicardTools ver. 2.5.0] (https://broadinstitute.github.io/picard/) A set of command line tools for manipulating formats such as SAM/BAM/CRAM and VCF. `/home/sobczm/bin/picard-tools-2.5.0`
 
