@@ -25,3 +25,5 @@ cd $input/HB6/
 for filename in *; do mv "$filename" "HB6_$filename"; done;
 cd $input/PG/
 for filename in *; do mv "$filename" "PG_$filename"; done;
+
+### Add read group and sample name to each mapped read
