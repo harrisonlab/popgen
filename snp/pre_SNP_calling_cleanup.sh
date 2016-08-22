@@ -1,6 +1,7 @@
 #!/bin/bash
 
 input=/home/sobczm/popgen/input/mappings
+scripts=/home/sobczm/bin/scripts
 
 ### Rename input files in each folder by prefixing with the strain ID
 cd $input/125/
@@ -29,14 +30,14 @@ for filename in *; do mv "$filename" "PG_$filename"; done;
 ### Remove multimapping reads, discordant reads. PCR and optical duplicates, and 
 ### add read group and sample name to each mapped read
 
-qsub $input/125/125_Fus2_canu_contigs_unmasked.fa_aligned.sam FOC125
-qsub $input/55/55_Fus2_canu_contigs_unmasked.fa_aligned.sam FOC55
-qsub $input/A1-2/A1-2_Fus2_canu_contigs_unmasked.fa_aligned.sam FOCA1-2
-qsub $input/A13/A13_Fus2_canu_contigs_unmasked.fa_aligned.sam FOCA13
-qsub $input/A23/A23_Fus2_canu_contigs_unmasked.fa_aligned.sam FOCA23
-qsub $input/A28/A28_Fus2_canu_contigs_unmasked.fa_aligned.sam FOCA28
-qsub $input/CB3/CB3_Fus2_canu_contigs_unmasked.fa_aligned.sam FOCCB3
-qsub $input/D2/D2_Fus2_canu_contigs_unmasked.fa_aligned.sam FOCD2
-qsub $input/Fus2/Fus2_Fus2_canu_contigs_unmasked.fa_aligned.sam FOCFus2
-qsub $input/HB6/HB6_Fus2_canu_contigs_unmasked.fa_aligned.sam FOCHB6
-qsub $input/PG/PG_Fus2_canu_contigs_unmasked.fa_aligned.sam FOCPG
+qsub $scripts/sub_pre_snp_calling.sh $input/125/125_Fus2_canu_contigs_unmasked.fa_aligned.sam FOC125
+qsub $scripts/sub_pre_snp_calling.sh $input/55/55_Fus2_canu_contigs_unmasked.fa_aligned.sam FOC55
+qsub $scripts/sub_pre_snp_calling.sh $input/A1-2/A1-2_Fus2_canu_contigs_unmasked.fa_aligned.sam FOCA1-2
+qsub $scripts/sub_pre_snp_calling.sh $input/A13/A13_Fus2_canu_contigs_unmasked.fa_aligned.sam FOCA13
+qsub $scripts/sub_pre_snp_calling.sh $input/A23/A23_Fus2_canu_contigs_unmasked.fa_aligned.sam FOCA23
+qsub $scripts/sub_pre_snp_calling.sh $input/A28/A28_Fus2_canu_contigs_unmasked.fa_aligned.sam FOCA28
+qsub $scripts/sub_pre_snp_calling.sh $input/CB3/CB3_Fus2_canu_contigs_unmasked.fa_aligned.sam FOCCB3
+qsub $scripts/sub_pre_snp_calling.sh $input/D2/D2_Fus2_canu_contigs_unmasked.fa_aligned.sam FOCD2
+qsub $scripts/sub_pre_snp_calling.sh $input/Fus2/Fus2_Fus2_canu_contigs_unmasked.fa_aligned.sam FOCFus2
+qsub $scripts/sub_pre_snp_calling.sh $input/HB6/HB6_Fus2_canu_contigs_unmasked.fa_aligned.sam FOCHB6
+qsub $scripts/sub_pre_snp_calling.sh $input/PG/PG_Fus2_canu_contigs_unmasked.fa_aligned.sam FOCPG
