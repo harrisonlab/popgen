@@ -26,7 +26,8 @@ for filename in *; do mv "$filename" "HB6_$filename"; done;
 cd $input/PG/
 for filename in *; do mv "$filename" "PG_$filename"; done;
 
-### Add read group and sample name to each mapped read
+### Remove multimapping reads, discordant reads. PCR and optical duplicates, and 
+### add read group and sample name to each mapped read
 
 qsub $input/125/125_Fus2_canu_contigs_unmasked.fa_aligned.sam FOC125
 qsub $input/55/55_Fus2_canu_contigs_unmasked.fa_aligned.sam FOC55
@@ -39,7 +40,3 @@ qsub $input/D2/D2_Fus2_canu_contigs_unmasked.fa_aligned.sam FOCD2
 qsub $input/Fus2/Fus2_Fus2_canu_contigs_unmasked.fa_aligned.sam FOCFus2
 qsub $input/HB6/HB6_Fus2_canu_contigs_unmasked.fa_aligned.sam FOCHB6
 qsub $input/PG/PG_Fus2_canu_contigs_unmasked.fa_aligned.sam FOCPG
-
-
-
-
