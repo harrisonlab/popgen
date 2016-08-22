@@ -27,3 +27,19 @@ cd $input/PG/
 for filename in *; do mv "$filename" "PG_$filename"; done;
 
 ### Add read group and sample name to each mapped read
+
+qsub $input/125/125_Fus2_canu_contigs_unmasked.fa_aligned.sam FOC125
+qsub $input/55/55_Fus2_canu_contigs_unmasked.fa_aligned.sam FOC55
+qsub $input/A1-2/A1-2_Fus2_canu_contigs_unmasked.fa_aligned.sam FOCA1-2
+qsub $input/A13/A13_Fus2_canu_contigs_unmasked.fa_aligned.sam FOCA13
+qsub $input/A23/A23_Fus2_canu_contigs_unmasked.fa_aligned.sam FOCA23
+qsub $input/A28/A28_Fus2_canu_contigs_unmasked.fa_aligned.sam FOCA28
+qsub $input/CB3/CB3_Fus2_canu_contigs_unmasked.fa_aligned.sam FOCCB3
+qsub $input/D2/D2_Fus2_canu_contigs_unmasked.fa_aligned.sam FOCD2
+qsub $input/Fus2/Fus2_Fus2_canu_contigs_unmasked.fa_aligned.sam FOCFus2
+qsub $input/HB6/HB6_Fus2_canu_contigs_unmasked.fa_aligned.sam FOCHB6
+qsub $input/PG/PG_Fus2_canu_contigs_unmasked.fa_aligned.sam FOCPG
+
+
+
+
