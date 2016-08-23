@@ -27,7 +27,7 @@ java -jar $gatk/GenomeAnalysisTK.jar \
      -I $input/Fus2_Fus2_canu_contigs_unmasked.fa_aligned_nomulti_proper_sorted_nodup_rg.bam \
      -I $input/HB6_Fus2_canu_contigs_unmasked.fa_aligned_nomulti_proper_sorted_nodup_rg.bam \
      -I $input/PG_Fus2_canu_contigs_unmasked.fa_aligned_nomulti_proper_sorted_nodup_rg.bam \
-	   -o $output2
+     -o $output2
 	    
 	    
 #####################################
