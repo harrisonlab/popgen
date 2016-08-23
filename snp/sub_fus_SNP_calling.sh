@@ -14,7 +14,7 @@ output2="${filename%.*}.vcf"
 gatk=/home/sobczm/bin/GenomeAnalysisTK-3.6
 
 java -jar $gatk/GenomeAnalysisTK.jar \
-     -R $reference \
+     -R $input/$reference \
      -T HaplotypeCaller \
      -I $input/125_Fus2_canu_contigs_unmasked.fa_aligned_nomulti_proper_sorted_nodup_rg.bam \
      -I $input/55_Fus2_canu_contigs_unmasked.fa_aligned_nomulti_proper_sorted_nodup_rg.bam \
