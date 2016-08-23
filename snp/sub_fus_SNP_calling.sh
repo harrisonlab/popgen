@@ -8,8 +8,7 @@ input=/home/sobczm/popgen/input/mappings
 
 reference=Fus2_canu_contigs_unmasked.fa
 filename=$(basename "$reference")
-output1="${filename%.*}.dict" 
-output2="${filename%.*}.vcf" 
+output="${filename%.*}.vcf" 
 
 gatk=/home/sobczm/bin/GenomeAnalysisTK-3.6
 
@@ -27,7 +26,7 @@ java -jar $gatk/GenomeAnalysisTK.jar \
      -I $input/Fus2_Fus2_canu_contigs_unmasked.fa_aligned_nomulti_proper_sorted_nodup_rg.bam \
      -I $input/HB6_Fus2_canu_contigs_unmasked.fa_aligned_nomulti_proper_sorted_nodup_rg.bam \
      -I $input/PG_Fus2_canu_contigs_unmasked.fa_aligned_nomulti_proper_sorted_nodup_rg.bam \
-     -o $output2
+     -o $output
 	    
 	    
 #####################################
