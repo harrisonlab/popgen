@@ -1,32 +1,32 @@
 #!/bin/bash
 
 input=/home/sobczm/popgen/input
-scripts=/home/sobczm/bin/scripts
+scripts=/home/sobczm/bin/popgen/phylogenetics
 
 ##Process reference genomes
 ### Rename sequences in all FASTA files by prefixing with the species name:
-cd $input/conglutians 
-for fasta in *.fa; do sed -i -e 's/>/>conglutians_/' $fasta; done; 
+cd $input/conglutians
+for fasta in *.fa; do sed -i -e 's/>/>conglutians_/' $fasta; done;
 cd $input/cubense
-for fasta in *.fa; do sed -i -e 's/>/>cubense_/' $fasta; done; 
+for fasta in *.fa; do sed -i -e 's/>/>cubense_/' $fasta; done;
 cd $input/fo47
-for fasta in *.fa; do sed -i -e 's/>/>fo47_/' $fasta; done; 
+for fasta in *.fa; do sed -i -e 's/>/>fo47_/' $fasta; done;
 cd $input/fujikuroi
-for fasta in *.fa; do sed -i -e 's/>/>fujikuroi_/' $fasta; done; 
+for fasta in *.fa; do sed -i -e 's/>/>fujikuroi_/' $fasta; done;
 cd $input/lycopersici
 for fasta in *.fa; do sed -i -e 's/>/>lycopersici_/' $fasta; done;
 cd $input/melonis
-for fasta in *.fa; do sed -i -e 's/>/>melonis_/' $fasta; done; 
+for fasta in *.fa; do sed -i -e 's/>/>melonis_/' $fasta; done;
 cd $input/pisi
-for fasta in *.fa; do sed -i -e 's/>/>pisi_/' $fasta; done; 
+for fasta in *.fa; do sed -i -e 's/>/>pisi_/' $fasta; done;
 cd $input/radices-lycopersici
-for fasta in *.fa; do sed -i -e 's/>/>radices-lycopersici_/' $fasta; done; 
+for fasta in *.fa; do sed -i -e 's/>/>radices-lycopersici_/' $fasta; done;
 cd $input/raphani
-for fasta in *.fa; do sed -i -e 's/>/>raphani_/' $fasta; done; 
+for fasta in *.fa; do sed -i -e 's/>/>raphani_/' $fasta; done;
 cd $input/vasinifectum
-for fasta in *.fa; do sed -i -e 's/>/>vasinifectum_/' $fasta; done; 
+for fasta in *.fa; do sed -i -e 's/>/>vasinifectum_/' $fasta; done;
 cd $input/verticillioides
-for fasta in *.fa; do sed -i -e 's/>/>verticillioides_/' $fasta; done; 
+for fasta in *.fa; do sed -i -e 's/>/>verticillioides_/' $fasta; done;
 
 ### Run BUSCO
 cd /home/sobczm/popgen/phylogenetics/busco
@@ -43,45 +43,45 @@ qsub $scripts/sub_BUSCO_fungi.sh $input/vasinifectum/Fusarium_oxysporum_f_sp_vas
 qsub $scripts/sub_BUSCO_fungi.sh $input/vasinifectum/Fusarium_oxysporum_f_sp_vasinfectum_25433.FO_Cotton_V1.cds.all.fa
 
 ##Process in-house genomes
-### Prepare input CDS assembly files (exon = CDS = cDNA identical in Braker and CodingQuary outputs) 
+### Prepare input CDS assembly files (exon = CDS = cDNA identical in Braker and CodingQuary outputs)
 & using the file "final_genes_combined.cdna.fasta" from each genome for phylogenetic analysis
 ### Rename input files in each folder by prefixing with the strain ID, and the same for sequences in all FASTA files:
 cd $input/125/final
 for filename in *; do mv "$filename" "125_$filename"; done;
-for fasta in *.fasta; do sed -i -e 's/>/>125_/' $fasta; done; 
+for fasta in *.fasta; do sed -i -e 's/>/>125_/' $fasta; done;
 cd $input/55/final
 for filename in *; do mv "$filename" "55_$filename"; done;
-for fasta in *.fasta; do sed -i -e 's/>/>55_/' $fasta; done; 
+for fasta in *.fasta; do sed -i -e 's/>/>55_/' $fasta; done;
 cd $input/A1-2/final
 for filename in *; do mv "$filename" "A1-2_$filename"; done;
-for fasta in *.fasta; do sed -i -e 's/>/>A1-2_/' $fasta; done; 
+for fasta in *.fasta; do sed -i -e 's/>/>A1-2_/' $fasta; done;
 cd $input/A13/final
 for filename in *; do mv "$filename" "A13_$filename"; done;
-for fasta in *.fasta; do sed -i -e 's/>/>A13_/' $fasta; done; 
+for fasta in *.fasta; do sed -i -e 's/>/>A13_/' $fasta; done;
 cd $input/A23/final
 for filename in *; do mv "$filename" "A23_$filename"; done;
-for fasta in *.fasta; do sed -i -e 's/>/>A23_/' $fasta; done; 
+for fasta in *.fasta; do sed -i -e 's/>/>A23_/' $fasta; done;
 cd $input/A28/final
 for filename in *; do mv "$filename" "A28_$filename"; done;
-for fasta in *.fasta; do sed -i -e 's/>/>A28_/' $fasta; done; 
+for fasta in *.fasta; do sed -i -e 's/>/>A28_/' $fasta; done;
 cd $input/CB3/final
 for filename in *; do mv "$filename" "CB3_$filename"; done;
-for fasta in *.fasta; do sed -i -e 's/>/>CB3_/' $fasta; done; 
+for fasta in *.fasta; do sed -i -e 's/>/>CB3_/' $fasta; done;
 cd $input/D2/final
 for filename in *; do mv "$filename" "D2_$filename"; done;
-for fasta in *.fasta; do sed -i -e 's/>/>D2_/' $fasta; done; 
+for fasta in *.fasta; do sed -i -e 's/>/>D2_/' $fasta; done;
 cd $input/Fus2_canu_new/final
 for filename in *; do mv "$filename" "Fus2_$filename"; done;
-for fasta in *.fasta; do sed -i -e 's/>/>Fus2_/' $fasta; done; 
+for fasta in *.fasta; do sed -i -e 's/>/>Fus2_/' $fasta; done;
 cd $input/HB6/final
 for filename in *; do mv "$filename" "HB6_$filename"; done;
-for fasta in *.fasta; do sed -i -e 's/>/>HB6_/' $fasta; done; 
+for fasta in *.fasta; do sed -i -e 's/>/>HB6_/' $fasta; done;
 cd $input/PG/final
 for filename in *; do mv "$filename" "PG_$filename"; done;
-for fasta in *.fasta; do sed -i -e 's/>/>PG_/' $fasta; done; 
+for fasta in *.fasta; do sed -i -e 's/>/>PG_/' $fasta; done;
 cd $input/proliferatum/final
 for filename in *; do mv "$filename" "proliferatum_$filename"; done;
-for fasta in *.fasta; do sed -i -e 's/>/>proliferatum_/' $fasta; done; 
+for fasta in *.fasta; do sed -i -e 's/>/>proliferatum_/' $fasta; done;
 
 ## Run BUSCO
 cd /home/sobczm/popgen/busco
@@ -98,7 +98,7 @@ qsub $scripts/sub_BUSCO_fungi.sh $input/HB6/final/HB6_final_genes_combined.cdna.
 qsub $scripts/sub_BUSCO_fungi.sh $input/PG/final/PG_final_genes_combined.cdna.fasta
 qsub $scripts/sub_BUSCO_fungi.sh $input/proliferatum/final/proliferatum_final_genes_combined.cdna.fasta
 
-## Find the intersect of single-copy, complete genes 
+## Find the intersect of single-copy, complete genes
 ### Create a list of all fungal BUSCO IDs
 
 pushd /home/sobczm/bin/BUSCO_v1.22/fungi/hmms
@@ -106,7 +106,7 @@ ls -1 | sed -e 's/\..*$//' >../all_buscos_fungi
 cp ../all_buscos_fungi /home/sobczm/popgen/phylogenetics/busco
 popd
 
-### Iteratively find the intersect of IDs of all 'complete' BUSCO genes present in the runs in the current directory 
+### Iteratively find the intersect of IDs of all 'complete' BUSCO genes present in the runs in the current directory
 
 #!/bin/bash
 cat all_buscos_fungi >temp_ref
@@ -117,7 +117,7 @@ do
         awk '$2 == "Complete" { print $1}' $d/full_table* >temp
         grep -Fx -f temp temp_ref >final_list_ssc
         cat final_list_ssc >temp_ref
-    else 
+    else
         echo "There is no full_table result in $d."
     fi
 done
@@ -128,5 +128,5 @@ sort -R final_list_ssc | head -n 50 >align_input_list.txt
 #Note to self: having done this, the nucleotide diversity of 50 random genes is very consistent, with most of them
 #in the range of 0.1-0.15 so will have to do the following steps for ALL shared BUSCOs.
 
-## Create FASTA files with separate alignment input for each of the 50 selected genes. 
+## Create FASTA files with separate alignment input for each of the 50 selected genes.
 perl $scripts/get_alignments.pl
