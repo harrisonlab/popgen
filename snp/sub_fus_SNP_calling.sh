@@ -1,20 +1,22 @@
 #$ -S /bin/bash
-#$ -cwd 
+#$ -cwd
 #$ -pe smp 1
-#$ -l h_vmem=16G 
+#$ -l h_vmem=16G
 #$ -l h=blacklace01.blacklace|blacklace02.blacklace|blacklace04.blacklace|blacklace05.blacklace|blacklace06.blacklace|blacklace07.blacklace|blacklace08.blacklace|blacklace09.blacklace|blacklace10.blacklace|blacklace11.blacklace|blacklace12.blacklace
 
 input=/home/sobczm/popgen/input/mappings
 
 reference=Fus2_canu_contigs_unmasked.fa
 filename=$(basename "$reference")
-output="${filename%.*}.vcf" 
+output="${filename%.*}.vcf"
 
 gatk=/home/sobczm/bin/GenomeAnalysisTK-3.6
 
 java -jar $gatk/GenomeAnalysisTK.jar \
      -R $input/$reference \
      -T HaplotypeCaller \
+     -ploidy 1 \
+     --allow_potentially_misencoded_quality_scores \
      -I $input/125/125_Fus2_canu_contigs_unmasked.fa_aligned_nomulti_proper_sorted_nodup_rg.bam \
      -I $input/55/55_Fus2_canu_contigs_unmasked.fa_aligned_nomulti_proper_sorted_nodup_rg.bam \
      -I $input/A1-2/A1-2_Fus2_canu_contigs_unmasked.fa_aligned_nomulti_proper_sorted_nodup_rg.bam \
@@ -27,8 +29,8 @@ java -jar $gatk/GenomeAnalysisTK.jar \
      -I $input/HB6/HB6_Fus2_canu_contigs_unmasked.fa_aligned_nomulti_proper_sorted_nodup_rg.bam \
      -I $input/PG/PG_Fus2_canu_contigs_unmasked.fa_aligned_nomulti_proper_sorted_nodup_rg.bam \
      -o $output
-	    
-	    
+
+
 #####################################
 # Notes on GATK parallelisation
 #####################################
