@@ -97,7 +97,7 @@ wget ftp://ftp.ensemblgenomes.org/pub/fungi/release-32/fasta/fusarium_verticilli
 gunzip -d Fusarium_verticillioides.ASM14955v1.cds.all.fa.gz
 ```
 
-Copy the bowtie mappings and the reference (Fus2 unmasked genome)
+Copy the Bowtie2 mappings and the reference (Fus2 unmasked genome)
 ```
 mkdir mappings
 cp /home/groups/harrisonlab/project_files/fusarium/repeat_masked/F.oxysporum_fsp_cepae/Fus2_canu_new/edited_contigs_repmask/Fus2_canu_contigs_unmasked.fa $o_dir/mappings
