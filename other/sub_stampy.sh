@@ -8,13 +8,13 @@
 #################################
 # Stampy sensitive read mapping #
 #################################
-#			INPUT
+#             INPUT
 assembly=$1
 reads_for=$2
 reads_rev=$3
 
 ##################################
-#			OUTPUT				
+#             OUTPUT
 
 In the current directory:
 
