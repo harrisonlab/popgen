@@ -8,14 +8,12 @@
 #################################
 # Stampy sensitive read mapping #
 #################################
-
 #			INPUT				#
 assembly=$1
 reads_for=$2
 reads_rev=$3
 
 ##################################
-
 #			OUTPUT				#
 
 In the current directory:
@@ -24,8 +22,9 @@ SAM file
 sorted BAM file
 BAI index
 STAMPY log file
+#################################
 
-##################################
+
 stampy=/home/sobczm/bin/stampy-1.0.29/stampy.py
 assembly_file=$(basename "$assembly")
 reads_for_file=$(basename "$reads_for")
