@@ -36,7 +36,9 @@ temp_dir="$TMPDIR"
 
 ### Temp folder prep
 mkdir -p $temp_dir
-cp $assembly $reads_for $reads_rev $temp_dir
+cp $assembly $temp_dir
+cp $reads_for $temp_dir
+cp $reads_rev $temp_dir
 cd $temp_dir
 
 ### Build a genome file
