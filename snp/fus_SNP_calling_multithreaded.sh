@@ -9,7 +9,7 @@ output="${filename%.*}.dict"
 java -jar /home/sobczm/bin/picard-tools-2.5.0/picard.jar CreateSequenceDictionary R=$input/$reference O=$input/$output
 samtools faidx $input/$reference
 
-cd /home/sobczm/popgen/snp/snp_calling
+cd /home/sobczm/popgen/snp/snp_calling/multithreaded
 scripts=/home/sobczm/bin/popgen/snp
 
-qsub $scripts/sub_fus_SNP_calling.sh
+qsub $scripts/sub_fus_SNP_calling_multithreaded.sh

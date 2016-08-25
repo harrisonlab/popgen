@@ -1,14 +1,14 @@
 #!/bin/bash
- 
+
 ###Preparing alignments and finding best-fit nucleotide sequence evolution models
 
 path=/home/sobczm/popgen/phylogenetics
-scripts=/home/sobczm/bin/scripts
+scripts=/home/sobczm/bin/popgen/phylogenetics
 
 ##MAFFT (alignments)
 
 cd $path/busco
-mv *.fasta $path/busco_alignments 
+mv *.fasta $path/busco_alignments
 cd $path/busco_alignments
 
 for f in *.fasta; do qsub $scripts/sub_mafft_alignment.sh $f; done
@@ -21,10 +21,10 @@ python $scripts/calculate_nucleotide_diversity.py "*aligned.fasta"
 mkdir $path/beast_runs/results
 mv sequence_stats.txt excel_stats.txt $path/beast_runs/results
 
-## Copy FASTA files of the candidate genes for the phylogeny into 
+## Copy FASTA files of the candidate genes for the phylogeny into
 mkdir $path/beast_runs/candidates
 
-## Visually inspect the alignments of select genes (genes_selected_for_phylogeny.txt) to be used in 
+## Visually inspect the alignments of select genes (genes_selected_for_phylogeny.txt) to be used in
 ## constructing the phylogenies and trim them as necessary in MEGA6.
 ## Copy the relevant trimmed alignment FASTA files into
 mkdir $path/beast_runs/candidates/select/trimmed
@@ -55,7 +55,7 @@ sed -i 's,^\(Gene1_pos3 = \).*,\1'"3-$c\\\3;"',' $dir/$ct
 
 # Convert FASTA to phylip for the Partition Finder run
 $scripts/fasta2phylip.pl $f>$p
-mv $p $dir 
+mv $p $dir
 
 # Convert FASTA to NEXUS for the BEAST run
 $scripts/Fasta2Nexus.pl $f>$n
@@ -64,4 +64,3 @@ mkdir NEXUS && mv $n NEXUS
 qsub $scripts/sub_partition_finder.sh $dir
 
 done
-
