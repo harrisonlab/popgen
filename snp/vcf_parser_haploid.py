@@ -1,22 +1,35 @@
 #! /usr/bin/env python
 import os, sys, re, argparse
-from sys import argv
 
-## Filter VCF calls (ver. 4.2) from GATK to obtain high confidence variants
-## in a haploid organism (will tweak it later to include a diploid option).
+## Filter VCF calls (ver. 4.2) from GATK to obtain high confidence SNPs
+## in a haploid organism (will tweak it later to include a diploid option, if needed).
 ## Prints out how many SNPs filtered out at each step in the log file.
 
-##### Default values (global per SNP call):
-QUAL=40
-## QUAL s is the phred-scaled probability of a SNP occurring at this site. NOT AT ALL informative in GATK!
-MQ=30
-## MQ gives phred-scaled probability that the read is mapped to the correct location (a low map score will occur if reads are not mapped uniquely at that site)
+ap = argparse.ArgumentParser()
+ap.add_argument('--i',required=True,type=str,help='VCF file to be filtered')
+ap.add_argument('--qual',required=False,type=int,help='Minimum QUAL (integer). QUAL is the phred-scaled probability of a SNP occurring at this site. NOT AT ALL informative in GATK!', default=40)
+ap.add_argument('--mq',required=False,type=int,help='Minimum MQ (integer). MQ gives phred-scaled probability that the read is mapped to the correct location (a low map score will occur if reads are not mapped uniquely at that site)', default=30)
+ap.add_argument('--dp',required=False,type=int,help='Minimum depth (integer) at the site per sample', default=10)
+ap.add_argument('--gq',required=False,type=int,help='Minimum GQ (integer). GQ is the phred-scaled probability that the sample genotype being called is correct, given that there is a SNP at that site.', default=30)
+ap.add_argument('--aa',required=False,type=str,help='Eliminate sites showing presence of reads mapping to both alleles (as unexpected in a haploid organism). Accepted argument: yes, no', default='yes')
+ap.add_argument('--na',required=False,type=str,help='Eliminate sites with any missing genotypes. Accepted argument: yes, no', default='yes')
 
-##### Default values (per individual genotype call):
-DP=10
-## Minimum depth at the site per sample
-GQ=30
-## GQ is the phred-scaled probability that the sample genotype being called is correct, given that there is a SNP at that site.
+args = ap.parse_args()
+
+
+QUAL=args.qual
+MQ=args.mq
+DP=args.dp
+GQ=args.gq
+
+def enable(a):
+    if a.lower() == "yes":
+        return 1
+    elif a.lower() == "no":
+        return 0
+
+aa_switch=enable(args.aa)
+na_switch=enable(args.na)
 
 
 #### Other filters:
@@ -24,18 +37,19 @@ GQ=30
 ### (field AD). Default: on
 ### Only include variants with no missing data- from any sample. Default: on
 
-script, vcf = argv
-vcf_h = open(vcf)
+vcf_h = open(args.i)
 
 bare = r"(\w+)(.vcf)"
 out_sub = r"\1_filtered.vcf"
 log_sub = r"\1_filtered.log"
-out = re.sub(bare, out_sub, vcf)
-log = re.sub(bare, log_sub, vcf)
+out = re.sub(bare, out_sub, args.i)
+log = re.sub(bare, log_sub, args.i)
 vcf_out = open(out, 'w')
 vcf_log = open(log, 'w')
 
 #### Counters
+# Counter for eliminated variants based on SNP criterion
+snp_c = 0
 # Counter for eliminated variants based on QUAL criterion
 qual_c = 0
 # Counter for eliminated variants based on MQ criterion
@@ -53,26 +67,29 @@ def gen(fields):
     #Reset val flag
     val = 1
     mq_p = r"(MQ=)(\d+)"
-    #Field with general variant stats for all samples
-    general = fields[7].split(";")
-    #Match up the MQ value
-    m = re.search(mq_p, general[9])
-    mqs = float(m.group(2))
-    #Check for the QUAL score
-    if float(fields[5]) < QUAL:
-        global qual_c
-        qual_c += 1
-        val = 0
+    #Check if SNP
+    if (len(fields[3]) == 1 and len(fields[4]) == 1):
+        #Match up the MQ value
+        m = re.search(mq_p, fields[7])
+        mqs = float(m.group(2))
+        #Check for the QUAL score
+        if float(fields[5]) < QUAL:
+            global qual_c
+            qual_c += 1
+            val = 0
+        else:
+            pass
+            #Check for the MQ score
+            if mqs < MQ:
+                global mq_c
+                mq_c += 1
+                val = 0
+            else:
+                pass
     else:
-        pass
-    #Check for the MQ score
-    if mqs < MQ:
-        global mq_c
-        mq_c += 1
+        global snp_c
+        snp_c += 1
         val = 0
-    else:
-        pass
-
     return val
 
 def inds(fields):
@@ -118,15 +135,18 @@ def inds(fields):
                     else:
                         pass
                 #Check for the presence of alternative alleles
-                a = n[1].split(",")
-                if (int(a[0]) and int(a[1])):
-                    global aa_c
-                    if not called_aa:
-                        aa_c += 1
-                        called_aa = True
-                        val = 0
+                if aa_switch:
+                    a = n[1].split(",")
+                    if (int(a[0]) and int(a[1])):
+                        global aa_c
+                        if not called_aa:
+                            aa_c += 1
+                            called_aa = True
+                            val = 0
                     else:
                         pass
+                else:
+                    pass
 
     return val
 
@@ -141,6 +161,7 @@ for line in vcf_h:
         else:
             pass
 
+vcf_log.write("The number of variants filtered out due to not being SNP is %s.\n" % (snp_c))
 vcf_log.write("The number of variants filtered out due to variant quality lower than %s is %s.\n" % (QUAL, qual_c))
 vcf_log.write("The number of variants filtered out due to mapping qualiy lower than %s is %s.\n" % (MQ, mq_c))
 vcf_log.write("The number of variants filtered out due to genotype depth lower than %s is %s.\n" % (DP, dp_c))
