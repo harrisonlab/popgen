@@ -99,7 +99,7 @@ def inds(fields):
     called_dp = False
     called_gq = False
     called_aa = False
-    for f in fields[9:-1]:
+    for f in fields[9:]:
         #Check for the presence of missing genotypes
         if f == ".":
             global na_c
