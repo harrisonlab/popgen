@@ -4,6 +4,8 @@ import os, sys, re, argparse
 ## Filter VCF calls (ver. 4.2) from GATK to obtain high confidence SNPs
 ## in a haploid organism (will tweak it later to include a diploid option, if needed).
 ## Prints out how many SNPs filtered out at each step in the log file.
+## By default, eliminates sites with any missing genotypes and retains only biallelic SNPs
+## I.e. good for population structure analysis and calculations
 
 ap = argparse.ArgumentParser()
 ap.add_argument('--i',required=True,type=str,help='VCF file to be filtered')
@@ -12,7 +14,7 @@ ap.add_argument('--mq',required=False,type=int,help='Minimum MQ (integer). MQ gi
 ap.add_argument('--dp',required=False,type=int,help='Minimum depth (integer) at the site per sample', default=10)
 ap.add_argument('--gq',required=False,type=int,help='Minimum GQ (integer). GQ is the phred-scaled probability that the sample genotype being called is correct, given that there is a SNP at that site.', default=30)
 ap.add_argument('--aa',required=False,type=str,help='Eliminate sites showing presence of reads mapping to both alleles (as unexpected in a haploid organism). Accepted argument: yes, no', default='yes')
-ap.add_argument('--na',required=False,type=str,help='Eliminate sites with any missing genotypes. Accepted argument: yes, no', default='yes')
+#ap.add_argument('--na',required=False,type=str,help='Eliminate sites with any missing genotypes. Accepted argument: yes, no', default='yes')
 
 args = ap.parse_args()
 
@@ -29,13 +31,11 @@ def enable(a):
         return 0
 
 aa_switch=enable(args.aa)
-na_switch=enable(args.na)
-
 
 #### Other filters:
 ### As this is a haploid organism, no reads should map to the alternative allele
 ### (field AD). Default: on
-### Only include variants with no missing data- from any sample. Default: on
+### Only include variants with no missing data from any sample. Default: on
 
 vcf_h = open(args.i)
 
@@ -99,7 +99,7 @@ def inds(fields):
     called_dp = False
     called_gq = False
     called_aa = False
-    for f in fields[9:]:
+    for f in fields[9:-1]:
         #Check for the presence of missing genotypes
         if f == ".":
             global na_c
