@@ -9,4 +9,6 @@ $scripts/vcf_parser_haploid.py --i Fus2_canu_contigs_unmasked.vcf
 #Calculate the index for percentage of shared SNP alleles between the individs.
 $scripts/similarity_percentage.py Fus2_canu_contigs_unmasked_filtered.vcf
 #Visualise the output as heatmap and clustering dendrogram
-Rscript --vanilla $scripts/distance_matrix.R Fus2_canu_contigs_unmasked_filtered_distance.log 
+Rscript --vanilla $scripts/distance_matrix.R Fus2_canu_contigs_unmasked_filtered_distance.log
+#DAPC and AMOVA analysis
+Rscript --vanilla $popgen/snp/amova_dapc.R
