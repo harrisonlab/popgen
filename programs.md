@@ -57,6 +57,8 @@ export PATH=/home/armita/prog/emboss/EMBOSS-4.0.0/bin:${PATH}
 ```
 [CodonW ver.1.3] (http://codonw.sourceforge.net/) Multivariate analysis (correspondence analysis) of codon and amino acid usage. `/home/sobczm/bin/codonW`
 
+[DAGchainer] (http://dagchainer.sourceforge.net/) DAGchainer: Computing Chains of Syntenic Genes in Complete Genomes `/home/sobczm/bin/DAGCHAINER`
+
 [DendroPy ver. 4.1.0] (https://pythonhosted.org/DendroPy/) Python library for phylogenetic computing. `/home/sobczm/bin/DendroPy` *Need to export it to PYTHONPATH
 
 [DivStat] (http://www.portugene.com/DivStat.html): A User-Friendly Tool for Single Nucleotide Polymorphism Analysis of
