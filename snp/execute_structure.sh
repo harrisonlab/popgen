@@ -8,6 +8,8 @@
 #Second argument: ploidy (value: 1|2)
 #Third argument: K being tested (value: integer)
 #Fourth argument: number of replicate runs (value: integer)
+#Can change the number of burn-in and run replicates in the mainparams file
+#Assumes that number of individuals = number of populations (can change it below)
 #Example usage: sh ./execute_structure.sh test.struc 1 1 3
 
 input=$1
@@ -45,6 +47,8 @@ sed -i 's,^\(#define NUMLOCI \).*,\1'"$a"',' mainparams
 b=`wc -l <$input`
 c=$(expr $b - 1)
 sed -i 's,^\(#define NUMINDS \).*,\1'"$c"',' mainparams
+#number of pops = number of inds
+sed -i 's,^\(#define MAXPOPS \).*,\1'"$c"',' mainparams
 
 for ((i=1;i<=$n;i++))
 do
