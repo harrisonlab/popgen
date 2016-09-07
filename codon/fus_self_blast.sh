@@ -1,0 +1,42 @@
+#!/bin/bash
+input=/home/sobczm/popgen/input
+wdir=/home/sobczm/popgen/codon/blast
+scripts=/home/sobczm/bin/popgen/codon
+
+#Copy input files
+cd $input
+cp $input/125/final/125_final_genes_combined.cdna.fasta $wdir
+cp $input/55/final/55_final_genes_combined.cdna.fasta $wdir
+cp $input/A1-2/final/A1-2_final_genes_combined.cdna.fasta $wdir
+cp $input/A13/final/A13_final_genes_combined.cdna.fasta $wdir
+cp $input/A23/final/A23_final_genes_combined.cdna.fasta $wdir
+cp $input/A28/final/A28_final_genes_combined.cdna.fasta $wdir
+cp $input/CB3/final/CB3_final_genes_combined.cdna.fasta $wdir
+cp $input/D2/final/D2_final_genes_combined.cdna.fasta $wdir
+cp $input/Fus2_canu_new/final/Fus2_final_genes_combined.cdna.fasta $wdir
+cp $input/HB6/final/HB6_final_genes_combined.cdna.fasta $wdir
+cp $input/PG/final/PG_final_genes_combined.cdna.fasta $wdir
+cp $input/proliferatum/final/proliferatum_final_genes_combined.cdna.fasta $wdir
+
+#Create nucleotide databases
+#Run assembly self-on-self BLAST
+for assembly in *.fasta
+do
+#makeblastdb -in $assembly -input_type fasta -dbtype nucl \
+#-title "${assembly%.*}"_nucl.db -parse_seqids -out "${assembly%.*}"_nucl.db
+qsub $scripts/sub_self_blast.sh $assembly "${assembly%.*}"_nucl.db
+done
+
+#Copy over relevant GFF files
+cp $input/125/final/*appended.gff3 $wdir
+cp $input/55/final/*appended.gff3 $wdir
+cp $input/A1-2/final/*appended.gff3 $wdir
+cp $input/A13/final/*appended.gff3 $wdir
+cp $input/A23/final/*appended.gff3 $wdir
+cp $input/A28/final/*appended.gff3 $wdir
+cp $input/CB3/final/*appended.gff3 $wdir
+cp $input/D2/final/*appended.gff3 $wdir
+cp $input/Fus2_canu_new/final/*appended.gff3 $wdir
+cp $input/HB6/final/*appended.gff3 $wdir
+cp $input/PG/final/*appended.gff3 $wdir
+cp $input/proliferatum/final/*appended.gff3 $wdir
