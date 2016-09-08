@@ -13,7 +13,6 @@ script, fasta_file = argv
 bare = r"(\w+)(.fasta)"
 one = r"\1_one.fasta"
 o = re.sub(bare, one, fasta_file)
-print(o)
 out = open(o, 'w')
 
 #Dictionary holding all sequences to be printed to file
