@@ -21,30 +21,29 @@ out_p = open(p, 'w')
 stop_codons = ["TGA", "TAG", "TAA"]
 
 for seq_record in SeqIO.parse(fasta_file, "fasta"):
-    l = len(seq_record.seq)
+    seq_upper = str(seq_record.seq).upper()
+    l = len(seq_upper)
     #is the seq length divisable by 3 without remainder?
     r = l % 3
-    #print(r)
     if r != 0:
-        out_f.write(">" + seq_record.id + "\n" + str(seq_record.seq).upper() + "\n")
+        out_f.write(">" + seq_record.id + "\n" + seq_upper + "\n")
     else:
-        start = str(seq_record.seq[0:3])
-        end = str(seq_record.seq[-3:])
+        start = str(seq_upper[0:3])
         t = l - 3
         is_stop_codon = lambda x : any(x[i:i+3] in stop_codons for i in range(0,t,3))
-        isp = str(is_stop_codon(str(seq_record.seq)))
+        isp = str(is_stop_codon(seq_upper))
         is_stop_codon_r = lambda x : any(x[i:i+3] in stop_codons for i in range(0,l,3))
-        ia = str(is_stop_codon_r(str(seq_record.seq)))
+        ia = str(is_stop_codon_r(seq_upper))
         #Check if sequence starts with ATG
         if start != "ATG":
-            out_f.write(">" + seq_record.id + "\n" + str(seq_record.seq).upper() + "\n")
+            out_f.write(">" + seq_record.id + "\n" + seq_upper + "\n")
         #Check if any premature stop codon
         #Remember that elif comes straight after if block, otherwise won't compile!!
         elif isp == "True":
-            out_f.write(">" + seq_record.id + "\n" + str(seq_record.seq).upper() + "\n")
+            out_f.write(">" + seq_record.id + "\n" + seq_upper + "\n")
         #Check if proper stop codon at the end
         elif ia == "True":
-            out_p.write(">" + seq_record.id + "\n" + str(seq_record.seq).upper() + "\n")
+            out_p.write(">" + seq_record.id + "\n" + seq_upper + "\n")
 
 out_f.close()
 out_p.close()
