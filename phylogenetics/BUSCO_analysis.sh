@@ -40,8 +40,7 @@ qsub $scripts/sub_BUSCO_fungi.sh $input/pisi/Fusarium_oxysporum_f_sp_pisi_hdv247
 qsub $scripts/sub_BUSCO_fungi.sh $input/radices-lycopersici/Fusarium_oxysporum_f_sp_radicis_lycopersici_26381.FO_CL57_V1.cds.all.fa
 qsub $scripts/sub_BUSCO_fungi.sh $input/raphani/Fusarium_oxysporum_f_sp_raphani_54005.FO_PHW815_V1.cds.all.fa
 qsub $scripts/sub_BUSCO_fungi.sh $input/vasinifectum/Fusarium_oxysporum_f_sp_vasinfectum_25433.FO_Cotton_V1.cds.all.fa
-qsub $scripts/sub_BUSCO_fungi.sh $input/vasinifectum/Fusarium_oxysporum_f_sp_vasinfectum_25433.FO_Cotton_V1.cds.all.fa
-
+qsub $scripts/sub_BUSCO_fungi.sh $input/verticillioides/Fusarium_verticillioides.ASM14955v1.cds.all.fa
 ##Process in-house genomes
 ### Prepare input CDS assembly files (exon = CDS = cDNA identical in Braker and CodingQuary outputs)
 & using the file "final_genes_combined.cdna.fasta" from each genome for phylogenetic analysis
