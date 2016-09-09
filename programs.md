@@ -77,6 +77,8 @@ Genomic Diversity `/home/sobczm/bin/DivStat`
 [MAFFT ver. 7.222] (http://mafft.cbrc.jp/alignment/software/) Rapid multiple sequence alignment based on fast Fourier transform
 `/home/sobczm/bin/mafft-7.222/bin`
 
+[MEME Suite ver. 4.11.2] (http://meme-suite.org/) MEME SUITE: tools for motif discovery and searching `/home/sobczm/bin/meme_4.11.2/bin`
+
 [PAL2NAL] (http://www.bork.embl.de/pal2nal/): Robust conversion of protein sequence alignments into the corresponding codon alignments/home. `/sobczm/bin/pal2nal.v14`
 
 [PAML ver. 4.8] (http://abacus.gene.ucl.ac.uk/software/paml.html) A package of programs for phylogenetic analyses of DNA or protein sequences using maximum likelihood. `/home/sobczm/bin/paml4.8/bin`
