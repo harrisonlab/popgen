@@ -5,8 +5,8 @@ scripts=/home/sobczm/bin/popgen/phylogenetics
 
 ##Process reference genomes
 ### Rename sequences in all FASTA files by prefixing with the species name:
-cd $input/conglutians
-for fasta in *.fa; do sed -i -e 's/>/>conglutians_/' $fasta; done;
+cd $input/conglutinans
+for fasta in *.fa; do sed -i -e 's/>/>conglutinans_/' $fasta; done;
 cd $input/cubense
 for fasta in *.fa; do sed -i -e 's/>/>cubense_/' $fasta; done;
 cd $input/fo47
