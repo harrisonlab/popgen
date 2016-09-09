@@ -76,7 +76,6 @@ mkdir conglutians
 cd conglutians
 wget ftp://ftp.ensemblgenomes.org/pub/fungi/release-32/fasta/fungi_ascomycota1_collection/fusarium_oxysporum_f_sp_conglutinans_race_2_54008/cds/Fusarium_oxysporum_f_sp_conglutinans_race_2_54008.FO_PHW808_V1.cds.all.fa.gz
 gunzip -d Fusarium_oxysporum_f_sp_conglutinans_race_2_54008.FO_PHW808_V1.cds.all.fa.gz
-##F. oxysporum f. sp. phaseoli (FoPh)
 
 ```
 
