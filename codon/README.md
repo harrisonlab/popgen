@@ -4,5 +4,4 @@ Analyses undertaken:
 
 2) check_duplications.sh
 
-
 3) four_gamete_test.sh

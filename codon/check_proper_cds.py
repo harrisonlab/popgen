@@ -10,7 +10,7 @@ from Bio import SeqIO
 
 script, fasta_file = argv
 
-bare = r"(\w+)(.fasta)"
+bare = r"(\w+)(.fa$|.fasta$)"
 failed = r"\1_fail.fasta"
 passed = r"\1_pass.fasta"
 f = re.sub(bare, failed, fasta_file)
@@ -44,6 +44,7 @@ for seq_record in SeqIO.parse(fasta_file, "fasta"):
         #Check if proper stop codon at the end
         elif ia == "True":
             out_p.write(">" + seq_record.id + "\n" + seq_upper + "\n")
-
+        else:
+            out_f.write(">" + seq_record.id + "\n" + seq_upper + "\n")
 out_f.close()
 out_p.close()
