@@ -69,7 +69,7 @@ mv paramfile_ind paramfile
 #-r: number of replicate runs
 for i in {1..11} #input range of K values tested
 do
-$clumpp/CLUMPP -i K$i.indfile -p K$i.popfile -o K$i.indivq -k $i -c 11 -r 2
+$clumpp/CLUMPP -i K$i.indfile -p K$i.popfile -o K$i.indivq -k $i -c 11 -r 5
 done
 cp $clumpp/paramfile_pop ./
 mv paramfile_pop paramfile
