@@ -67,13 +67,13 @@ mv paramfile_ind paramfile
 #-k: K value
 #-c: number of individuals (change according to STRUCTURE mainparam file)
 #-r: number of replicate runs
-for i in {1..3} #input range of K values tested
+for i in {1..11} #input range of K values tested
 do
 $clumpp/CLUMPP -i K$i.indfile -p K$i.popfile -o K$i.indivq -k $i -c 11 -r 2
 done
 cp $clumpp/paramfile_pop ./
 mv paramfile_pop paramfile
-for i in {1..3} #input range of K values tested
+for i in {1..11} #input range of K values tested
 do
 $clumpp/CLUMPP -i K$i.indfile -p K$i.popfile -o K$i.popq -k $i -c 11 -r 5
 done
