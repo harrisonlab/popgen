@@ -88,7 +88,7 @@ done
 #-o output file
 distruct=/home/sobczm/bin/distruct1.1
 cp $distruct/drawparams ./
-for i in {1..3} #input range of K values tested
+for i in {1..11} #input range of K values tested
 do
 $distruct/distructLinux1.1 -i K$i.indivq -p K$i.popq \
 -a $input/fusarium.names -o K$i.ps -k $i -M 11 -N 11 -K $i
