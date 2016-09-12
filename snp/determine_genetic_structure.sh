@@ -75,7 +75,7 @@ cp $clumpp/paramfile_pop ./
 mv paramfile_pop paramfile
 for i in {1..3} #input range of K values tested
 do
-$clumpp/CLUMPP -i K$i.indfile -p K$i.popfile -o K$i.popq -k $i -c 11 -r 2
+$clumpp/CLUMPP -i K$i.indfile -p K$i.popfile -o K$i.popq -k $i -c 11 -r 5
 done
 # DISTRUCT to visualise the results
 #-K K value
