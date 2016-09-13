@@ -115,3 +115,18 @@ cp -r $bowtie_mp/PG/vs_Fus2_unmasked_max1200 $o_dir/mappings/PG
 cp -r $bowtie_mp/Fus2/vs_Fus2_unmasked_mixed $o_dir/mappings/Fus2
 
 ```
+Copy Andy's gene annotations
+```
+mkdir annotations && annotations
+cp -r $fus/gene_pred/annotations/F.oxysporum/fo47/fo47_gene_annotations.tab ./
+cp -r $fus/gene_pred/annotations/F.oxysporum_fsp_cepae/125/125_gene_annotations.tab ./
+cp -r $fus/gene_pred/annotations/F.oxysporum_fsp_cepae/A13/A13_gene_annotations.tab ./
+cp -r $fus/gene_pred/annotations/F.oxysporum_fsp_cepae/A23/A23_gene_annotations.tab ./
+cp -r $fus/gene_pred/annotations/F.oxysporum_fsp_cepae/A28/A28_gene_annotations.tab ./
+cp -r $fus/gene_pred/annotations/F.oxysporum_fsp_cepae/CB3/CB3_gene_annotations.tab ./
+cp -r $fus/gene_pred/annotations/F.oxysporum_fsp_cepae/Fus2_canu_new/Fus2_canu_new_gene_annotations.tab ./
+cp -r $fus/gene_pred/annotations/F.oxysporum_fsp_cepae/PG/PG_gene_annotations.tab ./
+cp -r $fus/gene_pred/annotations/F.oxysporum_fsp_lycopersici/4287/4287_gene_annotations.tab ./
+
+```
+
