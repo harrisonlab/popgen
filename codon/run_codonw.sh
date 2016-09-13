@@ -25,8 +25,9 @@ $scripts/check_proper_cds.py $input/radices-lycopersici/Fusarium_oxysporum_f_sp_
 cp $input/radices-lycopersici/*pass.fasta ./ && rm $input/radices-lycopersici/*fail.fasta
 $scripts/check_proper_cds.py $input/raphani/Fusarium_oxysporum_f_sp_raphani_54005.FO_PHW815_V1.cds.all.fa
 cp $input/raphani/*pass.fasta ./ && rm $input/raphani/*fail.fasta
-$scripts/check_proper_cds.py $input/vasinifectum/Fusarium_oxysporum_f_sp_vasinfectum_25433.FO_Cotton_V1.cds.all.fa
+pw $input/vasinifectum/Fusarium_oxysporum_f_sp_vasinfectum_25433.FO_Cotton_V1.cds.all.fa
 cp $input/vasinifectum/*pass.fasta ./ && rm $input/vasinifectum/*fail.fasta
+#Does not work for this species, as contigs do not contain a stop codon
 $scripts/check_proper_cds.py $input/verticillioides/Fusarium_verticillioides.ASM14955v1.cds.all.fa
 cp $input/verticillioides/*pass.fasta ./ && rm $input/verticillioides/*fail.fasta
 
@@ -89,10 +90,10 @@ cp $input/proliferatum/final/*pass.fasta ./ && rm $input/proliferatum/final/*fai
 cd $input
 mkdir veneatum
 cd veneatum
-cp -r /home/groups/harrisonlab/project_files/fusarium_venenatum/gene_pred/final/F.venenatum/strain1_braker/final ./
+cp -r /home/groups/harrisonlab/project_files/fusarium_venenatum/gene_pred/final/F.venenatum/strain1/final ./
 for filename in *; do mv "$filename" "veneatum_$filename"; done;
 for fasta in *.fasta; do sed -i -e 's/>/>veneatum_/' $fasta; done;
-$scripts/check_proper_cds.py  $input/veneatum/final/veneatum_final_genes_combined.cdna.fasta
+$scripts/check_proper_cds.py  $input/veneatum/final/veneatum_final_genes_Braker.cds.fasta
 cp $input/veneatum/final/*pass.fasta ./ && rm $input/veneatum/final/*fail.fasta
 #In the future, may want to include F. oxysporum f. pisi and narcissi
 
@@ -102,8 +103,10 @@ cp $input/veneatum/final/*pass.fasta ./ && rm $input/veneatum/final/*fail.fasta
 # CODONW RUNS
 #################
 #- 1) All genes
-#- 2) All genes minus transposons
-#- 3) All genes minus transposons minus genes with no annotation
+## IN-HOUSE GENOMES
+#- 2) All genes minus alternative transcripts
+#- 3) All genes minus alternative transcripts minus transposons
+#- 4) All genes minus alternative transcripts minus transposons minus genes with no annotation
 
 cw=/home/sobczm/popgen/codon/codonW
 #1) All genes
@@ -117,15 +120,62 @@ cd ${f%.*}
 filename=$(basename "$f")
 # -cutot: tabulation of total codon usage
 $cw/codonw $filename -nomenu -silent -cutot
-mv ${filename%.*}.blk ${f%.*}.cutot
+mv ${filename%.*}.blk ${filename%.*}.cutot
 # -cutab: tabulation of codon usage by gene
 $cw/codonw $filename -nomenu -silent -cutab
 mv ${filename%.*}.blk ${filename%.*}.cutab
-# Correspondence analysis
+# Correspondence analyscdis
 # coa_num: percentage of genes taken from each tail of Nec distribution
 $cw/codonw $filename -nomenu -silent -coa_cu -coa_num 5%
 # Calculate all codon bias indices
 # Use "cai.coa", "cbi.coa" and "fop.coa".  generated during correspondence
-#A nalysis to calculate the indices CAI, CBI and Fop
+# Analysis to calculate the indices CAI, CBI and Fop
 $cw/codonw $filename -all_indices -nomenu -silent -fop_file fop.coa -cai_file cai.coa -cbi_file cbi.coa
 done
+
+#2) All genes minus alternative transcripts
+mkdir $cw/input/inhouse
+cd $cw/input/all
+cp 125_final_genes_combined.cdna_pass.fasta $cw/input/inhouse
+cp 55_final_genes_combined.cdna_pass.fasta $cw/input/inhouse
+cp A1-2_final_genes_combined.cdna_pass.fasta $cw/input/inhouse
+cp A13_final_genes_combined.cdna_pass.fasta $cw/input/inhouse
+cp A23_final_genes_combined.cdna_pass.fasta $cw/input/inhouse
+cp A28_final_genes_combined.cdna_pass.fasta $cw/input/inhouse
+cp CB3_final_genes_combined.cdna_pass.fasta $cw/input/inhouse
+cp D2_final_genes_combined.cdna_pass.fasta $cw/input/inhouse
+cp Fus2_final_genes_combined.cdna_pass.fasta $cw/input/inhouse
+cp HB6_final_genes_combined.cdna_pass.fasta $cw/input/inhouse
+cp PG_final_genes_combined.cdna_pass.fasta $cw/input/inhouse
+cp proliferatum_final_genes_combined.cdna_pass.fasta $cw/input/inhouse
+cp veneatum_final_genes_Braker.cds_pass.fasta $cw/input/inhouse
+cd $cw/input/inhouse
+
+for f in $cw/input/inhouse/*.fasta
+do
+$scripts/keep_one_gene.py $f
+done
+
+for f in $cw/input/inhouse/*one.fasta;
+do
+cd $cw/input/inhouse/
+mkdir ${f%.*}
+cp $f ${f%.*}/
+cd ${f%.*}
+filename=$(basename "$f")
+# -cutot: tabulation of total codon usage
+$cw/codonw $filename -nomenu -silent -cutot
+mv ${filename%.*}.blk ${filename%.*}.cutot
+# -cutab: tabulation of codon usage by gene
+$cw/codonw $filename -nomenu -silent -cutab
+mv ${filename%.*}.blk ${filename%.*}.cutab
+# Correspondence analyscdis
+# coa_num: percentage of genes taken from each tail of Nec distribution
+$cw/codonw $filename -nomenu -silent -coa_cu -coa_num 5%
+# Calculate all codon bias indices
+# Use "cai.coa", "cbi.coa" and "fop.coa".  generated during correspondence
+# Analysis to calculate the indices CAI, CBI and Fop
+$cw/codonw $filename -all_indices -nomenu -silent -fop_file fop.coa -cai_file cai.coa -cbi_file cbi.coa
+done
+
+#- 3) All genes minus alternative transcripts minus transposons

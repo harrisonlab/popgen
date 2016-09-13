@@ -1,4 +1,3 @@
-#! /usr/bin/env python
 import os, sys, re, argparse
 
 ## Filter VCF calls (ver. 4.2) from GATK to obtain high confidence SNPs

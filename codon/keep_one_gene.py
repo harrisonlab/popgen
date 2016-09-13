@@ -26,7 +26,6 @@ for seq_record in SeqIO.parse(fasta_file, "fasta"):
     #If another transcript from the gene is already in the dictionary
     if seq_name_gene in d:
     #Check if the old or new entry is longer
-        print (seq_name_gene)
         length_old = len(d[seq_name_gene][1])
         length_new = len(seq_upper)
         #If so subsitute the new entry for old
