@@ -1,5 +1,7 @@
 Analyses undertaken:
 
+0) obtain_effectors.sh
+
 1) run_codonw.sh
 
 2) check_duplications.sh

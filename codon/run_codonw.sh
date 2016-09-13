@@ -90,6 +90,42 @@ cd $input
 mkdir veneatum
 cd veneatum
 cp -r /home/groups/harrisonlab/project_files/fusarium_venenatum/gene_pred/final/F.venenatum/strain1_braker/final ./
+for filename in *; do mv "$filename" "veneatum_$filename"; done;
+for fasta in *.fasta; do sed -i -e 's/>/>veneatum_/' $fasta; done;
 $scripts/check_proper_cds.py  $input/veneatum/final/veneatum_final_genes_combined.cdna.fasta
 cp $input/veneatum/final/*pass.fasta ./ && rm $input/veneatum/final/*fail.fasta
 #In the future, may want to include F. oxysporum f. pisi and narcissi
+
+
+
+#################
+# CODONW RUNS
+#################
+#- 1) All genes
+#- 2) All genes minus transposons
+#- 3) All genes minus transposons minus genes with no annotation
+
+cw=/home/sobczm/popgen/codon/codonW
+#1) All genes
+cd $cw
+for f in $cw/input/all/*.fasta;
+do
+cd $cw/input/all/
+mkdir ${f%.*}
+cp $f ${f%.*}/
+cd ${f%.*}
+filename=$(basename "$f")
+# -cutot: tabulation of total codon usage
+$cw/codonw $filename -nomenu -silent -cutot
+mv ${filename%.*}.blk ${f%.*}.cutot
+# -cutab: tabulation of codon usage by gene
+$cw/codonw $filename -nomenu -silent -cutab
+mv ${filename%.*}.blk ${filename%.*}.cutab
+# Correspondence analysis
+# coa_num: percentage of genes taken from each tail of Nec distribution
+$cw/codonw $filename -nomenu -silent -coa_cu -coa_num 5%
+# Calculate all codon bias indices
+# Use "cai.coa", "cbi.coa" and "fop.coa".  generated during correspondence
+#A nalysis to calculate the indices CAI, CBI and Fop
+$cw/codonw $filename -all_indices -nomenu -silent -fop_file fop.coa -cai_file cai.coa -cbi_file cbi.coa
+done
