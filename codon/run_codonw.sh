@@ -134,31 +134,31 @@ $cw/codonw $filename -all_indices -nomenu -silent -fop_file fop.coa -cai_file ca
 done
 
 #2) All genes minus alternative transcripts
-mkdir $cw/input/inhouse
+mkdir $cw/input/inhouse/all
 cd $cw/input/all
-cp 125_final_genes_combined.cdna_pass.fasta $cw/input/inhouse
-cp 55_final_genes_combined.cdna_pass.fasta $cw/input/inhouse
-cp A1-2_final_genes_combined.cdna_pass.fasta $cw/input/inhouse
-cp A13_final_genes_combined.cdna_pass.fasta $cw/input/inhouse
-cp A23_final_genes_combined.cdna_pass.fasta $cw/input/inhouse
-cp A28_final_genes_combined.cdna_pass.fasta $cw/input/inhouse
-cp CB3_final_genes_combined.cdna_pass.fasta $cw/input/inhouse
-cp D2_final_genes_combined.cdna_pass.fasta $cw/input/inhouse
-cp Fus2_final_genes_combined.cdna_pass.fasta $cw/input/inhouse
-cp HB6_final_genes_combined.cdna_pass.fasta $cw/input/inhouse
-cp PG_final_genes_combined.cdna_pass.fasta $cw/input/inhouse
-cp proliferatum_final_genes_combined.cdna_pass.fasta $cw/input/inhouse
-cp veneatum_final_genes_Braker.cds_pass.fasta $cw/input/inhouse
-cd $cw/input/inhouse
+cp 125_final_genes_combined.cdna_pass.fasta $cw/input/inhouse/all
+cp 55_final_genes_combined.cdna_pass.fasta $cw/input/inhouse/all
+cp A1-2_final_genes_combined.cdna_pass.fasta $cw/input/inhouse/all
+cp A13_final_genes_combined.cdna_pass.fasta $cw/input/inhouse/all
+cp A23_final_genes_combined.cdna_pass.fasta $cw/input/inhouse/all
+cp A28_final_genes_combined.cdna_pass.fasta $cw/input/inhouse/all
+cp CB3_final_genes_combined.cdna_pass.fasta $cw/input/inhouse/all
+cp D2_final_genes_combined.cdna_pass.fasta $cw/input/inhouse/all
+cp Fus2_final_genes_combined.cdna_pass.fasta $cw/input/inhouse/all
+cp HB6_final_genes_combined.cdna_pass.fasta $cw/input/inhouse/all
+cp PG_final_genes_combined.cdna_pass.fasta $cw/input/inhouse/all
+cp proliferatum_final_genes_combined.cdna_pass.fasta $cw/input/inhouse/all
+cp veneatum_final_genes_Braker.cds_pass.fasta $cw/input/inhouse/all
+cd $cw/input/inhouse/all
 
-for f in $cw/input/inhouse/*.fasta
+for f in $cw/input/inhouse/all/*.fasta
 do
 $scripts/keep_one_gene.py $f
 done
 
-for f in $cw/input/inhouse/*one.fasta;
+for f in $cw/input/inhouse/all/*one.fasta;
 do
-cd $cw/input/inhouse/
+cd $cw/input/inhouse/all
 mkdir ${f%.*}
 cp $f ${f%.*}/
 cd ${f%.*}
@@ -169,7 +169,7 @@ mv ${filename%.*}.blk ${filename%.*}.cutot
 # -cutab: tabulation of codon usage by gene
 $cw/codonw $filename -nomenu -silent -cutab
 mv ${filename%.*}.blk ${filename%.*}.cutab
-# Correspondence analyscdis
+# Correspondence analysis
 # coa_num: percentage of genes taken from each tail of Nec distribution
 $cw/codonw $filename -nomenu -silent -coa_cu -coa_num 5%
 # Calculate all codon bias indices
@@ -179,3 +179,121 @@ $cw/codonw $filename -all_indices -nomenu -silent -fop_file fop.coa -cai_file ca
 done
 
 #- 3) All genes minus alternative transcripts minus transposons
+mkdir $cw/input/inhouse/no_transposons
+cd $cw/input/inhouse/all
+for a in *one.fasta; do cp $a $cw/input/inhouse/no_transposons; done
+cd $cw/input/inhouse/no_transposons
+
+# Eliminate putative transposon genes
+annotations=/home/sobczm/popgen/input/annotations
+#Prepare a list of non-transposon genes
+cd $annotations
+cat 125_gene_annotations.tab | sort > temp
+grep 'IPR000477\|IPR004875\|IPR025476\|IPR012337\|transpos*' temp | sort >temp2
+comm -3 temp temp2 | cut -f 1 | awk '$0="125_"$0'>125_no_transposons.txt
+cat A13_gene_annotations.tab | sort > temp
+grep 'IPR000477\|IPR004875\|IPR025476\|IPR012337\|transpos*' temp | sort >temp2
+comm -3 temp temp2 | cut -f 1 | awk '$0="A13_"$0'>A13_no_transposons.txt
+cat A23_gene_annotations.tab | sort > temp
+grep 'IPR000477\|IPR004875\|IPR025476\|IPR012337\|transpos*' temp | sort >temp2
+comm -3 temp temp2 | cut -f 1 | awk '$0="A23_"$0'>A23_no_transposons.txt
+cat A28_gene_annotations.tab | sort > temp
+grep 'IPR000477\|IPR004875\|IPR025476\|IPR012337\|transpos*' temp | sort >temp2
+comm -3 temp temp2 | cut -f 1 | awk '$0="A28_"$0'>A28_no_transposons.txt
+cat CB3_gene_annotations.tab | sort > temp
+grep 'IPR000477\|IPR004875\|IPR025476\|IPR012337\|transpos*' temp | sort >temp2
+comm -3 temp temp2 | cut -f 1 | awk '$0="CB3_"$0'>CB3_no_transposons.txt
+cat Fus2_canu_new_gene_annotations.tab | sort > temp
+grep 'IPR000477\|IPR004875\|IPR025476\|IPR012337\|transpos*' temp | sort >temp2
+comm -3 temp temp2 | cut -f 1 | awk '$0="Fus2_"$0'>Fus2_no_transposons.txt
+cat PG_gene_annotations.tab | sort > temp
+grep 'IPR000477\|IPR004875\|IPR025476\|IPR012337\|transpos*' temp | sort >temp2
+comm -3 temp temp2 | cut -f 1 | awk '$0="PG_"$0'>PG_no_transposons.txt
+
+#Keep only non-transposon genes
+cd $cw/input/inhouse/no_transposons
+python $scripts/keep_list_genes.py $annotations/125_no_transposons.txt 125_final_genes_combined.cdna_pass_one.fasta
+python $scripts/keep_list_genes.py $annotations/A13_no_transposons.txt A13_final_genes_combined.cdna_pass_one.fasta
+python $scripts/keep_list_genes.py $annotations/A23_no_transposons.txt A23_final_genes_combined.cdna_pass_one.fasta
+python $scripts/keep_list_genes.py $annotations/A28_no_transposons.txt A28_final_genes_combined.cdna_pass_one.fasta
+python $scripts/keep_list_genes.py $annotations/CB3_no_transposons.txt CB3_final_genes_combined.cdna_pass_one.fasta
+python $scripts/keep_list_genes.py $annotations/Fus2_no_transposons.txt Fus2_final_genes_combined.cdna_pass_one.fasta
+python $scripts/keep_list_genes.py $annotations/PG_no_transposons.txt PG_final_genes_combined.cdna_pass_one.fasta
+for f in *_filtered.fasta; do
+mv "$f" "${f%_filtered.fasta}_notrans.fasta"
+done
+
+#codonW analysis
+for f in $cw/input/inhouse/no_transposons/*notrans.fasta;
+do
+cd $cw/input/inhouse/no_transposons
+mkdir ${f%.*}
+cp $f ${f%.*}/
+cd ${f%.*}
+filename=$(basename "$f")
+# -cutot: tabulation of total codon usage
+$cw/codonw $filename -nomenu -silent -cutot
+mv ${filename%.*}.blk ${filename%.*}.cutot
+# -cutab: tabulation of codon usage by gene
+$cw/codonw $filename -nomenu -silent -cutab
+mv ${filename%.*}.blk ${filename%.*}.cutab
+# Correspondence analysis
+# coa_num: percentage of genes taken from each tail of Nec distribution
+$cw/codonw $filename -nomenu -silent -coa_cu -coa_num 5%
+# Calculate all codon bias indices
+# Use "cai.coa", "cbi.coa" and "fop.coa".  generated during correspondence
+# Analysis to calculate the indices CAI, CBI and Fop
+$cw/codonw $filename -all_indices -nomenu -silent -fop_file fop.coa -cai_file cai.coa -cbi_file cbi.coa
+done
+
+#- 4) All genes minus alternative transcripts minus transposons minus genes with no annotation
+mkdir $cw/input/inhouse/only_annotated
+cd $cw/input/inhouse/no_transposons
+for a in *notrans.fasta; do cp $a $cw/input/inhouse/only_annotated; done
+cd $cw/input/inhouse/only_annotated
+
+#Prepare a list of only annotated genes (in the field 24 in the spreadsheet)
+cd $annotations
+awk '($24~/\w+/) {print $0}' 125_gene_annotations.tab | cut -f 1 | awk '$0="125_"$0'>125_only_annotated.txt
+awk '($24~/\w+/) {print $0}' A13_gene_annotations.tab | cut -f 1 | awk '$0="A13_"$0'>A13_only_annotated.txt
+awk '($24~/\w+/) {print $0}' A23_gene_annotations.tab | cut -f 1 | awk '$0="A23_"$0'>A23_only_annotated.txt
+awk '($24~/\w+/) {print $0}' A28_gene_annotations.tab | cut -f 1 | awk '$0="A28_"$0'>A28_only_annotated.txt
+awk '($24~/\w+/) {print $0}' CB3_gene_annotations.tab | cut -f 1 | awk '$0="CB3_"$0'>CB3_only_annotated.txt
+awk '($24~/\w+/) {print $0}' Fus2_canu_new_gene_annotations.tab | cut -f 1 | awk '$0="Fus2_"$0'>Fus2_only_annotated.txt
+awk '($24~/\w+/) {print $0}' PG_gene_annotations.tab | cut -f 1 | awk '$0="PG_"$0'>PG_only_annotated.txt
+
+#Keep only annotated genes
+cd $cw/input/inhouse/only_annotated
+python $scripts/keep_list_genes.py $annotations/125_only_annotated.txt 125_final_genes_combined.cdna_pass_one_notrans.fasta
+python $scripts/keep_list_genes.py $annotations/A13_only_annotated.txt A13_final_genes_combined.cdna_pass_one_notrans.fasta
+python $scripts/keep_list_genes.py $annotations/A23_only_annotated.txt A23_final_genes_combined.cdna_pass_one_notrans.fasta
+python $scripts/keep_list_genes.py $annotations/A28_only_annotated.txt A28_final_genes_combined.cdna_pass_one_notrans.fasta
+python $scripts/keep_list_genes.py $annotations/CB3_only_annotated.txt CB3_final_genes_combined.cdna_pass_one_notrans.fasta
+python $scripts/keep_list_genes.py $annotations/Fus2_only_annotated.txt Fus2_final_genes_combined.cdna_pass_one_notrans.fasta
+python $scripts/keep_list_genes.py $annotations/PG_only_annotated.txt PG_final_genes_combined.cdna_pass_one_notrans.fasta
+
+for f in *_filtered.fasta; do
+mv "$f" "${f%_filtered.fasta}_only_an.fasta"
+done
+
+for f in $cw/input/inhouse/only_annotated/*only_an.fasta;
+do
+cd $cw/input/inhouse/only_annotated
+mkdir ${f%.*}
+cp $f ${f%.*}/
+cd ${f%.*}
+filename=$(basename "$f")
+# -cutot: tabulation of total codon usage
+$cw/codonw $filename -nomenu -silent -cutot
+mv ${filename%.*}.blk ${filename%.*}.cutot
+# -cutab: tabulation of codon usage by gene
+$cw/codonw $filename -nomenu -silent -cutab
+mv ${filename%.*}.blk ${filename%.*}.cutab
+# Correspondence analysis
+# coa_num: percentage of genes taken from each tail of Nec distribution
+$cw/codonw $filename -nomenu -silent -coa_cu -coa_num 5%
+# Calculate all codon bias indices
+# Use "cai.coa", "cbi.coa" and "fop.coa".  generated during correspondence
+# Analysis to calculate the indices CAI, CBI and Fop
+$cw/codonw $filename -all_indices -nomenu -silent -fop_file fop.coa -cai_file cai.coa -cbi_file cbi.coa
+done
