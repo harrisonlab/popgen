@@ -297,3 +297,5 @@ $cw/codonw $filename -nomenu -silent -coa_cu -coa_num 5%
 # Analysis to calculate the indices CAI, CBI and Fop
 $cw/codonw $filename -all_indices -nomenu -silent -fop_file fop.coa -cai_file cai.coa -cbi_file cbi.coa
 done
+
+#IMPORTANT: RSCU values are stored in .blk and .cutab files

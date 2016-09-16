@@ -97,3 +97,8 @@ cp $fa/mimps/F.oxysporum_fsp_cepae/PG/PG_genes_in_2kb_mimp_secreted.gff ./
 cp $fa/mimps/F.oxysporum_fsp_cepae/A23/A23_genes_in_2kb_mimp_secreted.gff ./
 cp $fa/mimps/F.oxysporum_fsp_cepae/A28/A28_genes_in_2kb_mimp_secreted.gff ./
 cp $fa/mimps/F.oxysporum_fsp_cepae/CB3/CB3_genes_in_2kb_mimp_secreted.gff ./
+
+
+#Obtain a table of effector genes with cds_to_chromosome_coords.py
+find /home/sobczm/popgen/input/effectors -type f -name '*.gff' -exec /home/sobczm/bin/popgen/codon/cds_to_chromosome_coords.py {} \;
+#Can't do that as need to feed prefix, so have to run the script manually -.-
