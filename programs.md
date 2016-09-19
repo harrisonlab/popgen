@@ -21,7 +21,7 @@ and libraries stored in ```/home/sobczm/R/x86_64-pc-linux-gnu-library/3.2```
 [WhopGenome] (https://cran.r-project.org/web/packages/WhopGenome/index.html): High-Speed Processing of VCF, FASTA and Alignment Data
 
 ##Standalone
-[4P] (https://github.com/anbena/4p): 4P (Parallel Processing of Polymorphism Panels) is a software for computing 
+[4P] (https://github.com/anbena/4p): 4P (Parallel Processing of Polymorphism Panels) is a software for computing
 population genetics statistics from large SNPs dataset. `/home/sobczm/bin/4p/bin`
 
 [ABRA ver. 0.97] (https://github.com/mozack/abra): Improved coding indel detection via assembly-based
@@ -37,9 +37,9 @@ export PATH="$JAVA_HOME/bin:$PATH"
 ```
 [BEAST ver. 1.8.3] (http://beast.bio.ed.ac.uk/) package - Bayesian analysis of molecular sequences using MCMC. Includes: BEAST, BEAUti, LogCombiner, TreeAnnotator.  `/home/sobczm/bin/beast/BEASTv1.8.3/bin`
 
-[BEAST ver. 2.4.2] (http://beast2.org/) package. Includes: BEAST, BEAUti, LogCombiner, TreeAnnotator, DensiTree. `/home/sobczm/bin/beast/BEASTv2.4.2/bin` 
+[BEAST ver. 2.4.2] (http://beast2.org/) package. Includes: BEAST, BEAUti, LogCombiner, TreeAnnotator, DensiTree. `/home/sobczm/bin/beast/BEASTv2.4.2/bin`
 
-[BEASTGen ver. 1.0.2] (http://beast.bio.ed.ac.uk/beastgen) Creates BEAST XML input files. 
+[BEASTGen ver. 1.0.2] (http://beast.bio.ed.ac.uk/beastgen) Creates BEAST XML input files.
 `/home/sobczm/bin/beast/BEASTGenv1.0.2/bin`
 
 [BUSCO ver 1.22] (http://busco.ezlab.org/): Assessing genome assembly and annotation completeness with Benchmarking Universal Single-Copy Orthologs
@@ -93,7 +93,9 @@ Genomic Diversity `/home/sobczm/bin/DivStat`
 
 [RAxML ver. 8.2.9] (http://sco.h-its.org/exelixis/web/software/raxml/index.html) a ML a tool for phylogenetic analysis and post-analysis of large phylogenies `/home/sobczm/bin/RAxML8.2.9`
 
-[SplitsTree ver. 4] (http://www.splitstree.org/) Program for computing unrooted phylogenetic networks from molecular sequence data. `/home/sobczm/bin/splitstree4` 
+[snpEff & snpSift ver. 4.3] (http://snpeff.sourceforge.net/) Genetic variant annotation, effect prediction, VCF filtering and manipulation toolbox. `/home/sobczm/bin/snpEff`
+
+[SplitsTree ver. 4] (http://www.splitstree.org/) Program for computing unrooted phylogenetic networks from molecular sequence data. `/home/sobczm/bin/splitstree4`
 
 [STRUCTURE ver. 2.3.4] (http://pritchardlab.stanford.edu/structure.html) A package for using multi-locus genotype data to investigate population structure `/home/sobczm/bin/structure`
 
@@ -109,11 +111,11 @@ Genomic Diversity `/home/sobczm/bin/DivStat`
 `/home/sobczm/bin/beast/Tracer_v1.6/bin`
 
 [Treemix ver. 1.12] (https://bitbucket.org/nygcresearch/treemix/wiki/Home): estimation of population trees with admixture.
-`/home/sobczm/bin/treemix-1.12` 
+`/home/sobczm/bin/treemix-1.12`
 
 [vcflib] (https://github.com/vcflib/vcflib): a simple C++ library for parsing and manipulating VCF files, + many command-line utilities. `/home/sobczm/bin/vcflib/bin`
 
-[VCFtools] (https://vcftools.github.io): another set of C++ and Perl libraries for analysing VCF files. 
+[VCFtools] (https://vcftools.github.io): another set of C++ and Perl libraries for analysing VCF files.
 ```
 /home/sobczm/bin/vcftools/bin  
 #SET PERL PATH
@@ -125,6 +127,3 @@ export PERL5LIB=/home/sobczm/bin/vcftools/share/perl/5.14.2
 #SET PYTHON PATH
 export PYTHONPATH="$PYTHONPATH:/home/sobczm/bin/PyVCF/lib/python2.7/site-packages/"
 ```
-
-
-
