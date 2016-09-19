@@ -1,3 +1,4 @@
+#! /usr/bin/env python
 import os, sys, re, argparse
 
 ## Filter VCF calls (ver. 4.2) from GATK to obtain high confidence SNPs
@@ -98,7 +99,7 @@ def inds(fields):
     called_dp = False
     called_gq = False
     called_aa = False
-    for f in fields[9:-1]:
+    for f in fields[9:]:
         #Check for the presence of missing genotypes
         if f == ".":
             global na_c
@@ -154,7 +155,7 @@ for line in vcf_h:
     if line.startswith("#"):
         vcf_out.write(str(line))
     else:
-        fields = line.split("\t")
+        fields = line.split()
         if (gen(fields) == 1 and inds(fields) == 1):
             vcf_out.write(str(line))
         else:
