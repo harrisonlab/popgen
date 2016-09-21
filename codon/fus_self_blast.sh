@@ -32,17 +32,3 @@ makeblastdb -in $assembly -input_type fasta -dbtype nucl \
 -title "${assembly%.*}"_nucl.db -parse_seqids -out "${assembly%.*}"_nucl.db
 qsub $scripts/sub_self_blast.sh $assembly "${assembly%.*}"_nucl.db
 done
-
-#Copy over relevant GFF files
-cp $input/125/final/*appended.gff3 $wdir
-cp $input/55/final/*appended.gff3 $wdir
-cp $input/A1-2/final/*appended.gff3 $wdir
-cp $input/A13/final/*appended.gff3 $wdir
-cp $input/A23/final/*appended.gff3 $wdir
-cp $input/A28/final/*appended.gff3 $wdir
-cp $input/CB3/final/*appended.gff3 $wdir
-cp $input/D2/final/*appended.gff3 $wdir
-cp $input/Fus2_canu_new/final/*appended.gff3 $wdir
-cp $input/HB6/final/*appended.gff3 $wdir
-cp $input/PG/final/*appended.gff3 $wdir
-cp $input/proliferatum/final/*appended.gff3 $wdir
