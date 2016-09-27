@@ -12,15 +12,23 @@ cp /home/sobczm/popgen/input/Fus2_canu_new/final/Fus2_final_genes_appended.gff3 
 cd $input
 #Create additional subsets of VCF files with reduced number of individuals
 vcftools=/home/sobczm/bin/vcftools/bin
-#All, Without A13
-$vcftools/vcftools --remove-indv FOCA13 --recode --recode-INFO-all --vcf Fus2_canu_contigs_unmasked.vcf --out noA13
-$scripts/snp/vcf_parser_haploid.py --i noA13.recode.vcf
+vcflib=/home/sobczm/bin/vcflib/bin
+
+#All, without A13
+$vcflib/vcfremovesamples Fus2_canu_contigs_unmasked.vcf FOCA13 >Fus2_canu_contigs_unmasked_noA13.vcf
+#Remove monomorphic sites (minor allele count minimum 1)
+$scripts/snp/vcf_parser_haploid.py --i Fus2_canu_contigs_unmasked_noA13.vcf
+$vcftools/vcftools --vcf Fus2_canu_contigs_unmasked_noA13_filtered.vcf --mac 1 --recode --out Fus2_canu_contigs_unmasked_noA13_filtered
+
 #Only pathogens, without A13
-$vcftools/vcftools --remove-indv FOCA13 --remove-indv FOCA1-2 --remove-indv FOCD2 --remove-indv FOCA28 --remove-indv FOCCB3 --remove-indv FOCHB6 --remove-indv FOCPG --recode --recode-INFO-all --vcf Fus2_canu_contigs_unmasked.vcf --out patho
-$scripts/snp/vcf_parser_haploid.py --i patho.recode.vcf
+$vcflib/vcfremovesamples Fus2_canu_contigs_unmasked.vcf FOCA13 FOCA1-2 FOCD2 FOCA28 FOCCB3 FOCHB6 FOCPG >Fus2_canu_contigs_unmasked_patho.vcf
+$scripts/snp/vcf_parser_haploid.py --i Fus2_canu_contigs_unmasked_patho.vcf
+$vcftools/vcftools --vcf Fus2_canu_contigs_unmasked_patho_filtered.vcf --mac 1 --recode --out Fus2_canu_contigs_unmasked_patho_filtered
+
 #Only non-pathogens, without A13
-$vcftools/vcftools --remove-indv FOCA13 --remove-indv FOC55 --remove-indv FOCFus2 --remove-indv FOCA23 --remove-indv FOC125 --recode --recode-INFO-all --vcf Fus2_canu_contigs_unmasked.vcf --out non-patho
-$scripts/snp/vcf_parser_haploid.py --i non-patho.recode.vcf
+$vcflib/vcfremovesamples Fus2_canu_contigs_unmasked.vcf FOCA13 FOC55 FOCFus2 FOCA23 FOC125 >Fus2_canu_contigs_unmasked_non-patho.vcf
+$scripts/snp/vcf_parser_haploid.py --i Fus2_canu_contigs_unmasked_non-patho.vcf
+$vcftools/vcftools --vcf Fus2_canu_contigs_unmasked_non-patho_filtered.vcf --mac 1 --recode --out Fus2_canu_contigs_unmasked_non-patho_filtered
 
 ##Create custom SnpEff genome database
 nano $snpeff/snpEff.config
@@ -46,14 +54,14 @@ java -jar $snpeff/snpEff.jar build -gff3 -v Fus2v1.0
 
 #Annotate VCF files
 cd $input
-for a in *filtered.vcf
+for a in *recode.vcf
 do
 filename=$(basename "$a")
 java -Xmx4g -jar $snpeff/snpEff.jar -v -ud 0 Fus2v1.0 $a > ${filename%.vcf}_annotated.vcf
 mv snpEff_genes.txt snpEff_genes_${filename%.vcf}.txt
 mv snpEff_summary.html  snpEff_summary__${filename%.vcf}.html
 done
-#Filter VCF files
+#Further filter VCF files by SNP class
 for a in *annotated.vcf
 do
 filename=$(basename "$a")
