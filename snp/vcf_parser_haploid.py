@@ -68,7 +68,7 @@ def gen(fields):
     val = 1
     mq_p = r"(MQ=)(\d+)"
     #Check if SNP
-    if (len(fields[3]) == 1 and len(fields[4]) == 1):
+    if (len(fields[3]) == len(fields[4])):
         #Match up the MQ value
         m = re.search(mq_p, fields[7])
         mqs = float(m.group(2))
