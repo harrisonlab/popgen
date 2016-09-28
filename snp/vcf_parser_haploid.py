@@ -2,7 +2,7 @@
 import os, sys, re, argparse
 
 ## Filter VCF calls (ver. 4.2) from GATK to obtain high confidence SNPs
-## in a haploid organism (will tweak it later to include a diploid option, if needed).
+## in a haploid organism.
 ## Prints out how many SNPs filtered out at each step in the log file.
 ## By default, eliminates sites with any missing genotypes and retains only biallelic SNPs
 ## I.e. good for population structure analysis and calculations

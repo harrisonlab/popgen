@@ -18,23 +18,24 @@ qsub $scripts/sub_mafft_alignment.sh $f
 
 python $scripts/calculate_nucleotide_diversity.py "*aligned.fasta"
 
-mkdir -d $path/beast_runs/results
+mkdir -p $path/beast_runs/results
 mv sequence_stats.txt excel_stats.txt $path/beast_runs/results
 
 ## Copy FASTA files of the candidate genes for the phylogeny into
-mkdir -d $path/beast_runs/candidates
+mkdir -p $path/beast_runs/candidates
 
 ## Visually inspect the alignments of select genes (genes_selected_for_phylogeny.txt) to be used in
-## constructing the phylogenies and trim them as necessary in MEGA6.
+## constructing the phylogenies and trim them as necessary in MEGA7.
 ## Copy the relevant trimmed alignment FASTA files into
 mkdir $path/beast_runs/candidates/select/trimmed
 
-##PartitionFinder (nucleotide sequence evolution mocddel)
+##PartitionFinder (nucleotide sequence evolution model)
 
 config_template=/home/sobczm/bin/PartitionFinder1.1.1/partition_finder.cfg
 ct=$(basename "$config_template")
 
-cd $path/beast_runs/candidates/select
+cd $path/beast_runs/candidates/select/trimmed
+mkdir NEXUS
 
 # prepare directory for PartitionFinder run:
 for f in *fasta
@@ -59,7 +60,7 @@ mv $p $dir
 
 # Convert FASTA to NEXUS for the BEAST run
 $scripts/Fasta2Nexus.pl $f>$n
-mkdir NEXUS && mv $n NEXUS
+mv $n NEXUS
 
 qsub $scripts/sub_partition_finder.sh $dir
 

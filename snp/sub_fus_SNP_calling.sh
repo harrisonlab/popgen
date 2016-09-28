@@ -2,7 +2,7 @@
 #$ -cwd
 #$ -pe smp 1
 #$ -l h_vmem=16G
-#$ -l h=blacklace01.blacklace|blacklace02.blacklace|blacklace04.blacklace|blacklace05.blacklace|blacklace06.blacklace|blacklace07.blacklace|blacklace08.blacklace|blacklace09.blacklace|blacklace10.blacklace|blacklace11.blacklace|blacklace12.blacklace
+#$ -l h=blacklace01.blacklace|blacklace02.blacklace|blacklace04.blacklace|blacklace05.blacklace|blacklace06.blacklace|blacklace07.blacklace|blacklace08.blacklace|blacklace09.blacklace|blacklace10.blacklace|blacklace12.blacklace
 
 input=/home/sobczm/popgen/input/mappings
 
@@ -34,10 +34,9 @@ java -jar $gatk/GenomeAnalysisTK.jar \
 #Break down complex SNPs into primitive ones with VariantsToAllelicPrimitives
 #This tool will take an MNP (e.g. ACCCA -> TCCCG) and break it up into separate records for each component part (A-T and A->G).
 #This tool modifies only bi-allelic variants.
- 
+
 java -jar $gatk/GenomeAnalysisTK.jar \
    -T VariantsToAllelicPrimitives \
    -R $input/$reference \
    -V $output \
    -o $output2 \
-
