@@ -3,6 +3,7 @@ input=/home/sobczm/popgen/snp/snp_calling/multithreaded
 scripts=/home/sobczm/bin/popgen/snp
 
 #Only retain biallelic high-quality SNPS with no missing data for genetic analyses.
+#For diploid genomes use another script: sub_vcf_parser.sh
 cd $input
 $scripts/vcf_parser_haploid.py --i Fus2_canu_contigs_unmasked.vcf
 #General VCF stats (remember that vcftools needs to have the PERL library exported)

@@ -14,10 +14,8 @@ ap.add_argument('--mq',required=False,type=int,help='Minimum MQ (integer). MQ gi
 ap.add_argument('--dp',required=False,type=int,help='Minimum depth (integer) at the site per sample', default=10)
 ap.add_argument('--gq',required=False,type=int,help='Minimum GQ (integer). GQ is the phred-scaled probability that the sample genotype being called is correct, given that there is a SNP at that site.', default=30)
 ap.add_argument('--aa',required=False,type=str,help='Eliminate sites showing presence of reads mapping to both alleles (as unexpected in a haploid organism). Accepted argument: yes, no', default='yes')
-#ap.add_argument('--na',required=False,type=str,help='Eliminate sites with any missing genotypes. Accepted argument: yes, no', default='yes')
 
 args = ap.parse_args()
-
 
 QUAL=args.qual
 MQ=args.mq
