@@ -5,31 +5,31 @@
 path=/home/sobczm/popgen/phylogenetics
 scripts=/home/sobczm/bin/popgen/phylogenetics
 
-##MAFFT (alignments)
-
-cd $path/busco
+##MAFFT (make alignments)
+cd $path
+mkdir busco_alignments
 mv *.fasta $path/busco_alignments
 cd $path/busco_alignments
 
-for f in *.fasta; do qsub $scripts/sub_mafft_alignment.sh $f; done
+qsub $scripts/sub_mafft_alignment.sh $f
 
 ## Identify genes with high nucleotide diversity and average number of pairwise differences, medium number of segregating sites
 ## (avoid alignments with low homology and lots of phylogenetically uninformative singletons)
 
 python $scripts/calculate_nucleotide_diversity.py "*aligned.fasta"
 
-mkdir $path/beast_runs/results
+mkdir -d $path/beast_runs/results
 mv sequence_stats.txt excel_stats.txt $path/beast_runs/results
 
 ## Copy FASTA files of the candidate genes for the phylogeny into
-mkdir $path/beast_runs/candidates
+mkdir -d $path/beast_runs/candidates
 
 ## Visually inspect the alignments of select genes (genes_selected_for_phylogeny.txt) to be used in
 ## constructing the phylogenies and trim them as necessary in MEGA6.
 ## Copy the relevant trimmed alignment FASTA files into
 mkdir $path/beast_runs/candidates/select/trimmed
 
-##PartitionFinder (nucleotide sequence evolution model)
+##PartitionFinder (nucleotide sequence evolution mocddel)
 
 config_template=/home/sobczm/bin/PartitionFinder1.1.1/partition_finder.cfg
 ct=$(basename "$config_template")

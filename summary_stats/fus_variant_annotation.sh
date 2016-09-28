@@ -25,6 +25,11 @@ $vcflib/vcfremovesamples Fus2_canu_contigs_unmasked.vcf FOCA13 FOCA1-2 FOCD2 FOC
 $scripts/snp/vcf_parser_haploid.py --i Fus2_canu_contigs_unmasked_patho.vcf
 $vcftools/vcftools --vcf Fus2_canu_contigs_unmasked_patho_filtered.vcf --mac 1 --recode --out Fus2_canu_contigs_unmasked_patho_filtered
 
+#Only pathogens, without A13 and 55
+$vcflib/vcfremovesamples Fus2_canu_contigs_unmasked.vcf FOCA13 FOCA1-2 FOCD2 FOCA28 FOCCB3 FOCHB6 FOCPG FOC55 >Fus2_canu_contigs_unmasked_patho_no55.vcf
+$scripts/snp/vcf_parser_haploid.py --i Fus2_canu_contigs_unmasked_patho_no55.vcf
+$vcftools/vcftools --vcf Fus2_canu_contigs_unmasked_patho_no55_filtered.vcf --mac 1 --recode --out Fus2_canu_contigs_unmasked_patho_no55_filtered
+
 #Only non-pathogens, without A13
 $vcflib/vcfremovesamples Fus2_canu_contigs_unmasked.vcf FOCA13 FOC55 FOCFus2 FOCA23 FOC125 >Fus2_canu_contigs_unmasked_non-patho.vcf
 $scripts/snp/vcf_parser_haploid.py --i Fus2_canu_contigs_unmasked_non-patho.vcf
@@ -50,7 +55,6 @@ mv Fus2_final_genes_appended.gff3 genes.gff
 mv Fus2_canu_contigs_unmasked.fa sequences.fa
 #Build database using GFF3 annotation
 java -jar $snpeff/snpEff.jar build -gff3 -v Fus2v1.0
-
 
 #Annotate VCF files
 cd $input
