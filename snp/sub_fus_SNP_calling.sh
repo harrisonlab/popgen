@@ -8,7 +8,8 @@ input=/home/sobczm/popgen/input/mappings
 
 reference=Fus2_canu_contigs_unmasked.fa
 filename=$(basename "$reference")
-output="${filename%.*}.vcf"
+output="${filename%.*}_temp.vcf"
+output2="${filename%.*}.vcf"
 
 gatk=/home/sobczm/bin/GenomeAnalysisTK-3.6
 
@@ -30,8 +31,13 @@ java -jar $gatk/GenomeAnalysisTK.jar \
      -I $input/PG/PG_Fus2_canu_contigs_unmasked.fa_aligned_nomulti_proper_sorted_nodup_rg.bam \
      -o $output
 
+#Break down complex SNPs into primitive ones with VariantsToAllelicPrimitives
+#This tool will take an MNP (e.g. ACCCA -> TCCCG) and break it up into separate records for each component part (A-T and A->G).
+#This tool modifies only bi-allelic variants.
+ 
+java -jar $gatk/GenomeAnalysisTK.jar \
+   -T VariantsToAllelicPrimitives \
+   -R $input/$reference \
+   -V $output \
+   -o $output2 \
 
-#####################################
-# Notes on GATK parallelisation
-#####################################
-# http://gatkforums.broadinstitute.org/gatk/discussion/1975/how-can-i-use-parallelism-to-make-gatk-tools-run-faster
