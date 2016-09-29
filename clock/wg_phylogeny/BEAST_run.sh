@@ -12,6 +12,8 @@
 #Strict clock
 #Species Tree Population Size: Constant
 #Yule prior on species tree
+#Chain length: 300 million
+#Store every: 10000
 
 path=/home/sobczm/popgen/phylogenetics/clock/CDS_genomes/beast_runs/candidates/trimmed
 beast=/home/sobczm/bin/beast/BEASTv2.4.2/bin/beast
