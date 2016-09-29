@@ -1,4 +1,4 @@
-Genome DNA sequences and GFF3 annotation files were download from Ensembl Fungi
+Genome DNA sequences and GFF3 annotation files were downloaded from Ensembl Fungi
 for the following species:
 
 Botrytis cinerea
