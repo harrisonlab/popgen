@@ -11,7 +11,7 @@ mkdir busco_alignments
 mv *.fasta $path/busco_alignments
 cd $path/busco_alignments
 
-qsub $scripts/sub_mafft_alignment.sh $f
+qsub $scripts/sub_mafft_alignment.sh 
 
 ## Identify genes with high nucleotide diversity and average number of pairwise differences, medium number of segregating sites
 ## (avoid alignments with low homology and lots of phylogenetically uninformative singletons)
