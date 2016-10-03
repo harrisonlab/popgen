@@ -8,13 +8,15 @@ scripts=/home/sobczm/bin/popgen/phylogenetics
 ##MAFFT (make alignments)
 cd $path
 mkdir busco_alignments
-mv *.fasta $path/busco_alignments
+mv BUSCO*.fasta $path/busco_alignments
 cd $path/busco_alignments
 
 qsub $scripts/sub_mafft_alignment.sh 
 
-## Identify genes with high nucleotide diversity and average number of pairwise differences, medium number of segregating sites
-## (avoid alignments with low homology and lots of phylogenetically uninformative singletons)
+## For closely related organisms (same species): identify genes with high nucleotide diversity and average number of pairwise differences, medium number of segregating sites
+## (avoid alignments with low homology and lots of phylogenetically uninformative singletons).
+#For analyses involving cross-species comparisons involving highly diverged sequences with high nucleotide diversity  
+# (e.g. 0.1<Pi<0.4), looking for genes with the lowest number of segregating sites.
 
 python $scripts/calculate_nucleotide_diversity.py "*aligned.fasta"
 
