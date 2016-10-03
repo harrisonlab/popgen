@@ -97,8 +97,11 @@ qsub $scripts/sub_BUSCO_fungi.sh $input/HB6/final/HB6_final_genes_combined.cdna.
 qsub $scripts/sub_BUSCO_fungi.sh $input/PG/final/PG_final_genes_combined.cdna.fasta
 qsub $scripts/sub_BUSCO_fungi.sh $input/proliferatum/final/proliferatum_final_genes_combined.cdna.fasta
 
-## Find the intersect of single-copy, complete genes
-### Create a list of all fungal BUSCO IDs
+## Find the intersect of single-copy, complete genes across all the genomes being analysed.
+# This command should generate a separate FASTA file for each BUSCO complete single copy gene 
+# conserved across all your genomes analysed. You use those files as input to be aligned by MAFFT in the next step.
+
+### Create a list of all BUSCO IDs
 
 pushd /home/sobczm/bin/BUSCO_v1.22/fungi/hmms
 ls -1 | sed -e 's/\..*$//' >../all_buscos_fungi
@@ -125,7 +128,14 @@ done
 sort -R final_list_ssc | head -n 50 >align_input_list.txt
 
 #Note to self: having done this, the nucleotide diversity of 50 random genes is very consistent, with most of them
-#in the range of 0.1-0.15 so will have to do the following steps for ALL shared BUSCOs.
+#in the range of 0.1-0.15. so will have to do the following steps for ALL shared BUSCOs. 
 
-## Create FASTA files with separate alignment input for each of the 50 selected genes.
+#Most likely this scenario will happen to you as well, so in most cases you will have to align all genes
+#contained in final_list_ssc. In that case, just do this, instead of the above command:
+
+cat final_list_ssc >align_input_list.txt
+
+## Create FASTA files with separate alignment input for each of the selected genes.
+#This command should generate a separate FASTA file for each BUSCO complete single copy gene conserved across all your genomes analysed. 
+#You use those files as input to be aligned by MAFFT in the next step.
 perl $scripts/get_alignments.pl
