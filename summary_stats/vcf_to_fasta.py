@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 import os, sys
 from sys import argv
+import random
 from collections import defaultdict
 from Bio import SeqIO
 
@@ -9,7 +10,6 @@ from Bio import SeqIO
 #   Each chromosome -> new FASTA file.
 ##############################################################
 
-##Warning: It is not an efficient script!! So be patient.
 
 ##############################################################
 # Usage: python vcf_to_fasta.py <VCF FILE> <FASTA FILE>
@@ -55,7 +55,13 @@ def vcf_handling():
                     n = f.split(":")
                     #Pass to the subroutine: contig_name, position, ref allele, alt allele, size of the allele
                     #individual name, and their genotype
-                    save_snp_haploid(fields[0], int(fields[1]), fields[3], fields[4], len(fields[3]), indiv, f)
+                    if switch == "1":
+                        save_snp_haploid(fields[0], int(fields[1]), fields[3], fields[4], len(fields[3]), indiv, f)
+                    elif switch == "2":
+                        save_snp_diploid(fields[0], int(fields[1]), fields[3], fields[4], len(fields[3]), indiv, f)
+                    elif switch == "3":
+                        save_snp_diploid_iupac(fields[0], int(fields[1]), fields[3], fields[4], len(fields[3]), indiv, f)
+    print("Finished processing VCF file.")
     vcf_h.close()
 
 def save_snp_haploid(contig, pos, ref, alt, length, indiv, f):
@@ -74,91 +80,205 @@ def save_snp_haploid(contig, pos, ref, alt, length, indiv, f):
             else:
                 vcf_data[contig][pos][indiv] = 'N' * length
 
+def save_snp_diploid(contig, pos, ref, alt, length, indiv, f):
+    if f == ".":
+        vcf_data[contig][pos][indiv] = [['N' * length], ['N' * length]]
+    else:
+        n = f.split(":")
+        #First check for 'hidden' missing genotypes
+        if n[2] == ".":
+            Nstring = 'N' * length
+            vcf_data[contig][pos][indiv] = Nstring + Nstring
+        else:
+            g = n[0].split("/")
+            if (g[0] == "0" and g[1] == "0"):
+                vcf_data[contig][pos][indiv] = ref + ref
+            elif (g[0] == "1" and g[1] == "1"):
+                vcf_data[contig][pos][indiv] = alt + alt
+            elif (g[0] == "0" and g[1] == "1"):
+                vcf_data[contig][pos][indiv] = ref + alt
+            elif (g[0] == "1" and g[1] == "0"):
+                vcf_data[contig][pos][indiv] = alt + ref
+            else:
+                vcf_data[contig][pos][indiv] = Nstring + Nstring
+
+def save_snp_diploid_iupac(contig, pos, ref, alt, length, indiv, f):
+    if f == ".":
+        vcf_data[contig][pos][indiv] = ['N' * length]
+    else:
+        n = f.split(":")
+    #First check for 'hidden' missing genotypes
+        if n[2] == ".":
+            vcf_data[contig][pos][indiv] = 'N' * length
+        else:
+            g = n[0].split("/")
+            if (g[0] == "0" and g[1] == "0"):
+                vcf_data[contig][pos][indiv] = ref
+            elif (g[0] == "1" and g[1] == "1"):
+                vcf_data[contig][pos][indiv] = alt
+            #This bit works only for simple mono-nucleotide SNPs
+            #In other cases, simply select the allele at random
+            elif ((g[0] == "0" and g[1] == "1") or (g[0] == "1" and g[1] == "0")):
+                if ref == "A":
+		            if alt == "C":
+			            code = "M"
+		            elif alt == "G":
+			            code = "R"
+		            elif alt == "T":
+			            code = "W"
+		            elif alt == "A":
+			            code = "A"
+                elif ref == "C":
+		            if alt == "A":
+			            code = "M"
+		            elif alt == "G":
+			            code = "S"
+		            elif alt == "T":
+			            code = "Y"
+		            elif alt == "C":
+			            code = "C"
+                elif ref == "G":
+		            if alt == "A":
+			            code = "R"
+		            elif alt == "C":
+			            code = "S"
+		            elif alt == "T":
+			            code = "K"
+		            elif alt == "G":
+			            code = "G"
+                elif ref == "T":
+		            if alt == "A":
+			            code = "W"
+		            elif alt == "C":
+			            code = "Y"
+		            elif alt == "G":
+			            code = "K"
+		            elif alt == "T":
+			            code = "T"
+                else:
+                    allele = round(random.random())
+                    if allele == "0":
+                        code = ref
+                    elif allele == "1":
+                        code = alt
+                    else:
+                        code = ref
+
+                vcf_data[contig][pos][indiv] = code
+
+            else:
+                vcf_data[contig][pos][indiv] = 'N' * length
 
 def print_fasta_haploid():
     #Loop over chromosomes
     for seq_record in SeqIO.parse(fasta_file, "fasta"):
+        counter = 0
         #Dict to store contig sequence for each individual
-        temp = defaultdict(str)
+        temp = defaultdict(list)
         seq = str(seq_record.seq).upper()
-        seqid = str(seq_record.id).strip()
+        seqid = str(seq_record.id)
         #Iterate over the range of the contig sequence
         iterable = iter(range(len(seq)))
         #Turn the sequence into a dictionary for easy indexing
         my_seq = list(seq)
+        if seqid in vcf_data:
         #Iterate over the contig FASTA sequence
-        for i in iterable:
+            for i in iterable:
             #convert to position in the sequence to cross-ref with dictionary
-            n = i + 1
+                n = i + 1
+                skip_steps = 0
             #Check if site contains variant
-            if seqid in vcf_data:
                 if n in vcf_data[seqid]:
-                    #Loop over all individuals and append the sequence
+                    #Loop over all individuals and append the sequence into dictionary
+                    #Note: extending string terribly inefficient here.
+                    #So first use dict to hold each sequence, and join at the end.
                     for my_i in inds:
-                        temp[my_i] += vcf_data[seq_record.id][n][my_i]
-                    variant_length = len(vcf_data[seq_record.id][n][my_i])
+                        temp[my_i].append(vcf_data[seqid][n][my_i])
+                    variant_length = len(vcf_data[seqid][n][my_i])
                     #Move down the reference sequence if complex variant encountered
                     skip_steps = variant_length - 1
-                    if skip_steps:
-                        [iterable.next() for x in range(skip_steps)]
             #Taking reference site, if no variant present
                 else:
                     for my_i in inds:
                         temp[my_i] += my_seq[i]
+                if skip_steps:
+                    [iterable.next() for x in range(skip_steps)]
+            # Print FASTA chromosome
+            print ("Printing FASTA chromosome")
+            out = str(seq_record.id + ".fasta")
+            out_h = open(out, 'w')
+            for my_i in inds:
+                current_seq = ''.join(temp[my_i])
+                out_h.write('>' + my_i + "\n")
+                out_h.write(current_seq + "\n")
+            out_h.close()
+        else:
+        #Skip monomorphic loci
+            continue
 
-        # Print FASTA chromosome
-        out = str(seq_record.id + ".fasta")
-        out_h = open(out, 'w')
-        for my_i in inds:
-            out_h.write('>' + my_i + "\n")
-            out_h.write(str(temp[my_i]) + "\n")
-        out_h.close()
 
-def print_fasta_diploid2():
+def print_fasta_diploid():
     #Loop over chromosomes
     for seq_record in SeqIO.parse(fasta_file, "fasta"):
         #Dict to store contig sequence for each individual
-        temp = defaultdict(str)
+        temp = defaultdict(lambda: defaultdict(str))
         seq = str(seq_record.seq).upper()
-        seqid = str(seq_record.id).strip()
+        seqid = str(seq_record.id)
         #Iterate over the range of the contig sequence
         iterable = iter(range(len(seq)))
         #Turn the sequence into a dictionary for easy indexing
         my_seq = list(seq)
         #Iterate over the contig FASTA sequence
-        for i in iterable:
-            #convert to position in the sequence to cross-ref with dictionary
-            n = i + 1
-            #Check if site contains variant
-            if seqid in vcf_data:
+        if seqid in vcf_data:
+            for i in iterable:
+                #convert to position in the sequence to cross-ref with dictionary
+                n = i + 1
+                skip_steps = 0
+                #Check if site contains variant
                 if n in vcf_data[seqid]:
-                    #Loop over all individuals and append the sequence
+                #Loop over all individuals and append the sequence
+                        #First chromosome
                     for my_i in inds:
-                        temp[my_i] += vcf_data[seq_record.id][n][my_i]
-                    variant_length = len(vcf_data[seq_record.id][n][my_i])
-                    #Move down the reference sequence if complex variant encountered
-                    skip_steps = variant_length - 1
-                    if skip_steps:
-                        [iterable.next() for x in range(skip_steps)]
-            #Taking reference site, if no variant present
+                        genotype = vcf_data[seqid][n][my_i]
+                        variant_length = len(genotype) / 2
+                        skip_steps = variant_length - 1
+                        if variant_length > 1:
+                            temp[my_i]['0'] += genotype[0:variant_length]
+                            temp[my_i]['1'] += genotype[variant_length:]
+                        else:
+                            #First chromosome
+                            temp[my_i]['0'] += genotype[0]
+                            #Second chromosome
+                            temp[my_i]['1'] += genotype[1]
+                        #Move down the reference sequence if complex variant encountered
                 else:
                     for my_i in inds:
-                        temp[my_i] += my_seq[i]
-
+                        temp[my_i]['0'] += my_seq[i]
+                        temp[my_i]['1'] += my_seq[i]
+                if skip_steps:
+                    [iterable.next() for x in range(skip_steps)]
+                            #Taking reference site, if no variant present
         # Print FASTA chromosome
-        out = str(seq_record.id + ".fasta")
-        out_h = open(out, 'w')
-        for my_i in inds:
-            out_h.write('>' + my_i + "\n")
-            out_h.write(str(temp[my_i]) + "\n")
-        out_h.close()
+            out = str(seq_record.id + ".fasta")
+            out_h = open(out, 'w')
+            for my_i in inds:
+                #First Chromosome
+                out_h.write('>' + my_i + "_1" + "\n")
+                out_h.write(str(temp[my_i]['0']) + "\n")
+                #Second chromosome
+                out_h.write('>' + my_i + "_2" + "\n")
+                out_h.write(str(temp[my_i]['1']) + "\n")
+            out_h.close()
+        else:
+            #Skip monomorphic loci
+            continue
 
 if switch == "1":
     vcf_handling()
     print_fasta_haploid()
 if switch == "2":
     vcf_handling()
-    print_fasta_diploid2()
+    print_fasta_diploid()
 if switch == "3":
     vcf_handling()
-    print_fasta_diploid1()
+    print_fasta_haploid()
