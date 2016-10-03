@@ -17,7 +17,7 @@ while (<LIST>)
 	chomp $id;
 	$ls{$id} = 1;
 }
-	
+
 close LIST;
 
 #Enter all subdirs with BUSCO runs to load the genome assembly FASTA sequences into a hash
@@ -27,10 +27,10 @@ for my $d (@dirs)
 	%cdna=();
 	undef @fasta;
 	undef @full_table;
-	
+
 	@fasta = <*.fa*>;
 	@full_table = <full_table*>;
-	
+
 	$seqin = Bio::SeqIO->new(-file => "<$fasta[0]", '-format' => 'Fasta');
 	while (my $seq = $seqin->next_seq)
 	{
@@ -48,12 +48,12 @@ for my $d (@dirs)
 	{
 		my $line = $_;
 		chomp $line;
-		my @lines = split (/\s+/, $line); 	
+		my @lines = split (/\s+/, $line);
 		# BUSCO ID
 		$a = $lines[0];
 		# Assembly gene ID
 		$b = $lines[2];
-		
+
 		if (exists $ls{$a})
 		{
 			$fhs = "$dir/$a.fasta";
@@ -62,7 +62,7 @@ for my $d (@dirs)
 			close FS;
 			++$count;
 		}
-	
+
 	}
 	close FT;
 	print "The number of gene sequences found in the assembly $fasta[0] is $count.\n";
