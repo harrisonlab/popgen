@@ -64,6 +64,7 @@ mv $p $dir
 $scripts/Fasta2Nexus.pl $f>$n
 mv $n NEXUS
 
+#Problems running PartitionFinder on the cluster. May have to be run locally on your Mac or Windows machine.
 qsub $scripts/sub_partition_finder.sh $dir
 
 done
