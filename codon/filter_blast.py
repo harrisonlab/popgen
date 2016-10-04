@@ -23,8 +23,9 @@ blast_out = open(o, 'w')
 
 blast_h = open(blast)
 for line in blast_h:
-    fields = line.split("\t")
-    coverage_per = (int(fields[3]) / int(fields[15])) * 100
+    fields = line.split()
+    print(fields[14])
+    coverage_per = (int(fields[3]) / int(fields[14])) * 100
     #Percentage Identity
     if float(fields[2]) < id_th:
         continue

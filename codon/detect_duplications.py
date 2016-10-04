@@ -2,20 +2,21 @@
 from __future__ import division
 from matplotlib import pyplot as plt
 from collections import defaultdict as dd
+from pylab import rcParams
 import os, sys, re, argparse, numpy
 """
 Takes in a) self-on-self pre-filtered blast results after DAGChainer analysis:
 ###Check if proper filtering of BLAST results in terms of gene coverage and identity has been carried out!!
 (filter_blast.py -> blast_to_dagchainer.py -> dag_chainer_analysis.sh)
 and b) output from GFF file processed by cds_to_chromosome_coords.py script
-Outputs three files:
+Outputs two types of files:
 1) summary table listing gene names, number of all duplicates,
 number of tandem duplicates, number of segmental duplicates
 and their respective gene names
 2) density plots of tandem genome duplications across
 contigs, calculated in 10 kbp partitions (x axis - contig coordinate, y axis - number
 of genes tandemly duplicated in the region as well as the total number of genes
-in the region), with underlying raw data output as well (3rd file).
+in the region).
 #Works only on PacBio genomes - not fragmented genomes
 
 ################### Options
@@ -41,11 +42,9 @@ table = open(args.g)
 
 bare = r"(\w+)(.aligncoordsf)"
 out_sub = r"\1_summary"
-raw_sub = r"\1_raw"
 out = re.sub(bare, out_sub, args.b)
-out2 = re.sub(bare, raw_sub, args.b)
 sum_out = open(out, 'w')
-raw_out = open(out2, 'w')
+
 
 coo = dd(lambda: dd(int))
 seg_coords = dd(lambda: dd(int))
@@ -58,6 +57,8 @@ all_duplications_list = set()
 
 stats_tandem_names =  dd(lambda: dd(str))
 stats_segmental_names =  dd(lambda: dd(str))
+
+rcParams['figure.figsize'] = 35, 15
 
 def parse_gene_table():
     #Genes to be counted in an interval where it starts (input for duplication levels figure)
@@ -180,11 +181,6 @@ def print_figure():
             all_genes.append(coo[x][v])
             tandem_genes.append(tan_coords[x][v])
             segmental_genes.append(seg_coords[x][v])
-    #number of elements in both x and y lists have to match
-    #coordinates = ["0", "10", "20", "30", "40", "50", "60", "70", "80", "90"]
-    #all_genes = ["10", "5", "16", "80", "20", "4", "14", "50", "11", "2"]
-    #tandem_duplications = ["0", "3", "0", "10", "1", "2", "7", "1", "3", "0"]
-        #plt.scatter(coordinates, all_genes, color='black', marker='o', label='All genes')
         plt.plot(coordinates, all_genes, color='black', marker='o', label='All genes')
         plt.plot(coordinates, segmental_genes, color='blue', marker='o', linestyle='dashed', label='Segmentally duplicated genes')
         plt.plot(coordinates, tandem_genes, color='red', marker='o', linestyle='solid', label='Tandemly duplicated genes')
@@ -194,7 +190,7 @@ def print_figure():
     #Location of the legen, upper right-hand corner
         plt.legend(loc=1)
         output_name = x + '.png'
-        plt.savefig(output_name, bbox_inches='tight')
+        plt.savefig(output_name, bbox_inches='tight', dpi=300)
         #Clear figure
         plt.clf()
 
@@ -211,4 +207,3 @@ print_figure()
 blast.close()
 table.close()
 sum_out.close()
-raw_out.close()
