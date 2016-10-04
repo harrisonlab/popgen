@@ -5,11 +5,18 @@
 #$ -l h=blacklace01.blacklace|blacklace02.blacklace|blacklace04.blacklace|blacklace05.blacklace|blacklace06.blacklace|blacklace07.blacklace|blacklace08.blacklace|blacklace09.blacklace|blacklace10.blacklace|blacklace12.blacklace
 
 # Testing parallelisation of GATk HaplotypeCaller - may crash. (It did not! Resulted in 2x speedup)
-# Note: this is a haploid organism. For diploid organism, change "ploidy" argument to 2.
+# NOTE: this is a haploid organism. For diploid organism, change "ploidy" argument to 2.
+# Changes required in the script:
+# VARIABLES
+# Reference - the genome reference used in read mapping.
+# INSIDE THE GATK command:
+# To specify which BAM mapping files (output from pre_SNP_calling_cleanup.sh, filename ending with "_rg" -> that is, with 
+# read group added) are to be used in SNP calling, use the -I argument with full path to each file following after that. 
+# Each new BAM file has to be specified after a separate -I
 
 input=/home/sobczm/popgen/input/mappings
-
 reference=Fus2_canu_contigs_unmasked.fa
+
 filename=$(basename "$reference")
 output="${filename%.*}_temp.vcf"
 output2="${filename%.*}.vcf"

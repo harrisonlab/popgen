@@ -3,7 +3,7 @@
 input=/home/sobczm/popgen/input/mappings
 scripts=/home/sobczm/bin/popgen/snp
 
-### Rename input files in each folder by prefixing with the strain ID
+### Rename input mapping files in each folder by prefixing with the strain ID
 cd $input/125/
 for filename in *; do mv "$filename" "125_$filename"; done;
 cd $input/55/
@@ -28,8 +28,9 @@ cd $input/PG/
 for filename in *; do mv "$filename" "PG_$filename"; done;
 
 ### Remove multimapping reads, discordant reads. PCR and optical duplicates, and
-### add read group and sample name to each mapped read
-
+### add read group and sample name to each mapped read (preferably, the shortest ID possible)
+### Convention used:
+# qsub $scripts/sub_pre_snp_calling.sh <INPUT SAM FILE> <SAMPLE_ID>
 qsub $scripts/sub_pre_snp_calling.sh $input/125/125_Fus2_canu_contigs_unmasked.fa_aligned.sam FOC125
 qsub $scripts/sub_pre_snp_calling.sh $input/55/55_Fus2_canu_contigs_unmasked.fa_aligned.sam FOC55
 qsub $scripts/sub_pre_snp_calling.sh $input/A1-2/A1-2_Fus2_canu_contigs_unmasked.fa_aligned.sam FOCA1-2
