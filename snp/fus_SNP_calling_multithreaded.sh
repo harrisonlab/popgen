@@ -15,5 +15,6 @@ samtools faidx $input/$reference
 cd /home/sobczm/popgen/snp/snp_calling/multithreaded
 
 #Start SNP calling with GATK
+#The submission script required need to be custom in each analysis, depending on what samples are being analysed.
 scripts=/home/sobczm/bin/popgen/snp
 qsub $scripts/sub_fus_SNP_calling_multithreaded.sh
