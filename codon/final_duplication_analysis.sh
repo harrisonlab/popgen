@@ -47,13 +47,19 @@ effectors=/home/sobczm/popgen/input/effectors
 summary_table=Fus2_final_genes_combined.cdna_one.fasta_vs_Fus2_final_genes_combined.cdna_one_nucl.db_filtered_dagchainer_summary
 
 cd $wdir/10genes
-#13 out of 940 CAZY genes duplicated. All tandem duplications (in total 69 tandem duplications detected across the genome)
+#13 out of 940 CAZY genes duplicated. All segmental duplications (in total 1355 seg. duplications detected across the genome).
+#So seeing slight under-enrichment compared to the rest of the genome.
 python $scripts/match_ids.py $effectors/CAZY/all/Fus2_canu_new_CAZY_gene_table.txt $summary_table
-#9 out of 386 secreted CAZY genes duplicated. All tandem duplications
+#9 out of 386 secreted CAZY genes segmentally duplicated.
 python $scripts/match_ids.py $effectors/CAZY/secreted/Fus2_canu_new_CAZY_secreted_gene_table.txt $summary_table
-#11 out of Genes appearing 5, 6, 7, 9 copies.
+
+#11 out of 355 genes duplicated. Genes appearing in 5, 6, 7, 9 copies.
 python $scripts/match_ids.py $effectors/effectorP/secreted/F.oxysporum_fsp_cepae_Fus2_canu_new_EffectorP_secreted_gene_table.txt \
 $summary_table
+
+#75 genes duplicated, 5 of them tandemly (out of 150 genes annotated in this category, so enriched for duplication). Up to 10-16 copies of some
+#genes seen.
+python $scripts/match_ids.py $effectors/mimp/all/Fus2_canu_new_genes_in_2kb_mimp_gene_table.txt $summary_table
+#7 genes found, all segmentally duplicated, out of 31 genes annotated.
 python $scripts/match_ids.py $effectors/mimp/secreted/Fus2_canu_new_genes_in_2kb_mimp_secreted_gene_table.txt \
 $summary_table
-python $scripts/match_ids.py $effectors/mimp/all/Fus2_canu_new_genes_in_2kb_mimp_gene_table.txt $summary_table
