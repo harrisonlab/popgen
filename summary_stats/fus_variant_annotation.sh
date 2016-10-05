@@ -99,6 +99,8 @@ mv *.fasta ./coding
 python $scripts/summary_stats/vcf_to_fasta.py Fus2_canu_contigs_unmasked_noA13_filtered.recode_annotated_syn_silent.vcf $ref_genome 1
 mkdir silent
 mv *.fasta ./silent
+
+
 ###Split the GFF file into one contig --> one GFF file.
 cd $input
 mkdir gff
