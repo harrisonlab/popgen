@@ -65,7 +65,7 @@ java -Xmx4g -jar $snpeff/snpEff.jar -v -ud 0 Fus2v1.0 $a > ${filename%.vcf}_anno
 mv snpEff_genes.txt snpEff_genes_${filename%.vcf}.txt
 mv snpEff_summary.html  snpEff_summary__${filename%.vcf}.html
 done
-#Further filter VCF files by SNP class
+###Further filter VCF files by SNP class
 for a in *annotated.vcf
 do
 filename=$(basename "$a")
@@ -80,3 +80,31 @@ java -jar $snpeff/SnpSift.jar filter "(ANN[0].EFFECT has 'synonymous_variant')" 
 #silent
 python $scripts/summary_stats/parse_snpeff_synonymous.py ${filename%.vcf}_syn.vcf
 done
+
+
+###Create FASTA alignment files containing only select subsets of SNPs
+### From now onwards, analysing the dataset without A13.
+cd $input/noA13
+ref_genome=/home/sobczm/popgen/summary_stats/Fus2_canu_contigs_unmasked.fa
+##all 
+python $scripts/summary_stats/vcf_to_fasta.py Fus2_canu_contigs_unmasked_noA13_filtered.recode_annotated.vcf $ref_genome 1
+#Moving each subset of FASTA files into a separate dir.
+mkdir all 
+mv *.fasta ./all
+##coding
+python $scripts/summary_stats/vcf_to_fasta.py Fus2_canu_contigs_unmasked_noA13_filtered.recode_annotated_coding.vcf $ref_genome 1
+mkdir coding
+mv *.fasta ./coding
+##silent(four-fold degenerate)
+python $scripts/summary_stats/vcf_to_fasta.py Fus2_canu_contigs_unmasked_noA13_filtered.recode_annotated_syn_silent.vcf $ref_genome 1
+mkdir silent
+mv *.fasta ./silent
+
+
+###Split the GFF file into one contig --> one GFF file.
+cd $input
+mkdir gff
+python $scripts/summary_stats/split_gff.py Fus2_final_genes_appended.gff3
+mv *.gff ./gff
+
+
