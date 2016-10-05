@@ -40,7 +40,7 @@ dist = args.t
 blast = open(args.b)
 table = open(args.g)
 
-bare = r"(\w+)(.aligncoordsf)"
+bare = r"(\w+)(.aligncoords*)"
 out_sub = r"\1_summary"
 out = re.sub(bare, out_sub, args.b)
 sum_out = open(out, 'w')

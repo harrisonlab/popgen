@@ -89,11 +89,12 @@ cd $wdir
 mkdir no_transposon
 python $scripts/match_ids.py Fus2_no_transposons_Fus2_duplicated_genes_annotations Fus2_final_genes_combined.cdna_one.fasta_vs_Fus2_final_genes_combined.cdna_one_nucl.db_filtered_dagchainer.aligncoordsf
 #Generates a file containing BLAST results for duplicated non-transposon and transposon genes each, respectively.
-mv Fus2_no_transposons_Fus2_duplicated_genes_annotatio_Fus2_final_genes_combined.cdna_one.fasta_vs_Fus2_final_genes_combined.cdna_one_nucl.db_filtered_dagchainer_remainder transposon_duplications
-mv Fus2_no_transposons_Fus2_duplicated_genes_annotatio_Fus2_final_genes_combined.cdna_one.fasta_vs_Fus2_final_genes_combined.cdna_one_nucl.db_filtered_dagchainer non-transposon_duplications
-cp non-transposon_duplications ./no_transposon
+mv Fus2_no_transposons_Fus2_duplicated_genes_annotatio_Fus2_final_genes_combined.cdna_one.fasta_vs_Fus2_final_genes_combined.cdna_one_nucl.db_filtered_dagchainer_remainder transposon_duplications.aligncoordsf
+mv Fus2_no_transposons_Fus2_duplicated_genes_annotatio_Fus2_final_genes_combined.cdna_one.fasta_vs_Fus2_final_genes_combined.cdna_one_nucl.db_filtered_dagchainer non-transposon_duplications.aligncoordsf
+cp non-transposon_duplications.aligncoordsf ./no_transposon
 cp Fus2_final_genes_appended_gene_table.txt ./no_transposon
 cd $wdir/no_transposon
 
 #Run duplication analysis, using max. 10 genes distance to define tandem duplications
-$scripts/detect_duplications.py --b non-transposon_duplications --g Fus2_final_genes_appended_gene_table.txt --o gene --t 10
+$scripts/detect_duplications.py --b non-transposon_duplications.aligncoordsf --g Fus2_final_genes_appended_gene_table.txt --o gene --t 10
+#The same pattern of duplication distribution detected as when using the transposon-containing dataset.
