@@ -14,24 +14,24 @@ cd $wdir
 gene_table=Fus2_final_genes_appended_gene_table.txt
 dagchainer_blast=Fus2_final_genes_combined.cdna_one.fasta_vs_Fus2_final_genes_combined.cdna_one_nucl.db_filtered_dagchainer.aligncoordsf
 mkdir 5genes && cd 5genes
-$popgen/codon/detect_duplications.py --b ../$dagchainer_blast --g ../$gene_table --o gene --t 5
+$scripts/detect_duplications.py --b ../$dagchainer_blast --g ../$gene_table --o gene --t 5
 
 #Now more, lenient with a maximum number of 10 intermittent genes to classify a
 #gene as being a result of tandem duplication
 cd $wdir
 mkdir 10genes && cd 10genes
-$popgen/codon/detect_duplications.py --b ../$dagchainer_blast --g ../$gene_table --o gene --t 10
+$scripts/detect_duplications.py --b ../$dagchainer_blast --g ../$gene_table --o gene --t 10
 
 #This time around, using the distance between the genes as the marker to classify the
 #duplications as tandem or segmental
 cd $wdir
 mkdir 10kbp && cd 10kbp
-$popgen/codon/detect_duplications.py --b ../$dagchainer_blast --g ../$gene_table --o distance --t 10000
+$scripts/detect_duplications.py --b ../$dagchainer_blast --g ../$gene_table --o distance --t 10000
 
 #And 20kbp for tandem duplications
 cd $wdir
 mkdir 20kbp && cd 20kbp
-$popgen/codon/detect_duplications.py --b ../$dagchainer_blast --g ../$gene_table --o distance --t 20000
+$scripts/detect_duplications.py --b ../$dagchainer_blast --g ../$gene_table --o distance --t 20000
 
 #Conclusions
 #High number of duplicated contigs at the ends of contigs: is this due to
@@ -52,7 +52,6 @@ cd $wdir/10genes
 python $scripts/match_ids.py $effectors/CAZY/all/Fus2_canu_new_CAZY_gene_table.txt $summary_table
 #9 out of 386 secreted CAZY genes segmentally duplicated.
 python $scripts/match_ids.py $effectors/CAZY/secreted/Fus2_canu_new_CAZY_secreted_gene_table.txt $summary_table
-
 #11 out of 355 genes duplicated. Genes appearing in 5, 6, 7, 9 copies.
 python $scripts/match_ids.py $effectors/effectorP/secreted/F.oxysporum_fsp_cepae_Fus2_canu_new_EffectorP_secreted_gene_table.txt \
 $summary_table
@@ -63,3 +62,38 @@ python $scripts/match_ids.py $effectors/mimp/all/Fus2_canu_new_genes_in_2kb_mimp
 #7 genes found, all segmentally duplicated, out of 31 genes annotated.
 python $scripts/match_ids.py $effectors/mimp/secreted/Fus2_canu_new_genes_in_2kb_mimp_secreted_gene_table.txt \
 $summary_table
+
+#Having investigated INTERPROSCAN and PFAM annotations of the putatively duplicated genes, it appears most of them are transposons.
+#Going to exclude transposons now as well as unnanotated genes and plot the rest of the duplicated genes this time around.
+#Excluded terms and domains:
+#IPR000477 # Reverse transcriptase (RT) catalytic domain profile
+#IPR012337 # Ribonuclease H domain
+#IPR018289 # MULE transposase domain
+#PF03221 # Tc5 transposase DNA-binding domain
+#PF00078 # Reverse transcriptase (RNA-dependent)
+#IPR025476 # Helitron helicase-like domain
+#IPR008906 # hAT family C-terminal dimerisation region
+#transpos*
+#integrase
+
+annotations=/home/sobczm/popgen/input/annotations
+cd $annotations
+cat Fus2_canu_new_gene_annotations.tab | sort > temp
+grep 'IPR000477\|IPR004875\|IPR025476\|IPR012337\|IPR018289\|PF03221\|PF00078\|PF00078\|IPR008906\|transpos*\|integrase' temp | sort >temp2
+comm -3 temp temp2 | cut -f 1 | awk '$0="Fus2_"$0'>Fus2_no_transposons.txt
+
+#Keep only non-transposon genes
+python $scripts/match_ids.py Fus2_no_transposons.txt Fus2_duplicated_genes_annotations.txt
+cp Fus2_no_transposons_Fus2_duplicated_genes_annotations $wdir
+cd $wdir
+mkdir no_transposon
+python $scripts/match_ids.py Fus2_no_transposons_Fus2_duplicated_genes_annotations Fus2_final_genes_combined.cdna_one.fasta_vs_Fus2_final_genes_combined.cdna_one_nucl.db_filtered_dagchainer.aligncoordsf
+#Generates a file containing BLAST results for duplicated non-transposon and transposon genes each, respectively.
+mv Fus2_no_transposons_Fus2_duplicated_genes_annotatio_Fus2_final_genes_combined.cdna_one.fasta_vs_Fus2_final_genes_combined.cdna_one_nucl.db_filtered_dagchainer_remainder transposon_duplications
+mv Fus2_no_transposons_Fus2_duplicated_genes_annotatio_Fus2_final_genes_combined.cdna_one.fasta_vs_Fus2_final_genes_combined.cdna_one_nucl.db_filtered_dagchainer non-transposon_duplications
+cp non-transposon_duplications ./no_transposon
+cp Fus2_final_genes_appended_gene_table.txt ./no_transposon
+cd $wdir/no_transposon
+
+#Run duplication analysis, using max. 10 genes distance to define tandem duplications
+$scripts/detect_duplications.py --b non-transposon_duplications --g Fus2_final_genes_appended_gene_table.txt --o gene --t 10
