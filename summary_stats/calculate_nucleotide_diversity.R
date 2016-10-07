@@ -23,8 +23,6 @@ all_folders <- list.dirs("contigs", full.names = FALSE)
 #Remove the gff folder from PopGenome contig analysis
 contig_folders <- all_folders[all_folders != "gff"]
 
-Pi_all <- list(0)
-
 ###Loop through each contig-containing folder to calculate stats on each contig separately.
 for (dir in contig_folders[contig_folders != ""])
 {
