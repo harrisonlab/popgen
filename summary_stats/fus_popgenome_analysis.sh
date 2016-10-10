@@ -35,9 +35,11 @@ cd $input/all
 #The R script used below is custom-made for each run (see first few lines of it)
 #It requires custom definition of populations, and individual assignment to them.
 #The example below calculates nucleotide diversity within (Pi) and between (Dxy) populations/
-#Other scripts () are used to calculate xxxx, respectively and are used in analogous manner.
+#Other scripts (sub_calculate_neutrality_stats.sh) are used in analogous manner.
 
 qsub $scripts/sub_calculate_nucleotide_diversity.sh
+qsub $scripts/sub_calculate_neutrality_stats.sh
+qsub $scripts/sub_calculate_fst.sh
 
 #This calculation was done over all sites. Now going to proceed with the allow_potentially_misencoded_quality_scores
 #for site subsets: synonymous, non-synonymous and four-fold degenerate (silent) in the respective folders
@@ -57,7 +59,8 @@ done
 cd $input/silent
 
 qsub $scripts/sub_calculate_nucleotide_diversity.sh
-
+qsub $scripts/sub_calculate_neutrality_stats.sh
+qsub $scripts/sub_calculate_fst.sh
 #For synonymous and non-synonymous have to create FASTA input first, as done
 #for silent and all sites in fus_variant_annotation.sh
 ##synonymous
@@ -91,7 +94,8 @@ done
 cd $input/syn
 
 qsub $scripts/sub_calculate_nucleotide_diversity.sh
-
+qsub $scripts/sub_calculate_neutrality_stats.sh
+qsub $scripts/sub_calculate_fst.sh
 
 cd $input/nonsyn
 mkdir contigs
@@ -107,3 +111,5 @@ done
 cd $input/nonsyn
 
 qsub $scripts/sub_calculate_nucleotide_diversity.sh
+qsub $scripts/sub_calculate_neutrality_stats.sh
+qsub $scripts/sub_calculate_fst.sh

@@ -6,4 +6,4 @@
 
 scripts=/home/sobczm/bin/popgen/summary_stats
 
-Rscript --vanilla $scripts/calculate_nucleotide_diversity.R
+Rscript --vanilla $scripts/calculate_fst.R

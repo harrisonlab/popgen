@@ -4,7 +4,8 @@ library(ggplot2)
 #Assign individuals to appropriate populations (or just 1!)
 #However, if using just 1 populations, interpopulation statistic (Dxy)
 #of genetic variation cannot be calculated, and need to carry out only analyses
-#A, B, E but not C, D and F.
+#A, B  but not C, D.
+#When all coding sites input, use E to calculate Pi(nonsyn)/Pi(syn) sites.
 nonpatho <- c("FOCA1-2", "FOCA28", "FOCCB3", "FOCD2", "FOCHB6", "FOCPG")
 patho <- c("FOCA23", "FOC55", "FOC125", "FOCFus2")
 #Need to set argument diploid=TRUE if using diploid genomes in the below command:
@@ -22,8 +23,6 @@ gff <- "gff"
 all_folders <- list.dirs("contigs", full.names = FALSE)
 #Remove the gff folder from PopGenome contig analysis
 contig_folders <- all_folders[all_folders != "gff"]
-
-Pi_all <- list(0)
 
 ###Loop through each contig-containing folder to calculate stats on each contig separately.
 for (dir in contig_folders[contig_folders != ""])
@@ -47,7 +46,7 @@ Pi_d <- as.data.frame(Pi)
 for (i in seq_along(population_names))
 {
 file_hist <- paste(dir, "_", population_names[i], "_Pi_per_gene.pdf", sep="")
-pi_plot <- ggplot(Pi_d, aes(x=Pi_d[,i])) + geom_histogram(colour="black", fill="blue") + ggtitle(dir) + xlab("Average Pi per site") + ylab("Number of genes") + scale_x_continuous(breaks = pretty(Pi_d[,i], n = 10))
+pi_plot <- ggplot(Pi_d, aes(x=Pi_d[,i])) + geom_histogram(colour="black", fill="blue") + ggtitle(dir) + xlab(expression(paste("Average ", pi, " per site"))) + ylab("Number of genes") + scale_x_continuous(breaks = pretty(Pi_d[,i], n = 10))
 ggsave(file_hist, pi_plot)
 file_table = paste(dir, "_", population_names[i], "_Pi_per_gene.txt", sep="")
 current_gff <- paste(gff, "/", dir, ".gff", sep="")
@@ -70,7 +69,7 @@ xaxis <- seq(from = 1, to = ids, by = 1)
 for (i in seq_along(population_names))
 {
 file_slide <- paste(dir, "_", population_names[i], "_Pi_sliding_window.pdf", sep="")
-slide_plot <- ggplot(Pi_persite_d, aes(x=xaxis, y=Pi_persite_d[,1])) + geom_smooth(colour="black", fill="red") + ggtitle(dir) + xlab("Contig coordinate (kbp)") + ylab("Average Pi per site") + scale_x_continuous(breaks = pretty(xaxis, n = 10))
+slide_plot <- ggplot(Pi_persite_d, aes(x=xaxis, y=Pi_persite_d[,i])) + geom_smooth(colour="black", fill="red") + ggtitle(dir) + xlab("Contig coordinate (kbp)") + ylab(expression(paste("Average ", pi, " per site"))) + scale_x_continuous(breaks = pretty(xaxis, n = 10))
 ggsave(file_slide, slide_plot)
 #write table with raw data
 slide_table <- paste(dir, "_", population_names[i], "_Pi_per_sliding_window.txt", sep="")
@@ -80,7 +79,7 @@ write.table(Pi_persite[,i], file=slide_table, sep="\t",quote=FALSE, col.names=FA
 #Plot both populations for comparison
 title <- paste(dir, "Comparison of", population_names[1], "ver.", population_names[2], sep=" ")
 comp_slide_file <- paste(dir, "_Pi_sliding_window_comparison.pdf", sep="")
-slide_comparison <- ggplot(Pi_persite_d, aes(x=xaxis)) + geom_smooth(aes(y=Pi_persite_d[,1]), colour="red") + geom_smooth(aes(y=Pi_persite_d[,2]), colour="blue") + ggtitle(title) + xlab("Contig coordinate (kbp)") + ylab("Average Pi per site") + scale_x_continuous(breaks = pretty(xaxis, n = 10))
+slide_comparison <- ggplot(Pi_persite_d, aes(x=xaxis)) + geom_smooth(aes(y=Pi_persite_d[,1]), colour="red") + geom_smooth(aes(y=Pi_persite_d[,2]), colour="blue") + ggtitle(title) + xlab("Contig coordinate (kbp)") + ylab(expression(paste("Average ", pi, " per site"))) + scale_x_continuous(breaks = pretty(xaxis, n = 10))
 ggsave(comp_slide_file, slide_comparison)
 
 ############################################################
@@ -111,11 +110,74 @@ dxy <- GENOME.class.slide@nuc.diversity.between / GENOME.class.slide@n.sites
 dxy_d <- as.data.frame(as.vector(dxy))
 dxy_table <- cbind(GENOME.class.slide@region.names, as.vector(dxy))
 
-#print a histogram of Dxy distribution
+#Plot Dxy across the intervals
 #write table with raw data
-file_hist = paste(dir, "_", "dxy_per_sliding_window.pdf", sep="")
-dxy_plot <- ggplot(dxy_d, aes(x=dxy_d[,1])) + geom_smooth(colour="black", fill="green") + ggtitle(dir) + xlab("Average Dxy per gene") + ylab("Number of genes") + scale_x_continuous(breaks = pretty(dxy_d[,1], n = 10))
-ggsave(file_hist, dxy_plot)
+file_slide = paste(dir, "_", "dxy_per_sliding_window.pdf", sep="")
+dxy_plot <- slide_plot <- ggplot(dxy_d, aes(x=xaxis, y=dxy_d[,1])) + geom_smooth(colour="black", fill="green") + ggtitle(dir) + xlab("Contig coordinate (kbp)") + ylab(paste("Average Dxy per ", interval, " bp")) + scale_x_continuous(breaks = pretty(xaxis, n = 10))
+ggsave(file_slide, dxy_plot)
 file_table = paste(dir, "_","dxy_per_sliding_window.txt", sep="")
 write.table(dxy_table, file=file_table, sep="\t",quote=FALSE, row.names=FALSE, col.names=FALSE)
+
+##############################################################
+#E) When a dataset containing all types of coding sites loaded, calculate Pi(nonsyn)/Pi(syn) over each
+# gene and over a given interval in the genome.
+#Gene-based
+GENOME.class.split.nonsyn <- diversity.stats(GENOME.class.split, pi=TRUE, subsites="nonsyn")
+GENOME.class.split.syn <- diversity.stats(GENOME.class.split, pi=TRUE, subsites="syn")
+#Interval-based
+GENOME.class.slide.nonsyn <- diversity.stats(GENOME.class.slide, pi=TRUE, subsites="nonsyn")
+GENOME.class.slide.syn <- diversity.stats(GENOME.class.slide, pi=TRUE, subsites="syn")
+
+## Print output (gene-based)
+#Plot individual populations (gene-based)
+#Divide Pi per number of sites in the gene to calculate value per site
+Pi_ns <- GENOME.class.split.nonsyn@Pi / GENOME.class.split.syn@Pi / GENOME.class.split@n.sites
+Pi_ns_d <- as.data.frame(Pi_ns)
+
+#Loop over each population: print figure and table with raw data to file
+for (i in seq_along(population_names))
+{
+  #Check in case all values 0
+  Pi_ns_len <- length(Pi_ns[,i])
+  Pi_ns_len_na <- sum(sapply(Pi_ns[,i], is.na))
+  if (Pi_ns_len > Pi_ns_len_na){
+  file_hist <- paste(dir, "_", population_names[i], "_Pi_n_s_per_gene.pdf", sep="")
+  pi_plot <- ggplot(Pi_ns_d, aes(x=Pi_ns_d[,i])) + geom_histogram(colour="black", fill="coral") + ggtitle(dir) + xlab(expression(paste("Average ", pi, "ns/", pi, "s", " per site"))) + ylab("Number of genes") + scale_x_continuous(breaks = pretty(Pi_ns_d[,i], n = 10))
+  ggsave(file_hist, pi_plot)}
+  file_table = paste(dir, "_", population_names[i], "_Pi_n_s_per_gene.txt", sep="")
+  current_gff <- paste(gff, "/", dir, ".gff", sep="")
+  gene_ids <- get_gff_info(GENOME.class.split, current_gff, chr=dir, feature=FALSE, extract.gene.names=TRUE)
+  Pi_table <- cbind(gene_ids, Pi_ns[,i])
+  write.table(Pi_table, file=file_table, sep="\t",quote=FALSE, col.names=FALSE)
+}
+
+## Print output (interval-based)
+#plot the results for all populations over one figure
+Pi_ns_persite <- GENOME.class.slide.nonsyn@Pi / GENOME.class.slide.syn@Pi / interval
+Pi_ns_persite_d <- as.data.frame(Pi_ns_persite)
+#x axis
+ids <- length(GENOME.class.slide@region.names)
+xaxis <- seq(from = 1, to = ids, by = 1)
+
+#Plot individual populations
+for (i in seq_along(population_names))
+{
+  file_slide <- paste(dir, "_", population_names[i], "_Pi_n_s_sliding_window.pdf", sep="")
+  Pi_ns_len <- length(Pi_ns_persite[,i])
+  Pi_ns_len_na <- sum(sapply(Pi_ns_persite[,i], is.na))
+  if (Pi_ns_len > Pi_ns_len_na){
+  slide_plot <- ggplot(Pi_ns_persite_d, aes(x=xaxis, y=Pi_ns_persite_d[,i])) + geom_smooth(colour="black", fill="darkviolet") + ggtitle(dir) + xlab("Contig coordinate (kbp)") + ylab(expression(paste("Average ", pi, "ns/", pi, "s", " per site"))) + scale_x_continuous(breaks = pretty(xaxis, n = 10))
+  ggsave(file_slide, slide_plot)}
+  #write table with raw data
+  slide_table <- paste(dir, "_", population_names[i], "_Pi_n_s_per_sliding_window.txt", sep="")
+  write.table(Pi_ns_persite[,i], file=slide_table, sep="\t",quote=FALSE, col.names=FALSE)
+}
+
+#Plot both populations for comparison
+title <- paste(dir, "Comparison of", population_names[1], "ver.", population_names[2], sep=" ")
+comp_slide_file <- paste(dir, "_Pi_n_s_sliding_window_comparison.pdf", sep="")
+if (Pi_ns_len > Pi_ns_len_na){
+slide_comparison <- ggplot(Pi_ns_persite_d, aes(x=xaxis)) + geom_smooth(aes(y=Pi_ns_persite_d[,1]), colour="deeppink") + geom_smooth(aes(y=Pi_ns_persite_d[,2]), colour="lightskyblue") + ggtitle(title) + xlab("Contig coordinate (kbp)") + ylab(expression(paste("Average ", pi, "ns/", pi, "s", " per site"))) + scale_x_continuous(breaks = pretty(xaxis, n = 10))
+ggsave(comp_slide_file, slide_comparison)}
+
 }
