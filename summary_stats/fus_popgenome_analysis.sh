@@ -40,6 +40,7 @@ cd $input/all
 qsub $scripts/sub_calculate_nucleotide_diversity.sh
 qsub $scripts/sub_calculate_neutrality_stats.sh
 qsub $scripts/sub_calculate_fst.sh
+qsub $scripts/sub_calculate_haplotype_based_stats.sh
 
 #This calculation was done over all sites. Now going to proceed with the allow_potentially_misencoded_quality_scores
 #for site subsets: synonymous, non-synonymous and four-fold degenerate (silent) in the respective folders
@@ -61,6 +62,8 @@ cd $input/silent
 qsub $scripts/sub_calculate_nucleotide_diversity.sh
 qsub $scripts/sub_calculate_neutrality_stats.sh
 qsub $scripts/sub_calculate_fst.sh
+qsub $scripts/sub_calculate_haplotype_based_stats.sh
+
 #For synonymous and non-synonymous have to create FASTA input first, as done
 #for silent and all sites in fus_variant_annotation.sh
 ##synonymous
@@ -91,11 +94,12 @@ folder=${f%.fasta}
 mkdir $folder
 mv $f $folder
 done
-cd $input/syn
 
+cd $input/syn
 qsub $scripts/sub_calculate_nucleotide_diversity.sh
 qsub $scripts/sub_calculate_neutrality_stats.sh
 qsub $scripts/sub_calculate_fst.sh
+qsub $scripts/sub_calculate_haplotype_based_stats.sh
 
 cd $input/nonsyn
 mkdir contigs
@@ -113,3 +117,4 @@ cd $input/nonsyn
 qsub $scripts/sub_calculate_nucleotide_diversity.sh
 qsub $scripts/sub_calculate_neutrality_stats.sh
 qsub $scripts/sub_calculate_fst.sh
+qsub $scripts/sub_calculate_haplotype_based_stats.sh
