@@ -50,8 +50,7 @@ def vcf_handling():
                 #Iterate over individual genotypes
                 for idx, f in enumerate(fields[9:]):
                     #Cross-reference to individuals
-                    a = idx - 9
-                    indiv = inds[a]
+                    indiv = inds[idx]
                     n = f.split(":")
                     #Pass to the subroutine: contig_name, position, ref allele, alt allele, size of the allele
                     #individual name, and their genotype

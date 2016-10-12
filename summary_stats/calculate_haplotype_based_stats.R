@@ -11,6 +11,7 @@ patho <- c("FOCA23", "FOC55", "FOC125", "FOCFus2")
 populations <- list(nonpatho, patho)
 #Number of populations assigned above.
 population_no <- length(populations)
+pairs <- choose(population_no,2)
 population_names <- c("nonpatho", "patho") #Given in the same order, as above.
 #Interval and jump size used in the sliding window analysis
 interval <-  1000
@@ -54,10 +55,13 @@ for (dir in contig_folders[contig_folders != ""])
     pi_plot <- ggplot(Pi_d, aes(x=Pi_d[,i])) + geom_histogram(colour="black", fill="blue") + ggtitle(dir) + xlab(expression(paste(pi, " (hap) per gene"))) + ylab("Number of genes") + scale_x_continuous(breaks = pretty(Pi_d[,i], n = 10))
     ggsave(file_hist, pi_plot)
     file_table = paste(dir, "_", population_names[i], "_Pi_hap_per_gene.txt", sep="")
+    file_table2 = paste("genome_", population_names[i], "_Pi_hap_per_gene_all.txt", sep="")
     current_gff <- paste(gff, "/", dir, ".gff", sep="")
     gene_ids <- get_gff_info(GENOME.class.split, current_gff, chr=dir, feature=FALSE, extract.gene.names=TRUE)
     Pi_table <- cbind(gene_ids, Pi[,i])
     write.table(Pi_table, file=file_table, sep="\t",quote=FALSE, col.names=FALSE)
+    write.table(Pi_table, file=file_table2, sep="\t",quote=FALSE, col.names=FALSE, append=TRUE)
+
   }
 
   Pi_persite = GENOME.class.slide@hap.diversity.within
@@ -96,7 +100,9 @@ for (dir in contig_folders[contig_folders != ""])
   dxy_plot <- ggplot(dxy_d, aes(x=dxy_d[,1])) + geom_histogram(colour="black", fill="green") + ggtitle(dir) + xlab("Dxy (hap) per gene") + ylab("Number of genes") + scale_x_continuous(breaks = pretty(dxy_d[,1], n = 10))
   ggsave(file_hist, dxy_plot)
   file_table = paste(dir, "_","dxy_hap_per_gene.txt", sep="")
+  file_table2 = "genome_dxy_hap_per_gene_all.txt"
   write.table(dxy_table, file=file_table, sep="\t",quote=FALSE, row.names=FALSE, col.names=FALSE)
+  write.table(dxy_table, file=file_table2, sep="\t",quote=FALSE, row.names=FALSE, col.names=FALSE, append=TRUE)
 
   dxy <- GENOME.class.slide@hap.diversity.between
   dxy_d <- as.data.frame(as.vector(dxy))
@@ -122,22 +128,26 @@ for (dir in contig_folders[contig_folders != ""])
     fst_plot <- ggplot(FST_all_d, aes(x=FST_all_d[,i])) + geom_histogram(colour="black", fill="darkseagreen") + ggtitle(dir) + xlab(expression(paste("Total FST (hap) per gene"))) + ylab("Number of genes") + scale_x_continuous(breaks = pretty(FST_all_d[,i], n = 10))
     ggsave(file_hist, fst_plot)
     file_table = paste(dir, "_", population_names[i], "_total_FST_hap_per_gene.txt", sep="")
+    file_table2 = paste("genome_", population_names[i], "_total_FST_hap_per_gene_all.txt", sep="")
     current_gff <- paste(gff, "/", dir, ".gff", sep="")
     gene_ids <- get_gff_info(GENOME.class.split, current_gff, chr=dir, feature=FALSE, extract.gene.names=TRUE)
     fst_table <- cbind(gene_ids, FST_all[,i])
     write.table(fst_table, file=file_table, sep="\t",quote=FALSE, col.names=FALSE)
+    write.table(fst_table, file=file_table2, sep="\t",quote=FALSE, col.names=FALSE, append=TRUE)
   }
 
-  for (i in seq_along(nrow(FST_pairwise)))
+  for (i in seq(pairs))
   {
-    file_hist <- paste(dir, "_", population_names[i], "_pairwise_FST_hap_per_gene", i, ".pdf", sep="")
-    fst_plot <- ggplot(FST_pairwise_d, aes(x=FST_pairwise_d[,i])) + geom_histogram(colour="black", fill="cadetblue") + ggtitle(dir) + xlab(expression(paste("Pairwise FST (hap) per gene"))) + ylab("Number of genes") + scale_x_continuous(breaks = pretty(FST_pairwise_d[,i], n = 10))
+    file_hist <- paste(dir, "_pairwise_FST_hap_per_gene", i, ".pdf", sep="")
+    fst_plot <- ggplot(FST_pairwise_d, aes(x=FST_pairwise_d[,i])) + geom_histogram(colour="black", fill="cadetblue") + ggtitle(dir) + xlab(expression(paste("Pairwise FST per gene"))) + ylab("Number of genes") + scale_x_continuous(breaks = pretty(FST_pairwise_d[,i], n = 10))
     ggsave(file_hist, fst_plot)
-    file_table = paste(dir, "_", population_names[i], "_pairwise_FST_hap_per_gene", i, ".txt", sep="")
+    file_table = paste(dir, "_pairwise_FST_hap_per_gene", i, ".txt", sep="")
+    file_table2 = paste("genome_pairwise_FST_hap_per_gene_all", i, ".txt", sep="")
     current_gff <- paste(gff, "/", dir, ".gff", sep="")
     gene_ids <- get_gff_info(GENOME.class.split, current_gff, chr=dir, feature=FALSE, extract.gene.names=TRUE)
     fst_table <- cbind(gene_ids, FST_pairwise_d[,i])
     write.table(fst_table, file=file_table, sep="\t",quote=FALSE, col.names=FALSE, row.names=FALSE)
+    write.table(fst_table, file=file_table2, sep="\t",quote=FALSE, col.names=FALSE, row.names=FALSE, append=TRUE)
   }
 
   #### Sliding window analysis (interval)
@@ -162,13 +172,13 @@ for (dir in contig_folders[contig_folders != ""])
   }
 
   #Plot pairwise FST
-  for (i in seq_along(nrow(FST_pairwise_slide)))
+  for (i in seq(pairs))
   {
-    file_hist <- paste(dir, "_", population_names[i], "_pairwise_FST_hap_per_sliding_window", i, ".pdf", sep="")
+    file_hist <- paste(dir, "_pairwise_FST_hap_per_sliding_window", i, ".pdf", sep="")
     slide_plot <- ggplot(FST_pairwise_slide_d, aes(x=xaxis, y=FST_pairwise_slide_d[,i])) + geom_smooth(colour="black", fill="slateblue") + ggtitle(dir) + xlab("Contig coordinate (kbp)") + ylab("Pairwise FST (hap) per interval") + scale_x_continuous(breaks = pretty(xaxis, n = 10))
     ggsave(file_slide, slide_plot)
     #write table with raw data
-    slide_table <- paste(dir, "_", population_names[i], "_pairwise_FST_hap_per_sliding_window", i, ".txt", sep="")
+    slide_table <- paste(dir, "_pairwise_FST_hap_per_sliding_window", i, ".txt", sep="")
     fst_table <- cbind(GENOME.class.slide@region.names, FST_pairwise_slide_d[,i])
     write.table(fst_table, file=slide_table, sep="\t",quote=FALSE, col.names=FALSE, row.names=FALSE)
   }
@@ -189,10 +199,12 @@ for (i in seq_along(population_names))
   fgt_plot <- ggplot(as.data.frame(fgt), aes(x=as.data.frame(fgt))) + geom_histogram(colour="black", fill="cornsilk") + ggtitle(dir) + xlab("Four gamete test") + ylab("Number of genes") + scale_x_continuous(breaks = pretty(fgt, n = 10))
   ggsave(file_hist, fgt_plot)
   file_table = paste(dir, "_", population_names[i], "_4GT_per_gene.txt", sep="")
+  file_table2 = paste("genome_", population_names[i], "_4GT_per_gene_all.txt", sep="")
   current_gff <- paste(gff, "/", dir, ".gff", sep="")
   gene_ids <- get_gff_info(GENOME.class.split, current_gff, chr=dir, feature=FALSE, extract.gene.names=TRUE)
   fgt_table <- cbind(gene_ids, as.data.frame(fourgamete_split[i]))
   write.table(fgt_table, file=file_table, sep="\t",quote=FALSE, col.names=FALSE)
+  write.table(fgt_table, file=file_table2, sep="\t",quote=FALSE, col.names=FALSE, append=TRUE)
 }
 
 for (i in seq_along(population_names))
@@ -207,6 +219,45 @@ for (i in seq_along(population_names))
 }
 
 }
+
+for (i in seq_along(population_names))
+{
+  #Pi (hap)
+  file_table2 = paste("genome_", population_names[i], "_Pi_hap_per_gene_all.txt", sep="")
+  x <- as.data.frame(read.delim(file_table2))
+  file_hist <- paste("genome_", population_names[i], "_Pi_hap_per_gene_all.pdf", sep="")
+  pi_plot <- ggplot(x, aes(x=x[,3])) + geom_histogram(colour="black", fill="blue") + xlab(expression(paste(pi, " (hap) per gene"))) + ylab("Number of genes") + scale_x_continuous(breaks = pretty(x[,3], n = 10))
+  ggsave(file_hist, pi_plot)
+  #Total FST (hap)
+  file_table2 = paste("genome_", population_names[i], "_total_FST_hap_per_gene_all.txt", sep="")
+  x <- as.data.frame(read.delim(file_table2))
+  file_hist <- paste("genome_", population_names[i], "_total_FST_hap_per_gene_all.pdf", sep="")
+  fst_plot <- ggplot(x, aes(x=x[,3])) + geom_histogram(colour="black", fill="darkseagreen") + xlab(expression(paste("Total FST (hap) per gene"))) + ylab("Number of genes") + scale_x_continuous(breaks = pretty(x[,3], n = 10))
+  ggsave(file_hist, fst_plot)
+  #Four gamete test
+  file_table2 = paste("genome_", population_names[i], "_4GT_per_gene_all.txt", sep="")
+  x <- as.data.frame(read.delim(file_table2))
+  file_hist <- paste("genome_", population_names[i], "_4GT_per_gene_all.pdf", sep="")
+  fgt_plot <- ggplot(x, aes(x=x[,3])) + geom_histogram(colour="black", fill="cornsilk") + xlab("Four gamete test") + ylab("Number of genes") + scale_x_continuous(breaks = pretty(x[,3], n = 10))
+  ggsave(file_hist, fgt_plot)
+}
+
+for (i in seq(pairs))
+{
+#Pairwise FST (hap)
+file_table2 = paste("genome_pairwise_FST_hap_per_gene_all", i, ".txt", sep="")
+x <- as.data.frame(read.delim(file_table2))
+file_hist <- paste("genome_pairwise_FST_hap_per_gene_all", i, ".pdf", sep="")
+fst_plot <- ggplot(x, aes(x=x[,2])) + geom_histogram(colour="black", fill="cadetblue") + xlab(expression(paste("Pairwise FST (hap) per gene"))) + ylab("Number of genes") + scale_x_continuous(breaks = pretty(x[,2], n = 10))
+ggsave(file_hist, fst_plot)
+}
+
+#Dxy (hap)
+file_table2 = "genome_dxy_hap_per_gene_all.txt"
+x <- as.data.frame(read.delim(file_table2))
+file_hist = "genome_dxy_hap_per_gene_all.pdf"
+dxy_plot <- ggplot(x, aes(x=x[,3])) + geom_histogram(colour="black", fill="green") + xlab("Dxy (hap) per gene") + ylab("Number of genes") + scale_x_continuous(breaks = pretty(x[,3], n = 10))
+ggsave(file_hist, dxy_plot)
 
 #Linkage disequilibrium stats
 #GENOME.class.slide <- calc.R2(GENOME.class.slide)

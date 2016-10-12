@@ -49,10 +49,13 @@ file_hist <- paste(dir, "_", population_names[i], "_Pi_per_gene.pdf", sep="")
 pi_plot <- ggplot(Pi_d, aes(x=Pi_d[,i])) + geom_histogram(colour="black", fill="blue") + ggtitle(dir) + xlab(expression(paste("Average ", pi, " per site"))) + ylab("Number of genes") + scale_x_continuous(breaks = pretty(Pi_d[,i], n = 10))
 ggsave(file_hist, pi_plot)
 file_table = paste(dir, "_", population_names[i], "_Pi_per_gene.txt", sep="")
+file_table2 = paste("genome_", population_names[i], "_Pi_per_gene_all.txt", sep="")
 current_gff <- paste(gff, "/", dir, ".gff", sep="")
 gene_ids <- get_gff_info(GENOME.class.split, current_gff, chr=dir, feature=FALSE, extract.gene.names=TRUE)
 Pi_table <- cbind(gene_ids, Pi[,i])
 write.table(Pi_table, file=file_table, sep="\t",quote=FALSE, col.names=FALSE)
+#Table with genome-wide results:
+write.table(Pi_table, file=file_table2, sep="\t",quote=FALSE, col.names=FALSE, append=TRUE)
 }
 ###########################################################
 #B) calculate Pi (Nei, 1987) in a sliding-window for all sites over a given interval
@@ -99,8 +102,9 @@ file_hist = paste(dir, "_", "dxy_per_gene.pdf", sep="")
 dxy_plot <- ggplot(dxy_d, aes(x=dxy_d[,1])) + geom_histogram(colour="black", fill="green") + ggtitle(dir) + xlab("Average Dxy per gene") + ylab("Number of genes") + scale_x_continuous(breaks = pretty(dxy_d[,1], n = 10))
 ggsave(file_hist, dxy_plot)
 file_table = paste(dir, "_","dxy_per_gene.txt", sep="")
+file_table2 = "genome_dxy_per_gene_all.txt"
 write.table(dxy_table, file=file_table, sep="\t",quote=FALSE, row.names=FALSE, col.names=FALSE)
-
+write.table(dxy_table, file=file_table2, sep="\t",quote=FALSE, row.names=FALSE, col.names=FALSE, append=TRUE)
 ############################################################
 #D) Calculate Dxy for all sites in a sliding window analysis, if more than 1 population analysed.
 #All possible pairwise contrasts
@@ -145,10 +149,12 @@ for (i in seq_along(population_names))
   pi_plot <- ggplot(Pi_ns_d, aes(x=Pi_ns_d[,i])) + geom_histogram(colour="black", fill="coral") + ggtitle(dir) + xlab(expression(paste("Average ", pi, "ns/", pi, "s", " per site"))) + ylab("Number of genes") + scale_x_continuous(breaks = pretty(Pi_ns_d[,i], n = 10))
   ggsave(file_hist, pi_plot)}
   file_table = paste(dir, "_", population_names[i], "_Pi_n_s_per_gene.txt", sep="")
+  file_table2 = paste("genome_", population_names[i], "_Pi_n_s_per_gene_all.txt", sep="")
   current_gff <- paste(gff, "/", dir, ".gff", sep="")
   gene_ids <- get_gff_info(GENOME.class.split, current_gff, chr=dir, feature=FALSE, extract.gene.names=TRUE)
   Pi_table <- cbind(gene_ids, Pi_ns[,i])
   write.table(Pi_table, file=file_table, sep="\t",quote=FALSE, col.names=FALSE)
+  write.table(Pi_table, file=file_table2, sep="\t",quote=FALSE, col.names=FALSE, append=TRUE)
 }
 
 ## Print output (interval-based)
@@ -181,3 +187,28 @@ slide_comparison <- ggplot(Pi_ns_persite_d, aes(x=xaxis)) + geom_smooth(aes(y=Pi
 ggsave(comp_slide_file, slide_comparison)}
 
 }
+
+###Plot genome-wide histograms
+for (i in seq_along(population_names))
+{
+#Pi table
+file_table2 <- paste("genome_", population_names[i], "_Pi_per_gene_all.txt", sep="")
+x <- as.data.frame(read.delim(file_table2))
+file_hist <- paste("genome_", population_names[i], "_Pi_per_gene_all.pdf", sep="")
+pi_plot <- ggplot(x, aes(x=x[,3])) + geom_histogram(colour="black", fill="blue") + xlab(expression(paste("Average ", pi, " per site"))) + ylab("Number of genes") + scale_x_continuous(breaks = pretty(x[,3], n = 10))
+ggsave(file_hist, pi_plot)
+
+#Pi nonsyn/syn
+file_table2 = paste("genome_", population_names[i], "_Pi_n_s_per_gene_all.txt", sep="")
+x <- as.data.frame(read.delim(file_table2))
+file_hist <- paste("genome_", population_names[i], "_Pi_n_s_per_gene_all.pdf", sep="")
+pi_plot <- ggplot(x, aes(x=x[,3])) + geom_histogram(colour="black", fill="coral") + xlab(expression(paste("Average ", pi, "ns/", pi, "s", " per site"))) + ylab("Number of genes") + scale_x_continuous(breaks = pretty(x[,3], n = 10))
+ggsave(file_hist, pi_plot)
+}
+
+#Dxy table
+file_table2 = "genome_dxy_per_gene_all.txt"
+x <- as.data.frame(read.delim(file_table2))
+file_hist = "genome_dxy_per_gene_all.pdf"
+dxy_plot <- ggplot(x, aes(x=x[,3])) + geom_histogram(colour="black", fill="green") + xlab("Average Dxy per gene") + ylab("Number of genes") + scale_x_continuous(breaks = pretty(x[,3], n = 10))
+ggsave(file_hist, dxy_plot)

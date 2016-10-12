@@ -46,10 +46,12 @@ for (i in seq_along(population_names))
   tajima_plot <- ggplot(TajimaD_d, aes(x=TajimaD_d[,i])) + geom_histogram(colour="black", fill="pink") + ggtitle(dir) + xlab("Tajima's D") + ylab("Number of genes") + scale_x_continuous(breaks = pretty(TajimaD_d[,i], n = 10))
   ggsave(file_hist, tajima_plot)}
   file_table = paste(dir, "_", population_names[i], "_TajimaD_per_gene.txt", sep="")
+  file_table2 = paste("genome_", population_names[i], "_TajimaD_per_gene_all.txt", sep="")
   current_gff <- paste(gff, "/", dir, ".gff", sep="")
   gene_ids <- get_gff_info(GENOME.class.split, current_gff, chr=dir, feature=FALSE, extract.gene.names=TRUE)
   tajima_table <- cbind(gene_ids, TajimaD[,i])
   write.table(tajima_table, file=file_table, sep="\t",quote=FALSE, col.names=FALSE)
+  write.table(tajima_table, file=file_table2, sep="\t",quote=FALSE, col.names=FALSE, append=TRUE)
 }
 
 FuLiF <- GENOME.class.split@Fu.Li.F
@@ -64,10 +66,12 @@ for (i in seq_along(population_names))
   FuLiF_plot <- ggplot(FuLiF_d, aes(x=FuLiF_d[,i])) + geom_histogram(colour="black", fill="maroon") + ggtitle(dir) + xlab("Fu & Li's F") + ylab("Number of genes") + scale_x_continuous(breaks = pretty(FuLiF_d[,i], n = 10))
   ggsave(file_hist, FuLiF_plot)}
   file_table = paste(dir, "_", population_names[i], "_FuLiF_per_gene.txt", sep="")
+  file_table2 = paste("genome_", population_names[i], "_FuLiF_per_gene_all.txt", sep="")
   current_gff <- paste(gff, "/", dir, ".gff", sep="")
   gene_ids <- get_gff_info(GENOME.class.split, current_gff, chr=dir, feature=FALSE, extract.gene.names=TRUE)
   FuLiF_table <- cbind(gene_ids, FuLiF[,i])
   write.table(FuLiF_table, file=file_table, sep="\t",quote=FALSE, col.names=FALSE)
+  write.table(FuLiF_table, file=file_table2, sep="\t",quote=FALSE, col.names=FALSE, append=TRUE)
 }
 
 FuLiD <- GENOME.class.split@Fu.Li.D
@@ -82,10 +86,12 @@ for (i in seq_along(population_names))
   FuLiD_plot <- ggplot(FuLiD_d, aes(x=FuLiD_d[,i])) + geom_histogram(colour="black", fill="orchid") + ggtitle(dir) + xlab("Fu & Li's D") + ylab("Number of genes") + scale_x_continuous(breaks = pretty(FuLiD_d[,i], n = 10))
   ggsave(file_hist, FuLiD_plot)}
   file_table = paste(dir, "_", population_names[i], "_FuLiD_per_gene.txt", sep="")
+  file_table2 = paste("genome_", population_names[i], "_FuLiD_per_gene_all.txt", sep="")
   current_gff <- paste(gff, "/", dir, ".gff", sep="")
   gene_ids <- get_gff_info(GENOME.class.split, current_gff, chr=dir, feature=FALSE, extract.gene.names=TRUE)
   FuLiD_table <- cbind(gene_ids, FuLiD[,i])
   write.table(FuLiD_table, file=file_table, sep="\t",quote=FALSE, col.names=FALSE)
+  write.table(FuLiD_table, file=file_table2, sep="\t",quote=FALSE, col.names=FALSE, append=TRUE)
 }
 
 #Theta per site
@@ -101,10 +107,12 @@ for (i in seq_along(population_names))
   ThetaW_plot <- ggplot(ThetaW_d, aes(x=ThetaW_d[,i])) + geom_histogram(colour="black", fill="orange") + ggtitle(dir) + xlab(expression(paste("Average Watterson's ", theta, " per site"))) + ylab("Number of genes") + scale_x_continuous(breaks = pretty(ThetaW_d[,i], n = 10))
   ggsave(file_hist, ThetaW_plot)}
   file_table = paste(dir, "_", population_names[i], "_ThetaW_per_gene.txt", sep="")
+  file_table2 = paste("genome_", population_names[i], "_ThetaW_per_gene_all.txt", sep="")
   current_gff <- paste(gff, "/", dir, ".gff", sep="")
   gene_ids <- get_gff_info(GENOME.class.split, current_gff, chr=dir, feature=FALSE, extract.gene.names=TRUE)
   ThetaW_table <- cbind(gene_ids, ThetaW[,i])
   write.table(ThetaW_table, file=file_table, sep="\t",quote=FALSE, col.names=FALSE)
+  write.table(ThetaW_table, file=file_table2, sep="\t",quote=FALSE, col.names=FALSE, append=TRUE)
 }
 
 #Average rate of segregating sites
@@ -120,10 +128,12 @@ for (i in seq_along(population_names))
   no_seg_plot <- ggplot(no_seg_d, aes(x=no_seg_d[,i])) + geom_histogram(colour="black", fill="gold") + ggtitle(dir) + xlab("Average frequency of segregating sites") + ylab("Number of genes") + scale_x_continuous(breaks = pretty(no_seg_d[,i], n = 10))
   ggsave(file_hist, no_seg_plot)}
   file_table = paste(dir, "_", population_names[i], "_no_seg_sites_per_gene.txt", sep="")
+  file_table2 = paste("genome_", population_names[i], "_no_seg_sites_per_gene_all.txt", sep="")
   current_gff <- paste(gff, "/", dir, ".gff", sep="")
   gene_ids <- get_gff_info(GENOME.class.split, current_gff, chr=dir, feature=FALSE, extract.gene.names=TRUE)
   no_seg_table <- cbind(gene_ids, no_seg[,i])
   write.table(no_seg_table, file=file_table, sep="\t",quote=FALSE, col.names=FALSE)
+  write.table(no_seg_table, file=file_table2, sep="\t",quote=FALSE, col.names=FALSE, append=TRUE)
 }
 
 #Calculate neutrality stats over sliding window
@@ -190,4 +200,43 @@ comp_slide_file <- paste(dir, "_no_seg_sites_window_comparison.pdf", sep="")
 slide_comparison <- ggplot(no_seg_d, aes(x=xaxis)) + geom_smooth(aes(y=no_seg_d[,1]), colour="turquoise1") + geom_smooth(aes(y=no_seg_d[,2]), colour="olivedrab2") + ggtitle(title) + xlab("Contig coordinate (kbp)") + ylab("Average frequency of segregating sites") + scale_x_continuous(breaks = pretty(xaxis, n = 10))
 ggsave(comp_slide_file, slide_comparison)}
 
+}
+
+###Plot genome-wide histograms
+for (i in seq_along(population_names))
+{
+  #Tajima's D table
+  file_table2 <- paste("genome_", population_names[i], "_TajimaD_per_gene_all.txt", sep="")
+  x <- as.data.frame(read.delim(file_table2))
+  file_hist <- paste("genome_", population_names[i], "_TajimaD_per_gene_all.pdf", sep="")
+  tajima_plot <- ggplot(x, aes(x=x[,3])) + geom_histogram(colour="black", fill="pink") + xlab("Tajima's D") + ylab("Number of genes") + scale_x_continuous(breaks = pretty(x[,3], n = 10))
+  ggsave(file_hist, tajima_plot)
+
+  #Fu & Li's F* table
+  file_table2 <- paste("genome_", population_names[i], "_FuLiF_per_gene_all.txt", sep="")
+  x <- as.data.frame(read.delim(file_table2))
+  file_hist <- paste("genome_", population_names[i], "_FuLiF_per_gene_all.pdf", sep="")
+  FuLiF_plot <- ggplot(x, aes(x=x[,3])) + geom_histogram(colour="black", fill="maroon") + xlab("Fu & Li's F") + ylab("Number of genes") + scale_x_continuous(breaks = pretty(x[,3], n = 10))
+  ggsave(file_hist, FuLiF_plot)
+
+  #Fu & Li's D* table
+  file_table2 <- paste("genome_", population_names[i], "_FuLiD_per_gene_all.txt", sep="")
+  x <- as.data.frame(read.delim(file_table2))
+  file_hist <- paste("genome_", population_names[i], "_FuLiD_per_gene_all.pdf", sep="")
+  FuLiD_plot <- ggplot(x, aes(x=x[,3])) + geom_histogram(colour="black", fill="orchid") + xlab("Fu & Li's D") + ylab("Number of genes") + scale_x_continuous(breaks = pretty(x[,3], n = 10))
+  ggsave(file_hist, FuLiD_plot)
+
+  #Watterson's Theta table
+  file_table2 = paste("genome_", population_names[i], "_ThetaW_per_gene_all.txt", sep="")
+  x <- as.data.frame(read.delim(file_table2))
+  file_hist <- paste("genome_", population_names[i], "_ThetaW_per_gene_all.pdf", sep="")
+  ThetaW_plot <- ggplot(x, aes(x=x[,3])) + geom_histogram(colour="black", fill="orange") + xlab(expression(paste("Average Watterson's ", theta, " per site"))) + ylab("Number of genes") + scale_x_continuous(breaks = pretty(x[,3], n = 10))
+  ggsave(file_hist, ThetaW_plot)
+
+  #number of seg sites table
+  file_table2 = paste("genome_", population_names[i], "_no_seg_sites_per_gene_all.txt", sep="")
+  x <- as.data.frame(read.delim(file_table2))
+  file_hist <- paste("genome_", population_names[i], "_no_seg_sites_per_gene_all.pdf", sep="")
+  no_seg_plot <- ggplot(x, aes(x=x[,3])) + geom_histogram(colour="black", fill="gold") + xlab("Average frequency of segregating sites") + ylab("Number of genes") + scale_x_continuous(breaks = pretty(x[,3], n = 10))
+  ggsave(file_hist, no_seg_plot)
 }

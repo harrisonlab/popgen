@@ -112,8 +112,8 @@ folder=${f%.fasta}
 mkdir $folder
 mv $f $folder
 done
-cd $input/nonsyn
 
+cd $input/nonsyn
 qsub $scripts/sub_calculate_nucleotide_diversity.sh
 qsub $scripts/sub_calculate_neutrality_stats.sh
 qsub $scripts/sub_calculate_fst.sh
