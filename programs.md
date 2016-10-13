@@ -16,6 +16,8 @@ and libraries stored in ```/home/sobczm/R/x86_64-pc-linux-gnu-library/3.2```
 
 [poppr] (http://grunwaldlab.cgrb.oregonstate.edu/poppr-r-package-population-genetics): Genetic Analysis of Populations with Mixed Reproduction
 
+[SNPRelate] (http://corearray.sourceforge.net/tutorials/SNPRelate/): Parallel Computing Toolset for Relatedness and Principal Component Analysis of SNP Data
+
 [vcfR] (https://cran.r-project.org/web/packages/vcfR/index.html): Manipulate and Visualize VCF Data
 
 [WhopGenome] (https://cran.r-project.org/web/packages/WhopGenome/index.html): High-Speed Processing of VCF, FASTA and Alignment Data
