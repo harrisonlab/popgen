@@ -100,7 +100,6 @@ python $scripts/summary_stats/vcf_to_fasta.py Fus2_canu_contigs_unmasked_noA13_f
 mkdir silent
 mv *.fasta ./silent
 
-
 ###Split the GFF file into one contig --> one GFF file.
 cd $input
 mkdir gff
