@@ -15,6 +15,8 @@ Fus2_canu_contigs_unmasked_filtered.vcf >Fus2_canu_contigs_unmasked_filtered.sta
 $scripts/similarity_percentage.py Fus2_canu_contigs_unmasked_filtered.vcf
 #Visualise the output as heatmap and clustering dendrogram
 Rscript --vanilla $scripts/distance_matrix.R Fus2_canu_contigs_unmasked_filtered_distance.log
+#Carry out PCA and plot the results
+Rscript --vanilla $scripts/pca.R Fus2_canu_contigs_unmasked_filtered.vcf
 #DAPC and AMOVA analysis
 Rscript --vanilla $popgen/snp/amova_dapc.R
 #Downsample SNPs for AMOVA analysis as enough information in 10% of the loci
