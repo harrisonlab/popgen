@@ -49,6 +49,7 @@ INPUT=$name\_nomulti\_proper\_sorted\_nodup.bam \
 OUTPUT=$name\_nomulti\_proper\_sorted\_nodup_rg.bam \
 SORT_ORDER=coordinate CREATE_INDEX=true RGID=$prefix  RGSM=$prefix \
 RGPL=Illumina RGLB=library RGPU=barcode VALIDATION_STRINGENCY=LENIENT
+samtools index $name\_nomulti\_proper\_sorted\_nodup_rg.bam
 
 ### Cleanup
 mv $name\_nomulti\_proper\_sorted\_nodup.bam $cpath
