@@ -16,7 +16,7 @@ library(tools)
 
 #The package offers also IBD and IBS calculations
 vcf.fn <- args[1]
-file_gds <- paste(file_path_sans_ext(vcf.fn), ".gds")
+file_gds <- paste(file_path_sans_ext(vcf.fn), ".gds", sep="")
 snpgdsVCF2GDS(vcf.fn, file_gds, method="biallelic.only")
 snpgdsSummary(file_gds)
 genofile <- snpgdsOpen(file_gds)
@@ -43,5 +43,5 @@ ylabel <- paste("PC1 (", pca_1, "%)", sep="")
 pca_plot <- ggplot(tab, aes(EV2,EV1), fill="red") + geom_point(size=2) + geom_text_repel(aes(label=sample.id)) + xlab(xlabel) + ylab(ylabel)
 #pca_plot <- ggplot(tab, aes(EV2,EV1), fill="red") + geom_point(colour=factor(tab$pop), size=2) + geom_text_repel(aes(label=sample.id)) + xlab(xlabel) + ylab(ylabel)
 pca_plot2 <- pca_plot + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
-file_pca <- paste(file_path_sans_ext(vcf.fn), "_pca.pdf")
+file_pca <- paste(file_path_sans_ext(vcf.fn), "_pca.pdf", sep="")
 ggsave(file_pca, pca_plot2, dpi=300, height=5, width=5)
