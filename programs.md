@@ -81,6 +81,8 @@ Genomic Diversity `/home/sobczm/bin/DivStat`
 
 [MEME Suite ver. 4.11.2] (http://meme-suite.org/) MEME SUITE: tools for motif discovery and searching `/home/sobczm/bin/meme_4.11.2/bin`
 
+[OrthoFinder v1.0.7] (https://github.com/davidemms/OrthoFinder/) OrthoFinder: Accurate inference of orthogroups, orthologues, gene trees and rooted species tree made easy `/home/sobczm/bin/OrthoFinder-1.0.7/orthofinder`
+
 [PAL2NAL] (http://www.bork.embl.de/pal2nal/): Robust conversion of protein sequence alignments into the corresponding codon alignments/home. `/sobczm/bin/pal2nal.v14`
 
 [PAML ver. 4.8] (http://abacus.gene.ucl.ac.uk/software/paml.html) A package of programs for phylogenetic analyses of DNA or protein sequences using maximum likelihood. `/home/sobczm/bin/paml4.8/bin`
