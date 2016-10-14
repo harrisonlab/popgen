@@ -88,6 +88,9 @@ Genomic Diversity `/home/sobczm/bin/DivStat`
 export PATH=/home/sobczm/bin/mcl-14-137/bin:${PATH}
 export PATH=/home/sobczm/bin/fastme-2.1.5/bin:${PATH}
 export PATH=/home/sobczm/bin/dlcpar-1.0/bin:${PATH}
+export PATH=/home/sobczm/bin/mafft-7.222/bin:${PATH}
+export PATH=/home/sobczm/bin/FastTree2.1.9:${PATH}
+
 ```
 [PAL2NAL] (http://www.bork.embl.de/pal2nal/): Robust conversion of protein sequence alignments into the corresponding codon alignments/home. `/sobczm/bin/pal2nal.v14`
 
