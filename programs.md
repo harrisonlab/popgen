@@ -131,11 +131,13 @@ export PATH=/home/sobczm/bin/FastTree2.1.9:${PATH}
 [VCFtools] (https://vcftools.github.io): another set of C++ and Perl libraries for analysing VCF files. `/home/sobczm/bin/vcftools/bin`
 
 ```
-/home/sobczm/bin/vcftools/bin  
 #SET PERL PATH
 export PERL5LIB=/home/sobczm/bin/vcftools/share/perl/5.14.2
 ```
+
 [PyVCF] (https://github.com/jamescasbon/PyVCF) A VCF v. 4.0 and 4.1 parser for Python. `/home/sobczm/bin/PyVCF/bin`
+
+```
 #SET PYTHON PATH
 export PYTHONPATH="$PYTHONPATH:/home/sobczm/bin/PyVCF/lib/python2.7/site-packages/"
 ```
