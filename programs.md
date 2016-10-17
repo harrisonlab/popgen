@@ -130,7 +130,6 @@ export PATH=/home/sobczm/bin/FastTree2.1.9:${PATH}
 
 [VCFtools] (https://vcftools.github.io): another set of C++ and Perl libraries for analysing VCF files. `/home/sobczm/bin/vcftools/bin`
 
-[Weeder ver. 2.0] (http://159.149.160.51/modtools/) Discovery of transcription factor binding sites in a set of sequences from co-regulated genes `/home/sobczm/bin/weeder`
 ```
 /home/sobczm/bin/vcftools/bin  
 #SET PERL PATH
@@ -140,3 +139,4 @@ export PERL5LIB=/home/sobczm/bin/vcftools/share/perl/5.14.2
 #SET PYTHON PATH
 export PYTHONPATH="$PYTHONPATH:/home/sobczm/bin/PyVCF/lib/python2.7/site-packages/"
 ```
+[Weeder ver. 2.0] (http://159.149.160.51/modtools/) Discovery of transcription factor binding sites in a set of sequences from co-regulated genes `/home/sobczm/bin/weeder`
