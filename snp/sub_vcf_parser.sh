@@ -49,4 +49,4 @@ filename=$(basename "$vcf")
 $vcflib/vcffilter -f "QUAL > $qual & MQ > $mq" $vcf | $vcflib/vcffilter -g "DP > $dp & GQ > $gq" >temp.vcf
 $vcftools/vcftools --vcf temp.vcf --max-missing $na --recode --out ${filename%.vcf}_filtered
 mv ${filename%.vcf}_filtered.recode.vcf ${filename%.vcf}_filtered.vcf
-#rm temp.vcf
+rm temp.vcf
