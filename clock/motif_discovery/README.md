@@ -25,3 +25,7 @@ Verticillium dahliae
 
 
 For Fusarium oxysporum, internal Fus2 genome was used.
+
+1) clock_ortho.sh
+2) clock_dn_ds_analysis.sh
+3) clock_motif_discovery.sh
