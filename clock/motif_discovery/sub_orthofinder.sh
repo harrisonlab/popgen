@@ -23,5 +23,5 @@ mv $dir/Results_* $dir/$new_name
 $anaconda $orthofinder/trees_from_MSA.py $dir/$new_name -t 16
 
 ### Cleanup
-cp -r $temp_dir $cpath
+cp -r $temp_dir/$new_name $cpath
 rm -rf $temp_dir

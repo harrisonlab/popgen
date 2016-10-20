@@ -43,7 +43,4 @@ echo "hits will be moved to:"
 echo "$OutFile"
 
 blastall -d $Db -p blastp -i $Query -v 100000 -b 100000 -e 1e-5 -m 8 -F 'm S' -a 1 -o $Hits
-echo $Db
-echo $Query
-echo $Hits
 cp $Hits $OutFile

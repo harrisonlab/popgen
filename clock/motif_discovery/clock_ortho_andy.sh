@@ -104,7 +104,6 @@ $orthomcl/orthomclFilterFasta $Input_dir $Min_length $Max_percent_stops $Good_pr
 mkdir $input/orthoMCL/blastall
 BlastDB=$input/orthoMCL/blastall/ClockGenomes.db
 makeblastdb -in $Good_proteins_file -dbtype prot -out $BlastDB
-BlastOut=$input/orthoMCL/all-vs-all_results.tsv
 mkdir -p $input/orthoMCL/splitfiles
 SplitDir=/home/armita/git_repos/emr_repos/tools/seq_tools/feature_annotation/signal_peptides
 $SplitDir/splitfile_500.py --inp_fasta $Good_proteins_file --out_dir $input/orthoMCL/splitfiles --out_base goodProteins
@@ -121,5 +120,19 @@ cd $input/orthoMCL/blastall
     printf "\n"
     echo $File
     BlastOut=$(echo $File | sed 's/.fa/.tab/g')
-    qsub $ProgDir/blast_500_2.sh $BlastDB $File $BlastOut
+    qsub $ProgDir/blast_500.sh $BlastDB $File $BlastOut
   done
+
+#Merge the all-vs-all blast results
+MergeHits=clock_blast.tab
+printf "" > $MergeHits
+for Num in $(ls $input/orthoMCL/splitfiles/*.tab | rev | cut -f1 -d '_' | rev | sort -n); do
+  File=$(ls $input/orthoMCL/splitfiles/*_$Num)
+  cat $File
+done > $MergeHits
+
+#Perform ortholog identification
+ProgDir=/home/sobczm/bin/popgen/clock/motif_discovery
+  MergeHits=$input/orthoMCL/splitfiles/clock_blast.tab
+  GoodProts=$input/orthoMCL/goodProteins/goodProteins.fasta
+  qsub $ProgDir/sub_orthomcl.sh $MergeHits $GoodProts 1.5
