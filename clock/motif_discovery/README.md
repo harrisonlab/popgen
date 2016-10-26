@@ -27,11 +27,12 @@ Verticillium dahliae
 For Fusarium oxysporum, internal Fus2 genome was used.
 
 
+
 B) **Extended sampling**
 
 all the species in A) and:
 
-Sclerotiniaceae:
+*Sclerotiniaceae:*
 
 Sclerotinia borealis
 
@@ -78,7 +79,8 @@ Trichoderma harzianum
 
 Trichoderma virens
 
-
+`
 1) clock_ortho.sh
 2) clock_dn_ds_analysis.sh
 3) clock_motif_discovery.sh
+`

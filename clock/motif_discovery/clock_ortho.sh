@@ -4,6 +4,7 @@ scripts=/home/sobczm/bin/popgen/clock/motif_discovery
 
 #Identification of orthologs amongst selected genomes using the OrthoFinder.
 
+##DATASET A)
 #Get whole-genome protein sequences and rename the files
 cd $input/pep_genomes
 mv Botrytis_cinerea.ASM83294v1.pep.all.fa Botrytis_cinerea.pep.fa
@@ -33,3 +34,5 @@ orthofinder=/home/sobczm/bin/OrthoFinder-1.0.7/orthofinder
 anaconda=/home/sobczm/bin/anaconda2/bin/python
 dir=OrthoFinder
 $anaconda $orthofinder/orthofinder.py -f $dir -t 16
+
+##DATASET B)
