@@ -1,4 +1,4 @@
-Genome DNA sequences and GFF3 annotation files as well as protein sequences were downloaded from Ensembl Fungi for the following species:
+Genome DNA sequences (repeat-masked) and GFF3 annotation files as well as protein sequences were downloaded from Ensembl Fungi for the following species:
 
 A) **Small dataset**
 

@@ -25,7 +25,7 @@ Inflation='1.5'
 if [ -n "$3" ]; then
   Inflation="$3"
 fi
-IsolateAbrv=$(echo $GoodProts | rev | cut -f3 -d '/' | rev)
+IsolateAbrv=clock_genes
 
 CurPath=$PWD
 WorkDir=$CurPath/analysis
@@ -116,7 +116,7 @@ orthomclLoadBlast $Config $SimilarGenes
 orthomclPairs $Config $Log_file cleanup=yes #<startAfter=TAG>
 #-- d --
 orthomclDumpPairsFiles $Config
-mv mclInput $MclInput
+cp -r mclInput $MclInput
 #-- e --
 mcl $MclInput --abc -I $Inflation -o $MclOutput
 cat $MclOutput | orthomclMclToGroups orthogroup 1 > $OrthoGroups
