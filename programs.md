@@ -141,4 +141,6 @@ export PERL5LIB=/home/sobczm/bin/vcftools/share/perl/5.14.2
 #SET PYTHON PATH
 export PYTHONPATH="$PYTHONPATH:/home/sobczm/bin/PyVCF/lib/python2.7/site-packages/"
 ```
+[USEARCH v. 9.0] (http://www.drive5.com/usearch/manual/) High-throughput search and clustering `/home/sobczm/bin/usearch`
+
 [Weeder ver. 2.0] (http://159.149.160.51/modtools/) Discovery of transcription factor binding sites in a set of sequences from co-regulated genes `/home/sobczm/bin/weeder`
