@@ -2,7 +2,7 @@
 ##R packages:
 Using R version 3.2.2 installed locally:
 ```export PATH=/home/armita/prog/R/R-3.2.2/bin:${PATH}```
-and libraries stored in ```/home/sobczm/R/x86_64-pc-linux-gnu-library/3.2```
+and libraries stored in ```export R_LIBS=/home/sobczm/R/x86_64-pc-linux-gnu-library/3.2:$R_LIBS```
 
 [ade4] (https://cran.r-project.org/web/packages/ade4/index.html): Analysis of Ecological Data : Exploratory and Euclidean Methods in Environmental Sciences
 
