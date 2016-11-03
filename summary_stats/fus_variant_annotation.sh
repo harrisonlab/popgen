@@ -15,6 +15,8 @@ vcftools=/home/sobczm/bin/vcftools/bin
 vcflib=/home/sobczm/bin/vcflib/bin
 
 #All, without A13
+#First argument: unfiltered input VCF file with all SNPs
+#Subsequent arguments: Sample names of individuals to be removed
 $vcflib/vcfremovesamples Fus2_canu_contigs_unmasked.vcf FOCA13 >Fus2_canu_contigs_unmasked_noA13.vcf
 #Remove monomorphic sites (minor allele count minimum 1)
 $scripts/snp/vcf_parser_haploid.py --i Fus2_canu_contigs_unmasked_noA13.vcf
