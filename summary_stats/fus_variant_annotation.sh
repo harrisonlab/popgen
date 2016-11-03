@@ -49,7 +49,8 @@ nano $snpeff/snpEff.config
 Fus2v1.0.genome : Fus2
 ```
 #Collect input files
-#The folder name should correspond to the genome name (Fus2v1.0.genome) specified above, without the ".genome" suffix. 
+#The folder name below should correspond to the genome name (Fus2v1.0.genome) specified above, without the ".genome" suffix. 
+#In this case, Fus2v1.0.
 mkdir $snpeff/data/Fus2v1.0
 cp Fus2_canu_contigs_unmasked.fa $snpeff/data/Fus2v1.0
 cp Fus2_final_genes_appended.gff3 $snpeff/data/Fus2v1.0
