@@ -5,7 +5,7 @@
 #$ -l h=blacklace01.blacklace|blacklace02.blacklace|blacklace04.blacklace|blacklace05.blacklace|blacklace06.blacklace|blacklace07.blacklace|blacklace08.blacklace|blacklace09.blacklace|blacklace10.blacklace|blacklace12.blacklace
 
 echo "---------------------------------------------------------------"
-echo "Filter the SNPs in diploid and haploid genomes. Can allow a certain number of individuals with N sites."
+echo "Filter the SNPs in diploid and haploid genomes. Removes indels. Can allow a certain number of individuals with N sites."
 echo "Either input just the VCF file to be filtered or the VCF file with 5 additional filtering options (see below)"
 echo "----------------------------------------------------------------"
 echo "Arguments: "
@@ -47,6 +47,6 @@ fi
 
 filename=$(basename "$vcf")
 $vcflib/vcffilter -f "QUAL > $qual & MQ > $mq" $vcf | $vcflib/vcffilter -g "DP > $dp & GQ > $gq" >temp.vcf
-$vcftools/vcftools --vcf temp.vcf --max-missing $na --recode --out ${filename%.vcf}_filtered
+$vcftools/vcftools --vcf temp.vcf --max-missing $na --remove-indels --recode --out ${filename%.vcf}_filtered
 mv ${filename%.vcf}_filtered.recode.vcf ${filename%.vcf}_filtered.vcf
-rm temp.vcf
+rm *temp*.vcf
