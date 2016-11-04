@@ -2,7 +2,7 @@
 
 #Print a heatmap displaynig the distance results output by similarity_percentage.py
 #First argument (required): input distance results
-#Second argument (optional): output PDF filename
+#Second argument (optional): output filename
 
 args = commandArgs(trailingOnly=TRUE)
 
@@ -11,7 +11,7 @@ if (length(args)==0) {
   stop("At least one argument must be supplied (input file).n", call.=FALSE)
 } else if (length(args)==1) {
   # default output file
-  args[2] = "distance_matrix.pdf"
+  args[2] = paste(file_path_sans_ext(args[1]), "_distance_matrix.pdf", sep="")
 }
 
 library(gplots)
