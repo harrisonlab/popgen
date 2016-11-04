@@ -126,6 +126,8 @@ export PATH=/home/sobczm/bin/FastTree2.1.9:${PATH}
 [Treemix ver. 1.12] (https://bitbucket.org/nygcresearch/treemix/wiki/Home): estimation of population trees with admixture.
 `/home/sobczm/bin/treemix-1.12`
 
+[Trinity ver 2.2] (https://trinityrnaseq.github.io/): RNA-Seq assembly  `/home/sobczm/bin/trinityrnaseq-2.2.0`
+
 [vcflib] (https://github.com/vcflib/vcflib): a simple C++ library for parsing and manipulating VCF files, + many command-line utilities. `/home/sobczm/bin/vcflib/bin`
 
 [VCFtools] (https://vcftools.github.io): another set of C++ and Perl libraries for analysing VCF files. `/home/sobczm/bin/vcftools/bin`
