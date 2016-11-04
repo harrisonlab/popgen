@@ -70,7 +70,7 @@ $InsertGap $InsertStdDev
 for a in ./*rep*
 do
 cd $a
-qsub $popgen/sub_get_sorted_paired_reads.sh unmapped.bam accepted_hits.bam
+qsub $scripts/sub_get_sorted_paired_reads.sh unmapped.bam accepted_hits.bam
 rm -rf F R
 cd ../
 done
@@ -93,6 +93,9 @@ tar -zcvf r_sorted.fastq.tar.gz r_sorted.fastq
 tar -zcvf f_sorted.fastq.tar.gz f_sorted.fastq
 cd ../
 done
+
+#Submit Trinity Assembly
+qsub $scripts/sub_trinity_assembly.sh f_sorted.fastq r_sorted.fastq
 
 ##Preliminary experiments
 Assembly=$input/reads/Fus2_canu_contigs_unmasked.fa
@@ -156,7 +159,7 @@ $InsertGap $InsertStdDev
 for a in ./prelim/*rep*
 do
 cd $a
-qsub $popgen/sub_get_sorted_paired_reads.sh unmapped.bam accepted_hits.bam
+qsub $scripts/sub_get_sorted_paired_reads.sh unmapped.bam accepted_hits.bam
 rm -rf F R
 cd ../
 done
@@ -179,6 +182,9 @@ tar -zcvf r_sorted.fastq.tar.gz r_sorted.fastq
 tar -zcvf f_sorted.fastq.tar.gz f_sorted.fastq
 cd ../
 done
+
+#Submit Trinity Assembly
+qsub $scripts/sub_trinity_assembly.sh f_sorted.fastq r_sorted.fastq
 
 #Use RepeatMasker to mask repeat and low complexity regions in the transcriptomes.
 #Transcriptomes from the literature

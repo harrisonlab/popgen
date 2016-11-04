@@ -25,7 +25,7 @@ scripts=/home/sobczm/bin/popgen/renseq
 
 python $scripts/find_matching_reads.py unmapped.fastq mapped.fastq f0.fastq r0.fastq
 python $scripts/find_matching_reads2.py f0.fastq r0.fastq r.fastq
-python $scripts/find_matching_reads2.py r1.fastq f0.fastq f.fastq
+python $scripts/find_matching_reads2.py r.fastq f0.fastq f.fastq
 
 cat r.fastq | paste - - - - | sort -k1,1 -t " " | tr "\t" "\n" > r_sorted.fastq
 cat f.fastq | paste - - - - | sort -k1,1 -t " " | tr "\t" "\n" > f_sorted.fastq
