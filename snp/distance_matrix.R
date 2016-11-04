@@ -3,7 +3,7 @@
 #Print a heatmap displaynig the distance results output by similarity_percentage.py
 #First argument (required): input distance results
 #Second argument (optional): output filename
-
+library(tools)
 args = commandArgs(trailingOnly=TRUE)
 
 
