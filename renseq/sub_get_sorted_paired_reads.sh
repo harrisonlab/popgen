@@ -23,14 +23,14 @@ bamtools convert -in $ma -out mapped.fastq -format fastq
 
 scripts=/home/sobczm/bin/popgen/renseq
 
-python $scripts/find_matching_reads.py unmapped.fastq mapped.fastq f0.fastq r0.fastq
+python $scripts/find_matching_reads.py mapped.fastq unmapped.fastq f0.fastq r0.fastq
 python $scripts/find_matching_reads2.py f0.fastq r0.fastq r.fastq
 python $scripts/find_matching_reads2.py r.fastq f0.fastq f.fastq
 
 cat r.fastq | paste - - - - | sort -k1,1 -t " " | tr "\t" "\n" > r_sorted.fastq
 cat f.fastq | paste - - - - | sort -k1,1 -t " " | tr "\t" "\n" > f_sorted.fastq
 
-cp -r *.fastq $cpath
-#cp -r r_sorted.fastq $cpath
-#cp -r f_sorted.fastq $cpath
+
+cp -r r_sorted.fastq $cpath
+cp -r f_sorted.fastq $cpath
 rm -rf $temp_dir

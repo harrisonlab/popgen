@@ -24,11 +24,11 @@ echo $name
 
 repeat_masker=/home/armita/prog/RepeatMasker
 repeat_modeler=/home/armita/prog/RepeatModeler
-$repeat_modeler/BuildDatabase -name $name $assembly
+# repeat_modeler/BuildDatabase -name $name $assembly
 $repeat_modeler/RepeatModeler -database $name
 
 #Hardmask
-$repeat_masker/RepeatMasker -gff -pa 4 -lib ./lsRM_*.*/consensi.fa.classified $assembly
+$repeat_masker/RepeatMasker -gff -pa 4 -lib ./RM_*.*/consensi.fa.classified $assembly
 #mv $filename.cat.gz "$name"_hardmasked.fasta.cat.gz
 #mv $filename.masked "$name"_hardmasked.fasta
 #mv $filename.out "$name"_hardmasked.out

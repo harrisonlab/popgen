@@ -67,6 +67,6 @@ rm "$OutName".fa*
 rm ReadF.fastq
 rm ReadR.fastq
 
-mkdir -p $CurPath/$OutDir
-cp -r $WorkDir/$OutName/* ./$OutDir/
+mkdir -p $OutDir
+cp -r $WorkDir/$OutName/* $OutDir
 rm -r $TMPDIR
