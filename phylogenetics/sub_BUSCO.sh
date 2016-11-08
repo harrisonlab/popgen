@@ -37,8 +37,8 @@ busco=/home/sobczm/bin/BUSCO_v1.22/BUSCO_v1.22.py
 
 ### Prep
 mkdir -p $temp_dir
-cd $temp_dir
 cp $assembly $temp_dir
+cd $temp_dir
 
 ### Execute
 python $busco -o $name -in $assembly -l $db -m genome

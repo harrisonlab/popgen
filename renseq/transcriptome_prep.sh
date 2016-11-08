@@ -1,5 +1,5 @@
 #!/bin/bash
-input=/home/sobczm/popgen/renseq/input
+input=/home/sobczm/popgen/renseq/input/reads
 scripts=/home/sobczm/bin/popgen/renseq
 
 #Align our reads to Fusarium genomes.
@@ -95,10 +95,10 @@ cd ../
 done
 
 #Submit Trinity Assembly
-qsub $scripts/sub_trinity_assembly.sh f_sorted.fastq r_sorted.fastq
+qsub $scripts/sub_trinity_assembly.sh all_reads_f.fastq all_reads_r.fastq
 
 #Clean-up
-rm $input/reads/f_sorted.fastq $input/reads/r_sorted.fastq
+rm $input/reads/all_reads_f.fastq $input/reads/all_reads_r.fastq
 #Use RepeatMasker to mask repeat and low complexity regions in the transcriptomes.
 #Transcriptomes from the literature
 qsub $scripts/sub_repeat_masker.sh $input/transcriptomes/NZ/GBGJ01_1_fsa_nt_nz.fasta

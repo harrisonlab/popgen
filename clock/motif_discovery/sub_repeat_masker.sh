@@ -28,15 +28,15 @@ $repeat_modeler/BuildDatabase -name $name $assembly
 $repeat_modeler/RepeatModeler -database $name
 
 #Hardmask
-$repeat_masker/RepeatMasker -gff -pa 4 -lib RM_*.*/consensi.fa.classified $assembly
-#mv $filename.cat.gz "$name"_hardmasked.fasta.cat.gz
+#repeat_masker/RepeatMasker -gff -pa 4 -lib RM_*.*/consensi.fa.classified $assembly
+#mv $filename.cat.gz ls name"_hardmasked.fasta.cat.gz
 #mv $filename.masked "$name"_hardmasked.fasta
 #mv $filename.out "$name"_hardmasked.out
 #mv $filename.tbl "$name"_hardmasked.tbl
 #grep -v '#' $filename.out.gff > "$name"_hardmasked.gff
 
 #softmask
-$repeat_masker/RepeatMasker -xsmall -gff -pa 4 -lib RM_*.*/consensi.fa.classified $assembly
+#repeat_masker/RepeatMasker -xsmall -gff -pa 4 -lib RM_*.*/consensi.fa.classified $assembly
 #mv $filename.cat.gz "$name"_softmasked.fasta.cat.gz
 #mv $filename.masked "$name"_softmasked.fasta
 #mv $filename.out "$name"_softmasked.out

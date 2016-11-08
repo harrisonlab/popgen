@@ -21,8 +21,7 @@ rr=$(basename "$right_reads")
 cd $temp_dir
 
 trinity=/home/sobczm/bin/trinityrnaseq-2.2.0/Trinity
-$trinity --seqType fq --max_memory 50G --CPU 10 --min_contig_length 300 \
---left $lr --right $rr
+$trinity --seqType fq --max_memory 50G --CPU 10 --min_contig_length 300 --left $lr --right $rr
 
 rm *.fastq
 cp -r * $cpath
