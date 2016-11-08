@@ -81,6 +81,8 @@ Genomic Diversity `/home/sobczm/bin/DivStat`
 
 [MEME Suite ver. 4.11.2] (http://meme-suite.org/) MEME SUITE: tools for motif discovery and searching `/home/sobczm/bin/meme_4.11.2/bin`
 
+[NLR-Parser] (https://github.com/steuernb/NLR-Parser) A tool to rapidly annotate the NLR complement from sequenced plant genomes. `home/sobczm/bin/NLR-Parser` Requires meme 4.9.1 in `/home/sobczm/bin/meme_4.9.1/bin`
+
 [OrthoFinder v1.0.7] (https://github.com/davidemms/OrthoFinder/) OrthoFinder: Accurate inference of orthogroups, orthologues, gene trees and rooted species tree made easy `/home/sobczm/bin/OrthoFinder-1.0.7/orthofinder`
 
 **Dependencies**:
