@@ -15,11 +15,6 @@ cd $input
 # Use GLAM2Scan
 
 
-
-# Find similar sequences
-
-
-
 #ACE element in ccg2
 #The core ACE sequence binding site (Bell-Pedersen 2001), from -107,
 #similar a bit to a sequence in other ccgs
@@ -27,10 +22,6 @@ cd $input
 # Use FIMO
 $meme/iupac2meme AACTTGGCCAAGTT >core_ace.txt
 qsub $scripts/sub_fimo.sh core_ace.txt Neurospora_crassa.NC12.dna_rm.toplevel_promoters_1000.fasta core_ace
-
-
-# Find similar sequences
-
 
 
 #The full ACE containing element (68 bp, between -118 and -50 of the cc2 TSS)
