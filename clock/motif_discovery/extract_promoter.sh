@@ -2,10 +2,10 @@
 input=/home/sobczm/popgen/clock/DNA_genomes
 scripts=/home/sobczm/bin/popgen/clock/motif_discovery
 #cd $input
-for gff_file in *.3*.gff3
+for gff_file in *.32.gff3
 do
-dna="${gff_file%.3*.gff3}.dna_rm.toplevel.fa"
-genome="${gff_file%.3*.gff3}"
+dna="${gff_file%.32.gff3}.dna_rm.toplevel.fa"
+genome="${gff_file%.32.gff3}"
 gff_file_sorted="${gff_file%.gff3}_sorted.gff3"
 #Cut from gff3 file description to get a bedtools input file with scaffolds' length
 grep "##sequence-region" $gff_file | cut -d ' ' -f4,5,6 | sed 's/ /\t/g' >$genome
@@ -40,7 +40,7 @@ interval=( 1000 2000 )
 #in the file containing minus strand sequences:
     sub_output_neg="${bedtools_neg%.fasta}_n.fasta"
     sub_output_pos="${bedtools_pos%.fasta}_n.fasta"
-    revcom_output_neg="${dna%.fa*}_n_revcom.fasta"
+    revcom_output_neg="${bedtools_neg%.fasta}_n_revcom.fasta"
     /home/armita/prog/emboss/EMBOSS-4.0.0/bin/revseq $sub_output_neg \
     $revcom_output_neg
 #Concatenate all the genes into one file and turn into single-line fasta
