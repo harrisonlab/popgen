@@ -1,5 +1,5 @@
 #!/bin/bash
-input=/home/sobczm/popgen/clock/DNA_genomes
+input=/home/sobczm/popgen/clock/DNA_genomes/
 scripts=/home/sobczm/bin/popgen/clock/motif_discovery
 #cd $input
 for gff_file in *.32.gff3

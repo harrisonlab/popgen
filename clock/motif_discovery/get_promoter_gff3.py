@@ -47,14 +47,14 @@ for line in gff_h:
                 if fields[6] == "+":
                     new_start = int(fields[3]) - int(interval)
                     new_end = int(fields[3]) - 1
-                    if new_start < 0:
-                        new_start = 1
-                    out_plus.write(fields[0] + "\t" + fields[1]  + "\t" + fields[2]  + "\t")
-                    out_plus.write(str(new_start) + "\t" + str(new_end)  + "\t")
-                    out_plus.write(fields[5] + "\t" + fields[6]  + "\t" + fields[7]  + "\t")
-                    out_plus.write(fields[8] + "\n")
-                    out_coords.write(fields[0] + ":" + str(new_start - 1) + "-" + str(new_end))
-                    out_coords.write("\t" + protein_id[1] + "\n")
+                    #only include sequences with promoter sequence present on the contig
+                    if new_start > 0:
+                        out_plus.write(fields[0] + "\t" + fields[1]  + "\t" + fields[2]  + "\t")
+                        out_plus.write(str(new_start) + "\t" + str(new_end)  + "\t")
+                        out_plus.write(fields[5] + "\t" + fields[6]  + "\t" + fields[7]  + "\t")
+                        out_plus.write(fields[8] + "\n")
+                        out_coords.write(fields[0] + ":" + str(new_start - 1) + "-" + str(new_end))
+                        out_coords.write("\t" + protein_id[1] + "\n")
                 if (fields[6] == "-" and len(previous_line) > 1):
                     fields2 = previous_line
                     new_start = int(fields2[4]) + 1
