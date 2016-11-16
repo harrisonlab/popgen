@@ -97,11 +97,12 @@ done
 #Submit Trinity Assembly
 qsub $scripts/sub_trinity_assembly.sh all_reads_f.fastq all_reads_r.fastq
 
-#Clean-up
-rm $input/reads/all_reads_f.fastq $input/reads/all_reads_r.fastq
 #Use RepeatMasker to mask repeat and low complexity regions in the transcriptomes.
 #Transcriptomes from the literature
 qsub $scripts/sub_repeat_masker.sh $input/transcriptomes/NZ/GBGJ01_1_fsa_nt_nz.fasta
 qsub $scripts/sub_repeat_masker.sh $input/transcriptomes/RAJ/GBJZ01_1_fsa_nt_raj.fasta
 qsub $scripts/sub_repeat_masker.sh $input/transcriptomes/KIM/GBRQ01_1_fsa_nt_combined_kim.fasta
 #In-house transcriptomes
+
+#Cancel that: not suitable for repeat-masking of the transcriptomes (run never finishes, as repeat models cannot be generated).
+#Will repeat-mask after the bait design stage with dust.
