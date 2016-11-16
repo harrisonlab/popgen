@@ -44,6 +44,8 @@ export PATH="$JAVA_HOME/bin:$PATH"
 [BEASTGen ver. 1.0.2] (http://beast.bio.ed.ac.uk/beastgen) Creates BEAST XML input files.
 `/home/sobczm/bin/beast/BEASTGenv1.0.2/bin`
 
+[bioawk] (https://github.com/lh3/bioawk) BWK awk modified for biological data. `/home/sobczm/bin/bioawk`
+
 [BUSCO ver 1.22] (http://busco.ezlab.org/): Assessing genome assembly and annotation completeness with Benchmarking Universal Single-Copy Orthologs
 `/home/sobczm/bin/BUSCO_v1.22/BUSCO_v1.22.py`
 
