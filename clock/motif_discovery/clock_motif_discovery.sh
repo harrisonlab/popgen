@@ -175,7 +175,4 @@ cd $dna/promoters/extended/ace
 qsub $scripts/sub_fimo.sh ace_2000_nc.fasta min_ace.txt
 
 #Found some motifs on both strands but mostly imperfect, and even inside the exons!
-
-################Motif discovery testing
-# A) ACE motif containing (TCTTGGCA)
-# B) Clockbox motif containing (CGAT(N)CCGCT)
+#Cannot replicate the results from Correa et al. (2003) even when checking for the sequences manually.

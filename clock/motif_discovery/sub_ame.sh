@@ -16,6 +16,5 @@ ffilename=$(basename "$fasta")
 mfilename=$(basename "$motif")
 out=${mfilename%.*}_vs_${ffilename%.*}
 
-
 meme=/home/sobczm/bin/meme_4.11.2/bin
-$meme/ame --oc $out --control $control --pvalue-threshold 0.05 $fasta $motif 
+$meme/ame --oc $out --control $control --pvalue-threshold 0.05 $fasta $motif
