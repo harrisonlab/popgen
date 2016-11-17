@@ -17,4 +17,4 @@ name=${filename%.*}
 
 usearch=/home/sobczm/bin/usearch/usearch9.0.2132_i86linux32
 
-$usearch -cluster_fast $fasta -id $id_threshold -sort length -consout $"{name}"_$"{id_threshold}"_clust.fasta
+$usearch -cluster_fast $fasta -id $id_threshold -sort length -consout $"{name}"_$"{id_threshold}"_clust.fasta -uc $"{name}"_$"{id_threshold}".clusters
