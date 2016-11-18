@@ -10,10 +10,9 @@
 #3rd argument - FASTA sequences used as random control
 
 fasta=$1
-control=$2
 ffilename=$(basename "$fasta")
 out=${ffilename%.*}_glam
 
 meme=/home/sobczm/bin/meme_4.11.2/bin
 $meme/glam2 n -O $out -2 -n 1000 $fasta
-#$meme/glam2 n -O $out -2 -n 1000000 $fasta
+#meme/glam2 n -O $out -2 -n 1000000 $fasta

@@ -1,5 +1,5 @@
 #!/bin/bash
-input=/home/sobczm/popgen/renseq/input/reads
+input=/home/sobczm/popgen/renseq/input/reads/MARIA_transcriptome
 scripts=/home/sobczm/bin/popgen/renseq
 
 #Align our reads to Fusarium genomes.

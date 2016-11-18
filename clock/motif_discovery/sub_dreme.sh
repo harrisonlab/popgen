@@ -5,9 +5,9 @@
 #$ -l h=blacklace01.blacklace|blacklace02.blacklace|blacklace04.blacklace|blacklace05.blacklace|blacklace06.blacklace|blacklace07.blacklace|blacklace08.blacklace|blacklace09.blacklace|blacklace10.blacklace
 
 #AME analysis to test if the select sequences are enriched for a specific motif
-#Input: 1st argument - FASTA sequences to be scanned
-#2nd argument - a MEME Motif file (produced by iupac2meme)
-#3rd argument - FASTA sequences used as random control
+#My Input: 1st argument - FASTA sequences to be scanned
+#My 2nd argument - a MEME Motif file (produced by iupac2meme)
+#My 3rd argument - FASTA sequences used as random control
 
 fasta=$1
 control=$2

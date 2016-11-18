@@ -30,3 +30,35 @@ sh $scripts/extract_ace_cbox_prom.sh
 
 #Count the number of sequences in each file and create an appropriate background
 #control file with the same number of random promoters.
+for file in $input/ace/*filtered.fasta
+do
+lines=`wc -l $file | cut -f1 -d' '`
+ngenes="$((lines/2))"
+ffilename=$(basename "$file")
+assembly=${ffilename%_filtered.fasta}.fasta
+qsub $scripts/sub_fasta_subsample.sh $input/$assembly $ngenes
+done
+
+for file in $input/cbox/*filtered.fasta
+do
+lines=`wc -l $file | cut -f1 -d' '`
+ngenes="$((lines/2))"
+ffilename=$(basename "$file")
+assembly=${ffilename%_filtered.fasta}.fasta
+qsub $scripts/sub_fasta_subsample.sh $input/$assembly $ngenes
+done
+
+#DREME and GLAM2
+for control in $input/cbox/*random*.fasta
+do
+file=${control%_random*}_filtered.fasta
+qsub $scripts/sub_dreme.sh $file $control
+qsub $scripts/sub_glam.sh $file
+done
+
+for control in $input/ace/*random*.fasta
+do
+file=${control%_random*}_filtered.fasta
+qsub $scripts/sub_dreme.sh $file $control
+qsub $scripts/sub_glam.sh $file
+done
