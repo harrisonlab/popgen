@@ -108,7 +108,10 @@ export PATH=/home/sobczm/bin/FastTree2.1.9:${PATH}
 
 [PhyloNet ver. 3.5.5] (http://bioinfo.cs.rice.edu/phylonet) & [PhyloNetHMM ver. 0.1] (http://bioinfo.cs.rice.edu/software/phmm) Bayesian inference of reticulate phylogenies under the multispecies network coalescent `/home/sobczm/bin/phmm`
 
-[RAxML ver. 8.2.9] (http://sco.h-its.org/exelixis/web/software/raxml/index.html) a ML a tool for phylogenetic analysis and post-analysis of large phylogenies `/home/sobczm/bin/RAxML8.2.9`
+[RAxML ver. 8.2.9] (http://sco.h-its.org/exelixis/web/software/raxml/index.html): a ML a tool for phylogenetic analysis and post-analysis of large phylogenies `/home/sobczm/bin/RAxML8.2.9`
+
+[RGAugury] (https://bitbucket.org/yaanlpc/rgaugury/): A pipeline for genome-wide prediction of resistance gene analogs (RGAs) in plants
+`/home/sobczm/bin/rgaugury`
 
 [snpEff & snpSift ver. 4.3] (http://snpeff.sourceforge.net/) Genetic variant annotation, effect prediction, VCF filtering and manipulation toolbox. `/home/sobczm/bin/snpEff`
 
