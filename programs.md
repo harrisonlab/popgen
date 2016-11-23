@@ -98,7 +98,7 @@ export PATH=/home/sobczm/bin/mafft-7.222/bin:${PATH}
 export PATH=/home/sobczm/bin/FastTree2.1.9:${PATH}
 
 ```
-[PAL2NAL] (http://www.bork.embl.de/pal2nal/): Robust conversion of protein sequence alignments into the corresponding codon alignments/home. `/sobczm/bin/pal2nal.v14`
+[PAL2NAL] (http://www.bork.embl.de/pal2nal/): Robust conversion of protein sequence alignments into the corresponding codon alignments `/home/sobczm/bin/pal2nal.v14`
 
 [PAML ver. 4.8] (http://abacus.gene.ucl.ac.uk/software/paml.html) A package of programs for phylogenetic analyses of DNA or protein sequences using maximum likelihood. `/home/sobczm/bin/paml4.8/bin`
 
