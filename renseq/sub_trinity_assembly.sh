@@ -6,6 +6,7 @@
 
 left_reads=$1
 right_reads=$2
+output_dir=$3
 
 cpath=$PWD
 
@@ -21,7 +22,7 @@ rr=$(basename "$right_reads")
 cd $temp_dir
 
 #First convert fastq to fasta.
-fastool=/home/sobczm/bin/trinityrnaseq-2.2.0/trinity-plugins/fastool
+fastool=/home/sobczm/bin/trinityrnaseq-2.2.0/trinity-plugins/fastool/fastool
 zcat $lr | $fastool --illumina-trinity >all_reads_f.fasta
 zcat $rr | $fastool --illumina-trinity >all_reads_r.fasta
 
@@ -31,10 +32,10 @@ $trinity --seqType fa --max_memory 300G --CPU 20 --min_contig_length 300 \
 
 #output_dir=$(echo $lr | sed 's/_1.fastq.gz//')
 
-rm *.f*q
-rm *.f*q.gz
+rm *.fastq
+rm *.fastq.gz
 rm all_reads_f.fasta
 rm all_reads_r.fasta
-#mv trinity_out_dir $output_dir
+mv ./trinity_out_dir ./$output_dir
 cp -r * $cpath
 rm -rf $temp_dir
