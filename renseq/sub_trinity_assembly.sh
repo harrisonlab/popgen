@@ -36,6 +36,6 @@ rm *.fastq
 rm *.fastq.gz
 rm all_reads_f.fasta
 rm all_reads_r.fasta
-mv ./trinity_out_dir ./$output_dir
 cp -r * $cpath
+mv $cpath/trinity_out_dir $cpath/$output_dir
 rm -rf $temp_dir

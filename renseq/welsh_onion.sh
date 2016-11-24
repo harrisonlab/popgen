@@ -1,7 +1,6 @@
 #!/bin/bash
 input=/home/sobczm/popgen/renseq/input/reads
 scripts=/home/sobczm/bin/popgen/renseq
-fastqdump=/home/sobczm/bin/sratoolkit.2.8.0-ubuntu64/bin/fastq-dump
 
 #As the number of R genes discovered in the onion transcriptomes was quite low
 #mining the other Allium species transcriptomes for them. Towards this end
@@ -16,6 +15,7 @@ do
     while [ $Jobs -gt 1 ]
     do
         output_dir=$(echo $reads | awk -F/ '{print $(NF-1)}')
+        echo $output_dir
         sleep 100
         printf "."
         Jobs=$(qstat | grep 'sub_trinit' | wc -l)
@@ -24,9 +24,97 @@ reads2=$(echo "$reads" | sed 's/_1.fastq.gz/_2.fastq.gz/')
 qsub $scripts/sub_trinity_assembly.sh $reads $reads2 $output_dir
 done
 
+#Following that, carry on with the previously identified analyses to uncover
+#R genes in the transcriptomes: NLR Parser, Plant R Genes and rgaugury
+input=/home/sobczm/popgen/renseq/input/transcriptomes
+input2=/home/sobczm/popgen/renseq/input/transcriptomes/plant_rgenes/common_onion
+scripts=/home/sobczm/bin/popgen/renseq
 
-#After done with that, carry out a tblastx BLAST comparison with the R genes
-#in the old onion dataset to identify any potential new targets for bait design.
+##Common onion
+cd $input/CORNELL
+#1) NLRParser
+sh $scripts/sub_nlrparser.sh cornell_Trinity.fasta
+sort -k 1 cornell_Trinity_nlr.tsv >cornell_Trinity_nlr_sorted.tsv
+cd $input/H6
+sh $scripts/sub_nlrparser.sh h6_Trinity.fasta
+sort -k 1 h6_Trinity_nlr.tsv >h6_Trinity_nlr_sorted.tsv
 
-#If such are found, then use tblastn to check for the percentage identity in the sequences
-#of R genes which already have homologs in both transcriptome datasets.
+#Generate 6 frame protein translations
+java -jar $scripts/Translate6Frame.jar -i $input/CORNELL/cornell_Trinity.fasta \
+-o $input/CORNELL/onion_cornell_protein.fa
+java -jar $scripts/Translate6Frame.jar -i $input/H6/h6_Trinity.fasta \
+-o $input/H6/onion_h6_protein.fa
+
+#2) Plant R genes pipeline
+names=( "cornell" "h6" )
+for f in "${names[@]}"
+do
+fca=$(echo $f | tr '[:lower:]' '[:upper:]')
+file=onion_${f}_protein.fa
+mkdir -p $input2/$fca
+cp $input/$fca/$file $input2/$fca/$file
+cd $input2/$fca
+awk '!/^>/ { printf "%s", $0; n = "\n" } /^>/ { print n $0; n = "" } END { printf "%s", n }' $file>temp && mv temp $file
+awk 'BEGIN {n_seq=0;} /^>/ {if(n_seq%100==0){file=sprintf("myseq%d.fa",n_seq);} print >> file; n_seq++; next;} { print >> file; }' < $file
+for file in myseq*.fa
+do
+    Jobs=$(qstat | grep 'sub_hmmsca' | wc -l)
+    while [ $Jobs -gt 100 ]
+    do
+        sleep 10
+        printf "."
+        Jobs=$(qstat | grep 'sub_hmmsca' | wc -l)
+    done
+qsub $scripts/sub_hmmscan.sh $file
+done
+#concatenate the outputs into one file
+for a in $input2/$fca/*.out; do cat $a >> onion_${f}_protein.out; done
+#Prepare input for domain analysis
+mkdir -p $input2/domains/$f
+cp $input2/$fca/onion_${f}_protein* $input2/domains/$f
+cp $input2/test2/db_descriptions.txt $input2/domains/$f
+mv $input2/domains/$f/onion_${f}_protein.fa onion_167_TAIR10.protein.fa
+mv $input2/domains/$f/onion_${f}_protein.out onion_167_TAIR10.protein.fa_pfamscan-04-08-2014.out
+#Carry out domain parsing
+perl $rgenes/processing_scripts/K-parse_Pfam_domains_v3.1.pl --pfam $input2/domains/$f/onion_167_TAIR10.protein.fa_pfamscan-04-08-2014.out \
+--evalue 0.0001 --out $input2/domains/$f/onion_167_TAIR10.protein.fa_pfamscan-04-08-2014.parsed.verbose --verbose T
+perl $rgenes/processing_scripts/K-parse_Pfam_domains_NLR-fusions-v2.3.pl \
+--indir $input2/domains/$f --evalue 0.0001 --outdir $input2/domains/$f--db_description $input/domains/$f/db_descriptions.txt
+done
+
+#Sort the output
+for a in $input/domains/*/onion_167_TAIR10.protein.fa_pfamscan-04-08-2014.parsed.verbose.NLR*
+do
+    sort -k 1 $a >${a%.*}_sorted.txt
+done
+
+#3) RGAugury
+cd $input
+names=( "cornell" "h6" )
+for f in "${names[@]}"
+do
+fca=$(echo $f | tr '[:lower:]' '[:upper:]')
+#Create a seperate directory structure
+mkdir -p $input/rgaugury/$f
+cp $input/$fca/onion_${f}_protein.fa $input/rgaugury/$f
+#Remove stop-codons from six-frame translated contigs
+sed -i 's/\*//g' $input/rgaugury/$f/onion_${f}_protein.fa
+#Break down the files into smaller chunks and run rgaugury for each transcriptome.
+#As this taking too long, going to parallelise in a crude way by splitting
+#into small files with 100 protein sequences and running 20 at a time.
+cd $input/rgaugury/$f
+file=onion_${f}_protein.fa
+awk '!/^>/ { printf "%s", $0; n = "\n" } /^>/ { print n $0; n = "" } END { printf "%s", n }' $file>temp && mv temp $file
+awk 'BEGIN {n_seq=0;} /^>/ {if(n_seq%100==0){file=sprintf("myseq%d.fa",n_seq);} print >> file; n_seq++; next;} { print >> file; }' < $file
+for file in myseq*.fa
+do
+    Jobs=$(qstat | grep 'sub_rgaugu' | wc -l)
+    while [ $Jobs -gt 40 ]
+    do
+        sleep 10
+        printf "."
+        Jobs=$(qstat | grep 'sub_rgaugu' | wc -l)
+    done
+qsub $scripts/sub_rgaugury.sh $file
+done
+done

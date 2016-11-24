@@ -4,6 +4,7 @@ scripts=/home/sobczm/bin/popgen/renseq
 
 #Annotate the unmasked transcriptomes with NLR Parser:
 #Run NLR Parser behind a screen as java config is messed up on SGE and sort output
+
 cd $input/KIM/
 sh $scripts/sub_nlrparser.sh GBRQ01_1_fsa_nt_combined_kim.fasta
 sort -k 1 GBRQ01_1_fsa_nt_combined_kim_nlr.tsv >GBRQ01_1_fsa_nt_combined_kim_nlr_sorted.tsv
