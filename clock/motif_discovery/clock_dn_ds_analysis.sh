@@ -51,4 +51,18 @@ sed -i -e 's/>/>Valf_/' Verticillium_alfalfae
 sed -i -e 's/>/>Vdah_/' Verticillium_dahliae
 sed -i -e 's/>/>Vlon_/' Verticillium_longisporum
 #Extract sequences for each individual gene
-python $scripts/prepare_dnds_sequences.py 
+python $scripts/prepare_dnds_sequences.py dn_ds_sequences_alignment.txt
+mkdir $input/sequences
+mv *fasta ./$input/sequences
+#Transalign the sequenes by codon
+cd $input/sequences
+transalign=/home/sobczm/bin/transalign
+clustalw=/home/sobczm/bin/clustalw1.83/clustalw
+for a in *fasta
+do
+perl $transalign/transAlign.pl -d"$a" -b1 -gf -fd -if -ope -mb -n20 -sn0 -ri -p$clustalw
+done
+#has to be extended phylip format for codeml
+
+#Manually curate the sequences to remove dissimilar ones which did not align well and
+#repeat the procedure.
