@@ -31,22 +31,32 @@ input2=/home/sobczm/popgen/renseq/input/transcriptomes/plant_rgenes/common_onion
 scripts=/home/sobczm/bin/popgen/renseq
 
 ##Common onion
-cd $input/CORNELL
 #1) NLRParser
+cd $input/CORNELL
 sh $scripts/sub_nlrparser.sh cornell_Trinity.fasta
 sort -k 1 cornell_Trinity_nlr.tsv >cornell_Trinity_nlr_sorted.tsv
 cd $input/H6
 sh $scripts/sub_nlrparser.sh h6_Trinity.fasta
 sort -k 1 h6_Trinity_nlr.tsv >h6_Trinity_nlr_sorted.tsv
+cd $input/HAN
+sh $scripts/sub_nlrparser.sh han_Trinity.fasta
+sort -k 1 han_Trinity_nlr.tsv >han_Trinity_nlr_sorted.tsv
+cd $input/SP3B
+sh $scripts/sub_nlrparser.sh sp3b_Trinity.fasta
+sort -k 1 sp3b_Trinity_nlr.tsv >sp3b_Trinity_nlr_sorted.tsv
 
 #Generate 6 frame protein translations
 java -jar $scripts/Translate6Frame.jar -i $input/CORNELL/cornell_Trinity.fasta \
 -o $input/CORNELL/onion_cornell_protein.fa
 java -jar $scripts/Translate6Frame.jar -i $input/H6/h6_Trinity.fasta \
 -o $input/H6/onion_h6_protein.fa
+java -jar $scripts/Translate6Frame.jar -i $input/HAN/han_Trinity.fasta \
+-o $input/HAN/onion_han_protein.fa
+java -jar $scripts/Translate6Frame.jar -i $input/SP3B/sp3b_Trinity.fasta \
+-o $input/SP3B/onion_sp3b_protein.fa
 
 #2) Plant R genes pipeline
-names=( "cornell" "h6" )
+names=( "cornell" "h6" "han" "sp3b" )
 for f in "${names[@]}"
 do
 fca=$(echo $f | tr '[:lower:]' '[:upper:]')
@@ -90,7 +100,7 @@ done
 
 #3) RGAugury
 cd $input
-names=( "cornell" "h6" )
+names=( "cornell" "h6" "han" "sp3b" )
 for f in "${names[@]}"
 do
 fca=$(echo $f | tr '[:lower:]' '[:upper:]')
