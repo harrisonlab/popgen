@@ -119,7 +119,7 @@ export PATH=/home/sobczm/bin/FastTree2.1.9:${PATH}
 
 [RAxML ver. 8.2.9] (http://sco.h-its.org/exelixis/web/software/raxml/index.html): a ML a tool for phylogenetic analysis and post-analysis of large phylogenies `/home/sobczm/bin/RAxML8.2.9`
 
-[RGAugury] (https://bitbucket.org/yaanlpc/rgaugury/): A pipeline for genome-wide prediction of resistance gene analogs (RGAs) in plants. **Multiple dependencies**
+[RGAugury] (https://bitbucket.org/yaanlpc/rgaugury/): A pipeline for genome-wide prediction of resistance gene analogs (RGAs) in plants. **Multiple dependencies, including own copy of Phobius**
 `/home/sobczm/bin/rgaugury`
 
 [snpEff & snpSift ver. 4.3] (http://snpeff.sourceforge.net/) Genetic variant annotation, effect prediction, VCF filtering and manipulation toolbox. `/home/sobczm/bin/snpEff`
