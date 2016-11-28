@@ -44,6 +44,15 @@ sort -k 1 han_Trinity_nlr.tsv >han_Trinity_nlr_sorted.tsv
 cd $input/SP3B
 sh $scripts/sub_nlrparser.sh sp3b_Trinity.fasta
 sort -k 1 sp3b_Trinity_nlr.tsv >sp3b_Trinity_nlr_sorted.tsv
+cd $input/SP3B
+sh $scripts/sub_nlrparser.sh sp3b_Trinity.fasta
+sort -k 1 sp3b_Trinity_nlr.tsv >sp3b_Trinity_nlr_sorted.tsv
+cd $input/LIU
+sh $scripts/sub_nlrparser.sh liu_Trinity.fasta
+sort -k 1 liu_Trinity_nlr.tsv >liu_Trinity_nlr_sorted.tsv
+cd $input/SUN
+sh $scripts/sub_nlrparser.sh sun_Trinity.fasta
+sort -k 1 sun_Trinity_nlr.tsv >sun_Trinity_nlr_sorted.tsv
 
 #Generate 6 frame protein translations
 java -jar $scripts/Translate6Frame.jar -i $input/CORNELL/cornell_Trinity.fasta \
@@ -54,9 +63,13 @@ java -jar $scripts/Translate6Frame.jar -i $input/HAN/han_Trinity.fasta \
 -o $input/HAN/onion_han_protein.fa
 java -jar $scripts/Translate6Frame.jar -i $input/SP3B/sp3b_Trinity.fasta \
 -o $input/SP3B/onion_sp3b_protein.fa
+java -jar $scripts/Translate6Frame.jar -i $input/LIU/liu_Trinity.fasta \
+-o $input/LIU/onion_liu_protein.fa
+java -jar $scripts/Translate6Frame.jar -i $input/SUN/sun_Trinity.fasta \
+-o $input/SUN/onion_sun_protein.fa
 
 #2) Plant R genes pipeline
-names=( "cornell" "h6" "han" "sp3b" )
+names=( "cornell" "h6" "han" "sp3b" "liu" "sun" )
 for f in "${names[@]}"
 do
 fca=$(echo $f | tr '[:lower:]' '[:upper:]')
@@ -96,35 +109,4 @@ done
 for a in $input/domains/*/onion_167_TAIR10.protein.fa_pfamscan-04-08-2014.parsed.verbose.NLR*
 do
     sort -k 1 $a >${a%.*}_sorted.txt
-done
-
-#3) RGAugury
-cd $input
-names=( "cornell" "h6" "han" "sp3b" )
-for f in "${names[@]}"
-do
-fca=$(echo $f | tr '[:lower:]' '[:upper:]')
-#Create a seperate directory structure
-mkdir -p $input/rgaugury/$f
-cp $input/$fca/onion_${f}_protein.fa $input/rgaugury/$f
-#Remove stop-codons from six-frame translated contigs
-sed -i 's/\*//g' $input/rgaugury/$f/onion_${f}_protein.fa
-#Break down the files into smaller chunks and run rgaugury for each transcriptome.
-#As this taking too long, going to parallelise in a crude way by splitting
-#into small files with 100 protein sequences and running 20 at a time.
-cd $input/rgaugury/$f
-file=onion_${f}_protein.fa
-awk '!/^>/ { printf "%s", $0; n = "\n" } /^>/ { print n $0; n = "" } END { printf "%s", n }' $file>temp && mv temp $file
-awk 'BEGIN {n_seq=0;} /^>/ {if(n_seq%100==0){file=sprintf("myseq%d.fa",n_seq);} print >> file; n_seq++; next;} { print >> file; }' < $file
-for file in myseq*.fa
-do
-    Jobs=$(qstat | grep 'sub_rgaugu' | wc -l)
-    while [ $Jobs -gt 40 ]
-    do
-        sleep 10
-        printf "."
-        Jobs=$(qstat | grep 'sub_rgaugu' | wc -l)
-    done
-qsub $scripts/sub_rgaugury.sh $file
-done
 done
