@@ -121,6 +121,8 @@ export PATH=/home/sobczm/bin/FastTree2.1.9:${PATH}
 
 [Phyutility ver. 2.6.6] (https://code.google.com/archive/p/phyutility/) Phyutility provides a set of phyloinformatics tools for summarizing and manipulating phylogenetic trees, manipulating molecular data and retrieving data from NCBI. `/home/sobczm/bin/phyutility`
 
+[popoolation ver. 1.2.2] (https://sourceforge.net/projects/popoolation/) PoPoolation is a pipeline for analysing pooled next generation sequencing data. `home/sobczm/bin/popoolation_1.2.2`
+
 [RAxML ver. 8.2.9] (http://sco.h-its.org/exelixis/web/software/raxml/index.html): a ML a tool for phylogenetic analysis and post-analysis of large phylogenies `/home/sobczm/bin/RAxML8.2.9`
 
 [RGAugury] (https://bitbucket.org/yaanlpc/rgaugury/): A pipeline for genome-wide prediction of resistance gene analogs (RGAs) in plants. **Multiple dependencies, including own copy of Phobius**
