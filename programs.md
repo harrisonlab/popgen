@@ -117,6 +117,8 @@ export PATH=/home/sobczm/bin/FastTree2.1.9:${PATH}
 
 [PhyloNet ver. 3.5.5] (http://bioinfo.cs.rice.edu/phylonet) & [PhyloNetHMM ver. 0.1] (http://bioinfo.cs.rice.edu/software/phmm) Bayesian inference of reticulate phylogenies under the multispecies network coalescent `/home/sobczm/bin/phmm`
 
+[Phyutility ver. 2.6.6] (https://code.google.com/archive/p/phyutility/) Phyutility provides a set of phyloinformatics tools for summarizing and manipulating phylogenetic trees, manipulating molecular data and retrieving data from NCBI. `/home/sobczm/bin/phyutility`
+
 [RAxML ver. 8.2.9] (http://sco.h-its.org/exelixis/web/software/raxml/index.html): a ML a tool for phylogenetic analysis and post-analysis of large phylogenies `/home/sobczm/bin/RAxML8.2.9`
 
 [RGAugury] (https://bitbucket.org/yaanlpc/rgaugury/): A pipeline for genome-wide prediction of resistance gene analogs (RGAs) in plants. **Multiple dependencies, including own copy of Phobius**
