@@ -38,13 +38,13 @@ done
 done
 
 
-
 #Concatenate the output for RLK, RLP and TMCC genes.
-names=( "nz" "cornell" "han" "liu" )
+names=( "cornell" "han" "liu" "sun" "h6" "sp3b" "brian" "maria" "raj" "kim" "nz" )
 for name in "${names[@]}"
 do
 cd $input/rgaugury/$name
 for f in *.TMCC.candidates.lst
+do
     cat $f >> ${name}.TMCC.candidates.lst
 done
 for f in *.RLP.candidates.lst
@@ -70,6 +70,27 @@ for f in *.NBS.candidates.lst
 do
     cat $f >> ${name}.NBS.candidates.lst
 done
+for f in *pfam*local*
+do
+    cat $f >> onion_${name}_protein.out
+done
+cp ${name}.lst ../results
 done
 
-#Detect contigs containing two other domains
+#Filter the results to obtain the list of putative RLK genes (TM-LRR-STTK or TM-LysM-STTK)
+for name in "${names[@]}"
+do
+cd $input/rgaugury/$name
+cp ${name}.RLKorRLP.merged.domains.txt ../RLK
+done
+
+cd $input/rgaugury/RLK
+for f in *.txt
+do
+python $scripts/extract_rlk.py $f
+done
+
+for f in *.rlk
+do
+python $scripts/add_strand_column.py $f
+done

@@ -6,3 +6,5 @@ Order of Shell script execution:
 5) bait_design.sh
 6) welsh_onion.sh
 7) rgaugury.sh
+8) additional_domains.sh
+9) ultimate_bait_design.sh

@@ -27,9 +27,11 @@ gene_list_h.close()
 
 for seq_record in SeqIO.parse(fasta_file, "fasta"):
     gene_id = str(seq_record.id)
-    if gene_id in genes:
-        pass
-    else:
+    flag = 0
+    for f in genes:
+        if re.search(f, gene_id):
+            flag = 1
+    if flag == 0:
         out.write(">" + gene_id + "\n" + str(seq_record.seq) + "\n")
 
 out.close()
