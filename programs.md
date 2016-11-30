@@ -90,6 +90,8 @@ Genomic Diversity `/home/sobczm/bin/DivStat`
 [MAFFT ver. 7.222] (http://mafft.cbrc.jp/alignment/software/) Rapid multiple sequence alignment based on fast Fourier transform
 `/home/sobczm/bin/mafft-7.222/bin`
 
+[MEGA ver. 7] (http://www.megasoftware.net/) Sophisticated and user-friendly software suite for analyzing DNA and protein sequence data from species and populations. `/home/sobczm/bin/mega`
+
 [MEME Suite ver. 4.11.2] (http://meme-suite.org/) MEME SUITE: tools for motif discovery and searching `/home/sobczm/bin/meme_4.11.2/bin`
 
 [NLR-Parser] (https://github.com/steuernb/NLR-Parser) A tool to rapidly annotate the NLR complement from sequenced plant genomes. `home/sobczm/bin/NLR-Parser` Requires meme 4.9.1 in `/home/sobczm/bin/meme_4.9.1/bin`
