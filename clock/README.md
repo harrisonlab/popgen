@@ -1,6 +1,14 @@
+Script execution order:
+1) clock_ortho.sh && clock_ortho_andy.sh
+2) extract_promoter.sh
+3) clock_motif_discovery.sh
+4) clock_motif_discovery_cont.sh
+5) clock_dn_ds_analysis.sh
+
+
 Genome DNA sequences (repeat-masked) and GFF3 annotation files as well as protein sequences were downloaded from Ensembl Fungi for the following species:
 
-A) **Small dataset**
+A) **Slim dataset**
 
 Botrytis cinerea
 
@@ -29,7 +37,7 @@ For Fusarium oxysporum, internal Fus2 genome was used.
 
 
 
-B) **Extended sampling**
+B) **Extended dataset**
 
 all the species in A) and:
 
@@ -79,10 +87,3 @@ Trichoderma gamsii
 Trichoderma harzianum
 
 Trichoderma virens
-
-
-1) clock_ortho.sh && clock_ortho_andy.sh
-2) extract_promoter.sh
-3) clock_motif_discovery.sh
-4) clock_motif_discovery_cont.sh
-5) clock_dn_ds_analysis.sh
