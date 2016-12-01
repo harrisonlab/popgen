@@ -195,3 +195,31 @@ id_threshold=0.95
 $usearch -cluster_fast $fasta -id $id_threshold -sort length \
 -consout ${fasta%.*}_"$id_threshold"_clust.fasta -uc ${fasta%.*}_"$id_threshold".clusters
 #Contains 20259 unique sequences subsequently clustered into 1458 clusters
+id_threshold=0.99
+#1829 clusters
+#to fix the ends for no end gaps, use -leftjust and -rightjust
+#99%
+$usearch -cluster_fast $fasta -id $id_threshold -sort length -leftjust -rightjust \
+-consout ${fasta%.*}_"$id_threshold"_nogap_clust.fasta -uc ${fasta%.*}_"$id_threshold"_nogap.clusters
+#Results in 19981 bait sequences
+#95%
+$usearch -cluster_fast $fasta -id $id_threshold -sort length -leftjust -rightjust \
+-consout ${fasta%.*}_"$id_threshold"_nogap_clust.fasta -uc ${fasta%.*}_"$id_threshold"_nogap.clusters
+#Results in 19589 bait sequences, and at 90% in 19459 sequences
+
+#Suggestion for the future: Use 5x coverage for initial bait design
+n=5
+python $scripts/create_baits.py --inp $input/all_rgenes.fasta --coverage $n \
+--out all_rgenes_baits_"$n"x.fasta
+#Check for presence of Ns and repetitive sequences
+fasta=all_rgenes_baits_"$n"x.fasta
+#Hard-mask repetitive regions with Ns
+$usearch -fastx_mask $fasta -qmask dust -fastaout "${fasta%.*}"_masked.fasta -hardmask
+#Remove the baits containing Ns.
+python $scripts/remove_N_fasta.py all_rgenes_baits_"$n"x_masked.fasta
+
+fasta=all_rgenes_baits_"$n"x_masked_noN.fasta
+id_threshold=0.90
+$usearch -cluster_fast $fasta -id $id_threshold -sort length -leftjust -rightjust \
+-consout ${fasta%.*}_"$id_threshold"_nogap_clust.fasta -uc ${fasta%.*}_"$id_threshold"_nogap.clusters
+#24701 unique baits clustered into clusters at 90% identity
