@@ -28,6 +28,4 @@ fi
 java -jar $pgdspid/PGDSpider2-cli.jar -inputfile $input \
 -inputformat VCF -outputfile $outfile -outputformat STRUCTURE -spid $pgdspid/$conver
 
-which java
-
 dos2unix $outfile

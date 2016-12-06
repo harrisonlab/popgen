@@ -223,3 +223,21 @@ id_threshold=0.90
 $usearch -cluster_fast $fasta -id $id_threshold -sort length -leftjust -rightjust \
 -consout ${fasta%.*}_"$id_threshold"_nogap_clust.fasta -uc ${fasta%.*}_"$id_threshold"_nogap.clusters
 #24701 unique baits clustered into clusters at 90% identity
+
+#Finally, designing baits just using NBS domain-containing genes
+n=5
+python $scripts/create_baits.py --inp $input/all_nbs_genes.fasta --coverage $n \
+--out all_nbs_genes_baits_"$n"x.fasta
+
+#Check for presence of Ns and repetitive sequences
+fasta=all_nbs_genes_baits_"$n"x.fasta
+#Hard-mask repetitive regions with Ns
+$usearch -fastx_mask $fasta -qmask dust -fastaout "${fasta%.*}"_masked.fasta -hardmask
+#Remove the baits containing Ns.
+python $scripts/remove_N_fasta.py all_nbs_genes_baits_"$n"x_masked.fasta
+
+fasta=all_nbs_genes_baits_"$n"x_masked_noN.fasta
+id_threshold=0.90
+$usearch -cluster_fast $fasta -id $id_threshold -sort length -leftjust -rightjust \
+-consout ${fasta%.*}_"$id_threshold"_nogap_clust.fasta -uc ${fasta%.*}_"$id_threshold"_nogap.clusters
+#24701 unique baits clustered into clusters at 90% identity

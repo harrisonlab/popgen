@@ -1,8 +1,8 @@
 #!/bin/bash
-input=/home/sobczm/popgen/input
+input=/home/sobczm/popgen
 scripts=/home/sobczm/bin/popgen/codon
 #Create a directory for all codonW analyses (copy codonW binary folder)
-cd /home/sobczm/popgen/codon/
+cd $input
 cp -r /home/sobczm/bin/codonW /home/sobczm/popgen/codon
 mkdir codonW/input && cd codonW/input
 #Fetch CDS sequences for all external Fusarium oxysporum genomes available as input for analysis
@@ -124,7 +124,7 @@ mv ${filename%.*}.blk ${filename%.*}.cutot
 # -cutab: tabulation of codon usage by gene
 $cw/codonw $filename -nomenu -silent -cutab
 mv ${filename%.*}.blk ${filename%.*}.cutab
-# Correspondence analyscdis
+# Correspondence analysis
 # coa_num: percentage of genes taken from each tail of Nec distribution
 $cw/codonw $filename -nomenu -silent -coa_cu -coa_num 5%
 # Calculate all codon bias indices
