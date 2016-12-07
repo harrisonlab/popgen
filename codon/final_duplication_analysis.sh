@@ -35,7 +35,6 @@ $scripts/detect_duplications.py --b ../$dagchainer_blast --g ../$gene_table --o 
 
 #Conclusions
 #High number of duplicated contigs at the ends of contigs: is this due to
-#Contigs being shorter there, and therefore more likely to find a well-covered hit?
 #Contigs 10 and 14, 16 are full of duplications, as other lineage-specific contigs.
 
 #Now, focussing on the output summary table from the second run, where tandem duplications
@@ -44,7 +43,7 @@ $scripts/detect_duplications.py --b ../$dagchainer_blast --g ../$gene_table --o 
 #Get a selection of summary table outputs containing different
 #effector subsets
 effectors=/home/sobczm/popgen/input/effectors
-summary_table=Fus2_final_genes_combined.cdna_one.fasta_vs_Fus2_final_genes_combined.cdna_one_nucl.db_filtered_dagchainer_summary
+summary_table=Fus2_final_genes_combined.cdna_one.fasta_vs_Fus2_final_genes_combined.cdna_one_nucl.db_filtered_dagchainer_summaryf
 
 cd $wdir/10genes
 #13 out of 940 CAZY genes duplicated. All segmental duplications (in total 1355 seg. duplications detected across the genome).
@@ -95,6 +94,18 @@ cp non-transposon_duplications.aligncoordsf ./no_transposon
 cp Fus2_final_genes_appended_gene_table.txt ./no_transposon
 cd $wdir/no_transposon
 
+#And just in case, analyse transposons separately too.
+cp transposon_duplications.aligncoordsf ./no_transposon
+cp Fus2_final_genes_appended_gene_table.txt ./no_transposon
+cd $wdir/transposon
+
 #Run duplication analysis, using max. 10 genes distance to define tandem duplications
 $scripts/detect_duplications.py --b non-transposon_duplications.aligncoordsf --g Fus2_final_genes_appended_gene_table.txt --o gene --t 10
 #The same pattern of duplication distribution detected as when using the transposon-containing dataset.
+#Analyse the transposons
+$scripts/detect_duplications.py --b transposon_duplications.aligncoordsf --g Fus2_final_genes_appended_gene_table.txt --o gene --t 10
+
+#Add domain info to the focal gene in each duplication cluster.
+python $scripts/add_annotation.py $annotations/Fus2_canu_new_gene_annotations.tab $summary_table
+#Count the core and LS location of duplicated genes
+python $scripts/classify_genome_duplications2.py Fus2_final_genes_appended_gene_table.txt $summary_table
