@@ -27,7 +27,7 @@ input=/<input_xml_file_here_created_by_beauti>/
 cd $path
 $beast -threads -1 $input
 
-#After the run, check convergence with Tracer, summarise with TreeAnnotator 
+#After the run, check convergence with Tracer, summarise the final tree with TreeAnnotator 
 burnin=10 #percentage of states to be considered as burnin
 
 TreeAnnotator=/home/sobczm/bin/beast/BEASTv2.4.2/bin/treeannotator
@@ -37,5 +37,5 @@ output2="${t%.trees}_summary.tree"
 $TreeAnnotator -heights median -burnin $burnin $t $output2
 done
 
-#Visualise and beautify the tree with FigTree
+#Visualise and beautify the final tree (suffix "summary") with FigTree
 /home/sobczm/bin/FigTree_v1.4.2/bin/figtree
