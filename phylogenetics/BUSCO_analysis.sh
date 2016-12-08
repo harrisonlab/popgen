@@ -138,4 +138,5 @@ cat final_list_ssc >align_input_list.txt
 ## Create FASTA files with separate alignment input for each of the selected genes.
 #This command should generate a separate FASTA file for each BUSCO complete single copy gene conserved across all your genomes analysed. 
 #You use those files as input to be aligned by MAFFT in the next step.
+# Before executing the script, make sure you are in the directory with all the relevant BUSCO run results dirs.
 perl $scripts/get_alignments.pl
