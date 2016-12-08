@@ -13,6 +13,7 @@ My current bash profile
 5. Codon
 
 ###*Each directory contains a README.md file listing shell scripts which contain a model (example) analysis using scripts in a given directory.
+###*Read the header of each individual script you are trying to exectute to find out about the options, input and output file.
 
 *What is in each directory? Only listing re-usable analyses*
 
@@ -24,3 +25,6 @@ My current bash profile
 
 ##Phylogenetics
 
+1. Model analysis file: [BUSCO_analysis.sh] (https://github.com/harrisonlab/popgen/blob/master/phylogenetics/BUSCO_analysis.sh)
+
+*Contents*:
