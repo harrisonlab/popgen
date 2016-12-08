@@ -63,8 +63,8 @@ a pairwise manner and k-mean cluster the samples, and generate a heatmap and a d
 * Another way to detect any population genetic structure between samples: PCA
 [pca.R] (https://github.com/harrisonlab/popgen/blob/master/snp/pca.R)
 * Show relationships between samples using a neighbour-joining tree.
-
 **Haploid individuals**
 [nj_tree_haploid] (https://github.com/harrisonlab/popgen/blob/master/snp/nj_tree_haploid.sh)
 **Diploid individuals**
 [nj_tree_diploid] (https://github.com/harrisonlab/popgen/blob/master/snp/nj_tree_diploid.sh)
+
