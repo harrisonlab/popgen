@@ -27,7 +27,7 @@ input=/<input_xml_file_here_created_by_beauti>/
 cd $path
 $beast -threads -1 $input
 
-#After the run, check convergence with Tracer, summarise with TreeAnnotator and visualise with FigTree
+#After the run, check convergence with Tracer, summarise with TreeAnnotator 
 burnin=10 #percentage of states to be considered as burnin
 
 TreeAnnotator=/home/sobczm/bin/beast/BEASTv2.4.2/bin/treeannotator
