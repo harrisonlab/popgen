@@ -21,3 +21,6 @@ My current bash profile
 3. More complex analyses involving SNP sampling across populations identified in 2. Divergence, natural selection, recombination.
 4. De novo motif discovery and motif scanning. Orthology analysis and automated generation of ortholog trees. Pairwise, branch-site and branch dN/dS codeml models.
 5. Analysis of gene codon usage and gene duplication levels.
+
+##Phylogenetics
+
