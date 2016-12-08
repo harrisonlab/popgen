@@ -52,6 +52,7 @@ for line in sf_h:
             elif ((contigs[match[0]] in lineage_specific) and (contigs[match_a[0]] in lineage_specific)):
                 ls_ls += 1
 
+
 sf_h.close
 
 print ("Query core & Subject core " + str(c_c) + "\n")
