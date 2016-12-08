@@ -43,7 +43,7 @@ The BEAST analysis has to be so far set-up by hand. A guide to do so and obtain 
 
 
 ##SNP
-###Scripts to call SNPs on multiple individuals using a single genome/transcriptome reference and establish the basic population structure.
+###Scripts to call SNPs on multiple individuals using a single genome/transcriptome reference, filter (and downsample) them, and establish the basic population structure.
 1. Model analysis file: [pre_SNP_calling_cleanup.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/pre_SNP_calling_cleanup.sh)
 [sub_pre_snp_calling.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/sub_pre_snp_calling.sh)
 Script accepts SAM mappings output by Bowtie2 along with sample ID, and outputs filtered, indexed and ID-tagged BAM files to be used for variant calling
@@ -63,8 +63,14 @@ a pairwise manner and k-mean cluster the samples, and generate a heatmap and a d
 * Another way to detect any population genetic structure between samples: PCA
 [pca.R] (https://github.com/harrisonlab/popgen/blob/master/snp/pca.R)
 * Show relationships between samples using a neighbour-joining tree.
-**Haploid individuals**
-[nj_tree_haploid] (https://github.com/harrisonlab/popgen/blob/master/snp/nj_tree_haploid.sh)
-**Diploid individuals**
-[nj_tree_diploid] (https://github.com/harrisonlab/popgen/blob/master/snp/nj_tree_diploid.sh)
-
+**Haploid individuals:**
+[nj_tree_haploid.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/nj_tree_haploid.sh)
+**Diploid individuals:**
+[nj_tree_diploid.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/nj_tree_diploid.sh)
+* Carry out a custom AMOVA analysis to try to partition genetic variation between a hypothetical factor, such as virulence level or geographic origin (requires considerable adaptation to individual analysis)
+[amova_dapc.R] (https://github.com/harrisonlab/popgen/blob/master/snp/amova_dapc.R)
+3. Model analysis file: [structure_analysis.sh] 
+(https://github.com/harrisonlab/popgen/blob/master/snp/structure_analysis.sh)
+* Downsample the VCF file with SNPs prior to analysis with the STRUCTURE program.
+/home/sobczm/bin/vcflib/bin/vcfrandomsample --rate 0.1 $input_vcf >$output_vcf
+* Run the STRUCTURE analysis specifying the likely number of population clusters (can be in the range of: n=1 up to n=number of individuals tested)
