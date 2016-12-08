@@ -7,9 +7,10 @@ scripts=/home/sobczm/bin/popgen/snp
 /home/sobczm/bin/vcflib/bin/vcfrandomsample \
 --rate 0.1 Fus2_canu_contigs_unmasked_filtered.vcf > Fus2_canu_contigs_unmasked_filtered_subsampled.vcf
 #Run STRUCTURE analysis for k 1 to 9, with 3 replicates for each k run consecutively.
+
 #Prepare STRUCTURE input (PGDSpider does not work when wrapped up in a bash script, grrr)
 #haploid (for diploid change the conversion script to vcf_to_structure_diploid.spid)
-#!!!! Need to change the path to file with population definitions
+#!!!! Need to change the path to file with population definitions !!!
 pgdspid=/home/sobczm/bin/PGDSpider_2.1.0.3
 input_file=Fus2_canu_contigs_unmasked_filtered_subsampled.vcf
 filename=$(basename "$input_file")
