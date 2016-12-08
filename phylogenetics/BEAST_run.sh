@@ -38,4 +38,5 @@ $TreeAnnotator -heights median -burnin $burnin $t $output2
 done
 
 #Visualise and beautify the final tree (suffix "summary") with FigTree
-/home/sobczm/bin/FigTree_v1.4.2/bin/figtree
+FigTree=/home/sobczm/bin/FigTree_v1.4.2/bin/figtree
+$FigTree
