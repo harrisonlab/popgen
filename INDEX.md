@@ -51,3 +51,20 @@ Script accepts SAM mappings output by Bowtie2 along with sample ID, and outputs 
 This script allows variant calling with GATK. It needs to be modified for each GATK run. First, it prepares genome reference indexes required by GATK and then calls the variant with the GATK package in the custom script similar to [sub_fus_SNP_calling_multithreaded.sh]
 (https://github.com/harrisonlab/popgen/blob/master/snp/sub_fus_SNP_calling_multithreaded.sh). 
 3. Model analysis file: [determine_genetic_structure.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/determine_genetic_structure.sh)
+The script contains a collection of scripts carrying out the following SNP-based population structure analyses:
+* Variant stats: 
+perl /home/sobczm/bin/vcftools/bin/vcf-stats 
+* Default variant filtering on the input VCF file recommended before structure analysis and required by some tools:
+[sub_vcf_parser.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/sub_vcf_parser.sh) 
+* Basic handle on the partitioning of SNPs between individuals. Calculate percentage of shared SNP alleles between each sample in
+a pairwise manner and k-mean cluster the samples, and generate a heatmap and a dendrogram as the output. 
+[similarity_percentage.py] (https://github.com/harrisonlab/popgen/blob/master/snp/similarity_percentage.py)
+[distance_matrix.R] (https://github.com/harrisonlab/popgen/blob/master/snp/distance_matrix.R) 
+* Another way to detect any population genetic structure between samples: PCA
+[pca.R] (https://github.com/harrisonlab/popgen/blob/master/snp/pca.R)
+* Show relationships between samples using a neighbour-joining tree.
+
+**Haploid individuals**
+[nj_tree_haploid] (https://github.com/harrisonlab/popgen/blob/master/snp/nj_tree_haploid.sh)
+**Diploid individuals**
+[nj_tree_diploid] (https://github.com/harrisonlab/popgen/blob/master/snp/nj_tree_diploid.sh)
