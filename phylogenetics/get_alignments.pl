@@ -1,4 +1,5 @@
 #!/usr/bin/perl -w
+#This script output FASTA files named after the BUSCO gene to which all the individual species sequences in the input belong.
 use lib '/home/sobczm/local/BioPerl-1.6.924';
 use Bio::SeqIO;
 use Cwd;
