@@ -7,7 +7,9 @@ from dendropy.calculate import popgenstat
 
 script, regex = argv
 
-##loop over all fasta files in a dir and calculate basic sequence diversity stats and print to file
+##loop over all fasta files in a dir and calculate basic sequence diversity stats (Pi - nucleotide diversity, number of segregating sites,
+##number of pairwise differences) and print to file
+##OUTPUTs: excel_stats.txt (table with the results per gene), sequence_stats.txt (verbal summary of the results per gene)
 f = open('sequence_stats.txt', 'w')
 e = open('excel_stats.txt', 'w')
 files = ["fileID"]
