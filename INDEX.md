@@ -36,8 +36,7 @@ Quickly align the sequences generated in 1. to be used for tree construction. Th
 [calculate_nucleotide_diversity.py] (https://github.com/harrisonlab/popgen/blob/master/phylogenetics/calculate_nucleotide_diversity.py)
 calculates basic sequence diversity stats for each alignment which could then guide selection of individual genes towards making the
 phylogenetic tree (see the model analysis file for a example of an analysis)
-
-The remainder of the model analysis file describes establishing the correct model of evolution for each gene using PartitionFinder that can be then implemented within BEAST. With some prior information on that, this step can be potentially abandoned. 
+*The remainder of the model analysis file describes establishing the correct model of evolution for each gene using PartitionFinder that can be then implemented within BEAST. With some prior information on that, this step can be potentially abandoned.*
 
 3. Model analysis file: [BEAST_run.sh] (https://github.com/harrisonlab/popgen/blob/master/phylogenetics/BEAST_run.sh)
 The BEAST analysis has to be so far set-up by hand. A guide to do so and obtain a final tree is given in the model analysis file above.
