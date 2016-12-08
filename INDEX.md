@@ -27,4 +27,7 @@ My current bash profile
 
 1. Model analysis file: [BUSCO_analysis.sh] (https://github.com/harrisonlab/popgen/blob/master/phylogenetics/BUSCO_analysis.sh)
 
-*Contents*:
+**Contents**:
+###Scripts to make a Bayesian phylogenetic tree.
+1. [sub_BUSCO_fungi.sh] (https://github.com/harrisonlab/popgen/blob/master/phylogenetics/sub_BUSCO.sh) 
+Establish the number of single copy Fungal/Eukaryotic/Prokaryotic conserved genes in the genome or transcriptome.
