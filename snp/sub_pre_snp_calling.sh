@@ -6,6 +6,8 @@
 
 ##############################################
 # Prep mappings from Bowtie2 for SNP calling
+### Remove multimapping reads, discordant reads. PCR and optical duplicates, and
+### add read group and sample name to each mapped read (preferably, the shortest ID possible)
 #INPUT:
 # 1st argument: input SAM file with your mappings
 # 2nd argument: sample name (prefix) to be used to identify it in the future
