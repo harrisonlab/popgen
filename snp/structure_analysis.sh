@@ -1,3 +1,7 @@
+#!/bin/bash
+input=/home/sobczm/popgen/snp/snp_calling/multithreaded
+scripts=/home/sobczm/bin/popgen/snp
+
 #Downsample SNPs for Structure analysis as enough information in 10% of the loci
 #(and more not informative because of linkagee)
 /home/sobczm/bin/vcflib/bin/vcfrandomsample \
