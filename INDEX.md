@@ -43,9 +43,9 @@ The BEAST analysis has to be so far set-up by hand. A guide to do so and obtain 
 
 
 ##SNP
-###Scripts to call SNPs on multiple individuals using a single genome reference and establish the basic population structure.
+###Scripts to call SNPs on multiple individuals using a single genome/transcriptome reference and establish the basic population structure.
 1. Model analysis file: [pre_SNP_calling_cleanup.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/pre_SNP_calling_cleanup.sh)
 [sub_pre_snp_calling.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/sub_pre_snp_calling.sh)
-Script 
+Script accepts SAM mappings output by Bowtie2 along with sample ID, and outputs indexed and ID-tagged BAM files to be used for variant calling
 2. Model analysis file: [sub_fus_SNP_calling.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/sub_fus_SNP_calling.sh)
 3. Model analysis file: [determine_genetic_structure.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/determine_genetic_structure.sh)
