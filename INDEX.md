@@ -46,6 +46,8 @@ The BEAST analysis has to be so far set-up by hand. A guide to do so and obtain 
 ###Scripts to call SNPs on multiple individuals using a single genome/transcriptome reference and establish the basic population structure.
 1. Model analysis file: [pre_SNP_calling_cleanup.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/pre_SNP_calling_cleanup.sh)
 [sub_pre_snp_calling.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/sub_pre_snp_calling.sh)
-Script accepts SAM mappings output by Bowtie2 along with sample ID, and outputs indexed and ID-tagged BAM files to be used for variant calling
-2. Model analysis file: [sub_fus_SNP_calling.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/sub_fus_SNP_calling.sh)
+Script accepts SAM mappings output by Bowtie2 along with sample ID, and outputs filtered, indexed and ID-tagged BAM files to be used for variant calling
+2. Model analysis file: [fus_SNP_calling_multithreaded.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/fus_SNP_calling_multithreaded.sh)
+This script allows variant calling with GATK. It needs to be modified for each GATK run. First, it prepares genome reference indexes required by GATK and then calls the variant with the GATK package in the custom script similar to [sub_fus_SNP_calling_multithreaded.sh]
+(https://github.com/harrisonlab/popgen/blob/master/snp/sub_fus_SNP_calling_multithreaded.sh). 
 3. Model analysis file: [determine_genetic_structure.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/determine_genetic_structure.sh)
