@@ -3,9 +3,8 @@ input=/home/sobczm/popgen/snp/snp_calling/multithreaded
 scripts=/home/sobczm/bin/popgen/snp
 
 #Only retain biallelic high-quality SNPS with no missing data for genetic analyses.
-#For diploid genomes use another script: sub_vcf_parser.sh
 cd $input
-$scripts/vcf_parser_haploid.py --i Fus2_canu_contigs_unmasked.vcf
+qsub $scripts/sub_vcf_parser.sh Fus2_canu_contigs_unmasked.vcf
 #General VCF stats (remember that vcftools needs to have the PERL library exported)
 perl /home/sobczm/bin/vcftools/bin/vcf-stats \
 Fus2_canu_contigs_unmasked.vcf >Fus2_canu_contigs_unmasked.stat
@@ -28,7 +27,6 @@ Rscript --vanilla $popgen/snp/amova_dapc.R
 /home/sobczm/bin/vcflib/bin/vcfrandomsample \
 --rate 0.1 Fus2_canu_contigs_unmasked_filtered.vcf > Fus2_canu_contigs_unmasked_filtered_subsampled.vcf
 #Run STRUCTURE analysis for k 1 to 9, with 3 replicates for each k run consecutively.
-
 #Prepare STRUCTURE input (PGDSpider does not work when wrapped up in a bash script, grrr)
 #haploid (for diploid change the conversion script to vcf_to_structure_diploid.spid)
 #!!!! Need to change the path to file with population definitions
