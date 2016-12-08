@@ -22,7 +22,7 @@ Rscript --vanilla $scripts/pca.R Fus2_canu_contigs_unmasked_filtered.vcf
 $scripts/nj_tree_haploid.sh Fus2_canu_contigs_unmasked_filtered.vcf
 #DAPC and AMOVA analysis
 Rscript --vanilla $popgen/snp/amova_dapc.R
-#Downsample SNPs for AMOVA analysis as enough information in 10% of the loci
+#Downsample SNPs for Structure analysis as enough information in 10% of the loci
 #(and more not informative because of linkagee)
 /home/sobczm/bin/vcflib/bin/vcfrandomsample \
 --rate 0.1 Fus2_canu_contigs_unmasked_filtered.vcf > Fus2_canu_contigs_unmasked_filtered_subsampled.vcf
