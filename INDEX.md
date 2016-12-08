@@ -24,7 +24,7 @@ My current bash profile
 5. **Codon:** Analysis of gene codon usage and gene duplication levels.
 
 ##Phylogenetics
-###Scripts to make a Bayesian phylogenetic tree.
+###Scripts to make a Bayesian phylogenetic tree based on gene sequences.
 1. Model analysis file: [BUSCO_analysis.sh] (https://github.com/harrisonlab/popgen/blob/master/phylogenetics/BUSCO_analysis.sh)
 [sub_BUSCO_fungi.sh] (https://github.com/harrisonlab/popgen/blob/master/phylogenetics/sub_BUSCO.sh) 
 Establish the number of single copy Fungal/Eukaryotic/Plant/Prokaryotic/ conserved genes in a genome or transcriptome. 
@@ -40,3 +40,12 @@ phylogenetic tree (see the model analysis file for a example of an analysis)
 
 3. Model analysis file: [BEAST_run.sh] (https://github.com/harrisonlab/popgen/blob/master/phylogenetics/BEAST_run.sh)
 The BEAST analysis has to be so far set-up by hand. A guide to do so and obtain a final tree is given in the model analysis file above.
+
+
+##SNP
+###Scripts to call SNPs on multiple individuals using a single genome reference and establish the basic population structure.
+1. Model analysis file: [pre_SNP_calling_cleanup.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/pre_SNP_calling_cleanup.sh)
+[sub_pre_snp_calling.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/sub_pre_snp_calling.sh)
+Script 
+2. Model analysis file: [sub_fus_SNP_calling.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/sub_fus_SNP_calling.sh)
+3. Model analysis file: [determine_genetic_structure.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/determine_genetic_structure.sh)
