@@ -61,9 +61,9 @@ export PATH="$JAVA_HOME/bin:$PATH"
 export PATH=/home/sobczm/bin/hmmer-3.1b2/binaries:${PATH}
 export PATH=/home/armita/prog/python3/Python-3.3.5/bin:${PATH}
 export PATH=/home/armita/prog/ncbi-rmblastn-2.2.28/bin:${PATH}
-export AUGUSTUS_CONFIG_PATH=/home/armita/prog/augustus-3.1/config
-export PATH=/home/armita/prog/augustus-3.1/bin:${PATH}
-export PATH=/home/armita/prog/augustus-3.1/scripts:${PATH}
+export AUGUSTUS_CONFIG_PATH=/home/sobczm/bin/augustus-3.1/config
+export PATH=/home/sobczm/bin/augustus-3.1/bin:${PATH}
+export PATH=/home/sobczm/bin/augustus-3.1/scripts:${PATH}
 export PATH=/home/armita/prog/emboss/EMBOSS-4.0.0/bin:${PATH}
 ```
 [CodonW ver.1.3] (http://codonw.sourceforge.net/) Multivariate analysis (correspondence analysis) of codon and amino acid usage. `/home/sobczm/bin/codonW`
