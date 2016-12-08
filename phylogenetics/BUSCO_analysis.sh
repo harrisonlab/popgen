@@ -30,17 +30,17 @@ for fasta in *.fa; do sed -i -e 's/>/>verticillioides_/' $fasta; done;
 
 ### Run BUSCO
 cd /home/sobczm/popgen/phylogenetics/busco
-qsub $scripts/sub_BUSCO_fungi.sh $input/conglutians/Fusarium_oxysporum_f_sp_conglutinans_race_2_54008.FO_PHW808_V1.cds.all.fa
-qsub $scripts/sub_BUSCO_fungi.sh $input/cubense/Fusarium_oxysporum_f_sp_cubense_race_1.Foc1_1.0.cds.all.fa
-qsub $scripts/sub_BUSCO_fungi.sh $input/fo47/Fusarium_oxysporum_fo47.FO_Fo47_V1.cds.all.fa
-qsub $scripts/sub_BUSCO_fungi.sh $input/fujikuroi/Fusarium_fujikuroi.EF1.cds.all.fa
-qsub $scripts/sub_BUSCO_fungi.sh $input/lycopersici/Fusarium_oxysporum_f_sp_lycopersici_mn25.FO_MN25_V1.cds.all.fa
-qsub $scripts/sub_BUSCO_fungi.sh $input/melonis/Fusarium_oxysporum_f_sp_melonis_26406.FO_melonis_V1.cds.all.fa
-qsub $scripts/sub_BUSCO_fungi.sh $input/pisi/Fusarium_oxysporum_f_sp_pisi_hdv247.FO_HDV247_V1.cds.all.fa
-qsub $scripts/sub_BUSCO_fungi.sh $input/radices-lycopersici/Fusarium_oxysporum_f_sp_radicis_lycopersici_26381.FO_CL57_V1.cds.all.fa
-qsub $scripts/sub_BUSCO_fungi.sh $input/raphani/Fusarium_oxysporum_f_sp_raphani_54005.FO_PHW815_V1.cds.all.fa
-qsub $scripts/sub_BUSCO_fungi.sh $input/vasinifectum/Fusarium_oxysporum_f_sp_vasinfectum_25433.FO_Cotton_V1.cds.all.fa
-qsub $scripts/sub_BUSCO_fungi.sh $input/verticillioides/Fusarium_verticillioides.ASM14955v1.cds.all.fa
+qsub $scripts/sub_BUSCO2.sh $input/conglutians/Fusarium_oxysporum_f_sp_conglutinans_race_2_54008.FO_PHW808_V1.cds.all.fa Fungal
+qsub $scripts/sub_BUSCO2.sh $input/cubense/Fusarium_oxysporum_f_sp_cubense_race_1.Foc1_1.0.cds.all.fa Fungal
+qsub $scripts/sub_BUSCO2.sh $input/fo47/Fusarium_oxysporum_fo47.FO_Fo47_V1.cds.all.fa Fungal
+qsub $scripts/sub_BUSCO2.sh $input/fujikuroi/Fusarium_fujikuroi.EF1.cds.all.fa Fungal
+qsub $scripts/sub_BUSCO2.sh $input/lycopersici/Fusarium_oxysporum_f_sp_lycopersici_mn25.FO_MN25_V1.cds.all.fa Fungal
+qsub $scripts/sub_BUSCO2.sh $input/melonis/Fusarium_oxysporum_f_sp_melonis_26406.FO_melonis_V1.cds.all.fa Fungal
+qsub $scripts/sub_BUSCO2.sh $input/pisi/Fusarium_oxysporum_f_sp_pisi_hdv247.FO_HDV247_V1.cds.all.fa Fungal
+qsub $scripts/sub_BUSCO2.sh $input/radices-lycopersici/Fusarium_oxysporum_f_sp_radicis_lycopersici_26381.FO_CL57_V1.cds.all.fa Fungal
+qsub $scripts/sub_BUSCO2.sh $input/raphani/Fusarium_oxysporum_f_sp_raphani_54005.FO_PHW815_V1.cds.all.fa Fungal
+qsub $scripts/sub_BUSCO2.sh $input/vasinifectum/Fusarium_oxysporum_f_sp_vasinfectum_25433.FO_Cotton_V1.cds.all.fa Fungal
+qsub $scripts/sub_BUSCO2.sh $input/verticillioides/Fusarium_verticillioides.ASM14955v1.cds.all.fa Fungal
 ##Process in-house genomes
 ### Prepare input CDS assembly files (exon = CDS = cDNA identical in Braker and CodingQuary outputs)
 & using the file "final_genes_combined.cdna.fasta" from each genome for phylogenetic analysis
@@ -84,18 +84,18 @@ for fasta in *.fasta; do sed -i -e 's/>/>proliferatum_/' $fasta; done;
 
 ## Run BUSCO
 cd /home/sobczm/popgen/busco
-qsub $scripts/sub_BUSCO_fungi.sh $input/125/final/125_final_genes_combined.cdna.fasta
-qsub $scripts/sub_BUSCO_fungi.sh $input/55/final/55_final_genes_combined.cdna.fasta
-qsub $scripts/sub_BUSCO_fungi.sh $input/A1-2/final/A1-2_final_genes_combined.cdna.fasta
-qsub $scripts/sub_BUSCO_fungi.sh $input/A13/final/A13_final_genes_combined.cdna.fasta
-qsub $scripts/sub_BUSCO_fungi.sh $input/A23/final/A23_final_genes_combined.cdna.fasta
-qsub $scripts/sub_BUSCO_fungi.sh $input/A28/final/A28_final_genes_combined.cdna.fasta
-qsub $scripts/sub_BUSCO_fungi.sh $input/CB3/final/CB3_final_genes_combined.cdna.fasta
-qsub $scripts/sub_BUSCO_fungi.sh $input/D2/final/D2_final_genes_combined.cdna.fasta
-qsub $scripts/sub_BUSCO_fungi.sh $input/Fus2_canu_new/final/Fus2_final_genes_combined.cdna.fasta
-qsub $scripts/sub_BUSCO_fungi.sh $input/HB6/final/HB6_final_genes_combined.cdna.fasta
-qsub $scripts/sub_BUSCO_fungi.sh $input/PG/final/PG_final_genes_combined.cdna.fasta
-qsub $scripts/sub_BUSCO_fungi.sh $input/proliferatum/final/proliferatum_final_genes_combined.cdna.fasta
+qsub $scripts/sub_BUSCO2.sh $input/125/final/125_final_genes_combined.cdna.fasta Fungal
+qsub $scripts/sub_BUSCO2.sh $input/55/final/55_final_genes_combined.cdna.fasta Fungal
+qsub $scripts/sub_BUSCO2.sh $input/A1-2/final/A1-2_final_genes_combined.cdna.fasta Fungal
+qsub $scripts/sub_BUSCO2.sh $input/A13/final/A13_final_genes_combined.cdna.fasta Fungal
+qsub $scripts/sub_BUSCO2.sh $input/A23/final/A23_final_genes_combined.cdna.fasta Fungal
+qsub $scripts/sub_BUSCO2.sh $input/A28/final/A28_final_genes_combined.cdna.fasta Fungal
+qsub $scripts/sub_BUSCO2.sh $input/CB3/final/CB3_final_genes_combined.cdna.fasta Fungal
+qsub $scripts/sub_BUSCO2.sh $input/D2/final/D2_final_genes_combined.cdna.fasta Fungal
+qsub $scripts/sub_BUSCO2.sh $input/Fus2_canu_new/final/Fus2_final_genes_combined.cdna.fasta Fungal
+qsub $scripts/sub_BUSCO2.sh $input/HB6/final/HB6_final_genes_combined.cdna.fasta Fungal
+qsub $scripts/sub_BUSCO2.sh $input/PG/final/PG_final_genes_combined.cdna.fasta Fungal
+qsub $scripts/sub_BUSCO2.sh $input/proliferatum/final/proliferatum_final_genes_combined.cdna.fasta Fungal
 
 ## Find the intersect of single-copy, complete genes across all the genomes being analysed.
 # This command should generate a separate FASTA file for each BUSCO complete single copy gene 
