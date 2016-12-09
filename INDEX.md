@@ -116,3 +116,7 @@ Calculate EXACTLY the same diversity statistiscs, as in 2. [sub_calculate_neutra
 **Model analysis file:** [fus_linkage_disequilibrum.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/fus_linkage_disequilibrum.sh)
 Use `/home/sobczm/bin/vcftools/bin/vcftools` to calculate D, D' and r2 for SNPs seperated by a specific range of intervals to estimate recombination rates and subsequently visualise the results (D' and r2 versus physical distance, histogram of D' values) using [sub_plot_ld.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/sub_plot_ld.sh). 
 
+##Clock
+
+
+##Codon
