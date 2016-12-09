@@ -51,7 +51,7 @@ interval=( 1000 2000 )
     done
 done
 
-#For Fus2, use Andy's gff2fasta and extract 1, 2 kbp upstream:
+#For Fus2 in-house genome, use Andy's gff2fasta and extract 1, 2 kbp upstream:
 input=/home/sobczm/popgen/clock/DNA_genomes
 scripts=/home/sobczm/bin/popgen/clock/motif_discovery
 cd $input
