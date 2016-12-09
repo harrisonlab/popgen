@@ -52,25 +52,25 @@ This script allows variant calling with GATK. It needs to be modified for each G
 (https://github.com/harrisonlab/popgen/blob/master/snp/sub_fus_SNP_calling_multithreaded.sh). 
 3. Model analysis file: [determine_genetic_structure.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/determine_genetic_structure.sh)
 The script contains a collection of scripts carrying out the following SNP-based population structure analyses:
-* Variant stats: 
+⋅⋅* Variant stats: 
 perl /home/sobczm/bin/vcftools/bin/vcf-stats 
-* Default variant filtering on the input VCF file recommended before structure analysis and required by some tools:
+⋅⋅* Default variant filtering on the input VCF file recommended before structure analysis and required by some tools:
 [sub_vcf_parser.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/sub_vcf_parser.sh) 
-* Basic handle on the partitioning of SNPs between individuals. Calculate percentage of shared SNP alleles between each sample in
+⋅⋅* Basic handle on the partitioning of SNPs between individuals. Calculate percentage of shared SNP alleles between each sample in
 a pairwise manner and k-mean cluster the samples, and generate a heatmap and a dendrogram as the output. 
 [similarity_percentage.py] (https://github.com/harrisonlab/popgen/blob/master/snp/similarity_percentage.py)
 [distance_matrix.R] (https://github.com/harrisonlab/popgen/blob/master/snp/distance_matrix.R) 
-* Another way to detect any population genetic structure between samples: PCA
+⋅⋅* Another way to detect any population genetic structure between samples: PCA
 [pca.R] (https://github.com/harrisonlab/popgen/blob/master/snp/pca.R)
 * Show relationships between samples using a neighbour-joining tree.
 **Haploid individuals:**
 [nj_tree_haploid.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/nj_tree_haploid.sh)
 **Diploid individuals:**
 [nj_tree_diploid.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/nj_tree_diploid.sh)
-* Carry out a custom AMOVA analysis to try to partition genetic variation between a hypothetical factor, such as virulence level or geographic origin (requires considerable adaptation to individual analysis)
+⋅⋅* Carry out a custom AMOVA analysis to try to partition genetic variation between a hypothetical factor, such as virulence level or geographic origin (requires considerable adaptation to individual analysis)
 [amova_dapc.R] (https://github.com/harrisonlab/popgen/blob/master/snp/amova_dapc.R)
 3. Model analysis file: [structure_analysis.sh] 
 (https://github.com/harrisonlab/popgen/blob/master/snp/structure_analysis.sh)
-* Downsample the VCF file with SNPs prior to analysis with the STRUCTURE program.
-/home/sobczm/bin/vcflib/bin/vcfrandomsample --rate 0.1 $input_vcf >$output_vcf
-* Run the STRUCTURE analysis specifying the likely number of population clusters (can be in the range of: n=1 up to n=number of individuals tested)
+⋅⋅* Downsample the VCF file with SNPs prior to analysis with the STRUCTURE program.
+`/home/sobczm/bin/vcflib/bin/vcfrandomsample --rate 0.1 $input_vcf >$output_vcf`
+⋅⋅* Run the STRUCTURE analysis to test for thelikely number of population clusters (K) (can be in the range of: K=1 up to K=number of individuals tested), summarise the results with StructureHarvester and CLUMPP, visualise with DISTRUCT. 
