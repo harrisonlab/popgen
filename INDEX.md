@@ -63,21 +63,18 @@ This script allows variant calling with GATK. It needs to be modified for each G
 The script contains a collection of scripts carrying out the following SNP-based population structure analyses:
 
 1. Variant stats: 
-perl `/home/sobczm/bin/vcftools/bin/vcf-stats` 
+`/home/sobczm/bin/vcftools/bin/vcf-stats` 
 2. Default variant filtering on the input VCF file recommended before structure analysis and required by some tools:
 [sub_vcf_parser.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/sub_vcf_parser.sh) 
 3. Basic handle on the partitioning of SNPs between individuals. Calculate percentage of shared SNP alleles between each sample in
-a pairwise manner and k-mean cluster the samples, and generate a heatmap and a dendrogram as the output. 
+a pairwise manner and k-mean cluster the samples, and generate a heatmap and a dendrogram as the output:
 [similarity_percentage.py] (https://github.com/harrisonlab/popgen/blob/master/snp/similarity_percentage.py)
 [distance_matrix.R] (https://github.com/harrisonlab/popgen/blob/master/snp/distance_matrix.R) 
 4. Another way to detect any population genetic structure between samples: PCA
 [pca.R] (https://github.com/harrisonlab/popgen/blob/master/snp/pca.R)
-5. Show relationships between samples using a neighbour-joining tree.
-**Haploid individuals:**
-[nj_tree_haploid.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/nj_tree_haploid.sh)
-**Diploid individuals:**
-[nj_tree_diploid.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/nj_tree_diploid.sh)
-6. Carry out a custom AMOVA analysis to try to partition genetic variation between a hypothetical factor, such as virulence level or geographic origin (requires considerable adaptation to individual analysis)
+5. Show relationships between samples using a neighbour-joining tree:
+[nj_tree.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/nj_tree.sh)
+6. Carry out a custom AMOVA analysis to try to partition genetic variation between a hypothetical factor, such as virulence level or geographic origin (requires considerable adaptation to individual analysis):
 [amova_dapc.R] (https://github.com/harrisonlab/popgen/blob/master/snp/amova_dapc.R)
 
 **Model analysis file:** [structure_analysis.sh]
