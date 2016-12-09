@@ -9,7 +9,7 @@
 #Third argument: K being tested (value: integer)
 #Fourth argument: number of replicate runs (value: integer)
 #Can change the number of burn-in and run replicates in the mainparams file
-#Assumes that number of individuals = number of populations (can change it below)
+#Assumes that number of individuals = max number of populations (can change it below)
 #Example usage: sh ./execute_structure.sh test.struc 1 1 3
 
 input=$1
