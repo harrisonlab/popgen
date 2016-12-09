@@ -18,7 +18,6 @@ Rscript --vanilla $scripts/distance_matrix.R Fus2_canu_contigs_unmasked_filtered
 Rscript --vanilla $scripts/pca.R Fus2_canu_contigs_unmasked_filtered.vcf
 #Calculate an NJ tree based on all the SNPs. Outputs a basic diplay of the tree, plus a Newick file to be used
 #for displaying the tree in FigTree and beautifying it.
-#For a diploid organism, use nj_tree_diploid.sh
-$scripts/nj_tree_haploid.sh Fus2_canu_contigs_unmasked_filtered.vcf
+$scripts/nj_tree.sh Fus2_canu_contigs_unmasked_filtered.vcf 1
 #DAPC and AMOVA analysis
 Rscript --vanilla $popgen/snp/amova_dapc.R
