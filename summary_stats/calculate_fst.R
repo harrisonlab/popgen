@@ -126,6 +126,7 @@ for (i in seq(pairs))
 
 }
 
+##Genomewide results
 for (i in seq_along(population_names))
 {
 #Total FST
