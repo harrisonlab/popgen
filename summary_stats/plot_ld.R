@@ -3,7 +3,7 @@
 #Plot the output of linkage diseqilibrium (D, D'. r2) calculations carried out by
 #by vcftools (script fus_linkage_disequilibrium.sh)
 #First argument (required): input file with results table output by vcftools
-#Output: Scatterplots - r2 (file suffix _r2.pdf) and D' (file suffix _d.pdf) versus distance
+#Output: Scatterplots - r2 (file suffix _r2.pdf) and D' (file suffix _d.pdf) versus physical distance
 #between the markers; Histogram of D' values (file suffix _d_hist.pdf )
 
 args = commandArgs(trailingOnly=TRUE)
