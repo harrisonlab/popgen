@@ -1,4 +1,5 @@
 #!/bin/bash
+#Input: VCF file containing bi-allelic SNPs. Output: a neighbour joining tree, suffix: _nj.nwk, and PDF file with the tree, suffix: _nj.pdf
 vcf_file=$1
 vcf_tools=/home/sobczm/bin/vcftools/bin
 scripts=/home/sobczm/bin/popgen/snp

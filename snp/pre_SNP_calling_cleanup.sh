@@ -3,6 +3,10 @@
 input=/home/sobczm/popgen/input/mappings
 scripts=/home/sobczm/bin/popgen/snp
 
+### The script accepts reads from individual samples (isolates) mapped to a single common shared reference genome, such as the PacBio. 
+### Read napping can be carried out using this script: 
+# https://github.com/eastmallingresearch/seq_tools/blob/master/genome_alignment/bowtie/sub_bowtie.sh
+
 ### Rename input mapping files in each folder by prefixing with the strain ID
 cd $input/125/
 for filename in *; do mv "$filename" "125_$filename"; done;

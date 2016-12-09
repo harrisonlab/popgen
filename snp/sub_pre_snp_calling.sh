@@ -6,8 +6,13 @@
 
 ##############################################
 # Prep mappings from Bowtie2 for SNP calling
-# Do not forget the input file
-# and sample name (prefix)
+### Remove multimapping reads, discordant reads. PCR and optical duplicates, and
+### add read group and sample name to each mapped read (preferably, the shortest ID possible)
+#INPUT:
+# 1st argument: input SAM file with your mappings
+# 2nd argument: sample name (prefix) to be used to identify it in the future
+#OUTPUT:
+# Indexed BAM file with suffix "nodup_rg" to be fed into SNP calling with GATK.
 #############################################
 input_sam=$1
 prefix=$2
@@ -52,7 +57,6 @@ RGPL=Illumina RGLB=library RGPU=barcode VALIDATION_STRINGENCY=LENIENT
 samtools index $name\_nomulti\_proper\_sorted\_nodup_rg.bam
 
 ### Cleanup
-mv $name\_nomulti\_proper\_sorted\_nodup.bam $cpath
 mv $name\_nomulti\_proper\_sorted\_nodup.txt $cpath
 mv $name\_nomulti\_proper\_sorted\_nodup_rg.bam $cpath
 mv $name\_nomulti\_proper\_sorted\_nodup_rg.bam.bai $cpath

@@ -2,6 +2,7 @@
 
 #Print a PCA plot calculated based on SNP matrix.
 #First argument (required): input VCF file
+#Output: a PDF file with the figure, suffix: _pca.pdf 
 
 args = commandArgs(trailingOnly=TRUE)
 

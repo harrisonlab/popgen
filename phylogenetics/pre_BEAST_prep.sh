@@ -5,7 +5,7 @@
 path=/home/sobczm/popgen/phylogenetics
 scripts=/home/sobczm/bin/popgen/phylogenetics
 
-##MAFFT (make alignments)
+##MAFFT (align sequences)
 cd $path
 mkdir busco_alignments
 mv BUSCO*.fasta $path/busco_alignments
