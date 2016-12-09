@@ -92,3 +92,6 @@ Run the STRUCTURE analysis to test for thelikely number of population clusters (
 
  
  **Model analysis file:** [fus_popgenome_analysis.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/fus_popgenome_analysis.sh)
+1. Create VCF file subsets only with certain individuals retained for downstream analysis with `/home/sobczm/bin/vcflib/bin/vcfremovesamples` and remove monomorphic (idential) positions in the output with `/home/sobczm/bin/vcftools/bin/vcftools`
+2. Create custom SNPEff annotation for each new genome which allows classification of variants into different functional categories
+
