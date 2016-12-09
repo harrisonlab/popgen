@@ -5,6 +5,12 @@ scripts=/home/sobczm/bin/popgen/snp
 #Only retain biallelic high-quality SNPS with no missing data for genetic analyses.
 cd $input
 qsub $scripts/sub_vcf_parser.sh Fus2_canu_contigs_unmasked.vcf
+
+#In some organisms, may want to thin (subsample) SNPs in high linkage diseqilibrium down to
+#1 SNP  per e.g. 10 kbp just for the population structure analyses.
+#vcftools=/home/sobczm/bin/vcftools/bin
+#$vcftools/vcftools --vcf $input_vcf --thin 10000 --recode --out ${input_vcf%.vcf}_thinned
+
 #General VCF stats (remember that vcftools needs to have the PERL library exported)
 perl /home/sobczm/bin/vcftools/bin/vcf-stats \
 Fus2_canu_contigs_unmasked.vcf >Fus2_canu_contigs_unmasked.stat
