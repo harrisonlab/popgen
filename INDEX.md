@@ -84,3 +84,5 @@ Downsample the VCF file with SNPs prior to analysis with the STRUCTURE program.
 `/home/sobczm/bin/vcflib/bin/vcfrandomsample --rate 0.1 $input_vcf >$output_vcf`
 
 Run the STRUCTURE analysis to test for thelikely number of population clusters (K) (can be in the range of: K=1 up to K=number of individuals tested), summarise the results with StructureHarvester and CLUMPP, visualise with DISTRUCT. 
+
+##Summary stats 
