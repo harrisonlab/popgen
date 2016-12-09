@@ -52,7 +52,7 @@ This script allows variant calling with GATK. It needs to be modified for each G
 (https://github.com/harrisonlab/popgen/blob/master/snp/sub_fus_SNP_calling_multithreaded.sh). 
 3. Model analysis file: [determine_genetic_structure.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/determine_genetic_structure.sh)
 The script contains a collection of scripts carrying out the following SNP-based population structure analyses:
-⋅⋅* Variant stats: 
++ Variant stats: 
 perl /home/sobczm/bin/vcftools/bin/vcf-stats 
 ⋅⋅* Default variant filtering on the input VCF file recommended before structure analysis and required by some tools:
 [sub_vcf_parser.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/sub_vcf_parser.sh) 
