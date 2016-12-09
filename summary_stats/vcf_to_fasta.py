@@ -10,17 +10,16 @@ from Bio import SeqIO
 #   Each chromosome -> new FASTA file.
 ##############################################################
 
-
 ##############################################################
 # Usage: python vcf_to_fasta.py <VCF FILE> <FASTA FILE>
-# 1|2|3
+# <1|2|3>
 # 1 - haploid input
-# 2 - diploid input, output as two separate haplotypes for each ind.
+# 2 - diploid input, output as two separate phased haplotypes for each ind.
 # 3 - diploid input, output as one sequence with ambiguity codes for each ind.
 ##############################################################
 
-#Input: VCF - haploid/diploid (phased or unphased, treated as phased, regardless)
-#       Reference assembly FASTA file
+#Input: 1) VCF - haploid/diploid (phased or unphased, treated as phased, regardless)
+#       2) Reference assembly FASTA file
 #Can handle complex SNPs. but only if ref and alt allele of the same length,
 #so that it does not mess up the alignment. Can handle missing data.
 #Output: FASTA file for each chromosome with the sequences for all individuals.

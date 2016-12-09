@@ -9,7 +9,7 @@ import os, sys, re
 script, vcf = argv
 
 bare = r"(\w+)(.vcf)"
-one = r"\1_silent.vcf"
+one = r"\1_4fd.vcf"
 o = re.sub(bare, one, vcf)
 vcf_out = open(o, 'w')
 
