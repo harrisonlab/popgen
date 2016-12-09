@@ -27,7 +27,7 @@ My current bash profile
 ###Scripts to make a Bayesian phylogenetic tree based on gene sequences.
 **Model analysis file:** [BUSCO_analysis.sh] (https://github.com/harrisonlab/popgen/blob/master/phylogenetics/BUSCO_analysis.sh)
 
-[sub_BUSCO_fungi.sh] (https://github.com/harrisonlab/popgen/blob/master/phylogenetics/sub_BUSCO.sh) 
+[sub_BUSCO2.sh] (https://github.com/harrisonlab/popgen/blob/master/phylogenetics/sub_BUSCO2.sh) 
 Establish the number of single copy Fungal/Eukaryotic/Plant/Prokaryotic/ conserved genes in a genome or transcriptome. 
 
 [get_alignments.pl] (https://github.com/harrisonlab/popgen/blob/master/phylogenetics/get_alignments.pl) 
