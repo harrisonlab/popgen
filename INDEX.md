@@ -100,6 +100,16 @@ First, build genome database with [build_genome_database.sh] (https://github.com
 4. Split a GFF file with gene annotation for the reference genome into independent file per contig. Required by PopGenome used in the next script. [split_gff_contigs.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/split_gff_contig.sh)
 
 **Model analysis file:** [fus_popgenome_analysis.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/fus_popgenome_analysis.sh)
+The scripts used in this part of the analysis described in the model analysis file above require a special FASTA and GFF input generated with scripts [vcf_to_fasta.py] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/vcf_to_fasta.py) and [split_gff_contigs.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/split_gff_contig.sh). The input needs to be also arranged in a particular way described in the model analysis file above. Lastly, the submitted R scripts themselves require customisation for each analysis regarding sample names and their population assingment.
+
+1. [sub_calculate_nucleotide_diversity.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/sub_calculate_nucleotide_diversity.sh)
+
+2. [sub_calculate_neutrality_stats.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/sub_calculate_neutrality_stats.sh)
+
+3. [sub_calculate_fst.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/sub_calculate_fst.sh)
+
+4. [sub_calculate_haplotype_based_stats.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/sub_calculate_haplotype_based_stats.sh)
+
  
  **Model analysis file:** [fus_linkage_disequilibrum.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/fus_linkage_disequilibrum.sh)
 
