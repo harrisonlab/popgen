@@ -86,3 +86,9 @@ Downsample the VCF file with SNPs prior to analysis with the STRUCTURE program.
 Run the STRUCTURE analysis to test for thelikely number of population clusters (K) (can be in the range of: K=1 up to K=number of individuals tested), summarise the results with StructureHarvester and CLUMPP, visualise with DISTRUCT. 
 
 ##Summary stats 
+###Scripts for functional annotation of SNPs (type of amino-acid change etc.), and calculation of general population genetics parameters (Fst, nuclotide diversity, Tajima's D) which can be informative about demographic and selection processes operating on a given gene(s) in
+populations. Analyses available include both haplotype- and nucleotide- based.
+ **Model analysis file:** [fus_variant_annotation.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/fus_variant_annotation.sh)
+
+ 
+ **Model analysis file:** [fus_popgenome_analysis.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/fus_popgenome_analysis.sh)
