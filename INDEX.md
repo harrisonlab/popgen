@@ -90,9 +90,6 @@ Run the STRUCTURE analysis to test for thelikely number of population clusters (
 ###Scripts for functional annotation of SNPs, and calculation of general population genetics parameters (Fst, nuclotide diversity, Tajima's D) which can be informative about demographic and selection processes operating on a given gene(s) in tested populations. Analyses available include both haplotype- and nucleotide- based.
  **Model analysis file:** [fus_variant_annotation.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/fus_variant_annotation.sh)
 
- 
- **Model analysis file:** [fus_popgenome_analysis.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/fus_popgenome_analysis.sh)
- 
 1. Create VCF file subsets only with certain individuals retained for downstream analysis with `/home/sobczm/bin/vcflib/bin/vcfremovesamples` and remove monomorphic (idential) positions in the output with `/home/sobczm/bin/vcftools/bin/vcftools`
 
 2. Create custom SNPEff annotation for each new genome which allows classification of variants into different functional categories
@@ -102,5 +99,7 @@ First, build genome database with [build_genome_database.sh] (https://github.com
 
 4. Split a GFF file with gene annotation for the reference genome into independent file per contig. Required by PopGenome used in the next script. [split_gff_contigs.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/split_gff_contig.sh)
 
-
+**Model analysis file:** [fus_popgenome_analysis.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/fus_popgenome_analysis.sh)
+ 
+ **Model analysis file:** [fus_linkage_disequilibrum.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/fus_linkage_disequilibrum.sh)
 
