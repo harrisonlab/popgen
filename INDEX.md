@@ -117,9 +117,31 @@ Calculate EXACTLY the same diversity statistiscs, as in 2. [sub_calculate_neutra
 Use `/home/sobczm/bin/vcftools/bin/vcftools` to calculate D, D' and r2 for SNPs seperated by a specific range of intervals to estimate recombination rates and subsequently visualise the results (D' and r2 versus physical distance, histogram of D' values) using [sub_plot_ld.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/sub_plot_ld.sh). 
 
 ##Clock
+### Scripts for gene orthology assignemnt and construction of orthogroup trees; motif scanning, motif discovery and motif enrichment analyses; tests for selection based on dN/ds (nonsynonymous/synonymous) substitution rates across species: pairwise, branch-site, branch models. 
+**Model analysis file:** [clock_ortho.sh] (https://github.com/harrisonlab/popgen/blob/master/clock/motif_discovery/clock_ortho.sh)
+[run_orthofinder.sh] (https://github.com/harrisonlab/popgen/blob/master/clock/motif_discovery/run_orthofinder.sh)
+A fast pipeline to establish orthology between sets of protein sequences from different species using the mcl algorithm. Will also calculate FastTree gene trees for each orthogroup. 
 
+**Model analysis files:** [clock_motif_discovery.sh] (https://github.com/harrisonlab/popgen/blob/master/clock/motif_discovery/clock_motif_discovery.sh) [clock_motif_discovery_cont.sh] and (https://github.com/harrisonlab/popgen/blob/master/clock/motif_discovery/clock_motif_discovery_cont.sh)
+Find known short sequence motifs in sequences (i.e. motif scanning), check for significant enrichment of a given motif in a set of sequences relative to the background (i.e. motif enrichment) and discover new motifs in sets of repeat-masked sequences (i.e. motif discovery).
 
+**Motif scanning:** [sub_glam2scan.sh] (https://github.com/harrisonlab/popgen/blob/master/clock/motif_discovery/sub_glam2scan.sh)
+Scan for a sequence motif with gaps (of non-constant length), [sub_fimo.sh] (https://github.com/harrisonlab/popgen/blob/master/clock/motif_discovery/sub_fimo.sh) Scan for a sequence motif with no gaps.
+
+**Motif enrichment:** [sub_ame.sh] (https://github.com/harrisonlab/popgen/blob/master/clock/motif_discovery/sub_ame.sh) 
+Check if the set of sequences is enriched for a specific motif of fixed length. May want to use [sub_fasta_subsample.sh] (https://github.com/harrisonlab/popgen/blob/master/clock/motif_discovery/sub_fasta_subsample.sh) prior to that to subsample a specific 
+number of background sequences not expected to contain the motif in question.
+
+**Motif discovery:** 
+[sub_dreme.sh] (https://github.com/harrisonlab/popgen/blob/master/clock/motif_discovery/sub_dreme.sh) Identify any *ungapped* short motifs for which a given set of sequences is enriched for. May want to use [sub_fasta_subsample.sh] (https://github.com/harrisonlab/popgen/blob/master/clock/motif_discovery/sub_fasta_subsample.sh) prior to that to subsample a specific 
+number of background sequences not expected to contain the motif in question. [sub_glam.sh] (https://github.com/harrisonlab/popgen/blob/master/clock/motif_discovery/sub_glam.sh) Identify any *gapped* short motifs for which a given set of sequences is enriched for. May want to run this analysis multiple times to check for the convergence of the top motifs identified in each run.
+
+**Model analysis file:** [clock_dn_ds_analysis.sh] (https://github.com/harrisonlab/popgen/blob/master/clock/motif_discovery/clock_dn_ds_analysis.sh) 
 ##Codon
 
 
 ##Miscellaneous 
+
+* Reverse complement a DNA sequence. `/home/armita/prog/emboss/EMBOSS-4.0.0/bin/revseq <INPUT> <OUTPUT>`
+* Unwrap all the sequnces in the FASTA file so that they span only 1 line ` awk '!/^>/ { printf "%s", $0; n = "\n" } /^>/ { print n $0; n = "" } END { printf "%s", n }' <INPUT> >temp && mv temp <INPUT>`
+* 
