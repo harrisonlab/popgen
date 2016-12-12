@@ -145,7 +145,12 @@ May want to run [check_proper_cds.py] (https://github.com/harrisonlab/popgen/blo
 [transalign.sh] (https://github.com/harrisonlab/popgen/blob/master/clock/dn_ds/transalign.sh) Align the nucleotide CDS sequences in the codon aware manner and generate gene trees based on their protein alignment.
 
 ##Codon
+### Analysis of codon usage and quantification of codon usage bias in a genome, and genome-wide analysis of gene duplication distribution.
 
+[codonw.sh] (https://github.com/harrisonlab/popgen/blob/master/codon/codonw.sh) The basic script which accepts CDS sequences from a given genome and calculates the various metrics of codon usage and bias with the codonw program. The output can be analysed in R, for example see: [codonw_analysis.R] (https://github.com/harrisonlab/popgen/blob/master/codon/codonw_analysis.R)
+
+**Model analysis files:** [fus_self_blast.sh] (https://github.com/harrisonlab/popgen/blob/master/codon/fus_self_blast.sh) [prepare_duplication_analysis_input.sh] (https://github.com/harrisonlab/popgen/blob/master/codon/prepare_duplication_analysis_input.sh) [dag_chainer_analysis.sh] (https://github.com/harrisonlab/popgen/blob/master/codon/dag_chainer_analysis.sh) [final_duplication_analysis.sh] (https://github.com/harrisonlab/popgen/blob/master/codon/final_duplication_analysis.sh)
+In order to carry out genome duplication analysis, first generate the Blast database of CDS nucleotide sequences, then carry out the self-on-self blastn with [sub_self_blast.sh] (https://github.com/harrisonlab/popgen/blob/master/codon/sub_self_blast.sh). Filter the Blast output using [filter_blast.py] (https://github.com/harrisonlab/popgen/blob/master/codon/filter_blast.py). Generate dagchainer input with [blast_to_dagchainer.py] (https://github.com/harrisonlab/popgen/blob/master/codon/blast_to_dagchainer.py) and parse the genome GFF annotation file with [cds_to_chromosome_coords.py] (https://github.com/harrisonlab/popgen/blob/master/codon/cds_to_chromosome_coords.py). Run the dagchainer script found in `/home/sobczm/bin/DAGCHAINER/run_DAG_chainer.pl` and summarize, plot the cleaned up output with [detect_duplications.py] (https://github.com/harrisonlab/popgen/blob/master/codon/detect_duplications.py). 
 
 ##Miscellaneous 
 
