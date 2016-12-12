@@ -120,6 +120,7 @@ Use `/home/sobczm/bin/vcftools/bin/vcftools` to calculate D, D' and r2 for SNPs 
 **Model analysis file:** [clock_ortho.sh] (https://github.com/harrisonlab/popgen/blob/master/clock/motif_discovery/clock_ortho.sh)
 [run_orthofinder.sh] (https://github.com/harrisonlab/popgen/blob/master/clock/motif_discovery/run_orthofinder.sh)
 A fast pipeline to establish orthology between sets of protein sequences from different species using the mcl algorithm. Will also calculate FastTree gene trees for each orthogroup. 
+
 **Model analysis files:** [clock_motif_discovery.sh] (https://github.com/harrisonlab/popgen/blob/master/clock/motif_discovery/clock_motif_discovery.sh) [clock_motif_discovery_cont.sh] and (https://github.com/harrisonlab/popgen/blob/master/clock/motif_discovery/clock_motif_discovery_cont.sh)
 Find known short sequence motifs in sequences (i.e. motif scanning), check for significant enrichment of a given motif in a set of sequences relative to the background (i.e. motif enrichment) and discover new motifs in sets of repeat-masked sequences (i.e. motif discovery).
 
@@ -131,8 +132,8 @@ Check if the set of sequences is enriched for a specific motif of fixed length. 
 number of background sequences not expected to contain the motif in question.
 
 **Motif discovery**: 
-[sub_dreme.sh] (https://github.com/harrisonlab/popgen/blob/master/clock/motif_discovery/sub_dreme.sh) Identify any ungapped short motifs for which a given set of sequences is enriched for. [sub_glam.sh] (https://github.com/harrisonlab/popgen/blob/master/clock/motif_discovery/sub_glam.sh) Identify any gapped short motifs for which a given set
-of sequences is enriched for. 
+[sub_dreme.sh] (https://github.com/harrisonlab/popgen/blob/master/clock/motif_discovery/sub_dreme.sh) Identify any *ungapped* short motifs for which a given set of sequences is enriched for. May want to use [sub_fasta_subsample.sh] (https://github.com/harrisonlab/popgen/blob/master/clock/motif_discovery/sub_fasta_subsample.sh) prior to that to subsample a specific 
+number of background sequences not expected to contain the motif in question. [sub_glam.sh] (https://github.com/harrisonlab/popgen/blob/master/clock/motif_discovery/sub_glam.sh) Identify any *gapped* short motifs for which a given set of sequences is enriched for. May want to run this analysis multiple times to check for the convergence of the top motifs identified in each run.
 ##Codon
 
 
