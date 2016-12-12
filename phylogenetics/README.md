@@ -4,4 +4,4 @@ The order in which main bash scripts in the folder are executed:
 
 2) [pre_BEAST_prep.sh] (https://github.com/harrisonlab/popgen/blob/master/phylogenetics/pre_BEAST_prep.sh)
 
-3) [BEAST_run.sh] [https://github.com/harrisonlab/popgen/blob/master/phylogenetics/BEAST_run.sh]
+3) [BEAST_run.sh] (https://github.com/harrisonlab/popgen/blob/master/phylogenetics/BEAST_run.sh)
