@@ -164,3 +164,6 @@ In order to carry out genome duplication analysis, first generate the Blast data
 * Quickly mask nucleotide sequences with the dust algorithm: [sub_fast_masking.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/sub_fast_masking.sh)
 * Cluster nucleotide sequences at a given identity threshold and output consensus sequence for each cluster: [sub_cluster_baits.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/sub_cluster_baits.sh)
 * Perform HMMER annotation with PFAM domains of given input protein sequences: [sub_hmmscan.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/sub_hmmscan.sh)
+* Get a numbered list showing sample order in a VCF file:
+
+```grep "#CHROM" $input_file | head -1 | awk '{for(i=10;i<=NF;++i)print $i }' | nl | sed 's/^ *//' | sed 's/\t/ /g' >names```
