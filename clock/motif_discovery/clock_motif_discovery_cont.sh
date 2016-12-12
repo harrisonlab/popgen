@@ -20,7 +20,7 @@ for a in *ace; do sed -i '/^$/d' $a; done
 python $scripts/prepare_gene_list.py $input/cbox/cbox_all_genes.txt cbox
 for a in *cbox; do sed -i '/^$/d' $a; done
 
-#for each genome extract promoter sequences for given genes in the list.
+#For each genome extract promoter sequences for given genes in the list.
 #ACE genes and Clockbox genes
 sh $scripts/extract_ace_cbox_prom.sh
 

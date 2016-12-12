@@ -1,7 +1,9 @@
 #! /usr/bin/env python
 from sys import argv
 import os, sys, re
-#Remove terminal codon from a CDS sequence if it matches a stop codon.
+#Remove terminal codon from CDS sequences in the input FASTA file,
+#if it matches a stop codon.
+#Output: FASTA file with "_ns" suffix
 
 from Bio import SeqIO
 script, fasta_file = argv

@@ -68,19 +68,9 @@ clustalw=/home/sobczm/bin/clustalw1.83/clustalw
 
 for a in *ns.fasta
 do
-perl $transalign/transAlign.pl -d"$a" -b1 -gf -fd -if -ope -mb -n20 -sn0 -ri -p$clustalw
+sh $scripts/transalign.sh $a 
 done
 #has to be extended phylip format for codeml
-
-emboss=/home/armita/prog/emboss/EMBOSS-4.0.0/bin
-#create the protein-alignment based tree for each gene
-for a in *tAlign.fasta
-do
-output=$( echo $a | sed -e 's/.fasta/.nwk/' )
-$emboss/transeq $a -outseq temp
-mafft temp >temp2
-FastTree temp2 >$output
-done
 
 #Manually curate the sequences to remove dissimilar ones which did not align well and
 #repeat the procedure.

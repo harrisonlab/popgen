@@ -47,15 +47,15 @@ for a in *.fasta; do qsub $scripts/sub_glam2scan.sh $a freq_motif.txt; done
 #similar a bit to a sequence in other ccgs (Corrego 2003)
 #AACTTGGCCAAGTT
 # Use FIMO
-$meme/iupac2meme AACTTGGCCAAGTT >core_ace.txt
-qsub $scripts/sub_fimo.sh core_ace.txt Neurospora_crassa.NC12.dna_rm.toplevel_promoters_1000.fasta core_ace
+qsub $scripts/sub_fimo.sh Neurospora_crassa.NC12.dna_rm.toplevel_promoters_1000.fasta \
+core_ace AACTTGGCCAAGTT
 #Look for homologous sequences in the cc2 orthologs (extended dataset)
 #The full ACE containing element (68 bp, between -118 and -50 of the cc2 TSS)
 #(Bell-Pedersen 2001)
 #GAATACCGGAGAACTTGGCCAAGTTTGATGGACGAAGTCTTCAAACACAGCGTTGGATTGAGGTCCAA
 # Use FIMO
-$meme/iupac2meme GAATACCGGAGAACTTGGCCAAGTTTGATGGACGAAGTCTTCAAACACAGCGTTGGATTGAGGTCCAA >full_ace.txt
-qsub $scripts/sub_fimo.sh full_ace.txt Neurospora_crassa.NC12.dna_rm.toplevel_promoters_1000.fasta full_ace
+qsub $scripts/sub_fimo.sh Neurospora_crassa.NC12.dna_rm.toplevel_promoters_1000.fasta \
+full_ace GAATACCGGAGAACTTGGCCAAGTTTGATGGACGAAGTCTTCAAACACAGCGTTGGATTGAGGTCCAA
 #The top match in NC is located in the protein EAA34064, which is gene NCU08457, which is
 #ccg2, which agrees with expectations. It is on plus strand, but situated
 #between 767 and 834 bp from the beginning of a 1000 bp promoter, ie.
@@ -151,27 +151,25 @@ done <$dna/cbox_nc.txt >cbox_2000_nc.fasta
 qsub $scripts/sub_fasta_subsample.sh $dna/Neurospora_crassa.NC12.dna_rm.toplevel_promoters_1000.fasta 37
 qsub $scripts/sub_fasta_subsample.sh $dna/Neurospora_crassa.NC12.dna_rm.toplevel_promoters_2000.fasta 100
 
-#Convert the motifs tested to the meme format
-$meme/iupac2meme TCTTGGCA >min_ace.txt
-$meme/iupac2meme CGAT >min_cbox1.txt
-$meme/iupac2meme CCGCT >min_cbox2.txt
 #Test against the enrichment of motifs
 #!!Warning!! it does not allow for motifs of variable length, like the cbox
 #Create a random sample of a 100 promoter control sequences
 qsub $scripts/sub_fasta_subsample.sh $dna/Neurospora_crassa.NC12.dna_rm.toplevel_promoters_1000.fasta 37
 cd $dna/promoters/extended/ace
-qsub $scripts/sub_ame.sh ace_1000_nc.fasta min_ace.txt Neurospora_crassa.NC12.dna_rm.toplevel_promoters_1000_random_37.fasta
+qsub $scripts/sub_ame.sh ace_1000_nc.fasta Neurospora_crassa.NC12.dna_rm.toplevel_promoters_1000_random_37.fasta \
+min_ace TCTTGGCA
 qsub $scripts/sub_fasta_subsample.sh $dna/Neurospora_crassa.NC12.dna_rm.toplevel_promoters_2000.fasta 37
-qsub $scripts/sub_ame.sh ace_2000_nc.fasta min_ace.txt Neurospora_crassa.NC12.dna_rm.toplevel_promoters_2000_random_37.fasta
+qsub $scripts/sub_ame.sh ace_2000_nc.fasta Neurospora_crassa.NC12.dna_rm.toplevel_promoters_2000_random_37.fasta \
+min_ace TCTTGGCA
 
 cd $dna/promoters/extended/cbox
-qsub $scripts/sub_ame.sh cbox_1000_nc.fasta min_cbox1.txt Neurospora_crassa.NC12.dna_rm.toplevel_promoters_1000_random.fasta
-qsub $scripts/sub_ame.sh cbox_2000_nc.fasta min_cbox2.txt Neurospora_crassa.NC12.dna_rm.toplevel_promoters_2000_random.fasta
-
+qsub $scripts/sub_ame.sh cbox_1000_nc.fasta Neurospora_crassa.NC12.dna_rm.toplevel_promoters_1000_random.fasta \
+min_cbox1 CGAT
+qsub $scripts/sub_ame.sh cbox_1000_nc.fasta Neurospora_crassa.NC12.dna_rm.toplevel_promoters_1000_random.fasta \
+min_cbox2 CCGCT
 #As no motif enrichment can be conducted that way, motif scanning will be carried out.
-cd $dna/promoters/extended/cbox
 cd $dna/promoters/extended/ace
-qsub $scripts/sub_fimo.sh ace_2000_nc.fasta min_ace.txt
+qsub $scripts/sub_fimo.sh ace_2000_nc.fasta min_ace TCTTGGCA
 
 #Found some motifs on both strands but mostly imperfect, and even inside the exons!
 #Cannot replicate the results from Correa et al. (2003) even when checking for the sequences manually.
