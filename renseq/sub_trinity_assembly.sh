@@ -30,7 +30,6 @@ trinity=/home/sobczm/bin/trinityrnaseq-2.2.0/Trinity
 $trinity --seqType fa --max_memory 300G --CPU 20 --min_contig_length 300 \
 --left all_reads_f.fasta --right all_reads_r.fasta
 
-#output_dir=$(echo $lr | sed 's/_1.fastq.gz//')
 
 rm *.fastq
 rm *.fastq.gz
