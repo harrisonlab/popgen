@@ -120,3 +120,6 @@ Use `/home/sobczm/bin/vcftools/bin/vcftools` to calculate D, D' and r2 for SNPs 
 
 
 ##Codon
+
+
+##Miscellaneous 
