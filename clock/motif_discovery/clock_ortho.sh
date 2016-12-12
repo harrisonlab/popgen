@@ -25,15 +25,12 @@ for a in *fa; do cp $a ./OrthoFinder; done
 qsub $scripts/sub_orthofinder.sh OrthoFinder
 
 #It turns out that the pipeline terminates for no reason at different random
-#points when executing through SGE. Therefore, will run it on a worker node.
+#points when executing through SGE. Therefore, will run it on a worker node in a screen.
 
-# Running a dummy script to reserve resources on blacklace01
+##Running a dummy script to reserve resources on blacklace01 (16 threads)
 qsub /home/sobczm/bin/popgen/other/reserve_cluster.sh
 #Running orthofinder on the directory OrthoFinder containing all input files
-orthofinder=/home/sobczm/bin/OrthoFinder-1.0.7/orthofinder
-anaconda=/home/sobczm/bin/anaconda2/bin/python
-dir=OrthoFinder
-$anaconda $orthofinder/orthofinder.py -f $dir -t 16
+sh ./run_orthofinder.sh $input/$dir
 
 ##DATASET B)
 #Get whole-genome protein sequences and rename the files
@@ -62,7 +59,5 @@ for a in *fa; do cp $a ./OrthoFinder2; done
 # Running a dummy script to reserve resources on blacklace01
 qsub /home/sobczm/bin/popgen/other/reserve_cluster.sh
 #Running orthofinder on the directory OrthoFinder containing all input files
-orthofinder=/home/sobczm/bin/OrthoFinder-1.0.7/orthofinder
-anaconda=/home/sobczm/bin/anaconda2/bin/python
 dir=OrthoFinder2
-$anaconda $orthofinder/orthofinder.py -f $dir -t 16
+sh ./run_orthofinder.sh $input/$dir
