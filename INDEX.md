@@ -117,7 +117,7 @@ Calculate EXACTLY the same diversity statistiscs, as in 2. [sub_calculate_neutra
 Use `/home/sobczm/bin/vcftools/bin/vcftools` to calculate D, D' and r2 for SNPs seperated by a specific range of intervals to estimate recombination rates and subsequently visualise the results (D' and r2 versus physical distance, histogram of D' values) using [sub_plot_ld.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/sub_plot_ld.sh). 
 
 ##Clock
-### Scripts for gene orthology assignemnt and construction of orthogroup trees; motif scanning, motif discovery and motif enrichment analyses; tests for selection based on dN/ds (nonsynonymous/synonymous) substitution rates across species: pairwise, branch-site, branch models. 
+### Scripts for gene orthology assignemnt and construction of orthogroup trees; motif scanning, motif discovery and motif enrichment analyses; tests for selection based on dN/ds (nonsynonymous/synonymous) substitution rates across gene coding sequences in different species: pairwise, branch-site, branch models. 
 **Model analysis file:** [clock_ortho.sh] (https://github.com/harrisonlab/popgen/blob/master/clock/motif_discovery/clock_ortho.sh)
 [run_orthofinder.sh] (https://github.com/harrisonlab/popgen/blob/master/clock/motif_discovery/run_orthofinder.sh)
 A fast pipeline to establish orthology between sets of protein sequences from different species using the mcl algorithm. Will also calculate FastTree gene trees for each orthogroup. 
@@ -137,6 +137,13 @@ number of background sequences not expected to contain the motif in question.
 number of background sequences not expected to contain the motif in question. [sub_glam.sh] (https://github.com/harrisonlab/popgen/blob/master/clock/motif_discovery/sub_glam.sh) Identify any *gapped* short motifs for which a given set of sequences is enriched for. May want to run this analysis multiple times to check for the convergence of the top motifs identified in each run.
 
 **Model analysis file:** [clock_dn_ds_analysis.sh] (https://github.com/harrisonlab/popgen/blob/master/clock/motif_discovery/clock_dn_ds_analysis.sh) 
+
+[remove_terminal_stop.py] (https://github.com/harrisonlab/popgen/blob/master/clock/dn_ds/remove_terminal_stop.py)
+Remove any stop codons hanging off the end of CDS sequences to be used in the analysis as no stop codons anywhere accepted.
+May want to run [check_proper_cds.py] (https://github.com/harrisonlab/popgen/blob/master/codon/check_proper_cds.py) first to also identify any unexpected in-frame stop codons.
+
+[transalign.sh] (https://github.com/harrisonlab/popgen/blob/master/clock/dn_ds/transalign.sh) Align the nucleotide CDS sequences in the codon aware manner and generate gene trees based on their protein alignment.
+
 ##Codon
 
 
