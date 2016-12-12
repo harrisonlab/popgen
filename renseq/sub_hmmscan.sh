@@ -4,6 +4,9 @@
 #$ -pe smp 2
 #$ -l virtual_free=1G
 #$ -l h=blacklace01.blacklace|blacklace02.blacklace|blacklace04.blacklace|blacklace05.blacklace|blacklace06.blacklace|blacklace07.blacklace|blacklace08.blacklace|blacklace09.blacklace|blacklace10.blacklace|blacklace11.blacklace
+# Perform HMMER annotation with PFAM domains of given input protein sequences 
+# Output: filename with the .out extension
+
 input_fasta=$1
 filename=$(basename "$input_fasta")
 name=${filename%.*}
