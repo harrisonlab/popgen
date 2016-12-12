@@ -34,7 +34,7 @@ interval=( 1000 2000 )
     bedtools getfasta -fi $dna -bed $neg_strand -fo $bedtools_neg
     python $scripts/substitute_names.py $bedtools_pos $coord_table
     python $scripts/substitute_names.py $bedtools_neg $coord_table
-#Important, bedtools extracts the sequence for negative strand, as it is, without
+#Important, bedtools extracts the sequence for negative strand as it is, without
 #reverse complement necessary for scan of the promoter region!
 #After FASTA sequence extraction need to reverse complement sequences
 #in the file containing minus strand sequences:
