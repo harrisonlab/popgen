@@ -167,4 +167,5 @@ In order to carry out genome duplication analysis, first generate the Blast data
 * Get a list of tab-seperated sample names in a VCF file:
 
 ```grep "#CHROM" $input_file | head -1 | awk '{for(i=10;i<=NF;++i)print $i }' >temp
+
 nl temp | sed 's/^ *//' | sed 's/\t/ /g' >$names```
