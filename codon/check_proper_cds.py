@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 # Checks for proper start codon at the start, complete stop codon at the end
-# and no in-frame stop codons
-# If pass, print to the pass file, if fail, print to the fail file
+# and no in-frame stop codons in CDS sequences in a FASTA file.
+# If pass, print to the pass file, if fail, print to the fail file.
 
 from sys import argv
 import os, sys, re

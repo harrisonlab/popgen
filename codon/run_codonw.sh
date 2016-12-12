@@ -98,7 +98,6 @@ cp $input/veneatum/final/*pass.fasta ./ && rm $input/veneatum/final/*fail.fasta
 #In the future, may want to include F. oxysporum f. pisi and narcissi
 
 
-
 #################
 # CODONW RUNS
 #################
@@ -114,23 +113,7 @@ cd $cw
 for f in $cw/input/all/*.fasta;
 do
 cd $cw/input/all/
-mkdir ${f%.*}
-cp $f ${f%.*}/
-cd ${f%.*}
-filename=$(basename "$f")
-# -cutot: tabulation of total codon usage
-$cw/codonw $filename -nomenu -silent -cutot
-mv ${filename%.*}.blk ${filename%.*}.cutot
-# -cutab: tabulation of codon usage by gene
-$cw/codonw $filename -nomenu -silent -cutab
-mv ${filename%.*}.blk ${filename%.*}.cutab
-# Correspondence analysis
-# coa_num: percentage of genes taken from each tail of Nec distribution
-$cw/codonw $filename -nomenu -silent -coa_cu -coa_num 5%
-# Calculate all codon bias indices
-# Use "cai.coa", "cbi.coa" and "fop.coa".  generated during correspondence
-# Analysis to calculate the indices CAI, CBI and Fop
-$cw/codonw $filename -all_indices -nomenu -silent -fop_file fop.coa -cai_file cai.coa -cbi_file cbi.coa
+sh $scripts/codonw.sh $f
 done
 
 #2) All genes minus alternative transcripts
@@ -159,23 +142,7 @@ done
 for f in $cw/input/inhouse/all/*one.fasta;
 do
 cd $cw/input/inhouse/all
-mkdir ${f%.*}
-cp $f ${f%.*}/
-cd ${f%.*}
-filename=$(basename "$f")
-# -cutot: tabulation of total codon usage
-$cw/codonw $filename -nomenu -silent -cutot
-mv ${filename%.*}.blk ${filename%.*}.cutot
-# -cutab: tabulation of codon usage by gene
-$cw/codonw $filename -nomenu -silent -cutab
-mv ${filename%.*}.blk ${filename%.*}.cutab
-# Correspondence analysis
-# coa_num: percentage of genes taken from each tail of Nec distribution
-$cw/codonw $filename -nomenu -silent -coa_cu -coa_num 5%
-# Calculate all codon bias indices
-# Use "cai.coa", "cbi.coa" and "fop.coa".  generated during correspondence
-# Analysis to calculate the indices CAI, CBI and Fop
-$cw/codonw $filename -all_indices -nomenu -silent -fop_file fop.coa -cai_file cai.coa -cbi_file cbi.coa
+sh $scripts/codonw.sh $f
 done
 
 #- 3) All genes minus alternative transcripts minus transposons
@@ -227,23 +194,7 @@ done
 for f in $cw/input/inhouse/no_transposons/*notrans.fasta;
 do
 cd $cw/input/inhouse/no_transposons
-mkdir ${f%.*}
-cp $f ${f%.*}/
-cd ${f%.*}
-filename=$(basename "$f")
-# -cutot: tabulation of total codon usage
-$cw/codonw $filename -nomenu -silent -cutot
-mv ${filename%.*}.blk ${filename%.*}.cutot
-# -cutab: tabulation of codon usage by gene
-$cw/codonw $filename -nomenu -silent -cutab
-mv ${filename%.*}.blk ${filename%.*}.cutab
-# Correspondence analysis
-# coa_num: percentage of genes taken from each tail of Nec distribution
-$cw/codonw $filename -nomenu -silent -coa_cu -coa_num 5%
-# Calculate all codon bias indices
-# Use "cai.coa", "cbi.coa" and "fop.coa".  generated during correspondence
-# Analysis to calculate the indices CAI, CBI and Fop
-$cw/codonw $filename -all_indices -nomenu -silent -fop_file fop.coa -cai_file cai.coa -cbi_file cbi.coa
+sh $scripts/codonw.sh $f
 done
 
 #- 4) All genes minus alternative transcripts minus transposons minus genes with no annotation
@@ -279,23 +230,7 @@ done
 for f in $cw/input/inhouse/only_annotated/*only_an.fasta;
 do
 cd $cw/input/inhouse/only_annotated
-mkdir ${f%.*}
-cp $f ${f%.*}/
-cd ${f%.*}
-filename=$(basename "$f")
-# -cutot: tabulation of total codon usage
-$cw/codonw $filename -nomenu -silent -cutot
-mv ${filename%.*}.blk ${filename%.*}.cutot
-# -cutab: tabulation of codon usage by gene
-$cw/codonw $filename -nomenu -silent -cutab
-mv ${filename%.*}.blk ${filename%.*}.cutab
-# Correspondence analysis
-# coa_num: percentage of genes taken from each tail of Nec distribution
-$cw/codonw $filename -nomenu -silent -coa_cu -coa_num 5%
-# Calculate all codon bias indices
-# Use "cai.coa", "cbi.coa" and "fop.coa".  generated during correspondence
-# Analysis to calculate the indices CAI, CBI and Fop
-$cw/codonw $filename -all_indices -nomenu -silent -fop_file fop.coa -cai_file cai.coa -cbi_file cbi.coa
+sh $scripts/codonw.sh $f
 done
 
 #IMPORTANT: RSCU values are stored in .blk and .cutab files
