@@ -4,6 +4,7 @@
 #$ -l h_vmem=15.7G
 #$ -l h=blacklace11.blacklace
 
+#RNA-Seq
 #Assemble given forward and reverse (first two arguments) short reads (fastq PHRED+33 format, can be gzipped) and place the assembly
 #in a given output directory (third argument)
 
