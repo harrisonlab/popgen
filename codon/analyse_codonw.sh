@@ -157,7 +157,7 @@ cp $scripts/codonw_analysis.R ./
 sed -i -e 's/125_/PG_/g' codonw_analysis.R
 Rscript --vanilla codonw_analysis.R
 
-################## Rest of the in-houe genomes
+################## Rest of the in-house genomes
 cd $input/inhouse/all
 
 #55
