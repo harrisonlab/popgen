@@ -159,6 +159,8 @@ In order to carry out genome duplication analysis, first generate the Blast data
 * Unwrap all the sequnces in the FASTA file so that they span only 1 line ` awk '!/^>/ { printf "%s", $0; n = "\n" } /^>/ { print n $0; n = "" } END { printf "%s", n }' <INPUT> >temp && mv temp <INPUT>`
 * Translate nucleotide sequences in 6 frames: `java -jar` [Translate6Frame.jar]  (https://github.com/harrisonlab/popgen/blob/master/renseq/Translate6Frame.jar) `-i <INPUT_FASTA_FILE> -o <OUTPUT_FASTA_FILE>`
 * Trinity RNA-Seq assembly given forward and reverse short reads: [sub_trinity_assembly.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/sub_trinity_assembly.sh)
+* A script to calculate basic assembly stats [assemblathon_stats.pl] (https://github.com/harrisonlab/popgen/blob/master/other/assemblathon_stats.pl)
+* Very sensitive (up to 80% sequence divergence) and slow read mapping with Stampy [sub_stampy.sh] (https://github.com/harrisonlab/popgen/blob/master/other/sub_stampy.sh)
 * Quickly mask nucleotide sequences with the dust algorithm: [sub_fast_masking.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/sub_fast_masking.sh)
 * Cluster nucleotide sequences at a given identity threshold and output consensus sequence for each cluster: [sub_cluster_baits.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/sub_cluster_baits.sh)
 * Perform HMMER annotation with PFAM domains of given input protein sequences: [sub_hmmscan.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/sub_hmmscan.sh)
