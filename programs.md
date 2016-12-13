@@ -176,3 +176,4 @@ export PYTHONPATH="$PYTHONPATH:/home/sobczm/bin/PyVCF/lib/python2.7/site-package
 ##Nanopore sequencing
 [poretools ver. 0.6] (https://poretools.readthedocs.io/en/latest/index.html) A toolkit for working with nanopore sequencing data from Oxford Nanopore `/home/sobczm/bin/poretools/poretools` Usage: `python ./poretools`
 
+[minion] (http://www.ebi.ac.uk/research/enright/software/kraken) A small utility program to infer or test the presence of 3' adapter sequence in sequencing data. `/home/sobczm/bin/minion`
