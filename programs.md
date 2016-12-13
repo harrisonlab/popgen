@@ -125,8 +125,6 @@ export PATH=/home/sobczm/bin/FastTree2.1.9:${PATH}
 
 [popoolation ver. 1.2.2] (https://sourceforge.net/projects/popoolation/) PoPoolation is a pipeline for analysing pooled next generation sequencing data. `home/sobczm/bin/popoolation_1.2.2`
 
-[poretools ver. 0.6] (https://poretools.readthedocs.io/en/latest/index.html) A toolkit for working with nanopore sequencing data from Oxford Nanopore `/home/sobczm/bin/poretools/poretools` Usage: `python ./poretools`
-
 [RAxML ver. 8.2.9] (http://sco.h-its.org/exelixis/web/software/raxml/index.html): a ML a tool for phylogenetic analysis and post-analysis of large phylogenies `/home/sobczm/bin/RAxML8.2.9`
 
 [RGAugury] (https://bitbucket.org/yaanlpc/rgaugury/): A pipeline for genome-wide prediction of resistance gene analogs (RGAs) in plants. **Multiple dependencies, including own copy of Phobius**
@@ -174,3 +172,7 @@ export PYTHONPATH="$PYTHONPATH:/home/sobczm/bin/PyVCF/lib/python2.7/site-package
 [USEARCH v. 9.0] (http://www.drive5.com/usearch/manual/) High-throughput search and clustering `/home/sobczm/bin/usearch`
 
 [Weeder ver. 2.0] (http://159.149.160.51/modtools/) Discovery of transcription factor binding sites in a set of sequences from co-regulated genes `/home/sobczm/bin/weeder`
+
+##Nanopore sequencing
+[poretools ver. 0.6] (https://poretools.readthedocs.io/en/latest/index.html) A toolkit for working with nanopore sequencing data from Oxford Nanopore `/home/sobczm/bin/poretools/poretools` Usage: `python ./poretools`
+
