@@ -153,6 +153,12 @@ May want to run [check_proper_cds.py] (https://github.com/harrisonlab/popgen/blo
 
 In order to carry out genome duplication analysis, first generate the Blast database of CDS nucleotide sequences, then carry out the self-on-self blastn with [sub_self_blast.sh] (https://github.com/harrisonlab/popgen/blob/master/codon/sub_self_blast.sh). Filter the Blast output using [filter_blast.py] (https://github.com/harrisonlab/popgen/blob/master/codon/filter_blast.py). Generate dagchainer input with [blast_to_dagchainer.py] (https://github.com/harrisonlab/popgen/blob/master/codon/blast_to_dagchainer.py) and parse the genome GFF annotation file with [cds_to_chromosome_coords.py] (https://github.com/harrisonlab/popgen/blob/master/codon/cds_to_chromosome_coords.py). Run the dagchainer script found in `/home/sobczm/bin/DAGCHAINER/run_DAG_chainer.pl` and summarize, plot the cleaned up output with [detect_duplications.py] (https://github.com/harrisonlab/popgen/blob/master/codon/detect_duplications.py). 
 
+##Nanopore sequencing
+
+[poretools.sh] (https://github.com/harrisonlab/popgen/blob/master/other/poretools.sh) MinION run stats, and conversion from FAST5 to FASTQ and FASTA.
+
+[nanook.sh] (https://github.com/harrisonlab/popgen/blob/master/other/nanook.sh) Align minION nanopore reads to a reference assembly using marginalign aligner, and generate alignment and sequencing report with nanoOK.
+
 ##Miscellaneous 
 
 * Reverse complement a DNA sequence. `/home/armita/prog/emboss/EMBOSS-4.0.0/bin/revseq <INPUT> <OUTPUT>`
