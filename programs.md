@@ -172,3 +172,12 @@ export PYTHONPATH="$PYTHONPATH:/home/sobczm/bin/PyVCF/lib/python2.7/site-package
 [USEARCH v. 9.0] (http://www.drive5.com/usearch/manual/) High-throughput search and clustering `/home/sobczm/bin/usearch`
 
 [Weeder ver. 2.0] (http://159.149.160.51/modtools/) Discovery of transcription factor binding sites in a set of sequences from co-regulated genes `/home/sobczm/bin/weeder`
+
+##Nanopore sequencing
+[poretools ver. 0.6] (https://poretools.readthedocs.io/en/latest/index.html) A toolkit for working with nanopore sequencing data from Oxford Nanopore `/home/sobczm/bin/poretools/poretools` Usage: `python ./poretools`
+
+[marginAlign] (https://github.com/benedictpaten/marginAlign) The marginAlign package can be used to align reads to a reference genome and call single nucleotide variations (SNVs). It is specifically tailored for Oxford Nanopore Reads. `/home/sobczm/bin/marginAlign`
+
+[NanoOK] (https://documentation.tgac.ac.uk/display/NANOOK/NanoOK) Flexible, multi-reference software for pre- and post-alignment analysis of nanopore sequencing data, quality and error profiles `/home/sobczm/bin/NanoOK/bin`
+
+[minion] (http://www.ebi.ac.uk/research/enright/software/kraken) A small utility program to infer or test the presence of 3' adapter sequence in sequencing data. `/home/sobczm/bin/minion`
