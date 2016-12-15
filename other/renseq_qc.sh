@@ -69,8 +69,14 @@ cp downloaded/pass.fasta downloaded/nlrparser
 cp downloaded/fail.fasta downloaded/nlrparser
 sh /home/sobczm/bin/popgen/renseq/sub_nlrparser.sh $input/downloaded/nlrparser/pass.fasta
 sort -k 1 fail_nlr.tsv >fail_nlr_sorted.tsv
+#Check the number of unique reads with annotations
+cut -f1 fail_nlr_sorted.tsv | cut -d"_" -f1 | sort | uniq | wc
+#20 reads (unique)
 sh /home/sobczm/bin/popgen/renseq/sub_nlrparser.sh $input/downloaded/nlrparser/fail.fasta
 sort -k 1 pass_nlr.tsv >pass_nlr_sorted.tsv
+#Check the number of unique reads with annotations
+cut -f1 pass_nlr_sorted.tsv | cut -d"_" -f1 | sort | uniq | wc
+#58 reads (unique)
 
 ##HMMMER
 java -jar /home/sobczm/bin/popgen/renseq/Translate6Frame.jar \
@@ -142,7 +148,7 @@ qsub /home/sobczm/bin/popgen/renseq/sub_hmmscan.sh $file
 done
 done
 
-nput2=/home/sobczm/popgen/renseq/input/transcriptomes/plant_rgenes/common_onion
+input2=/home/sobczm/popgen/renseq/input/transcriptomes/plant_rgenes/common_onion
 rgenes=/home/sobczm/bin/plant_rgenes
 
 #Parse output
