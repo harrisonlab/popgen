@@ -1,7 +1,6 @@
 #! /usr/bin/env python
 from sys import argv
 import os, sys, re, argparse
-from collections import defaultdict as dd
 #A script to annotate the AA (ancestral allele) field in the VCF file
 #given genotypes of specified individuals contained in the file.
 
@@ -11,7 +10,7 @@ from collections import defaultdict as dd
 #Third argument: A list of the outgroup sample names, seperated by double commas (example:
 #(A244,,B4521,,C456)
 #Output:
-#A VCF file with the AA field added.
+#A VCF file with the AA field added. Suffix: "_aa.vcf"
 
 #AA field is added only when all the alleles
 #observed in the outgroup match that present in the focal group to reduce the number of
