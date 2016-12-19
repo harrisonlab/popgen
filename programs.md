@@ -87,6 +87,9 @@ Genomic Diversity `/home/sobczm/bin/DivStat`
 
 [GATK ver. 3.6] (https://software.broadinstitute.org/gatk/) Genome Analysis Toolkit - Variant Discovery in High-Throughput Sequencing Data. `/home/sobczm/bin/GenomeAnalysisTK-3.6`
 
+[GeneProteinViz ver. 1.2.8] (http://www.icbi.at/software/gpviz/gpviz.shtml) Dynamic visualization of genomic regions and variants affecting protein domains. 
+`/home/sobczm/bin/GPViz`
+
 [LMAP ver. 1.0] (http://lmapaml.sourceforge.net/) A collection of perl scripts to automate PAML use. Requires a number of dependencies `/home/sobczm/bin/LMAPv1.0.0/LMAP`
 
 [MAFFT ver. 7.222] (http://mafft.cbrc.jp/alignment/software/) Rapid multiple sequence alignment based on fast Fourier transform
