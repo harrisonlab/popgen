@@ -3,20 +3,21 @@ from sys import argv
 import os, sys, re, argparse
 from collections import defaultdict as dd
 
-# The scripts adds fake genotype entries obtained in the script mauve-parser.pl
+# The scripts adds the AA field and fake genotype entries (optional) obtained in the script mauve-parser.pl
 # to the specified VCF file.
 
 #Input:
 #1st argument - output from mauve_parser.pl
 #2nd argument - VCF file
 #3rd argument - ploidy of the organism
+#4th argument - add the fake genotype entry (options: Y or N)
 
 #Output:
 #A VCF file with the AA field added. Suffix: "_gen_aa.vcf", as well as a fake genotype
 #Fake ancestral genotypes will be added under "ancestral_1" and  "ancestral_2"
 
 #Sample input
-#Fake entry will only be added if BOTH alleles present in the two outgroups (two
+#AA will only be added if BOTH alleles present in the two outgroups (two
 #last columns in the table with results) are present in the focal species.
 #Otherwise, no ancestral allele be added.
 
@@ -24,7 +25,7 @@ from collections import defaultdict as dd
  #YHet    291809  T       A       T
  #YHet    291810  T       T       T
 
-script, mauve, vcf, ploidy = argv
+script, mauve, vcf, ploidy, fake = argv
 
 bare = r"(\w+)(.vcf)"
 out_sub = r"\1_gen_aa.vcf"
@@ -54,7 +55,8 @@ def write_output(fields, current_allele, alleles):
     out_h.write("AA=" + ','.join(current_allele) + "\t")
     for z in fields[8:]:
         out_h.write(z + "\t")
-    add_genotype(ploidy, current_allele, alleles)
+    if fake == "Y":
+        add_genotype(ploidy, current_allele, alleles)
     out_h.write("\n")
 
 #Read in mauve Output
@@ -70,7 +72,8 @@ for line in vcf_h:
         out_h.write(line)
     elif line.startswith("#"):
         out_h.write(line.strip())
-        out_h.write("\t" + "ancestral_1" + "\t" + "ancestral_2" + "\n")
+        if fake == "Y":
+            out_h.write("\t" + "ancestral_1" + "\t" + "ancestral_2" + "\n")
     else:
         switch = 0
         alleles_present = dict()
@@ -92,4 +95,5 @@ for line in vcf_h:
                 aa_allele = mauve_results[fields[0]][fields[1]]
             write_output(fields, aa_allele, alleles_present)
         else:
-            out_h.write(line + "\t" + "." + "\t" + "." + "\n")
+            if fake == "Y":
+                out_h.write(line + "\t" + "." + "\t" + "." + "\n")

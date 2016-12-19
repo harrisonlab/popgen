@@ -4,7 +4,6 @@ Script execution order:
 3) [clock_motif_discovery.sh] (https://github.com/harrisonlab/popgen/blob/master/clock/motif_discovery/clock_motif_discovery.sh)
 4) [clock_motif_discovery_cont.sh] (https://github.com/harrisonlab/popgen/blob/master/clock/motif_discovery/clock_motif_discovery_cont.sh)
 5) [clock_dn_ds_analysis.sh] (https://github.com/harrisonlab/popgen/blob/master/clock/motif_discovery/clock_dn_ds_analysis.sh)
-
 6) [domain_analysis.sh] (https://github.com/harrisonlab/popgen/blob/master/clock/motif_discovery/domain_analysis.sh)
 
 Genome DNA sequences (repeat-masked) and GFF3 annotation files as well as protein sequences were downloaded from Ensembl Fungi for the following species:
