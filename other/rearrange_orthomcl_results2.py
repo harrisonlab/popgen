@@ -11,6 +11,11 @@ import os, sys, re
 #2d argument: list of genome names used in OrthoMCL analysis and present in the
 # .txt output. Seperate each genome name by double comma, e.g. AA134,,GB56
 
+########################
+# Sample usage
+# python rearrange_orthomcl_results2.py All_Strains_orthogroups.txt  A4,,Bc1,,Bc16,,Bc23,,Nov27,,Nov5,,Nov71,,Nov77,,Nov9,,ONT3,,SCRP245_v2
+#######################3
+
 #Outputs:
 #File with suffix "_rearranged.tsv" - contains orthomcl results file rearranged
 #to contain genome in columns, orthogroups in rows and gene names in individual cells
