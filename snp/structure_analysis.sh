@@ -29,8 +29,6 @@ sed -i 's,^\(VCF_PARSER_POP_FILE_QUESTION=\).*,\1'"$dir/$list_file"',' vcf_to_st
 names="${input_file%.vcf}.label"
 grep "#CHROM" $input_file | head -1 | awk '{for(i=10;i<=NF;++i)print $i }' >temp
 nl temp | sed 's/^ *//' | sed 's/\t/ /g' >$names
-
-
 filename=$(basename "$input_file")
 outfile="${filename%.*}.struc"
 #Execute VCF to .struc (input format for STRUCTURE) conversion
