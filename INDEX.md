@@ -93,7 +93,7 @@ Run the STRUCTURE analysis to test for thelikely number of population clusters (
 1. Create VCF file subsets only with certain individuals retained for downstream analysis with `/home/sobczm/bin/vcflib/bin/vcfremovesamples` and remove monomorphic (idential) positions in the output with `/home/sobczm/bin/vcftools/bin/vcftools`
 
 2. Create custom SNPEff annotation for each new genome which allows classification of variants into different functional categories
-First, build genome database with [build_genome_database.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/build_genome_database.sh) Secondly, annotate the variants in select VCF file and create subsets of SNPs with different effect (genic, coding, synonymous, non-synonymous, 4-fold degenerate) with [annotate_snps_genome.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/annotate_snps_genome.sh)
+First, build genome database with [build_genome_database.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/build_genome_database.sh) Secondly, annotate the variants in select VCF file, get a summary report on variants in the input file and create subsets of SNPs with different effect (genic, coding, synonymous, non-synonymous, 4-fold degenerate) with [annotate_snps_genome.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/annotate_snps_genome.sh)
 
 3. Convert a VCF file to independent FASTA sequences for each individual (sample), incorporating the polymorphisms stored in the VCF file - that is, generate a custom version of each genome based on the common reference and SNPs detected during variant calling [vcf_to_fasta.py] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/vcf_to_fasta.py)
 
