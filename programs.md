@@ -94,6 +94,8 @@ Genomic Diversity `/home/sobczm/bin/DivStat`
 
 [LMAP ver. 1.0] (http://lmapaml.sourceforge.net/) A collection of perl scripts to automate PAML use. Requires a number of dependencies `/home/sobczm/bin/LMAPv1.0.0/LMAP`
 
+[LUMPY] (https://github.com/arq5x/lumpy-sv) A probabilistic framework for structural variant discovery `/home/sobczm/bin/lumpy-sv/bin`
+
 [MAFFT ver. 7.222] (http://mafft.cbrc.jp/alignment/software/) Rapid multiple sequence alignment based on fast Fourier transform
 `/home/sobczm/bin/mafft-7.222/bin`
 
