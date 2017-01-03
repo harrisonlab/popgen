@@ -17,6 +17,8 @@ R
 
 [ggplot2] (http://ggplot2.org/): graphing package implemented on top of the R statistical package
 
+[PCAdapt] (http://membres-timc.imag.fr/Michael.Blum/PCAdapt.html): pcadapt implements a genome scan for detecting genes involved in local adaptation
+
 [pegas] (https://cran.r-project.org/web/packages/pegas/index.html): Population and Evolutionary Genetics Analysis System
 
 [PopGenome] (https://cran.r-project.org/web/packages/PopGenome/index.html): An Efficient Swiss Army Knife for Population Genomic Analyses
