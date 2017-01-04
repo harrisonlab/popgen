@@ -4,9 +4,13 @@ library(ggplot2)
 ######################## BEFORE RUNNING ################################
 #Assign individuals to appropriate populations (or just 1!)
 #This script calculates: number of segregating sites, Watterson's Theta, Tajima's D, Fu & Li's F*, Fu & Li'd D*
+
+##!!!!!!!  DIPLOID organisms
+##When using diploid organisms and input FASTA files generated using vcf_to_fasta.py, each sample will be artificially
+##split into two sequences (<sample_name> + prefix (_1 or _2), for example FOC5_1, FOC5_2), each representing
+##one haplotype. Both need to be input below.
 nonpatho <- c("FOCA1-2", "FOCA28", "FOCCB3", "FOCD2", "FOCHB6", "FOCPG")
 patho <- c("FOCA23", "FOC55", "FOC125", "FOCFus2")
-#Need to set argument diploid=TRUE if using diploid genomes in the below command:
 populations <- list(nonpatho, patho)
 #Number of populations assigned above.
 population_no <- length(populations)
