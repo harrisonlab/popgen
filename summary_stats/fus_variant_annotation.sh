@@ -49,7 +49,8 @@ $scripts/summary_stats/annotate_snps_genome.sh $a Fus2v1.0
 done
 
 ###Create FASTA alignment files containing only select subsets of SNPs. Required
-### for analyses in the fus_popgenome_analysis.sh script.
+### for analyses in the fus_popgenome_analysis.sh script. Here, using option 1 as haploid organism, but for diploid organisms use
+### typically option 2 (for Popgenome analysis) or 3.
 ### From now onwards, analysing the dataset without A13.
 cd $input/noA13
 ref_genome=/home/sobczm/popgen/summary_stats/Fus2_canu_contigs_unmasked.fa
