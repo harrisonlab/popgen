@@ -35,6 +35,12 @@ mapping_results = dd(lambda: dd(list))
 aa_match = r"(AA=)(.*)"
 vcf_h = open(vcf1)
 
+counter_vcf = 0
+counter_aa = 0
+counter_dif = 0
+counter_vcf1 = 0
+counter_vcf2 = 0
+
 def empty_fake_genotype():
     if fake == "Y":
         out_h.write("." + "\t" + ".")
@@ -72,7 +78,6 @@ def write_output(fields, current_allele, alleles):
         add_genotype(ploidy, current_allele, alleles)
     out_h.write("\n")
 
-
 #Read in AA in the first VCF file into memory
 for line in vcf_h:
     if line.startswith("#"):
@@ -95,6 +100,7 @@ for line in vcf_h2:
             out_h.write("\t" + "ancestral_1" + "\t" + "ancestral_2" + "\n")
     else:
         alleles_present = dict()
+        counter_vcf += 1
         fields = line.split()
         #Collect the alleles present:
         alleles_present[fields[3]] = "0"
@@ -113,16 +119,20 @@ for line in vcf_h2:
                     #Check if criterion 3 met for retaining AA met:
                     if len(diff) > 1:
                         #remove the AA field
+                        counter_dif += 1
                         write_no_aa(fields)
                     else:
                         #Union of two lists:
                         aa_allele = list(set(alleles + alleles2))
+                        counter_aa += 1
                         write_output(fields, aa_allele, alleles_present)
                 else:
                     #remove the AA field
+                    counter_dif += 1
                     write_no_aa(fields)
             else:
                 #Add the AA field only from VCF2
+                counter_vcf2 += 1
                 out_h.write(line.strip())
                 if fake == "Y":
                     add_genotype(ploidy, alleles2, alleles_present)
@@ -131,8 +141,17 @@ for line in vcf_h2:
             alleles = mapping_results[fields[0]][fields[1]]
             #Check if AA field present in VCF1 and if so add it.
             if len(alleles) > 0:
+                counter_vcf1 += 1
                 write_output(fields, alleles, alleles_present)
             else:
                 out_h.write(line.strip())
                 empty_fake_genotype()
                 out_h.write("\n")
+vcf_h.close()
+vcf_h2.close()
+out_h.close()
+
+print("In total, {0} variants were annotated with consensus ancestral allele, ".format(counter_aa) +
+"out of {0} variants in the file. {1} annotations were found to differ between the ".format(counter_vcf, counter_dif) +
+"two input annotation sources, and were rejected, while {0} and {1} ancestral allele ".format(counter_vcf1, counter_vcf2) +
+"annotations were present only in the input annotation source 1 or 2, respectively, and were included.")

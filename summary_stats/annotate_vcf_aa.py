@@ -29,6 +29,8 @@ out_h = open(out, 'w')
 vcf_h = open(vcf)
 
 outgroup_ind = []
+counter_vcf = 0
+counter_aa = 0
 
 def write_output(fields, current_allele):
     for z in fields[:7]:
@@ -56,6 +58,7 @@ for line in vcf_h:
             else:
                 pass
     else:
+        counter_vcf += 1
         fields = line.split()
         alleles = []
         current_allele = []
@@ -79,5 +82,9 @@ for line in vcf_h:
                         g.extend([alleles[int(d[0])], alleles[int(d[1])]])
                         allele_check(current_allele, g)
             write_output(fields, current_allele)
+            counter_aa += 1
 vcf_h.close()
 out_h.close()
+
+print ("Out of %d variants in the file %s, %d were annotated with (an) ancestral allele(s)"
+% (counter_vcf, vcf, counter_aa))

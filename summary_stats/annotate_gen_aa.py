@@ -33,6 +33,9 @@ out = re.sub(bare, out_sub, vcf)
 out_h = open(out, 'w')
 vcf_h = open(vcf)
 
+counter_vcf = 0
+counter_aa = 0
+
 mauve_results = dd(lambda: dd(list))
 
 def add_genotype(ploidy, current_allele, alleles):
@@ -76,10 +79,10 @@ for line in vcf_h:
         if fake == "Y":
             out_h.write("\t" + "ancestral_1" + "\t" + "ancestral_2")
         out_h.write("\n")
-
     else:
         switch = 0
         alleles_present = dict()
+        counter_vcf += 1
         fields = line.split()
         alleles = [fields[3], fields[4]]
         #Check that biallelic variant, otherwise discard:
@@ -103,8 +106,14 @@ for line in vcf_h:
                 else:
                     aa_allele = mauve_results[fields[0]][fields[1]]
                 write_output(fields, aa_allele, alleles_present)
+                counter_aa += 1
             else:
                 if fake == "Y":
                     out_h.write(line.strip() + "\t" + "." + "\t" + "." + "\n")
                 else:
                     out_h.write(line)
+vcf_h.close()
+out_h.close()
+
+print ("Out of %d variants in the file %s, %d were annotated with (an) ancestral allele(s)"
+% (counter_vcf, vcf, counter_aa))
