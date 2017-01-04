@@ -17,6 +17,8 @@ R
 
 [ggplot2] (http://ggplot2.org/): graphing package implemented on top of the R statistical package
 
+[PCAdapt] (http://membres-timc.imag.fr/Michael.Blum/PCAdapt.html): pcadapt implements a genome scan for detecting genes involved in local adaptation
+
 [pegas] (https://cran.r-project.org/web/packages/pegas/index.html): Population and Evolutionary Genetics Analysis System
 
 [PopGenome] (https://cran.r-project.org/web/packages/PopGenome/index.html): An Efficient Swiss Army Knife for Population Genomic Analyses
@@ -91,6 +93,8 @@ Genomic Diversity `/home/sobczm/bin/DivStat`
 `/home/sobczm/bin/GPViz`
 
 [LMAP ver. 1.0] (http://lmapaml.sourceforge.net/) A collection of perl scripts to automate PAML use. Requires a number of dependencies `/home/sobczm/bin/LMAPv1.0.0/LMAP`
+
+[LUMPY] (https://github.com/arq5x/lumpy-sv) A probabilistic framework for structural variant discovery `/home/sobczm/bin/lumpy-sv/bin`
 
 [MAFFT ver. 7.222] (http://mafft.cbrc.jp/alignment/software/) Rapid multiple sequence alignment based on fast Fourier transform
 `/home/sobczm/bin/mafft-7.222/bin`

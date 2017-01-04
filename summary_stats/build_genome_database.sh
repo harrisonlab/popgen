@@ -16,14 +16,14 @@ echo $genome_name.genome : $genome_name  >> $snpeff/snpEff.config
 
 #Collect input files
 #The folder name below should correspond to the genome name (Fus2v1.0.genome) specified above, without the ".genome" suffix.
-#In this case, Fus2v1.0.
+#In the example case, Fus2v1.0.
 mkdir $snpeff/data/$genome_name
 cp $fasta $snpeff/data/$genome_name
 cp $gff $snpeff/data/$genome_name
 
 #Rename input files
-gff_f=$(basename "gff")
-genome_f=$(basename "genome")
+gff_f=$(basename "$gff")
+genome_f=$(basename "$fasta")
 
 cd $snpeff/data/$genome_name
 mv $gff_f genes.gff

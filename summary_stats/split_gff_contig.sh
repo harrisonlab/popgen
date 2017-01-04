@@ -1,5 +1,5 @@
 #!/bin/bash
-
+scripts=/home/sobczm/bin/popgen
 #1st argument: Whole-genome GFF file.
 gff=$1
 filename=$(basename "$gff")
