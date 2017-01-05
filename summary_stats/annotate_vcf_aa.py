@@ -5,7 +5,7 @@ import os, sys, re, argparse
 #given genotypes of specified individuals contained in the file.
 
 #Input:
-#First argument: Input VCF file with only biallelic markers (i.e. two alleles max)
+#First argument: Input VCF file with variants
 #Second argument: Specify ploidy of the organism (arguments accepted: 1 or 2)
 #Third argument: A list of the outgroup sample names, seperated by double commas (example:
 #A244,,B4521,,C456)
