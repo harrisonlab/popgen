@@ -13,7 +13,7 @@ script, gene_list, fasta_file = argv
 
 genes = dict()
 
-bare = r"(\w+)(.fa$|.fasta$)"
+bare = r"(\w+)(.fa$|.fasta$|.fas$)"
 filtered = r"\1_filtered.fasta"
 o = re.sub(bare, filtered, fasta_file)
 out = open(o, 'w')
