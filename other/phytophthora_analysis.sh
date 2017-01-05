@@ -58,4 +58,4 @@ $input/SNP_calling/95m_contigs_unmasked_filtered.vcf 2 N
 #Compare the results of ancestral allele annotation obtained using VCF and genome alignment
 #and print both AA field and fake genotype with the ancestral allele:
 python $scripts/compare_outgroup_results.py $input/SNP_calling/95m_contigs_unmasked_filtered_aa.vcf \
-$input/SNP_calling/95m_contigs_unmasked_filtered_gen_aa.vcf 2 Y
+$input/SNP_calling/95m_contigs_unmasked_filtered_gen_aa.vcf 2 N

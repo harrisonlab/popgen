@@ -3,8 +3,8 @@ from sys import argv
 import os, sys, re, argparse
 from collections import defaultdict as dd
 
-# The scripts adds the AA field and fake genotype entries (optional) obtained in the script mauve-parser.pl
-# to the specified VCF file.
+# The scripts adds the AA field and fake genotype entries (optional) obtained in the
+# script mauve-parser.pl to the specified VCF file.
 
 #Input:
 #1st argument - output from mauve_parser.pl
@@ -62,7 +62,7 @@ def write_output(fields, current_allele, alleles):
         add_genotype(ploidy, current_allele, alleles)
     out_h.write("\n")
 
-#Read in mauve Output
+#Read in mauve output
 mauve_h = open(mauve)
 for line in mauve_h:
     fields = line.split()
