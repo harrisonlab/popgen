@@ -8,7 +8,7 @@ from collections import defaultdict as dd
 
 #Input:
 #1st argument - output from mauve_parser.pl
-#2nd argument - VCF input file with variants to be annotated
+#2nd argument - VCF input file with SNPs to be annotated
 #3rd argument - ploidy of the organism
 #4th argument - add the fake genotype entry (options: Y or N)
 
