@@ -17,7 +17,7 @@ patho <- c("FOCA23", "FOC55", "FOC125", "FOCFus2")
 populations <- list(nonpatho, patho)
 #Number of populations assigned above.
 population_no <- length(populations)
-population_names <- c("nonpatho", "patho")
+population_names <- c("nonpatho", "patho") #Given in the same order, as above.
 #Interval and jump size used in the sliding window analysis
 #For graphical comparison of nucleotide diversity in choice populations, amend Addendum B) and E) below.
 interval <-  1000
