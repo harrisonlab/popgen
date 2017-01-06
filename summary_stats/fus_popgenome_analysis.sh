@@ -38,7 +38,7 @@ cd $input/all
 #Lastly, test if all contigs have a matching GFF file. In some cases, no genes
 #are predicted on a given contig, and GFF file for it will be missing. (Spotted by T. Adams)
 #Check for orphan contigs with no matching gff file, which need to be removed prior to the run.
-for a in $PWD/contigs/contig*/*.fasta
+for a in $PWD/contigs/*/*.fasta
 do
 filename=$(basename "$a")
 expected_gff="$PWD/gff/${filename%.fa*}.gff"
