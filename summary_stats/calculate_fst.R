@@ -12,6 +12,7 @@ library(ggplot2)
 ##one haplotype. Both need to be input below.
 nonpatho <- c("FOCA1-2", "FOCA28", "FOCCB3", "FOCD2", "FOCHB6", "FOCPG")
 patho <- c("FOCA23", "FOC55", "FOC125", "FOCFus2")
+#In the output for pairwise FST, pop1, pop2 etc. refer to the order in which the populations have been listed here:
 populations <- list(nonpatho, patho)
 #Number of populations assigned above.
 population_no <- length(populations)
@@ -45,9 +46,7 @@ get.F_ST(GENOME.class.split)
 FST_all <- GENOME.class.split@nuc.F_ST.vs.all
 FST_all_d <- as.data.frame(FST_all)
 FST_pairwise <- GENOME.class.split@nuc.F_ST.pairwise
-FST_pairwise_d <- as.data.frame(as.vector(FST_pairwise))
 Hudson_KST <- GENOME.class.split@Hudson.K_ST
-Hudson_KST_d <- as.data.frame(Hudson_KST)
 
 for (i in seq_along(population_names))
 {
@@ -65,42 +64,39 @@ for (i in seq_along(population_names))
 
 for (i in seq(pairs))
 {
-  file_hist <- paste(dir, "_pairwise_FST_per_gene", i, ".pdf", sep="")
-  fst_plot <- ggplot(FST_pairwise_d, aes(x=FST_pairwise_d[,i])) + geom_histogram(colour="black", fill="cadetblue") + ggtitle(dir) + xlab(expression(paste("Pairwise FST per gene"))) + ylab("Number of genes") + scale_x_continuous(breaks = pretty(FST_pairwise_d[,i], n = 10))
+  FST_pairwise_d <- as.data.frame(as.vector(FST_pairwise[i,]))
+  labelling <- gsub("/", "_vs_", row.names(FST_pairwise)[i])
+  file_hist <- paste(dir, "_pairwise_FST_per_gene_", labelling, ".pdf", sep="")
+  fst_plot <- ggplot(FST_pairwise_d, aes(x=FST_pairwise_d[,1])) + geom_histogram(colour="black", fill="cadetblue") + ggtitle(dir) + xlab(expression(paste("Pairwise FST per gene"))) + ylab("Number of genes") + scale_x_continuous(breaks = pretty(FST_pairwise_d[,1], n = 10))
   ggsave(file_hist, fst_plot)
-  file_table = paste(dir, "_pairwise_FST_per_gene", i, ".txt", sep="")
-  file_table2 = paste("genome_pairwise_FST_per_gene", i, "all.txt", sep="")
+  file_table = paste(dir, "_pairwise_FST_per_gene_", labelling, ".txt", sep="")
+  file_table2 = paste("genome_pairwise_FST_per_gene_", labelling, ".txt", sep="")
   current_gff <- paste(gff, "/", dir, ".gff", sep="")
   gene_ids <- get_gff_info(GENOME.class.split, current_gff, chr=dir, feature=FALSE, extract.gene.names=TRUE)
-  fst_table <- cbind(gene_ids, FST_pairwise_d[,i])
+  fst_table <- cbind(gene_ids, FST_pairwise_d[,1])
   write.table(fst_table, file=file_table, sep="\t",quote=FALSE, col.names=FALSE, row.names=FALSE)
   write.table(fst_table, file=file_table2, sep="\t",quote=FALSE, col.names=FALSE, row.names=FALSE, append=TRUE)
 }
 
 ### Plot Hudson KST
-
-for (i in seq(pairs))
-{
-  file_hist <- paste(dir, "_Hudson_KST_per_gene", i, ".pdf", sep="")
-  fst_plot <- ggplot(Hudson_KST_d, aes(x=Hudson_KST_d[,i])) + geom_histogram(colour="black", fill="springgreen") + ggtitle(dir) + xlab(expression(paste("Hudson KST per gene"))) + ylab("Number of genes") + scale_x_continuous(breaks = pretty(Hudson_KST_d[,i], n = 10))
-  ggsave(file_hist, fst_plot)
-  file_table = paste(dir, "_Hudson_KST_per_gene", i, ".txt", sep="")
-  file_table2 = paste("genome_Hudson_KST_per_gene_all", i, ".txt", sep="")
-  current_gff <- paste(gff, "/", dir, ".gff", sep="")
-  gene_ids <- get_gff_info(GENOME.class.split, current_gff, chr=dir, feature=FALSE, extract.gene.names=TRUE)
-  fst_table <- cbind(gene_ids, Hudson_KST_d[,i])
-  write.table(fst_table, file=file_table, sep="\t",quote=FALSE, col.names=FALSE, row.names=FALSE)
-  write.table(fst_table, file=file_table2, sep="\t",quote=FALSE, col.names=FALSE, row.names=FALSE, append=TRUE)
-}
+Hudson_KST_d <- as.data.frame(as.vector(Hudson_KST[1,]))
+file_hist <- paste(dir, "_Hudson_KST_per_gene", ".pdf", sep="")
+fst_plot <- ggplot(Hudson_KST_d, aes(x=Hudson_KST_d[,1])) + geom_histogram(colour="black", fill="springgreen") + ggtitle(dir) + xlab(expression(paste("Hudson KST per gene"))) + ylab("Number of genes") + scale_x_continuous(breaks = pretty(Hudson_KST_d[,1], n = 10))
+ggsave(file_hist, fst_plot)
+file_table = paste(dir, "_Hudson_KST_per_gene", ".txt", sep="")
+file_table2 = paste("genome_Hudson_KST_per_gene_all", ".txt", sep="")
+current_gff <- paste(gff, "/", dir, ".gff", sep="")
+gene_ids <- get_gff_info(GENOME.class.split, current_gff, chr=dir, feature=FALSE, extract.gene.names=TRUE)
+fst_table <- cbind(gene_ids, Hudson_KST_d[,1])
+write.table(fst_table, file=file_table, sep="\t",quote=FALSE, col.names=FALSE, row.names=FALSE)
+write.table(fst_table, file=file_table2, sep="\t",quote=FALSE, col.names=FALSE, row.names=FALSE, append=TRUE)
 
 #### Sliding window analysis (interval)
 GENOME.class.slide <- sliding.window.transform(GENOME.class,width=interval,jump=jump_size,type=2, whole.data=TRUE)
 GENOME.class.slide <- F_ST.stats(GENOME.class.slide, mode="nucleotide")
 FST_all_slide <- GENOME.class.slide@nuc.F_ST.vs.all
 FST_pairwise_slide <- GENOME.class.slide@nuc.F_ST.pairwise
-
 FST_all_slide_d <- as.data.frame(FST_all_slide)
-FST_pairwise_slide_d <- as.data.frame(as.vector(FST_pairwise_slide))
 #x axis
 ids <- length(GENOME.class.slide@region.names)
 xaxis <- seq(from = 1, to = ids, by = 1)
@@ -119,12 +115,14 @@ for (i in seq_along(population_names))
 #Plot pairwise FST
 for (i in seq(pairs))
 {
-  file_hist <- paste(dir, "_pairwise_FST_per_sliding_window", i, ".pdf", sep="")
-  slide_plot <- ggplot(FST_pairwise_slide_d, aes(x=xaxis, y=FST_pairwise_slide_d[,i])) + geom_smooth(colour="black", fill="slateblue") + ggtitle(dir) + xlab("Contig coordinate (kbp)") + ylab("Pairwise FST per interval") + scale_x_continuous(breaks = pretty(xaxis, n = 10))
+  FST_pairwise_slide_d <- as.data.frame(as.vector(FST_pairwise_slide[i,]))
+  labelling <- gsub("/", "_vs_", row.names(FST_pairwise_slide)[i])
+  file_hist <- paste(dir, "_pairwise_FST_per_sliding_window_", labelling, ".pdf", sep="")
+  slide_plot <- ggplot(FST_pairwise_slide_d, aes(x=xaxis, y=FST_pairwise_slide_d[,1])) + geom_smooth(colour="black", fill="slateblue") + ggtitle(dir) + xlab("Contig coordinate (kbp)") + ylab("Pairwise FST per interval") + scale_x_continuous(breaks = pretty(xaxis, n = 10))
   ggsave(file_slide, slide_plot)
   #write table with raw data
-  slide_table <- paste(dir, "_pairwise_FST_per_sliding_window", i, ".txt", sep="")
-  fst_table <- cbind(GENOME.class.slide@region.names, FST_pairwise_slide_d[,i])
+  slide_table <- paste(dir, "_pairwise_FST_per_sliding_window_", labelling, ".txt", sep="")
+  fst_table <- cbind(GENOME.class.slide@region.names, FST_pairwise_slide_d[,1])
   write.table(fst_table, file=slide_table, sep="\t",quote=FALSE, col.names=FALSE, row.names=FALSE)
 }
 
@@ -141,18 +139,21 @@ fst_plot <- ggplot(x, aes(x=x[,3])) + geom_histogram(colour="black", fill="darks
 ggsave(file_hist, fst_plot)
 }
 
+#Hudson KST
+file_table2 = paste("genome_Hudson_KST_per_gene_all", ".txt", sep="")
+x <- as.data.frame(read.delim(file_table2))
+file_hist <- paste("genome_Hudson_KST_per_gene_all", ".pdf", sep="")
+fst_plot <- ggplot(x, aes(x=x[,2])) + geom_histogram(colour="black", fill="springgreen") + xlab(expression(paste("Hudson KST per gene"))) + ylab("Number of genes") + scale_x_continuous(breaks = pretty(x[,2], n = 10))
+ggsave(file_hist, fst_plot)
+
+
 for (i in seq(pairs))
 {
   #Pairwise FST
-  file_table2 = paste("genome_pairwise_FST_per_gene", i, "all.txt", sep="")
+  labelling <- gsub("/", "_vs_", row.names(FST_pairwise)[i])
+  file_table2 = paste("genome_pairwise_FST_per_gene_", labelling, ".txt", sep="")
   x <- as.data.frame(read.delim(file_table2))
-  file_hist <- paste("genome_pairwise_FST_per_gene", i, "all.pdf", sep="")
+  file_hist <- paste("genome_pairwise_FST_per_gene_", labelling, ".pdf", sep="")
   fst_plot <- ggplot(x, aes(x=x[,2])) + geom_histogram(colour="black", fill="cadetblue") + xlab(expression(paste("Pairwise FST per gene"))) + ylab("Number of genes") + scale_x_continuous(breaks = pretty(x[,2], n = 10))
-  ggsave(file_hist, fst_plot)
-  #Hudson KST
-  file_table2 = paste("genome_Hudson_KST_per_gene_all", i, ".txt", sep="")
-  x <- as.data.frame(read.delim(file_table2))
-  file_hist <- paste("genome_Hudson_KST_per_gene_all", i, ".pdf", sep="")
-  fst_plot <- ggplot(x, aes(x=x[,2])) + geom_histogram(colour="black", fill="springgreen") + xlab(expression(paste("Hudson KST per gene"))) + ylab("Number of genes") + scale_x_continuous(breaks = pretty(x[,2], n = 10))
   ggsave(file_hist, fst_plot)
 }
