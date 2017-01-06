@@ -13,13 +13,17 @@ library(ggplot2)
 ##one haplotype. Both need to be input below.
 nonpatho <- c("FOCA1-2", "FOCA28", "FOCCB3", "FOCD2", "FOCHB6", "FOCPG")
 patho <- c("FOCA23", "FOC55", "FOC125", "FOCFus2")
+#In the output for pairwise FST, pop1, pop2 etc. refer to the order in which the populations have been listed here:
 populations <- list(nonpatho, patho)
 #Number of populations assigned above.
 population_no <- length(populations)
 population_names <- c("nonpatho", "patho")
 #Interval and jump size used in the sliding window analysis
+#For graphical comparison of nucleotide diversity in choice populations, amend Addendum B) and E) below.
 interval <-  1000
 jump_size <-  interval / 10
+#########################################################################
+
 #########################################################################
 
 #Folder containing FASTA alignments in the current dir
@@ -34,7 +38,6 @@ for (dir in contig_folders[contig_folders != ""])
 contig_folder <- paste("contigs/", dir, sep="")
 GENOME.class <- readData(contig_folder, gffpath=gff, include.unknown = TRUE)
 GENOME.class <- set.populations(GENOME.class, populations)
-
 #########################################################
 #A) calculate Pi (Nei, 1987) for all sites in a given gene.
 
@@ -83,8 +86,10 @@ slide_table <- paste(dir, "_", population_names[i], "_Pi_per_sliding_window.txt"
 write.table(Pi_persite[,i], file=slide_table, sep="\t",quote=FALSE, col.names=FALSE)
 }
 
-#Plot both populations for comparison
-title <- paste(dir, "Comparison of", population_names[1], "ver.", population_names[2], sep=" ")
+#B) Addendum
+#Plot two populations for comparison (here population 1 and 2, but can be changed to reflect the analysis)
+#To change populations, need to change data frame indexes (1 and 2) in the lines below.
+title <- paste(dir, "Comparison of", population_names[1], "vs", population_names[2], sep=" ")
 comp_slide_file <- paste(dir, "_Pi_sliding_window_comparison.pdf", sep="")
 slide_comparison <- ggplot(Pi_persite_d, aes(x=xaxis)) + geom_smooth(aes(y=Pi_persite_d[,1]), colour="red") + geom_smooth(aes(y=Pi_persite_d[,2]), colour="blue") + ggtitle(title) + xlab("Contig coordinate (kbp)") + ylab(expression(paste("Average ", pi, " per site"))) + scale_x_continuous(breaks = pretty(xaxis, n = 10))
 ggsave(comp_slide_file, slide_comparison)
@@ -92,40 +97,47 @@ ggsave(comp_slide_file, slide_comparison)
 ############################################################
 #C) Calculate Dxy for all sites in a given gene, if more than 1 population analysed.
 #All possible pairwise contrasts
+
 GENOME.class.split <- F_ST.stats(GENOME.class.split)
 FST_results <- get.F_ST(GENOME.class.split)
 dxy <- GENOME.class.split@nuc.diversity.between / GENOME.class.split@n.sites
-dxy_d <- as.data.frame(as.vector(dxy))
 current_gff <- paste(gff, "/", dir, ".gff", sep="")
 gene_ids <- get_gff_info(GENOME.class.split, current_gff, chr=dir, feature=FALSE, extract.gene.names=TRUE)
-dxy_table <- cbind(GENOME.class.split@region.names, gene_ids, as.vector(dxy))
 
 #print a histogram of Dxy distribution
 #write table with raw data
-file_hist = paste(dir, "_", "dxy_per_gene.pdf", sep="")
+for (i in seq(pairs))
+{
+dxy_d <- as.data.frame(as.vector(dxy[i,]))
+dxy_table <- cbind(GENOME.class.split@region.names, gene_ids, as.vector(dxy[i,]))
+labelling <- gsub("/", "_vs_", row.names(dxy)[i])
+file_hist = paste(dir, "_", labelling, "_dxy_per_gene.pdf", sep="")
 dxy_plot <- ggplot(dxy_d, aes(x=dxy_d[,1])) + geom_histogram(colour="black", fill="green") + ggtitle(dir) + xlab("Average Dxy per gene") + ylab("Number of genes") + scale_x_continuous(breaks = pretty(dxy_d[,1], n = 10))
 ggsave(file_hist, dxy_plot)
-file_table = paste(dir, "_","dxy_per_gene.txt", sep="")
-file_table2 = "genome_dxy_per_gene_all.txt"
+file_table = paste(dir, "_", labelling, "_dxy_per_gene.txt", sep="")
+file_table2 = paste("genome_", labelling, "_dxy_per_gene.txt", sep="")
 write.table(dxy_table, file=file_table, sep="\t",quote=FALSE, row.names=FALSE, col.names=FALSE)
 write.table(dxy_table, file=file_table2, sep="\t",quote=FALSE, row.names=FALSE, col.names=FALSE, append=TRUE)
+}
 ############################################################
 #D) Calculate Dxy for all sites in a sliding window analysis, if more than 1 population analysed.
 #All possible pairwise contrasts
 GENOME.class.slide <- F_ST.stats(GENOME.class.slide)
 FST_results <- get.F_ST(GENOME.class.slide)
 dxy <- GENOME.class.slide@nuc.diversity.between / GENOME.class.slide@n.sites
-dxy_d <- as.data.frame(as.vector(dxy))
-dxy_table <- cbind(GENOME.class.slide@region.names, as.vector(dxy))
 
 #Plot Dxy across the intervals
 #write table with raw data
-file_slide = paste(dir, "_", "dxy_per_sliding_window.pdf", sep="")
+for (i in seq(pairs))
+{
+dxy_d <- as.data.frame(as.vector(dxy[i,]))
+labelling <- gsub("/", "_vs_", row.names(dxy)[i])
+file_slide = paste(dir, "_", labelling, "_dxy_per_sliding_window.pdf", sep="")
 dxy_plot <- slide_plot <- ggplot(dxy_d, aes(x=xaxis, y=dxy_d[,1])) + geom_smooth(colour="black", fill="green") + ggtitle(dir) + xlab("Contig coordinate (kbp)") + ylab(paste("Average Dxy per ", interval, " bp")) + scale_x_continuous(breaks = pretty(xaxis, n = 10))
 ggsave(file_slide, dxy_plot)
-file_table = paste(dir, "_","dxy_per_sliding_window.txt", sep="")
-write.table(dxy_table, file=file_table, sep="\t",quote=FALSE, row.names=FALSE, col.names=FALSE)
-
+file_table = paste(dir, "_", labelling, "_dxy_per_sliding_window.txt", sep="")
+write.table(dxy[1,], file=file_table, sep="\t",quote=FALSE, col.names=FALSE)
+}
 ##############################################################
 #E) When a dataset containing all types of coding sites loaded, calculate Pi(nonsyn)/Pi(syn) over each
 # gene and over a given interval in the genome.
@@ -183,6 +195,9 @@ for (i in seq_along(population_names))
   write.table(Pi_ns_persite[,i], file=slide_table, sep="\t",quote=FALSE, col.names=FALSE)
 }
 
+#E) Addendum
+#Plot two populations for comparison (here population 1 and 2, but can be changed to reflect the analysis)
+#To change populations, need to change data frame indexes (1 and 2) in the lines below.
 #Plot both populations for comparison
 title <- paste(dir, "Comparison of", population_names[1], "ver.", population_names[2], sep=" ")
 comp_slide_file <- paste(dir, "_Pi_n_s_sliding_window_comparison.pdf", sep="")
@@ -211,8 +226,12 @@ ggsave(file_hist, pi_plot)
 }
 
 #Dxy table
-file_table2 = "genome_dxy_per_gene_all.txt"
-x <- as.data.frame(read.delim(file_table2))
-file_hist = "genome_dxy_per_gene_all.pdf"
-dxy_plot <- ggplot(x, aes(x=x[,3])) + geom_histogram(colour="black", fill="green") + xlab("Average Dxy per gene") + ylab("Number of genes") + scale_x_continuous(breaks = pretty(x[,3], n = 10))
-ggsave(file_hist, dxy_plot)
+for (i in seq(pairs))
+{
+  labelling <- gsub("/", "_vs_", row.names(dxy)[i])
+  file_table2 = paste("genome_", labelling, "_dxy_per_gene.txt", sep="")
+  x <- as.data.frame(read.delim(file_table2))
+  file_hist = paste("genome_", labelling, "_dxy_per_gene.pdf", sep="")
+  dxy_plot <- ggplot(x, aes(x=x[,3])) + geom_histogram(colour="black", fill="green") + xlab("Average Dxy per gene") + ylab("Number of genes") + scale_x_continuous(breaks = pretty(x[,3], n = 10))
+  ggsave(file_hist, dxy_plot)
+}
