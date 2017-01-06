@@ -6,7 +6,7 @@ library(ggplot2)
 #of genetic variation cannot be calculated, and need to carry out only analyses
 #A, B  but not C, D.
 #When all coding sites input, use E to calculate Pi(nonsyn)/Pi(syn) sites.
-
+#Output files either per contig or the entire genome (prefix genome_)
 ##!!!!!!!  DIPLOID organisms
 ##When using diploid organisms and input FASTA files generated using vcf_to_fasta.py, each sample will be artificially
 ##split into two sequences (<sample_name> + prefix (_1 or _2), for example FOC5_1, FOC5_2), each representing

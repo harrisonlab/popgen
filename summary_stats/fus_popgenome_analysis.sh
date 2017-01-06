@@ -10,17 +10,20 @@ scripts=/home/sobczm/bin/popgen/summary_stats
 # and containing one individual contig FASTA file, also named with exact contig name, as output from vcf_to_fasta.py
 
 #An example on how to create this directory structure
-
 cd $input/all
 #This folder contaings only contig FASTA files
 #So create a new "contigs" directory to hold those files:
 mkdir contigs
 mv *.fasta ./contigs
 
-#copy the "gff" folder containing gff files
-cp -r /home/sobczm/popgen/summary_stats/gff ./
+###Split the master GFF file into one contig --> one GFF file. Required
+### for analyses in Popgenome below.
+cd $input
+mkdir gff
+sh $scripts/summary_stats/split_gff_contigs.sh Fus2_final_genes_appended.gff3
+mv *.gff ./gff
 
-#The last step: in the folder "contigs" create subfolders, each to hold one contig FASTA file
+#In the folder "contigs" create subfolders, each to hold one contig FASTA file
 cd contigs
 for f in *.fasta
 do
@@ -32,6 +35,19 @@ done
 #Navigate to the input folder holding the two folders: "contigs" and "gff"
 #to proceed with Popgenome run.
 cd $input/all
+#Lastly, test if all contigs have a matching GFF file. In some cases, no genes
+#are predicted on a given contig, and GFF file for it will be missing. (Spotted by T. Adams)
+#Check for orphan contigs with no matching gff file, which need to be removed prior to the run.
+for a in $PWD/contigs/contig*/*.fasta
+do
+filename=$(basename "$a")
+expected_gff="$PWD/gff/${filename%.fa*}.gff"
+if [ ! -f "$expected_gff" ];
+then
+   rm -rf $(dirname $a)
+fi
+done
+
 #The R script used below is custom-made for each run (see first few lines of it)
 #It requires custom definition of populations, and individual assignment to them.
 #The example below calculates nucleotide diversity within (Pi) and between (Dxy) populations/

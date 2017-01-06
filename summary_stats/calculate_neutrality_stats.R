@@ -4,7 +4,7 @@ library(ggplot2)
 ######################## BEFORE RUNNING ################################
 #Assign individuals to appropriate populations (or just 1!)
 #This script calculates: number of segregating sites, Watterson's Theta, Tajima's D, Fu & Li's F*, Fu & Li'd D*
-
+#Output files either per contig or the entire genome (prefix genome_)
 ##!!!!!!!  DIPLOID organisms
 ##When using diploid organisms and input FASTA files generated using vcf_to_fasta.py, each sample will be artificially
 ##split into two sequences (<sample_name> + prefix (_1 or _2), for example FOC5_1, FOC5_2), each representing

@@ -32,6 +32,14 @@ inds = []
 #Dictionary of dictonaries of dictonaries to store SNP data
 vcf_data = defaultdict(lambda: defaultdict(dict))
 
+def multi(aa, aa2):
+    alleles = [aa, aa2]
+    #Check that biallelic variant, otherwise discard:
+    if any("," in al for al in alleles):
+        return 0
+    else:
+        return 1
+
 def vcf_handling():
     vcf_h = open(vcf_file)
     for line in vcf_h:
@@ -45,7 +53,10 @@ def vcf_handling():
         else:
             fields = line.split()
             #Check for equal length of alleles
-            if (len(fields[3]) == len(fields[4])):
+            #Check if more than 2 alleles present, otherwise discard
+            mgen = multi(fields[3], fields[4])
+            #Check if variants of equal length and biallelic
+            if (len(fields[3]) == len(fields[4]) and mgen == 1):
                 #Iterate over individual genotypes
                 for idx, f in enumerate(fields[9:]):
                     #Cross-reference to individuals
@@ -198,7 +209,7 @@ def print_fasta_haploid():
             #Taking reference site, if no variant present
                 else:
                     for my_i in inds:
-                        temp[my_i] += my_seq[i]
+                        temp[my_i].append(my_seq[i])
                 if skip_steps:
                     [iterable.next() for x in range(skip_steps)]
             # Print FASTA chromosome
@@ -218,8 +229,9 @@ def print_fasta_haploid():
 def print_fasta_diploid():
     #Loop over chromosomes
     for seq_record in SeqIO.parse(fasta_file, "fasta"):
+        counter = 0
         #Dict to store contig sequence for each individual
-        temp = defaultdict(lambda: defaultdict(str))
+        temp = defaultdict(lambda: defaultdict(list))
         seq = str(seq_record.seq).upper()
         seqid = str(seq_record.id)
         #Iterate over the range of the contig sequence
@@ -229,6 +241,8 @@ def print_fasta_diploid():
         #Iterate over the contig FASTA sequence
         if seqid in vcf_data:
             for i in iterable:
+                counter += 1
+                #print (counter)
                 #convert to position in the sequence to cross-ref with dictionary
                 n = i + 1
                 skip_steps = 0
@@ -241,31 +255,34 @@ def print_fasta_diploid():
                         variant_length = len(genotype) / 2
                         skip_steps = variant_length - 1
                         if variant_length > 1:
-                            temp[my_i]['0'] += genotype[0:variant_length]
-                            temp[my_i]['1'] += genotype[variant_length:]
+                            temp[my_i]['0'].append(genotype[0:variant_length])
+                            temp[my_i]['1'].append(genotype[variant_length:])
                         else:
                             #First chromosome
-                            temp[my_i]['0'] += genotype[0]
+                            temp[my_i]['0'].append(genotype[0])
                             #Second chromosome
-                            temp[my_i]['1'] += genotype[1]
-                        #Move down the reference sequence if complex variant encountered
+                            temp[my_i]['1'].append(genotype[1])
+                #Move down the reference sequence if complex variant encountered
                 else:
                     for my_i in inds:
-                        temp[my_i]['0'] += my_seq[i]
-                        temp[my_i]['1'] += my_seq[i]
+                        temp[my_i]['0'].append(my_seq[i])
+                        temp[my_i]['1'].append(my_seq[i])
                 if skip_steps:
                     [iterable.next() for x in range(skip_steps)]
                             #Taking reference site, if no variant present
         # Print FASTA chromosome
+            print ("Printing FASTA chromosome")
             out = str(seq_record.id + ".fasta")
             out_h = open(out, 'w')
             for my_i in inds:
                 #First Chromosome
                 out_h.write('>' + my_i + "_1" + "\n")
-                out_h.write(str(temp[my_i]['0']) + "\n")
+                current_seq = ''.join(temp[my_i]['0'])
+                out_h.write(current_seq + "\n")
                 #Second chromosome
                 out_h.write('>' + my_i + "_2" + "\n")
-                out_h.write(str(temp[my_i]['1']) + "\n")
+                current_seq = ''.join(temp[my_i]['1'])
+                out_h.write(current_seq + "\n")
             out_h.close()
         else:
             #Skip monomorphic loci

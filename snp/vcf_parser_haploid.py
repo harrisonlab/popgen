@@ -61,12 +61,22 @@ aa_c = 0
 # Counter for eliminated variants based on missing genotypes criterion
 na_c = 0
 
+def multi(aa, aa2):
+    alleles = [fields[3], fields[4]]
+    #Check that biallelic variant, otherwise discard:
+    if any("," in al for al in alleles):
+        return 0
+    else:
+        return 1
+
 def gen(fields):
     #Reset val flag
     val = 1
     mq_p = r"(MQ=)(\d+)"
-    #Check if SNP
-    if (len(fields[3]) == len(fields[4])):
+    #Check if more than 2 alleles present, otherwise discard
+    mgen = multi(fields[3], fields[4])
+    #Check if variants of equal length
+    if (len(fields[3]) == len(fields[4]) and mgen == 1):
         #Match up the MQ value
         m = re.search(mq_p, fields[7])
         mqs = float(m.group(2))

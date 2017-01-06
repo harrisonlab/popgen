@@ -67,11 +67,3 @@ mv *.fasta ./coding
 python $scripts/summary_stats/vcf_to_fasta.py Fus2_canu_contigs_unmasked_noA13_filtered.recode_annotated_syn_silent.vcf $ref_genome 1
 mkdir silent
 mv *.fasta ./silent
-
-###Split the GFF file into one contig --> one GFF file. Required
-### for analyses in the fus_popgenome_analysis.sh script.
-
-cd $input
-mkdir gff
-sh $scripts/summary_stats/split_gff_contigs.sh Fus2_final_genes_appended.gff3
-mv *.gff ./gff

@@ -5,7 +5,7 @@ library(ggplot2)
 #Assign individuals to appropriate populations (or just 1!)
 #This script calculates: Fst all/pairwise per gene or sliding window or per SNP
 #More than one population needs to be defined, of course!
-
+#Output files either per contig or the entire genome (prefix genome_)
 ##!!!!!!!  DIPLOID organisms
 ##When using diploid organisms and input FASTA files generated using vcf_to_fasta.py, each sample will be artificially
 ##split into two sequences (<sample_name> + prefix (_1 or _2), for example FOC5_1, FOC5_2), each representing

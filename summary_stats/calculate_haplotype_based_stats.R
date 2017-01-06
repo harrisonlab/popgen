@@ -3,7 +3,8 @@ library(ggplot2)
 
 ######################## BEFORE RUNNING ################################
 #Assign individuals to appropriate populations (or just 1!)
-#This script calculates: haplotype-based statistics
+#This script calculates: haplotype-based statistics.
+#Output files either per contig or the entire genome (prefix genome_)
 ##!! Warning, only use on phased genotypes in diploid organisms.
 #More than one population needs to be defined, of course!
 
