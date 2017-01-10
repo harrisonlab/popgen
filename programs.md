@@ -41,6 +41,8 @@ realignment `/home/sobczm/bin/abra/bin`
 [BayeScan ver. 2.1] (http://cmpg.unibe.ch/software/BayeScan/): detecting natural selection from population-based genetic data
 `/home/sobczm/bin/bayescan2.1/binaries/bayescan_2.1`
 
+[Beagle ver. 4.1] (https://faculty.washington.edu/browning/beagle/beagle.html) Beagle is a software package that performs genotype calling, genotype phasing, imputation of ungenotyped markers, and identity-by-descent segment detection. `/home/sobczm/bin/beagle`
+
 **BEAST requires Java 8 - downloaded it to a local directory and changed path for default Java in my profile:**
 ```
 export JAVA_HOME=/home/sobczm/bin/jre1.8.0_101
