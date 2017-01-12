@@ -17,3 +17,7 @@ Order of Shell script execution:
 8) [additional_domains.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/additional_domains.sh)
 
 9) [ultimate_bait_design.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/ultimate_bait_design.sh)
+
+10) [identification_of_atypical_genes.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/identification_of_atypical_genes.sh)
+
+11) [identification_of_RLK_RLP_genes.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/identification_of_RLK_RLP_genes.sh)
