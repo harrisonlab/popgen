@@ -11,6 +11,10 @@ R
 .libPaths( c( .libPaths(), "/home/armita/prog/R/R-3.2.2/library") )
 ```
 
+###Source file with all dependencies for the programs below. If in doubt, load all of them into your current shell instance prior to execution of any pipeline by adding the line below to the top of your script:
+```source /home/sobczm/bin/marias_profile```
+
+
 [ade4] (https://cran.r-project.org/web/packages/ade4/index.html): Analysis of Ecological Data : Exploratory and Euclidean Methods in Environmental Sciences
 
 [adegenet] (http://adegenet.r-forge.r-project.org/): a R package for the multivariate analysis of genetic markers
