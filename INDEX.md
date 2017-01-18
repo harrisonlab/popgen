@@ -1,8 +1,8 @@
 ##Index to "popgen" analyses available to use
 ###**Please make sure that the program you are trying to use has its dependencies in the PATH. See:**
-###https://github.com/harrisonlab/popgen/blob/master/programs.md **Top section for R packages set-up**
+###https://github.com/harrisonlab/popgen/blob/master/programs.md **Top section for R packages and standalone programs set-up**
 My current bash profile
-`/home/sobczm/bin/maria_bash_profile`
+`/home/sobczm/bin/marias_profile`
 
 *What directories are there?*
 

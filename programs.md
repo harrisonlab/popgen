@@ -11,6 +11,10 @@ R
 .libPaths( c( .libPaths(), "/home/armita/prog/R/R-3.2.2/library") )
 ```
 
+###Source file with all dependencies for the programs below. If in doubt, load all of them into your current shell instance prior to execution of any pipeline by adding the line below to the top of your script:
+```source /home/sobczm/bin/marias_profile```
+
+
 [ade4] (https://cran.r-project.org/web/packages/ade4/index.html): Analysis of Ecological Data : Exploratory and Euclidean Methods in Environmental Sciences
 
 [adegenet] (http://adegenet.r-forge.r-project.org/): a R package for the multivariate analysis of genetic markers
@@ -136,7 +140,7 @@ export PATH=/home/sobczm/bin/FastTree2.1.9:${PATH}
 
 [RAxML ver. 8.2.9] (http://sco.h-its.org/exelixis/web/software/raxml/index.html): a ML a tool for phylogenetic analysis and post-analysis of large phylogenies `/home/sobczm/bin/RAxML8.2.9`
 
-[RGAugury] (https://bitbucket.org/yaanlpc/rgaugury/): A pipeline for genome-wide prediction of resistance gene analogs (RGAs) in plants. **Multiple dependencies, including own copy of Phobius**
+[RGAugury] (https://bitbucket.org/yaanlpc/rgaugury/): A pipeline for genome-wide prediction of resistance gene analogs (RGAs) in plants. **Multiple dependencies, including own copy of Phobius. Phobius output not saved correctly when running via qsub**
 `/home/sobczm/bin/rgaugury`
 
 [snpEff & snpSift ver. 4.3] (http://snpeff.sourceforge.net/) Genetic variant annotation, effect prediction, VCF filtering and manipulation toolbox. `/home/sobczm/bin/snpEff`
