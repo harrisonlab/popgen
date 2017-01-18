@@ -19,7 +19,8 @@ cp $input/$fca/onion_${f}_protein.fa $input/rgaugury/$f
 sed -i 's/\*//g' $input/rgaugury/$f/onion_${f}_protein.fa
 #Break down the files into smaller chunks and run rgaugury for each transcriptome.
 #As this taking too long, going to parallelise in a crude way by splitting
-#into small files with 100 protein sequences and running 20 at a time.
+#into small files with 100 protein sequences and running 20 at a time when logged
+#into a workernode.
 cd $input/rgaugury/$f
 file=onion_${f}_protein.fa
 awk '!/^>/ { printf "%s", $0; n = "\n" } /^>/ { print n $0; n = "" } END { printf "%s", n }' $file>temp && mv temp $file
@@ -27,16 +28,28 @@ awk 'BEGIN {n_seq=0;} /^>/ {if(n_seq%100==0){file=sprintf("myseq%d.fa",n_seq);} 
 for file in myseq*.fa
 do
     Jobs=$(qstat | grep 'sub_rgaugu' | wc -l)
-    while [ $Jobs -gt 40 ]
+    while [ $Jobs -gt 100 ]
     do
         sleep 10
         printf "."
         Jobs=$(qstat | grep 'sub_rgaugu' | wc -l)
     done
-qsub $scripts/sub_rgaugury.sh $file
+qsub $scripts/sub_rgaugury2.sh $file
 done
 done
-
+#Need to re-run steps involving Phobius - works only on the head node
+cd $input
+names=( "kim" "nz" "maria" "raj" "brian" "cornell" "h6" "han" "sp3b" "liu" "sun" )
+rgaugury=/home/sobczm/bin/rgaugury/RGAugury.pl
+for f in "${names[@]}"
+do
+cd $input/rgaugury/$f
+rm *RLKorRLP.domain.prediction.txt
+for file in myseq*.fa
+do
+perl $rgaugury -p $file -c 5
+done
+done
 
 #Concatenate the output for RLK, RLP and TMCC genes.
 names=( "cornell" "han" "liu" "sun" "h6" "sp3b" "brian" "maria" "raj" "kim" "nz" )

@@ -20,4 +20,6 @@ Order of Shell script execution:
 
 10) [identification_of_atypical_genes.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/identification_of_atypical_genes.sh)
 
-11) [identification_of_RLK_RLP_genes.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/identification_of_RLK_RLP_genes.sh)
+11) [generate_trees_rlp_rlk_rlk.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/generate_trees_rlp_rlk_rlk.sh)
+
+12) [the_really_really_final_bait_design.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/the_really_really_final_bait_design.sh)

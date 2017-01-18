@@ -1,10 +1,10 @@
 #$ -S /bin/bash
-#$ -l h_vmem=1G
+#$ -l h_vmem=0.4G
 #$ -l mem_free=0.4G
 #$ -l virtual_free=0.4G
 #$ -l h_rt=9999:00:00
-#$ -l h=blacklace06.blacklace
-#$ -t 16
+#$ -l h=blacklace08.blacklace
+#$ -t 5
 
 # hold a node for a qlogin session
 

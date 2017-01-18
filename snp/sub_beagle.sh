@@ -8,4 +8,4 @@ input=$1
 output="{$input%.vcf}_haplo.vcf.gz"
 beagle=/home/sobczm/bin/beagle/beagle.27Jul16.86a.jar
 
-java -Xmx12g -jar $beagle gt=$input out=$output nthreads=20 window=1000 overlap=100` gprobs=false
+java -Xmx12g -jar $beagle gt=$input out=$output nthreads=20 window=1000 overlap=100 gprobs=false
