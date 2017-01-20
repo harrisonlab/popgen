@@ -79,7 +79,7 @@ def save_snp_haploid(contig, pos, ref, alt, length, indiv, f):
     else:
         n = f.split(":")
         #First check for 'hidden' missing genotypes
-        if (re.search(":", f) and n[2] == "."):
+        if (len(n) > 2 and n[2] == "."):
             vcf_data[contig][pos][indiv] = 'N' * length
         else:
             if n[0] == "0":
@@ -91,11 +91,12 @@ def save_snp_haploid(contig, pos, ref, alt, length, indiv, f):
 
 def save_snp_diploid(contig, pos, ref, alt, length, indiv, f):
     if f == ".":
-        vcf_data[contig][pos][indiv] = [['N' * length], ['N' * length]]
+        Nstring = 'N' * length
+        vcf_data[contig][pos][indiv] = Nstring + Nstring
     else:
         n = f.split(":")
         #First check for 'hidden' missing genotypes
-        if (re.search(":", f) and n[2] == "."):
+        if (len(n) > 2 and n[2] == "."):
             Nstring = 'N' * length
             vcf_data[contig][pos][indiv] = Nstring + Nstring
         else:
@@ -115,11 +116,11 @@ def save_snp_diploid(contig, pos, ref, alt, length, indiv, f):
 
 def save_snp_diploid_iupac(contig, pos, ref, alt, length, indiv, f):
     if f == ".":
-        vcf_data[contig][pos][indiv] = ['N' * length]
+        vcf_data[contig][pos][indiv] = 'N' * length
     else:
         n = f.split(":")
     #First check for 'hidden' missing genotypes
-        if (re.search(":", f) and n[2] == "."):
+        if (len(n) > 2 and n[2] == "."):
             vcf_data[contig][pos][indiv] = 'N' * length
         else:
             #if phased genotypes

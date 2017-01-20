@@ -54,9 +54,55 @@ python $scripts/compare_outgroup_results.py $input/SNP_calling/95m_contigs_unmas
 $input/SNP_calling/95m_contigs_unmasked_filtered_gen_aa.vcf 2 N
 
 ##### B)
+##McDonald-Kreitman test (a couple of genotypes from the outgroup species required) calculated by PopGenome
+##As an example, generate FASTA input using VCF created in A) 1
+mkdir -p $input/mkt
+cd $input/mkt
+ref_genome=/home/sobczm/popgen/other/phytophthora/genomes/95m_contigs_hardmasked.fa
+vcf_file=$input/SNP_calling/95m_contigs_unmasked_filtered_vcf_aa.vcf
+python $scripts/vcf_to_fasta.py $vcf_file $ref_genome 2
+
+#Prepare Popgenome input
+function Popgenome {
+mkdir contigs && mv *.fasta ./contigs
+cd contigs
+for f in *.fasta
+do
+folder=${f%.fasta}
+mkdir $folder
+mv $f $folder
+done
+#Gff files
+cd ..
+gff=/home/groups/harrisonlab/project_files/phytophthora_fragariae/gene_pred/codingquary/P.fragariae/Bc16/final/final_genes_appended.gff3
+$scripts/split_gff_contig.sh $gff
+mkdir gff && mv *.gff ./gff
+#Check for orphan contigs with no matching gff file, which need to be removed prior to the run.
+for a in $PWD/contigs/*/*.fasta
+do
+filename=$(basename "$a")
+expected_gff="$PWD/gff/${filename%.fa*}.gff"
+if [ ! -f "$expected_gff" ];
+then
+   rm -rf $(dirname $a)
+fi
+done
+}
+Popgenome
+
+#Requires custom adjustment of the R script called below to include the samples being analysed.
+qsub $scripts/sub_calculate_mkt.sh
+
 ################ Outgroup-based tests for selection 
-##Fay & Wu's H (at least one outgroup genotype needed)
+##Fay & Wu's H (at least one outgroup genotype needed) calculated by PopGenome
+##As an example, generate FASTA input using VCF created in A) 2
+mkdir -p $input/faywuh
+cd $input/faywuh
+ref_genome=/home/sobczm/popgen/other/phytophthora/genomes/95m_contigs_hardmasked.fa
+vcf_file=$input/SNP_calling/95m_contigs_unmasked_filtered_gen_aa.vcf
+python $scripts/vcf_to_fasta.py $vcf_file $ref_genome 2
+##Prepare Popgenome input
+Popgenome
+#Requires custom adjustment of the R script called below to include the samples being analysed.
 qsub $scripts/sub_calculate_faywu.sh
 
-##McDonald-Kreitman test (a couple of genotypes from the outgroup species required)
-qsub $scripts/sub_calculate_mkt.sh
