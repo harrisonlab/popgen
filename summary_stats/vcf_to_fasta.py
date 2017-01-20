@@ -1,5 +1,5 @@
 #! /usr/bin/env python
-import os, sys
+import os, sys, re
 from sys import argv
 import random
 from collections import defaultdict
@@ -79,7 +79,7 @@ def save_snp_haploid(contig, pos, ref, alt, length, indiv, f):
     else:
         n = f.split(":")
         #First check for 'hidden' missing genotypes
-        if n[2] == ".":
+        if (re.search(":", f) and n[2] == "."):
             vcf_data[contig][pos][indiv] = 'N' * length
         else:
             if n[0] == "0":
@@ -95,10 +95,12 @@ def save_snp_diploid(contig, pos, ref, alt, length, indiv, f):
     else:
         n = f.split(":")
         #First check for 'hidden' missing genotypes
-        if n[2] == ".":
+        if (re.search(":", f) and n[2] == "."):
             Nstring = 'N' * length
             vcf_data[contig][pos][indiv] = Nstring + Nstring
         else:
+            #if phased genotypes
+            n[0] = re.sub('\|', '/', n[0])
             g = n[0].split("/")
             if (g[0] == "0" and g[1] == "0"):
                 vcf_data[contig][pos][indiv] = ref + ref
@@ -117,9 +119,11 @@ def save_snp_diploid_iupac(contig, pos, ref, alt, length, indiv, f):
     else:
         n = f.split(":")
     #First check for 'hidden' missing genotypes
-        if n[2] == ".":
+        if (re.search(":", f) and n[2] == "."):
             vcf_data[contig][pos][indiv] = 'N' * length
         else:
+            #if phased genotypes
+            n[0] = re.sub('\|', '/', n[0])
             g = n[0].split("/")
             if (g[0] == "0" and g[1] == "0"):
                 vcf_data[contig][pos][indiv] = ref

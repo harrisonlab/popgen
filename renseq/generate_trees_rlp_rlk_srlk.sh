@@ -25,4 +25,4 @@ for a in *srlk_prot.fa; do cat $a >>all_srlk_prot.fa; done
 qsub $scripts/sub_mafft.sh all_srlk_prot.fa
 
 ##FastTree generation (check if accepts stop codons)
-qsub $scripts/sub_fasttree.sh all_srlk_prot_aligned.fa
+qsub $scripts/sub_fasttree.sh all_srlk_prot_aligned.fasta
