@@ -4,6 +4,9 @@
 My current bash profile
 `/home/sobczm/bin/marias_profile`
 
+A link to a Dropbox folder containing PowerPoint presentations with summary and sample outputs of methods described below: 
+https://www.dropbox.com/sh/h2urr4fcp5ivu2x/AAC1RsB4X0vSxADrgOF065IBa?dl=0
+
 *What directories are there?*
 
 1. Phylogenetics
@@ -114,6 +117,7 @@ Calculate, plot (histogram and line plots) and output in tabular format (availab
 Calculate EXACTLY the same diversity statistiscs, as in 2. [sub_calculate_neutrality_stats.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/sub_calculate_neutrality_stats.sh) and [sub_calculate_fst.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/sub_calculate_fst.sh) BUT using HAPLOTYPE not NUCLEOTIDE sequences as input. In addition, carry out a four gamete test on each population to check for presence of recombination.
  
 **Model analysis file:** [fus_linkage_disequilibrum.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/fus_linkage_disequilibrum.sh)
+
 For diploid organisms, the genotypes in the input VCF file have to be phased prior to the start of the analysis using [sub_beagle.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/sub_beagle.sh)
 
 Use `/home/sobczm/bin/vcftools/bin/vcftools` to calculate D, D' and r2 for SNPs seperated by a specific range of intervals to estimate recombination rates and subsequently visualise the results (D' and r2 versus physical distance, histogram of D' values) using [sub_plot_ld.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/sub_plot_ld.sh). 
