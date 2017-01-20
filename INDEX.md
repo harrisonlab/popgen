@@ -118,13 +118,19 @@ Calculate EXACTLY the same diversity statistiscs, as in 2. [sub_calculate_neutra
 
 **Model analysis file:** [phytophthora_outgroup_analysis.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/phytophthora_outgroup_analysis.sh) Analysis involving outgroup sister species to our species of interest, allowing to determine the polarity of the mutations observed (which allele is derived - new, which allele is ancestral). This information can then be employed by two formal tests for selection: Fay & Wu's H and McDonald-Kreitman test.
 
+1. Two scripts to annotate VCF files with ancestral alleles (field AA=) based on different methods:
+A) mapping sequencing reads from the outgroup species to a common genome reference, along with the focal species reads: [annotate_vcf_aa.py] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/annotate_vcf_aa.py)
+B) whole-genome alignment of our focal species genome and 1-2 outgroups with progressiveMauve (more reliable annotation with 2 outgroups). [annotate_gen_aa.py] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/annotate_gen_aa.py)
 
- 
+Both methods can be applied and the AA annotation results compared with the script (compare_outgroup_results.py) [https://github.com/harrisonlab/popgen/blob/master/summary_stats/compare_outgroup_results.py]. 
+
+2. Two scripts to carry out the McDonald-Kreitman test and calculate Fay & Wu's H in Popgenome. The submitted R scripts themselves require customisation for each analysis regarding sample names and their population assingment: [sub_calculate_faywu.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/sub_calculate_faywu.sh), [sub_calculate_mkt.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/sub_calculate_mkt.sh)
+
+
 **Model analysis file:** [fus_linkage_disequilibrum.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/fus_linkage_disequilibrium.sh)
-
+Use `/home/sobczm/bin/vcftools/bin/vcftools` to calculate D, D' and r2 for SNPs seperated by a specific range of intervals to estimate recombination rates and subsequently visualise the results (D' and r2 versus physical distance, histogram of D' values) using [sub_plot_ld.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/sub_plot_ld.sh). 
 For diploid organisms, the genotypes in the input VCF file have to be phased prior to the start of the analysis using [sub_beagle.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/sub_beagle.sh)
 
-Use `/home/sobczm/bin/vcftools/bin/vcftools` to calculate D, D' and r2 for SNPs seperated by a specific range of intervals to estimate recombination rates and subsequently visualise the results (D' and r2 versus physical distance, histogram of D' values) using [sub_plot_ld.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/sub_plot_ld.sh). 
 
 ##Clock
 ### Scripts for gene orthology assignemnt and construction of orthogroup trees; motif scanning, motif discovery and motif enrichment analyses; tests for selection based on dN/ds (nonsynonymous/synonymous) substitution rates across gene coding sequences in different species: pairwise, branch-site, branch models. 
