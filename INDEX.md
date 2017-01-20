@@ -115,8 +115,10 @@ Calculate, plot (histogram and line plots) and output in tabular format (availab
 
 4. [sub_calculate_haplotype_based_stats.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/sub_calculate_haplotype_based_stats.sh)
 Calculate EXACTLY the same diversity statistiscs, as in 2. [sub_calculate_neutrality_stats.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/sub_calculate_neutrality_stats.sh) and [sub_calculate_fst.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/sub_calculate_fst.sh) BUT using HAPLOTYPE not NUCLEOTIDE sequences as input. In addition, carry out a four gamete test on each population to check for presence of recombination.
+
+For diploid organisms, the genotypes in the input VCF file have to be phased prior to generation of the input FASTA files and the start of the analysis using [sub_beagle.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/sub_beagle.sh)
  
-**Model analysis file:** [fus_linkage_disequilibrum.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/fus_linkage_disequilibrum.sh)
+**Model analysis file:** [fus_linkage_disequilibrum.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/fus_linkage_disequilibrium.sh)
 
 For diploid organisms, the genotypes in the input VCF file have to be phased prior to the start of the analysis using [sub_beagle.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/sub_beagle.sh)
 
