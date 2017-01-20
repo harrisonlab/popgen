@@ -35,6 +35,9 @@ counter_aa = 0
 def write_output(fields, current_allele):
     for z in fields[:7]:
         out_h.write(z + "\t")
+        #Check if previous annotation present in the field
+    if fields[7] != ".":
+        out_h.write(fields[7] + ";")      
     out_h.write("AA=" + ','.join(current_allele) + "\t")
     for z in fields[8:]:
         out_h.write(z + "\t")
