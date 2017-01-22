@@ -16,6 +16,8 @@ populations <- list(Pfrag, Prubi)
 #Number of populations assigned above.
 population_no <- length(populations)
 population_names <- c("Pfrag", "Prubi")
+#########################################################################
+
 #Folder containing FASTA alignments in the current dir
 gff <- "gff"
 all_folders <- list.dirs("contigs", full.names = FALSE)
@@ -57,7 +59,6 @@ for (dir in contig_folders[contig_folders != ""])
 }
 
 ###Plot genome-wide histograms
-
 for (i in seq_along(population_names))
 {
   #Tajima's D table
