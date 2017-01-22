@@ -27,6 +27,9 @@ populations <- list(Pfrag, ancestral)
 # neutrality.index (NI) - (P_nonsyn/P_syn)/(D_nonsyn/D_syn). The null hypothesis is that 
 # (P_nonsyn/P_syn) equals (D_nonsyn/D_syn). Ratios < 1 suggest the action of negative selection, > 1 positive selection
 # alpha -  1-neutrality.index
+# Fisher.p-value - Is the neutrality index seen statistically significant
+# In addition, output table with suffix "p_corrected" contains p-values corrected for 
+# multiple instances of p-value testing, using Benjamini-Hochberg correction.
 #########################################################################
 
 ###Loop through each contig-containing folder to calculate stats on each contig separately.
@@ -70,7 +73,6 @@ for (dir in contig_folders[contig_folders != ""])
 
 ###Adjust the McDonald-Kreitman Fisher's exact test results for multiple testing with Benjamini-Hochberg correction
 ###Carried out genome-wide
-  
   y <- read.delim(file_table2, header=TRUE)
   #Remove gene entries with not enough polymorphism for MKT to be carried out.
   y <- na.omit(y)
