@@ -1,2 +1,2 @@
-library("PopGenome")
+library(PopGenome)
 library(ggplot2)
