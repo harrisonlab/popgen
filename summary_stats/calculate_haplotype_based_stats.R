@@ -38,8 +38,6 @@ for (dir in contig_folders[contig_folders != ""])
   GENOME.class <- readData(contig_folder, gffpath=gff, include.unknown = TRUE)
   GENOME.class <- set.populations(GENOME.class, populations)
 
-  ###############################################################################
-
   GENOME.class.split <- splitting.data(GENOME.class, subsites="gene")
   GENOME.class.split <- F_ST.stats(GENOME.class.split)
   get.F_ST(GENOME.class.split)
