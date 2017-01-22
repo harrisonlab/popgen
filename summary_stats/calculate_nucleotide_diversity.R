@@ -24,8 +24,6 @@ interval <-  1000
 jump_size <-  interval / 10
 #########################################################################
 
-#########################################################################
-
 #Folder containing FASTA alignments in the current dir
 gff <- "gff"
 all_folders <- list.dirs("contigs", full.names = FALSE)
@@ -38,7 +36,7 @@ for (dir in contig_folders[contig_folders != ""])
 contig_folder <- paste("contigs/", dir, sep="")
 GENOME.class <- readData(contig_folder, gffpath=gff, include.unknown = TRUE)
 GENOME.class <- set.populations(GENOME.class, populations)
-#########################################################
+
 #A) calculate Pi (Nei, 1987) for all sites in a given gene.
 
 #Split by and retain only genes for the analysis
