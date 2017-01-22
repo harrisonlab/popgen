@@ -11,6 +11,8 @@ library(ggplot2)
 ##one haplotype. Both need to be input below.
 Pfrag <- c("Bc1_1", "Bc1_2", "Nov5_1", "Nov5_2", "Bc16_1", "Bc16_2", "A4_1", "A4_2", "Nov27_1", "Nov27_2", "Nov9_1", "Nov9_2", "Nov71_1", "Nov71_2")
 Prubi <- c("SCRP324_1", "SCRP324_2", "SCRP333_1", "SCRP333_2")
+#Assign outgroup samples to the "ancestral" population. The population name "ancestral" should
+#not be changed as it evoked below on line 35.
 ancestral <- c("ancestral_1_1", "ancestral_1_2", "ancestral_2_1", "ancestral_2_2")
 populations <- list(Pfrag, Prubi)
 #Number of populations assigned above.
