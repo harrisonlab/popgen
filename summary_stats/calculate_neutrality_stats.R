@@ -33,8 +33,6 @@ for (dir in contig_folders[contig_folders != ""])
   GENOME.class <- readData(contig_folder, gffpath=gff, include.unknown = TRUE)
   GENOME.class <- set.populations(GENOME.class, populations)
 
-###############################################################################
-
 #Calculate neutrality stats over genes
 GENOME.class.split <- splitting.data(GENOME.class, subsites="gene")
 GENOME.class.split <- neutrality.stats(GENOME.class.split)
