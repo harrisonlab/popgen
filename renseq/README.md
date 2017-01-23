@@ -1,5 +1,7 @@
 Order of Shell script execution:
 
+1) [download_reads.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/download_reads.sh)
+
 1) [transcriptome_prep.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/transcriptome_prep.sh)
 
 2) [nlr_parser.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/nlr_parser.sh) (newest unpublished version of NLR Parser)
