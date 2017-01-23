@@ -61,7 +61,6 @@ $fastqdump --outdir sun --gzip --skip-technical --readids --dumpbase  \
 --split-files --clip SRR1023632
 
 #Read QC
-
 for reads in $input/*/*/*_1.fastq.gz
 do
     Jobs=$(qstat | grep 'sub_read_q' | wc -l)
