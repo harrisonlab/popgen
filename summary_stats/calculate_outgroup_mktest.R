@@ -18,6 +18,7 @@ Pfrag <- c("Bc1_1", "Bc1_2", "Nov5_1", "Nov5_2", "Bc16_1", "Bc16_2", "A4_1", "A4
 #not be changed as it evoked below on line 33.
 ancestral <- c("SCRP249_1", "SCRP249_2", "SCRP324_1", "SCRP324_2", "SCRP333_1", "SCRP333_2")
 populations <- list(Pfrag, ancestral)
+population_names <- c("Pfrag")
 #########################################################################
 #Output column names explained: (More at: https://en.wikipedia.org/wiki/McDonald%E2%80%93Kreitman_test)
 # P_nonsyn - nonsynonymous sites
@@ -33,6 +34,12 @@ populations <- list(Pfrag, ancestral)
 #########################################################################
 
 ###Loop through each contig-containing folder to calculate stats on each contig separately.
+#Folder containing FASTA alignments in the current dir
+gff <- "gff"
+all_folders <- list.dirs("contigs", full.names = FALSE)
+#Remove the gff folder from PopGenome contig analysis
+contig_folders <- all_folders[all_folders != "gff"]
+
 top_header <- c("gene_name", "P_nonsyn", "P_syn", "D_nonsyn", "D_syn", "neutrality.index", "alpha", "Fisher.p-value")
 file_table2 = paste("genome_", population_names[1], "_MKT_per_gene_all.txt", sep="")
 write.table(paste(top_header, collapse="\t"), file=file_table2, sep="\t",quote=FALSE, row.names=FALSE, col.names=FALSE, append=TRUE)
@@ -55,7 +62,7 @@ for (dir in contig_folders[contig_folders != ""])
     ggsave(file_hist, mkt_plot)}
   current_gff <- paste(gff, "/", dir, ".gff", sep="")
   gene_ids <- get_gff_info(GENOME.class.split, current_gff, chr=dir, feature=FALSE, extract.gene.names=TRUE)
-  mkt_table <- cbind(gene_ids, MKT_d)
+  mkt_table <- cbind(gene_ids, GENOME.class.split@MKT)
 
   file_table = paste(dir, "_", population_names[1], "_MKT_per_gene.txt", sep="")
   total <- rbind(top_header, mkt_table)
