@@ -17,8 +17,8 @@ R
 ###Alternatively, export each dependency to PATH individually by hand
 Type ```nano ~/.profile``` to start editing your BASH profile.
 Press ```Alt and /``` to navigate until the end of the file and paste the export command on a new line, for instance:
-```export PATH=/home/sobczm/bin/mcl-14-137/bin:${PATH}``` Save changes and exit by pressing ```Ctr and x```followed by Return (AKA Enter). 
-For the changes to take place, either type ```source ~/.profile``` or close and re-open the terminal.
+```export PATH=/home/sobczm/bin/mcl-14-137/bin:${PATH}```. Save changes and exit by pressing ```Ctr and x```followed by Return (AKA Enter). 
+For the changes to take place, either type ```source ~/.profile``` or close and re-open the terminal window.
 
 [ade4] (https://cran.r-project.org/web/packages/ade4/index.html): Analysis of Ecological Data : Exploratory and Euclidean Methods in Environmental Sciences
 
