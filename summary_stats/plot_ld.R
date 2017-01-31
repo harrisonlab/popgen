@@ -12,6 +12,7 @@ if (length(args)==0) {
   stop("At least one argument must be supplied (input file).n", call.=FALSE)}
 
 library(ggplot2)
+library(tools)
 table <- args[1]
 input <- as.data.frame(read.table(table,header=TRUE))
 distance <- input$POS2 - input$POS1

@@ -1,5 +1,7 @@
 #!/usr/bin/env Rscript
 
+#Script requires customisation throughout, including population structure tested, ploidy, and filenames.
+
 library(pegas)
 library(adegenet)
 library(poppr)
