@@ -25,3 +25,5 @@ Order of Shell script execution:
 12) [generate_trees_rlp_rlk_rlk.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/generate_trees_rlp_rlk_rlk.sh)
 
 13) [the_really_really_final_bait_design.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/the_really_really_final_bait_design.sh)
+
+14) [apple_renseq_part1.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/apple_renseq_part1.sh)

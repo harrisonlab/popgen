@@ -3,7 +3,7 @@
 #$ -l mem_free=0.4G
 #$ -l virtual_free=0.4G
 #$ -l h_rt=9999:00:00
-#$ -l h=blacklace08.blacklace
+#$ -l h=blacklace09.blacklace
 #$ -t 5
 
 # hold a node for a qlogin session

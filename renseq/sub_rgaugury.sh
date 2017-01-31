@@ -21,7 +21,7 @@ cp $input $temp_dir
 protein_fasta=$(basename "$input")
 cd $temp_dir
 
-rgaugury=/home/sobczm/bin/rgaugury/RGAugury.pl
+rgaugury=/home/sobczm/bin/rgaugury2/RGAugury.pl
 perl $rgaugury -p $protein_fasta -c 5
 cp -r * $cpath
 rm -rf $temp_dir

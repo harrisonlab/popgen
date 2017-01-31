@@ -11,7 +11,7 @@ cd $input
 names=( "kim" "nz" "maria" "raj" "brian" "cornell" "h6" "han" "sp3b" "liu" "sun" )
 for f in "${names[@]}"
 do
-fca=$(echo $f | tr '[:lower:]' '[:upper:]')
+fca=$(echo $f | tinput=/home/sobczm/popgen/renseq/input/transcriptomesr '[:lower:]' '[:upper:]')
 #Create a seperate directory structure
 mkdir -p $input/rgaugury/$f
 cp $input/$fca/onion_${f}_protein.fa $input/rgaugury/$f
@@ -34,7 +34,7 @@ do
         printf "."
         Jobs=$(qstat | grep 'sub_rgaugu' | wc -l)
     done
-qsub $scripts/sub_rgaugury2.sh $file
+qsub $scripts/sub_rgaugury.sh $file
 done
 done
 #Need to re-run steps involving Phobius - works only on the head node
