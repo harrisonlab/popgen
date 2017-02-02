@@ -21,7 +21,7 @@ pairs <- choose(population_no,2)
 population_names <- c("nonpatho", "patho") #Given in the same order, as above.
 #Interval and jump size used in the sliding window analysis
 #For graphical comparison of nucleotide diversity in choice populations, amend Addendum A) below.
-interval <-  1000
+interval <-  10000
 jump_size <-  interval / 10
 #########################################################################
 
@@ -206,6 +206,8 @@ fourgamete_split <- get.recomb(GENOME.class.split)
 #per interval
 GENOME.class.slide <- recomb.stats(GENOME.class.slide)
 fourgamete_slide <- get.recomb(GENOME.class.slide)
+ids <- length(GENOME.class.slide@region.names)
+xaxis <- seq(from = 1, to = ids, by = 1)
 
 #Loop over each population: print figure and table with raw data to file
 for (i in seq_along(population_names))
