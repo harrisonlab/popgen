@@ -25,8 +25,8 @@ else {
   major_tick=1000000
 }
 
-kpAddBaseNumbers(kp, tick.dist = major_tick, tick.len = 10, tick.col="gray", col.lab="gray", cex=0.6,
-                 minor.tick.dist = minor_tick, minor.tick.len = 5, minor.tick.col = "gray")
+kpAddBaseNumbers(kp, col="gray50", tick.dist = major_tick, tick.len = 10, cex=0.6,
+                 minor.tick.dist = minor_tick, minor.tick.len = 5)
 #Custom x axis - eliminiated due to addition of kpAddBaseNumbers function
 #l <- seq(0, genome_df$end, by = genome_df$end/10)
 #lab <- pretty(l, n=10)
