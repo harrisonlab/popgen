@@ -6,4 +6,4 @@
 
 scripts=/home/sobczm/bin/popgen/other
 
-Rscript --vanilla $scripts/4gt_tom.R
+Rscript --vanilla $scripts/calculate_4gt.R
