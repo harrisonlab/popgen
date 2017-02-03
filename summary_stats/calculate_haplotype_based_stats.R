@@ -199,43 +199,6 @@ for (dir in contig_folders[contig_folders != ""])
     write.table(fst_table, file=slide_table, sep="\t",quote=FALSE, col.names=FALSE, row.names=FALSE)
   }
 
-#FOUR GAMETE test
-#per gene
-GENOME.class.split <- recomb.stats(GENOME.class.split)
-fourgamete_split <- get.recomb(GENOME.class.split)
-#per interval
-GENOME.class.slide <- recomb.stats(GENOME.class.slide)
-fourgamete_slide <- get.recomb(GENOME.class.slide)
-ids <- length(GENOME.class.slide@region.names)
-xaxis <- seq(from = 1, to = ids, by = 1)
-
-#Loop over each population: print figure and table with raw data to file
-for (i in seq_along(population_names))
-{
-  fgt <- unlist(fourgamete_split[i])
-  file_hist <- paste(dir, "_", population_names[i], "_4GT_per_gene.pdf", sep="")
-  fgt_plot <- ggplot(as.data.frame(fgt), aes(x=as.data.frame(fgt))) + geom_histogram(colour="black", fill="cornsilk") + ggtitle(dir) + xlab("Four gamete test") + ylab("Number of genes") + scale_x_continuous(breaks = pretty(fgt, n = 10))
-  ggsave(file_hist, fgt_plot)
-  file_table = paste(dir, "_", population_names[i], "_4GT_per_gene.txt", sep="")
-  file_table2 = paste("genome_", population_names[i], "_4GT_per_gene.txt", sep="")
-  current_gff <- paste(gff, "/", dir, ".gff", sep="")
-  gene_ids <- get_gff_info(GENOME.class.split, current_gff, chr=dir, feature=FALSE, extract.gene.names=TRUE)
-  fgt_table <- cbind(gene_ids, as.data.frame(fourgamete_split[i]))
-  write.table(fgt_table, file=file_table, sep="\t",quote=FALSE, col.names=FALSE)
-  write.table(fgt_table, file=file_table2, sep="\t",quote=FALSE, col.names=FALSE, append=TRUE)
-}
-
-for (i in seq_along(population_names))
-{
-  fgt <- unlist(fourgamete_slide[i])
-  file_slide <- paste(dir, "_", population_names[i], "_4GT_per_sliding_window.pdf", sep="")
-  slide_plot <- ggplot(as.data.frame(fgt), aes(x=xaxis, y=as.data.frame(fgt))) + geom_smooth(colour="black", fill="greenyellow") + ggtitle(dir) + xlab("Contig coordinate (kbp)") + ylab("Four gamete test") + scale_x_continuous(breaks = pretty(xaxis, n = 10))
-  ggsave(file_slide, slide_plot)
-  #write table with raw data
-  slide_table <- paste(dir, "_", population_names[i], "_4GT_per_sliding_window.txt", sep="")
-  write.table(as.data.frame(fourgamete_slide[i]), file=slide_table, sep="\t",quote=FALSE, col.names=FALSE)
-}
-
 }
 
 ##Print files with combined results across the entire genome
@@ -253,12 +216,6 @@ for (i in seq_along(population_names))
   file_hist <- paste("genome_", population_names[i], "_total_FST_hap_per_gene.pdf", sep="")
   fst_plot <- ggplot(x, aes(x=x[,3])) + geom_histogram(colour="black", fill="darkseagreen") + xlab(expression(paste("Total FST (hap) per gene"))) + ylab("Number of genes") + scale_x_continuous(breaks = pretty(x[,3], n = 10))
   ggsave(file_hist, fst_plot)
-  #Four gamete test
-  file_table2 = paste("genome_", population_names[i], "_4GT_per_gene.txt", sep="")
-  x <- as.data.frame(read.delim(file_table2))
-  file_hist <- paste("genome_", population_names[i], "_4GT_per_gene.pdf", sep="")
-  fgt_plot <- ggplot(x, aes(x=x[,3])) + geom_histogram(colour="black", fill="cornsilk") + xlab("Four gamete test") + ylab("Number of genes") + scale_x_continuous(breaks = pretty(x[,3], n = 10))
-  ggsave(file_hist, fgt_plot)
 }
 
 for (i in seq(pairs))
