@@ -47,7 +47,7 @@ cd $input/rgaugury/$f
 rm *RLKorRLP.domain.prediction.txt
 for file in myseq*.fa
 do
-perl $rgaugury -p $file -c 5
+perl $rgaugury -p $file
 done
 done
 
@@ -56,38 +56,37 @@ names=( "cornell" "han" "liu" "sun" "h6" "sp3b" "brian" "maria" "raj" "kim" "nz"
 for name in "${names[@]}"
 do
 cd $input/rgaugury/$name
-for f in *.TMCC.candidates.lst
+for f in ./final/*.TMCC.candidates.lst
 do
     cat $f >> ${name}.TMCC.candidates.lst
 done
-for f in *.RLP.candidates.lst
+for f in ./final/*.RLP.candidates.lst
 do
     cat $f >> ${name}.RLP.candidates.lst
 done
-for f in *.RLK.candidates.lst
+for f in ./final/*.RLK.candidates.lst
 do
     cat $f >> ${name}.RLK.candidates.lst
 done
-for f in *.RGA.candidates.lst
+for f in ./final/*.RGA.candidates.lst
 do
     cat $f >> ${name}.RGA.candidates.lst
 done
-for f in *.RLKorRLP.merged.domains.txt
+for f in ./final/*.RLKorRLP.merged.domains.txt
 do
     lines=$(wc -l $f | cut -d" " -f1)
     if [ $lines > 1 ]; then
     sed -n 2,${lines}p $f >> ${name}.RLKorRLP.merged.domains.txt
     fi
 done
-for f in *.NBS.candidates.lst
+for f in ./final/*.NBS.candidates.lst
 do
     cat $f >> ${name}.NBS.candidates.lst
 done
-for f in *pfam*local*
+for f in ./final/*pfam*local*
 do
     cat $f >> onion_${name}_protein.out
 done
-cp ${name}.lst ../results
 done
 
 #Filter the results to obtain the list of putative RLK genes (TM-LRR-STTK or TM-LysM-STTK)

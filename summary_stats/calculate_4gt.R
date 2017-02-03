@@ -30,7 +30,6 @@ for (dir in contig_folders[contig_folders != ""])
   GENOME.class.slide <- recomb.stats(GENOME.class.slide)
   fourgamete_slide <- get.recomb(GENOME.class.slide)
   ids <- length(GENOME.class.slide@region.names)
-  GENOME.class.split@region.stats@Hudson.RM
   xaxis <- seq(from = 1, to = ids, by = 1)
   
   #Loop over each population: print figure and table with raw data to file
@@ -65,7 +64,7 @@ for (i in seq_along(population_names))
   file_table2 = paste("genome_", population_names[i], "_4GT_per_gene.txt", sep="")
   x <- as.data.frame(read.delim(file_table2))
   file_hist <- paste("genome_", population_names[i], "_4GT_per_gene.pdf", sep="")
-  fgt_plot <- ggplot(x, aes(x=x[,3])) + geom_histogram(colour="black", fill="cornsilk") + xlab("Four gamete test") + ylab("Number of genes") + scale_x_continuous(breaks = pretty(x[,3], n = 10))
+  fgt_plot <- ggplot(x, aes(x=x[,2])) + geom_histogram(colour="black", fill="cornsilk") + xlab("Four gamete test") + ylab("Number of genes") + scale_x_continuous(breaks = pretty(x[,2], n = 10))
   ggsave(file_hist, fgt_plot)
   
   file_table2 = paste("genome_", population_names[i], "_4GT_per_sliding_window.txt", sep="")
