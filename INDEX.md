@@ -129,7 +129,7 @@ B) whole-genome alignment of our focal species genome and 1-2 outgroups with pro
 
 
 **Model analysis file:** [fus_linkage_disequilibrum.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/fus_linkage_disequilibrium.sh)
-Use `/home/sobczm/bin/vcftools/bin/vcftools` to calculate D, D' and r2 for SNPs seperated by a specific range of intervals to estimate recombination rates and subsequently visualise the results (D' and r2 versus physical distance, histogram of D' values) using [sub_plot_ld.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/sub_plot_ld.sh). 
+Use `/home/sobczm/bin/vcftools/bin/vcftools` to calculate D, D' and r2 for SNPs seperated by a specific range of intervals to estimate recombination rates and subsequently visualise the results (D' and r2 versus physical distance, histogram of D' values) using [sub_plot_ld.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/sub_plot_ld.sh). Using [sub_ld_plot.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/sub_ld_plot.sh) can also visualise the r2 values between individual SNP pairs in a heatmap LD plot. 
 For diploid organisms, the genotypes in the input VCF file have to be phased prior to the start of the analysis using [sub_beagle.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/sub_beagle.sh)
 
 
