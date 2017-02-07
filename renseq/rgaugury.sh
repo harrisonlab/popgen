@@ -51,7 +51,7 @@ perl $rgaugury -p $file
 done
 done
 
-#Concatenate the output for RLK, RLP and TMCC genes.
+#Concatenate the output for RLK, RLP, NBS and TMCC genes.
 names=( "cornell" "han" "liu" "sun" "h6" "sp3b" "brian" "maria" "raj" "kim" "nz" )
 for name in "${names[@]}"
 do
