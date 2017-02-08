@@ -35,21 +35,18 @@ java -jar $pgdspid/PGDSpider2-cli.jar -inputfile $input_file \
 -inputformat VCF -outputfile $outfile -outputformat STRUCTURE -spid vcf_to_structure_haploid_pop.spid
 dos2unix $outfile
 
-#Run STRUCTURE analysis to test for the presence of
-#K (population clusters) 1 to 11, with 5 replicates for each K run consecutively. 
+#Run STRUCTURE analysis to test for the presence of K (population clusters) 1 to 11, with 5 replicates for each K run consecutively. 
 ### Value of K needs to be changed in each analysis, depends on the number of likely clusters observed among individuals to be evaluated
-#Run replicate STRUCTURE runs, with K from 1 to 11
-qsub $scripts/execute_structure.sh $input/Fus2_canu_contigs_unmasked_filtered_subsampled.struc 1 1 5
-qsub $scripts/execute_structure.sh $input/Fus2_canu_contigs_unmasked_filtered_subsampled.struc 1 2 5
-qsub $scripts/execute_structure.sh $input/Fus2_canu_contigs_unmasked_filtered_subsampled.struc 1 3 5
-qsub $scripts/execute_structure.sh $input/Fus2_canu_contigs_unmasked_filtered_subsampled.struc 1 4 5
-qsub $scripts/execute_structure.sh $input/Fus2_canu_contigs_unmasked_filtered_subsampled.struc 1 5 5
-qsub $scripts/execute_structure.sh $input/Fus2_canu_contigs_unmasked_filtered_subsampled.struc 1 6 5
-qsub $scripts/execute_structure.sh $input/Fus2_canu_contigs_unmasked_filtered_subsampled.struc 1 7 5
-qsub $scripts/execute_structure.sh $input/Fus2_canu_contigs_unmasked_filtered_subsampled.struc 1 8 5
-qsub $scripts/execute_structure.sh $input/Fus2_canu_contigs_unmasked_filtered_subsampled.struc 1 9 5
-qsub $scripts/execute_structure.sh $input/Fus2_canu_contigs_unmasked_filtered_subsampled.struc 1 10 5
-qsub $scripts/execute_structure.sh $input/Fus2_canu_contigs_unmasked_filtered_subsampled.struc 1 11 5
+
+s=1 #min K value tested
+f=11 #max K value tested
+for i in {$s..$f} #input range of K values tested
+do
+#####Arguments to the execute_structure.sh script.
+#First argument - input file
+#Second argument (1) - ploidy, second argument ($i) - K value, third argument (5) - number of replicate runs per K value
+qsub $scripts/execute_structure.sh $input/Fus2_canu_contigs_unmasked_filtered_subsampled.struc 1 $i 5
+done
 
 #Analyze STRUCTURE output
 # Generate a folder containing all STRUCTURE output files for all K analyzed
@@ -81,16 +78,19 @@ c=11
 r=5
 s=1
 f=11
-for i in {1..11} #input range of K values tested
+for i in {$s..$f} #input range of K values tested
 do
 $clumpp/CLUMPP -i K$i.indfile -p K$i.popfile -o K$i.indivq -k $i -c $c -r $r
 done
+
 cp $clumpp/paramfile_pop ./
 mv paramfile_pop paramfile
+
 for i in {$s..$f} #input range of K values tested
 do
 $clumpp/CLUMPP -i K$i.indfile -p K$i.popfile -o K$i.popq -k $i -c $c -r $r
 done
+
 #Key options in the paramfile
 # DISTRUCT to visualise the results
 ###!!!! Options to be changed in each analysis manually
@@ -101,8 +101,7 @@ n=11
 #-K K value
 #-p input file (population q's)
 #-i input file (individual q's)
-#-a input file (labels atop figure)
-#-b input file (labels below figure)
+#-a input file (labels atop figure) or -b input file (labels below figure)
 #-o output file
 distruct=/home/sobczm/bin/distruct1.1
 cp $distruct/drawparams ./
