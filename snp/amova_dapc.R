@@ -17,16 +17,6 @@ y <- loci2genind(x)
 #Change ploidy to 1 for Fusarium data
 ploidy(y) <- 1
 
-#Number of individuals for maximum number of considered clusters
-#a <- nInd(y) - 1
-
-#Find the true number of genetic clusters.
-#In Fusarium, the best k = numbers of individuals so doesn't really work
-#grp <- find.clusters(y, n.pca=200, max.n.clust=a)
-#dapc1 <- dapc(y, grp$grp, n.pca=200)
-#scatter(dapc1)
-
-
 #AMOVA analysis
 #Note: classification into pathogens, non-pathogens and INTERMEDIATES not more informative than just a binary one
 #Classify according to if pathogenic or not
