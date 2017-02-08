@@ -6,7 +6,7 @@ library(pegas)
 library(adegenet)
 library(poppr)
 
-## Attempt at a DAPC structure detection and AMOVA analysis
+## Attempt at an AMOVA analysis
 #Read in all the loci in the file
 info <- VCFloci("Fus2_canu_contigs_unmasked_filtered.vcf")
 SNP <- is.snp(info)
@@ -26,12 +26,12 @@ other(y)$phylo <- c("a", "a", "a", "b", "a", "a", "a", "a", "a", "a", "a")
 
 strata_df <- data.frame(other(y))
 strata(y) <- strata_df
-#Write to output file
+#Write output to file
 sink(file = "amova.txt", append = T, type = c("output", "message"), split = F)
 amova.pegas <- poppr.amova(y, ~pathogen, method = "pegas")
 amova.pegas
-#Hierarchical AMOVA
+#Hierarchical AMOVA with multiple factors
 amova.pegas <- poppr.amova(y, ~phylo/pathogen, method = "pegas")
 amova.pegas
-#Finish capturing to output file
+#Finish capturing output to file
 sink()
