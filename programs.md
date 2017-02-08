@@ -103,6 +103,8 @@ Genomic Diversity `/home/sobczm/bin/DivStat`
 [GeneProteinViz ver. 1.2.8] (http://www.icbi.at/software/gpviz/gpviz.shtml) Dynamic visualization of genomic regions and variants affecting protein domains. 
 `/home/sobczm/bin/GPViz`
 
+[gffread] (http://ccb.jhu.edu/software/stringtie/gff.shtml) The program gffread can be used to validate, filter, convert and perform various other operations on GFF files `/home/sobczm/bin/gffread/gffread/`
+
 [LMAP ver. 1.0] (http://lmapaml.sourceforge.net/) A collection of perl scripts to automate PAML use. Requires a number of dependencies `/home/sobczm/bin/LMAPv1.0.0/LMAP`
 
 [LUMPY] (https://github.com/arq5x/lumpy-sv) A probabilistic framework for structural variant discovery `/home/sobczm/bin/lumpy-sv/bin`
