@@ -12,7 +12,7 @@ pgdspid=/home/sobczm/bin/PGDSpider_2.1.0.3
 #Prepare STRUCTURE input (PGDSpider does not work when wrapped up in a bash script, grrr)
 #haploid (for diploid change the conversion script to vcf_to_structure_diploid.spid)
 #!!!! Need to change the path to file with population definitions !!!
-input_file=Fus2_canu_contigs_unmasked_filtered_subsampled.vcf
+input_file=$input/Fus2_canu_contigs_unmasked_filtered_subsampled.vcf
 #Prepare population definition file. Each individual = new population
 grep "#CHROM" $input_file | head -1 | awk '{for(i=10;i<=NF;++i)print $i " " $i "_pop"}' >"${input_file%.vcf}.lst"
 #Copy the configuration file and change the path to the population definition file.
