@@ -26,10 +26,12 @@ other(y)$phylo <- c("a", "a", "a", "b", "a", "a", "a", "a", "a", "a", "a")
 
 strata_df <- data.frame(other(y))
 strata(y) <- strata_df
+#Write to output file
 sink(file = "amova.txt", append = T, type = c("output", "message"), split = F)
 amova.pegas <- poppr.amova(y, ~pathogen, method = "pegas")
 amova.pegas
 #Hierarchical AMOVA
 amova.pegas <- poppr.amova(y, ~phylo/pathogen, method = "pegas")
 amova.pegas
+#Finish capturing to output file
 sink()
