@@ -12,9 +12,6 @@ ls -l $input/genome/EVM.out.cds
 #File with pep sequences
 ls -l $input/genome/gene/EVM.out.pep
 
-#Remove terminal codons (*) from the pep file, as InterProScan
-#does not accept sequences containing stop codons.
-
 #Download the ver 3.0.a1 of the original apple genome 
 #CDS and pep
 cd $input/genome
@@ -49,6 +46,18 @@ qsub $scripts/sub_rgaugury.sh $file
 done
 done
 
+#Run Phobius and final prediction
+rm *RLKorRLP.domain.prediction.txt
+rgaugury=/home/sobczm/bin/rgaugury/RGAugury.pl
+for file in myseq*.fa
+do
+perl $rgaugury -p $file 
+done
+
+cd $input/rgaugury/Velasco
+mkdir final
+mv myseq* ./final
+
 cd $input/rgaugury/Li 
 file=EVM.out.pep
 awk '!/^>/ { printf "%s", $0; n = "\n" } /^>/ { print n $0; n = "" } END { printf "%s", n }' $file>temp && mv temp $file
@@ -65,3 +74,15 @@ do
 qsub $scripts/sub_rgaugury.sh $file
 done
 done
+
+#Run Phobius and final prediction
+rm *RLKorRLP.domain.prediction.txt
+rgaugury=/home/sobczm/bin/rgaugury/RGAugury.pl
+for file in myseq*.fa
+do
+perl $rgaugury -p $file 
+done
+
+cd $input/rgaugury/Li 
+mkdir final
+mv myseq* ./final

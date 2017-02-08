@@ -3,7 +3,7 @@ from sys import argv
 import os, sys, re
 
 script, input_file = argv
-bare = r"(\w+)(.\w+)"
+bare = r"(\w+)(.lst)$"
 one = r"\1.strand"
 o = re.sub(bare, one, input_file)
 out = open(o, 'w')
