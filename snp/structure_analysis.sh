@@ -6,13 +6,10 @@ pgdspid=/home/sobczm/bin/PGDSpider_2.1.0.3
 #(and more not informative because of linkagee)
 /home/sobczm/bin/vcflib/bin/vcfrandomsample \
 --rate 0.1 Fus2_canu_contigs_unmasked_filtered.vcf > Fus2_canu_contigs_unmasked_filtered_subsampled.vcf
-#Run STRUCTURE analysis to test for the presence of
-#K (population clusters) 1 to 11, with 5 replicates for each K run consecutively.
-
 #Prepare STRUCTURE input (PGDSpider does not work when wrapped up in a bash script, grrr)
 #haploid (for diploid change the conversion script to vcf_to_structure_diploid.spid)
 #!!!! Need to change the path to file with population definitions !!!
-input_file=Fus2_canu_contigs_unmasked_filtered_subsampled.vcf
+input_file=$input/Fus2_canu_contigs_unmasked_filtered_subsampled.vcf
 #Prepare population definition file. Each individual = new population
 grep "#CHROM" $input_file | head -1 | awk '{for(i=10;i<=NF;++i)print $i " " $i "_pop"}' >"${input_file%.vcf}.lst"
 #Copy the configuration file and change the path to the population definition file.
@@ -36,6 +33,9 @@ java -jar $pgdspid/PGDSpider2-cli.jar -inputfile $input_file \
 -inputformat VCF -outputfile $outfile -outputformat STRUCTURE -spid vcf_to_structure_haploid_pop.spid
 dos2unix $outfile
 
+#Run STRUCTURE analysis to test for the presence of
+#K (population clusters) 1 to 11, with 5 replicates for each K run consecutively. 
+### Value of K needs to be changed in each analysis, depends on the number of likely clusters observed among individuals to be evaluated
 #Run replicate STRUCTURE runs, with K from 1 to 11
 qsub $scripts/execute_structure.sh $input/Fus2_canu_contigs_unmasked_filtered_subsampled.struc 1 1 5
 qsub $scripts/execute_structure.sh $input/Fus2_canu_contigs_unmasked_filtered_subsampled.struc 1 2 5
