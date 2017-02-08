@@ -49,3 +49,14 @@ do
 qsub $scripts/sub_rgaugury.sh $file
 done
 done
+
+#Run Phobius and final prediction
+rm *RLKorRLP.domain.prediction.txt
+rgaugury=/home/sobczm/bin/rgaugury/RGAugury.pl
+for file in myseq*.fa
+do
+perl $rgaugury -p $file 
+done
+
+mkdir final
+mv myseq* ./final
