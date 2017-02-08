@@ -2,8 +2,11 @@
 input=/home/sobczm/popgen/snp/snp_calling/multithreaded
 scripts=/home/sobczm/bin/popgen/snp
 pgdspid=/home/sobczm/bin/PGDSpider_2.1.0.3
+
+cd $input
 #Downsample SNPs for Structure analysis as enough information in 10% of the loci
-#(and more not informative because of linkagee)
+#(and more not likely informative because of linkage). In certain cases, when small number of markers detected,
+#this step is unnecessary and all can be retained.
 /home/sobczm/bin/vcflib/bin/vcfrandomsample \
 --rate 0.1 Fus2_canu_contigs_unmasked_filtered.vcf > Fus2_canu_contigs_unmasked_filtered_subsampled.vcf
 #Prepare STRUCTURE input (PGDSpider does not work when wrapped up in a bash script, grrr)
@@ -26,8 +29,7 @@ sed -i 's,^\(VCF_PARSER_POP_FILE_QUESTION=\).*,\1'"$dir/$list_file"',' vcf_to_st
 names="${input_file%.vcf}.label"
 grep "#CHROM" $input_file | head -1 | awk '{for(i=10;i<=NF;++i)print $i }' >temp
 nl temp | sed 's/^ *//' | sed 's/\t/ /g' >$names
-filename=$(basename "$input_file")
-outfile="${filename%.*}.struc"
+outfile="${input_file%.vcf}.struc"
 #Execute VCF to .struc (input format for STRUCTURE) conversion
 java -jar $pgdspid/PGDSpider2-cli.jar -inputfile $input_file \
 -inputformat VCF -outputfile $outfile -outputformat STRUCTURE -spid vcf_to_structure_haploid_pop.spid
