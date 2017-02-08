@@ -27,3 +27,9 @@ Order of Shell script execution:
 13) [the_really_really_final_bait_design.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/the_really_really_final_bait_design.sh)
 
 14) [apple_renseq_part1.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/apple_renseq_part1.sh)
+
+15) [apple_renseq_part2.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/apple_renseq_part2.sh)
+
+16) [strawberry_renseq_part1.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/strawberry_renseq_part1.sh)
+
+17) [strawberry_renseq_part2.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/strawberry_renseq_part2.sh)
