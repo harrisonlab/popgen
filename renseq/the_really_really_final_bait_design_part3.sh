@@ -166,3 +166,18 @@ for baits in *baits.fasta
 do
 python $scripts/remove_N_fasta.py $baits
 done
+
+#Subtitute "_" and ":" with "-" in sequence headers as
+#required by Mycoarray.
+for baits in *noN.fasta
+do
+sed -i 's/_/-/g' $baits 
+sed -i 's/:/-/g' $baits
+done
+
+#Put all RLP baits into one file
+cat onion.RLK.LRR_0.5_centroids_masked_baits_noN.fasta >> onion.RLK.all_0.5_centroids_masked_baits_noN.fasta
+cat onion.RLK.LysM_0.5_centroids_masked_baits_noN.fasta >> onion.RLK.all_0.5_centroids_masked_baits_noN.fasta
+#Put all RLK baits into one file
+cat onion.RLP.LRR_0.5_centroids_masked_baits_noN.fasta >> onion.RLP.all_0.5_centroids_masked_baits_noN.fasta
+cat onion.RLP.LysM_0.5_centroids_masked_baits_noN.fasta >> onion.RLP.all_0.5_centroids_masked_baits_noN.fasta
