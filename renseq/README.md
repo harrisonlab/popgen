@@ -24,18 +24,22 @@ Order of Shell script execution:
 
 12) [generate_trees_rlp_rlk_rlk.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/generate_trees_rlp_rlk_rlk.sh)
 
-13) [the_really_really_final_bait_design.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/the_really_really_final_bait_design_part1.sh)
+13) [the_really_really_final_bait_design_part1.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/the_really_really_final_bait_design_part1.sh)
 
-14) [the_really_really_final_bait_design.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/the_really_really_final_bait_design_part2.sh)
+14) [the_really_really_final_bait_design_part2.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/the_really_really_final_bait_design_part2.sh)
+
+15) [the_really_really_final_bait_design_part3.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/the_really_really_final_bait_design_part3.sh)
 
 15) [apple_renseq_part1.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/apple_renseq_part1.sh)
 
 16) [apple_renseq_part2.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/apple_renseq_part2.sh)
 
-17) [apple_renseq_part2.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/apple_renseq_part3.sh)
+17) [apple_renseq_part3.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/apple_renseq_part3.sh)
 
 18) [strawberry_renseq_part1.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/strawberry_renseq_part1.sh)
 
 19) [strawberry_renseq_part2.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/strawberry_renseq_part2.sh)
 
 20) [strawberry_renseq_part3.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/strawberry_renseq_part3.sh)
+
+21) [strawberry_renseq_reads_part1.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/strawberry_renseq_reads_part1.sh)
