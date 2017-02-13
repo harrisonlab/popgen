@@ -18,6 +18,9 @@ cd $input/genome
 mkdir Velasco && cd Velasco
 wget ftp://ftp.bioinfo.wsu.edu/species/Malus_x_domestica/Malus_x_domestica-genome.v3.0.a1/genes/Malus_x_domestica.v3.0.a1_gene_set_cds.fasta.gz
 wget ftp://ftp.bioinfo.wsu.edu/species/Malus_x_domestica/Malus_x_domestica-genome.v3.0.a1/genes/Malus_x_domestica.v3.0.a1_gene_set_pep.fasta.gz
+wget ftp://ftp.bioinfo.wsu.edu/species/Malus_x_domestica/Malus_x_domestica-genome.v3.0.a1/assembly/Malus_x_domestica.v3.0.a1_contigs.gff3.gz
+wget ftp://ftp.bioinfo.wsu.edu/species/Malus_x_domestica/Malus_x_domestica-genome.v3.0.a1/assembly/Malus_x_domestica.v3.0.a1_contigs.fasta.gz
+
 #Remove terminal codons (*) from the pep file, as InterProScan
 #does not accept sequences containing stop codons.
 a=Malus_x_domestica.v3.0.a1_gene_set_pep.fasta

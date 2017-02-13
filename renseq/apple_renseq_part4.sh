@@ -13,3 +13,15 @@ done
 
 #Design baits towards gene sequences (including introns)
 #at 4x coverage
+#!!Test!!: just CDS sequences.
+#First, hard-mask repetitive sequences in each centroid file
+for fasta in *centroid*.fasta
+do
+$usearch -fastx_mask $fasta -qmask dust -fastaout "${fasta%.*}"_masked.fasta -hardmask
+done
+
+#The Velasco sequences have been found to contain ambigious characters
+#Substitute at random
+
+
+#Hard-mask repeats with repeats from the DB
