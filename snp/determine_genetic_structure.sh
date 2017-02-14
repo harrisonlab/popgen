@@ -2,9 +2,11 @@
 input=/home/sobczm/popgen/snp/snp_calling/multithreaded
 scripts=/home/sobczm/bin/popgen/snp
 
-#Only retain biallelic high-quality SNPS with no missing data for genetic analyses.
+#Only retain biallelic high-quality SNPS with no missing data (for any individual) for genetic analyses below.
+##!! (in some cases, may allow some missing data in order to retain more SNPs, or first remove poorly sequenced individuals with
+##!!  too much missing data and then filter the SNPs).
 cd $input
-qsub $scripts/sub_vcf_parser.sh Fus2_canu_contigs_unmasked.vcf
+qsub $scripts/sub_vcf_parser.sh Fus2_canu_contigs_unmasked.vcf 40 30 10 30 1 Y
 
 #In some organisms, may want to thin (subsample) SNPs in high linkage diseqilibrium down to
 #1 SNP  per e.g. 10 kbp just for the population structure analyses.
