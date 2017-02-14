@@ -40,7 +40,7 @@ dos2unix $outfile
 
 s=1 #min K value tested
 f=11 #max K value tested
-for i in {$s..$f} #input range of K values tested
+for i in $(seq $s $f) #input range of K values tested
 do
 #####Arguments to the execute_structure.sh script.
 #First argument - input file
@@ -83,7 +83,7 @@ c=11
 r=5
 s=1
 f=11
-for i in {$s..$f} #input range of K values tested
+for i in $(seq $s $f) #input range of K values tested
 do
 $clumpp/CLUMPP -i K$i.indfile -p K$i.popfile -o K$i.indivq -k $i -c $c -r $r
 done
@@ -91,7 +91,7 @@ done
 cp $clumpp/paramfile_pop ./
 mv paramfile_pop paramfile
 
-for i in {$s..$f} #input range of K values tested
+for i in $(seq $s $f) #input range of K values tested
 do
 $clumpp/CLUMPP -i K$i.indfile -p K$i.popfile -o K$i.popq -k $i -c $c -r $r
 done
@@ -110,7 +110,7 @@ n=11
 #-o output file
 distruct=/home/sobczm/bin/distruct1.1
 cp $distruct/drawparams ./
-for i in {$s..$f} #input range of K values tested
+for i in $(seq $s $f) #input range of K values tested
 do
 $distruct/distructLinux1.1 -i K$i.indivq -p K$i.popq -a $input/$names -o K$i.ps -k $i -M $m -N $n -K $i
 done
