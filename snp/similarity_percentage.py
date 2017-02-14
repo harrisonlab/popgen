@@ -56,5 +56,5 @@ for r in range(w):
     for c in range(w):
         #Get the percentage similarity of shared alleles
         distance = float(matrix[r][c]) / float(snps) * 100
-        out_log.write("%.3f" % distance + "\t")
+        out_log.write("%.2f" % distance + "\t")
     out_log.write("\n")
