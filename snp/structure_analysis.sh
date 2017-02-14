@@ -58,6 +58,11 @@ done
 # structureHarvester - summarise the results
 harvester=/home/sobczm/bin/structureHarvester/structureHarvester.py
 $harvester --dir=$input/structureHarvester --out=$input/structureHarvester --evanno --clumpp
+
+#To get ready-made plots of Evenno's K and delta(log(K)) compress all the Structure results files into a .zip archive 
+zip -r $input/structureHarvester/structure_results.zip $input/structureHarvester/*_f
+#and upload to StructureHarvester webserver http://taylor0.biology.ucla.edu/structureHarvester/
+
 # CLUMPP - permute the results
 cd structureHarvester
 clumpp=/home/sobczm/bin/CLUMPP_Linux64.1.1.2
