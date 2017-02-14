@@ -2,7 +2,6 @@
 scripts=/home/sobczm/bin/popgen/renseq
 input=/home/sobczm/popgen/renseq/strawberry/reads/Helen_Bates_EMR.RH.ENQ-1704.A.01
 
-
 #Concatenate the raw reads
 #Cultivar1
 mkdir -p $input/assembly
@@ -32,3 +31,17 @@ sh $scripts/sub_nlrparser.sh F06_1_S1_roi_fl1_a90.fasta
 cp $input/Helen_Bates_EMR.RH.ENQ-1704.A.01_S2_MinFullPasses1_Accuracy90/data/reads_of_insert.fasta \
 $input/assembly/nbs-parser/G06_1_S2_roi_fl1_a90.fasta
 sh $scripts/sub_nlrparser.sh G06_1_S2_roi_fl1_a90.fasta
+
+#Analyse the assemblies for NBS genes.
+cd $input/assembly/F06_assembly
+cat F06.contigs.fasta >> ../F06.assembly.fasta 
+cat F06.unassembled.fasta >> ../F06.assembly.fasta 
+
+cd $input/assembly/G06_assembly
+cat G06.contigs.fasta >> ../G06.assembly.fasta 
+cat G06.unassembled.fasta >> ../G06.assembly.fasta 
+cp $input/assembly/*.assembly.fasta $input/assembly/nbs-parser
+
+cd $input/assembly/nbs-parser
+sh $scripts/sub_nlrparser.sh F06.assembly.fasta 
+sh $scripts/sub_nlrparser.sh G06.assembly.fasta
