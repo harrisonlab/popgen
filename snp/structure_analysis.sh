@@ -40,7 +40,7 @@ dos2unix $outfile
 
 s=1 #min K value tested
 f=11 #max K value tested
-for i in {$s..$f} #input range of K values tested
+for i in $(seq $s $f) #input range of K values tested
 do
 #####Arguments to the execute_structure.sh script.
 #First argument - input file
@@ -58,6 +58,11 @@ done
 # structureHarvester - summarise the results
 harvester=/home/sobczm/bin/structureHarvester/structureHarvester.py
 $harvester --dir=$input/structureHarvester --out=$input/structureHarvester --evanno --clumpp
+
+#To get ready-made plots of Evenno's K and delta(log(K)) compress all the Structure results files into a .zip archive 
+zip -r $input/structureHarvester/structure_results.zip $input/structureHarvester/*_f
+#and upload to StructureHarvester webserver http://taylor0.biology.ucla.edu/structureHarvester/
+
 # CLUMPP - permute the results
 cd structureHarvester
 clumpp=/home/sobczm/bin/CLUMPP_Linux64.1.1.2
@@ -78,7 +83,7 @@ c=11
 r=5
 s=1
 f=11
-for i in {$s..$f} #input range of K values tested
+for i in $(seq $s $f) #input range of K values tested
 do
 $clumpp/CLUMPP -i K$i.indfile -p K$i.popfile -o K$i.indivq -k $i -c $c -r $r
 done
@@ -86,7 +91,7 @@ done
 cp $clumpp/paramfile_pop ./
 mv paramfile_pop paramfile
 
-for i in {$s..$f} #input range of K values tested
+for i in $(seq $s $f) #input range of K values tested
 do
 $clumpp/CLUMPP -i K$i.indfile -p K$i.popfile -o K$i.popq -k $i -c $c -r $r
 done
@@ -94,7 +99,7 @@ done
 #Key options in the paramfile
 # DISTRUCT to visualise the results
 ###!!!! Options to be changed in each analysis manually
-#-M number of populations assigned in the Structure input file
+#-M number of populations assigned in the Structure input file (here, equals number of individuals)
 #-N number of individuals
 m=11
 n=11
@@ -105,9 +110,9 @@ n=11
 #-o output file
 distruct=/home/sobczm/bin/distruct1.1
 cp $distruct/drawparams ./
-for i in {$s..$f} #input range of K values tested
+for i in $(seq $s $f) #input range of K values tested
 do
-$distruct/distructLinux1.1 -i K$i.indivq -p K$i.popq -a $input/$names -o K$i.ps -k $i -M $m -N $n -K $i
+$distruct/distructLinux1.1 -i K$i.indivq -p K$i.popq -a $names -o K$i.ps -k $i -M $m -N $n -K $i
 done
 
 #Output is a number of PostScript files showing the average proportion of each

@@ -2,9 +2,11 @@
 input=/home/sobczm/popgen/snp/snp_calling/multithreaded
 scripts=/home/sobczm/bin/popgen/snp
 
-#Only retain biallelic high-quality SNPS with no missing data for genetic analyses.
+#Only retain biallelic high-quality SNPS with no missing data (for any individual) for genetic analyses below.
+##!! (in some cases, may allow some missing data in order to retain more SNPs, or first remove poorly sequenced individuals with
+##!!  too much missing data and then filter the SNPs).
 cd $input
-qsub $scripts/sub_vcf_parser.sh Fus2_canu_contigs_unmasked.vcf
+qsub $scripts/sub_vcf_parser.sh Fus2_canu_contigs_unmasked.vcf 40 30 10 30 1 Y
 
 #In some organisms, may want to thin (subsample) SNPs in high linkage diseqilibrium down to
 #1 SNP  per e.g. 10 kbp just for the population structure analyses.
@@ -24,6 +26,8 @@ Rscript --vanilla $scripts/distance_matrix.R Fus2_canu_contigs_unmasked_filtered
 Rscript --vanilla $scripts/pca.R Fus2_canu_contigs_unmasked_filtered.vcf
 #Calculate an NJ tree based on all the SNPs. Outputs a basic diplay of the tree, plus a Newick file to be used
 #for displaying the tree in FigTree and beautifying it.
+#First argument - input VCF file, second argument - ploidy of the samples. Note: no missing data allowed, 
+#and so the input VCF file needs to be prefiltered on that basis (see sub_vcf_parser.sh)
 $scripts/nj_tree.sh Fus2_canu_contigs_unmasked_filtered.vcf 1
 #DAPC and AMOVA analysis
 Rscript --vanilla $popgen/snp/amova_dapc.R
