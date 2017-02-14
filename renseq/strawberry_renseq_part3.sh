@@ -43,4 +43,8 @@ intersectBed -wb -a qtls_helenc2_100kbp.gff -b $a >${a%.gff3}_qtl_overlap_100kbp
 done
 
 #Extract the CDS of the genes associated with extended intervals around QTLs
-python $scripts/keep_list_genes2.py $input/genome/helen_qtl_associated_genes.txt $input/genome/fvesca_v1.1_all_annotated.fa No
+for b in *qtl_overlap_100kbp
+do
+cut -f 17 $b | cut -d";" -f1 | sed 's/ID=//' >${b}.lst
+python $scripts/keep_list_genes2.py ${b}.lst $input/genome/fvesca_v1.1_all_annotated.fa No
+done
