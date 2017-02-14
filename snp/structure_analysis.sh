@@ -99,7 +99,7 @@ done
 #Key options in the paramfile
 # DISTRUCT to visualise the results
 ###!!!! Options to be changed in each analysis manually
-#-M number of populations assigned in the Structure input file
+#-M number of populations assigned in the Structure input file (here, equals number of individuals)
 #-N number of individuals
 m=11
 n=11
