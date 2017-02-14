@@ -112,7 +112,7 @@ distruct=/home/sobczm/bin/distruct1.1
 cp $distruct/drawparams ./
 for i in $(seq $s $f) #input range of K values tested
 do
-$distruct/distructLinux1.1 -i K$i.indivq -p K$i.popq -a $input/$names -o K$i.ps -k $i -M $m -N $n -K $i
+$distruct/distructLinux1.1 -i K$i.indivq -p K$i.popq -a $names -o K$i.ps -k $i -M $m -N $n -K $i
 done
 
 #Output is a number of PostScript files showing the average proportion of each
