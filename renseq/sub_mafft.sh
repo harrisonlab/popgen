@@ -9,4 +9,4 @@ mafft_path=/home/sobczm/bin/mafft-7.222/bin/mafft
 
 filename=$(basename "$input")
 output="${filename%.*}_aligned.fasta"
-$mafft_path  --retree 1 --maxiterate 0  $input >$output
+$mafft_path  --localpair --maxiterate 1000  $input >$output

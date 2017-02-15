@@ -2,7 +2,7 @@
 import os, sys, re
 from sys import argv
 
-# The only argument: VCF file to be used as input. Outputs a matrix (filename suffix: distance.log)with the percentage similarity of 
+# The only argument: VCF file to be used as input. Outputs a matrix (filename suffix: distance.log) with the percentage similarity of 
 #shared alleles between each sample, which is then to be visualised using the distance_matrix.R script.
 script, vcf_file = argv
 vcf_h = open(vcf_file)
