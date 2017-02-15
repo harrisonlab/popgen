@@ -12,7 +12,6 @@ do
 grep -f $a Fragaria_vesca_v1.1.a2.mrna.gff3 > ${a%.lst}.gff3
 done
 
-
 #Check if the QTLs are within any gene?
 intersectBed -wb -a qtls_helenc2.gff -b Fragaria_vesca_v1.1.a2.mrna.gff3 >qtls_helenc_overlap_mrna.gff
 #All of them, apart from ID=89860579, are within a gene.
