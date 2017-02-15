@@ -20,6 +20,7 @@ wget ftp://ftp.bioinfo.wsu.edu/species/Malus_x_domestica/Malus_x_domestica-genom
 wget ftp://ftp.bioinfo.wsu.edu/species/Malus_x_domestica/Malus_x_domestica-genome.v3.0.a1/genes/Malus_x_domestica.v3.0.a1_gene_set_pep.fasta.gz
 wget ftp://ftp.bioinfo.wsu.edu/species/Malus_x_domestica/Malus_x_domestica-genome.v3.0.a1/assembly/Malus_x_domestica.v3.0.a1_contigs.gff3.gz
 wget ftp://ftp.bioinfo.wsu.edu/species/Malus_x_domestica/Malus_x_domestica-genome.v3.0.a1/assembly/Malus_x_domestica.v3.0.a1_contigs.fasta.gz
+wget ftp://ftp.bioinfo.wsu.edu/species/Malus_x_domestica/Malus_x_domestica-genome.v3.0.a1/genes/Malus_x_domestica.v3.0.a1_v1_gene_alignemnt.gff3.gz
 
 #Remove terminal codons (*) from the pep file, as InterProScan
 #does not accept sequences containing stop codons.
