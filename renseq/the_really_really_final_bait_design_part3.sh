@@ -157,8 +157,7 @@ done
 for fasta in *masked.fasta
 do
 n=5
-python $scripts/create_baits.py --inp $fasta --coverage $n \
---out ${fasta%.fasta}_baits.fasta
+python $scripts/create_baits.py --inp $fasta --coverage $n --out ${fasta%.fasta}_baits.fasta
 done
 
 #Remove baits containing any Ns

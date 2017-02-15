@@ -58,9 +58,15 @@ done
 #The Velasco sequences have been found to contain ambigious characters denoting 
 #polymorphisms. Substitute with random nucleotide matching the regex. 
 
-
-#Lastly, hard-mask any remaining repetitive sequences with dust
-$usearch -fastx_mask $fasta -qmask dust -fastaout "${fasta%.*}"_masked.fasta -hardmask
-
-
 #Join Li and Velasco input files again and design baits towards exon sequences at 2x coverage
+
+for a in *li.fasta
+do
+cat $a ${a%li.fasta}velasco.fasta > ${a%li.fasta}recombined.fasta
+done
+
+for b in *recombined.fasta
+do
+n=2
+python $scripts/create_baits.py --inp $b --coverage $n --out ${b%.fasta}_baits.fasta
+done
