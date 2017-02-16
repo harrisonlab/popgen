@@ -37,7 +37,6 @@ do
 grep -f $a $Velasco_gff >${a%.lst}.gff
 done
 
-
 #Extract exon fasta sequences based on gff intervals. Use the masked version of Li genome and first hard-mask repeats with repeats from the DB provided with velasco genome. 
 Li_assembly=$genome_in/assembly/malus_plantunas_100x.fasta.masked
 for b in *li.gff
@@ -50,17 +49,24 @@ Velasco_bed=$genome_in/Velasco/Malus_x_domestica.v3.0.a1_repeats.txt
 bedtools maskfasta -fi $Velasco_assembly -bed $Velasco_bed -fo ${Velasco_assembly%.fasta}_masked.fasta
 #Get an error: terminate called after throwing an instance of 'std::out_of_range'
 #Needs to pre-filter the bed intervals to make sure they are present in the input file.
-
+python $scripts/eliminate_wrong_repeat_entries.py $Velasco_assembly $Velasco_bed
+bedtools maskfasta -fi $Velasco_assembly -bed ${Velasco_bed%.txt}_filtered.bed -fo ${Velasco_assembly%.fasta}_masked.fasta
 for b in *velasco.gff
 do
 bedtools getfasta -fi $Velasco_assembly -bed $b -fo ${b%.gff}.fasta
 done
 #The Velasco sequences have been found to contain ambigious characters denoting 
 #polymorphisms. Substitute with random nucleotide matching the regex. 
+for c in *velasco.fasta
+do
+python $scripts/ambiguous_to_unambiguous_fasta.py $c
+done
+
+#!Actually, scrapping this step as exon sequences no longer contain ambiguous chars.
 
 #Join Li and Velasco input files again and design baits towards exon sequences at 2x coverage
 
-for a in *li.fasta
+for a in *_li.fasta
 do
 cat $a ${a%li.fasta}velasco.fasta > ${a%li.fasta}recombined.fasta
 done
@@ -70,3 +76,10 @@ do
 n=2
 python $scripts/create_baits.py --inp $b --coverage $n --out ${b%.fasta}_baits.fasta
 done
+
+#Again, cluster baits at 90% identity 
+for fasta in *baits.fasta
+do
+id=0.98
+$usearch -cluster_fast $fasta -id $id -sort length -centroids ${fasta%.fasta}_${id}_centroids.fasta
+done 
