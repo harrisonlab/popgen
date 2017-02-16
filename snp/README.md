@@ -7,3 +7,5 @@ The order in which main bash scripts in the folder are executed:
 3) [determine_genetic_structure.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/determine_genetic_structure.sh)
 
 4) [structure_analysis.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/structure_analysis.sh)
+
+5) [structural_variants.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/structural_variants.sh)
