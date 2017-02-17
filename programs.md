@@ -150,6 +150,8 @@ export PATH=/home/sobczm/bin/FastTree2.1.9:${PATH}
 [RGAugury] (https://bitbucket.org/yaanlpc/rgaugury/): A pipeline for genome-wide prediction of resistance gene analogs (RGAs) in plants. **Multiple dependencies, including own copy of Phobius. Phobius output not saved correctly when running via qsub**
 `/home/sobczm/bin/rgaugury`
 
+[Sambamba ver. 0.6.5] (http://lomereiter.github.io/sambamba) Sambamba is a high performance modern robust and fast tool (and library) for working with SAM and BAM files. `/home/sobczm/bin/sambamba/`
+
 [snpEff & snpSift ver. 4.3] (http://snpeff.sourceforge.net/) Genetic variant annotation, effect prediction, VCF filtering and manipulation toolbox. `/home/sobczm/bin/snpEff`
 
 [SplitsTree ver. 4] (http://www.splitstree.org/) Program for computing unrooted phylogenetic networks from molecular sequence data. `/home/sobczm/bin/splitstree4`
@@ -173,6 +175,8 @@ export PATH=/home/sobczm/bin/FastTree2.1.9:${PATH}
 `/home/sobczm/bin/treemix-1.12`
 
 [Trinity ver 2.2] (https://trinityrnaseq.github.io/): RNA-Seq assembly  `/home/sobczm/bin/trinityrnaseq-2.2.0`
+
+[vawk] (https://github.com/cc2qe/vawk) An awk-like VCF parser `/home/sobczm/bin/vawk`
 
 [vcflib] (https://github.com/vcflib/vcflib): a simple C++ library for parsing and manipulating VCF files, + many command-line utilities. `/home/sobczm/bin/vcflib/bin`
 
