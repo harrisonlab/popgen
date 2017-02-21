@@ -1,10 +1,11 @@
 #$ -S /bin/bash
-#$ -l h_vmem=0.4G
-#$ -l mem_free=0.4G
-#$ -l virtual_free=0.4G
+#$ -l h_vmem=5G
+#$ -l mem_free=5G
+#$ -l virtual_free=5G
+#$ -pe smp 16
 #$ -l h_rt=9999:00:00
 #$ -l h=blacklace09.blacklace
-#$ -t 5
+#$ -l h=blacklace03.blacklace|blacklace04.blacklace|blacklace05.blacklace|blacklace06.blacklace|blacklace07.blacklace|blacklace08.blacklace|blacklace09.blacklace|blacklace11.blacklace
 
 # hold a node for a qlogin session
 

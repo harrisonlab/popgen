@@ -56,7 +56,7 @@ samtools view -h $output_rg | $scripts/extractSplitReads_BwaMem -i stdin | samto
 samtools sort ${output_rg%.bam}_discordants_unsorted.bam ${output_rg%.bam}_discordants
 samtools sort ${output_rg%.bam}_splitters_unsorted.bam ${output_rg%.bam}_splitters
 
-#rm ${output_rg%.bam}_splitters_unsorted.bam ${output_rg%.bam}_discordants_unsorted.bam $output
+rm ${output_rg%.bam}_splitters_unsorted.bam ${output_rg%.bam}_discordants_unsorted.bam $output
 rm $fr $rr
 cp -r * $cpath
 rm -rf $temp_dir
