@@ -52,10 +52,10 @@ Reverse_out=$(basename "$R1_Read")
 #Copy the reads to the working folder
 cp -r $F1_Read $F2_Read $R1_Read $R2_Read ./
 #Uncompress and concatenate
-gzip -d $(basename "$F1_Read") >> ${Forward_out%.fq.gz}_concat_F.fastq 
-gzip -d $(basename "$F2_Read") >> ${Forward_out%.fq.gz}_concat_F.fastq 
-gzip -d $(basename "$R1_Read") >> ${Forward_out%.fq.gz}_concat_R.fastq 
-gzip -d $(basename "$R2_Read") >> ${Forward_out%.fq.gz}_concat_R.fastq 
+gzip -d $(basename "$F1_Read") | cat >> ${Forward_out%.fq.gz}_concat_F.fastq 
+gzip -d $(basename "$F2_Read") | cat >> ${Forward_out%.fq.gz}_concat_F.fastq 
+gzip -d $(basename "$R1_Read") | cat >> ${Forward_out%.fq.gz}_concat_R.fastq 
+gzip -d $(basename "$R2_Read") | cat >> ${Forward_out%.fq.gz}_concat_R.fastq 
 #Compress the output
 gzip ${Forward_out%.fq.gz}_concat_F.fastq 
 gzip ${Forward_out%.fq.gz}_concat_R.fastq 
