@@ -82,3 +82,4 @@ qsub $scripts/sub_pgdspider.sh $filename $config
 dos2unix ${filename%.vcf}.geno
 
 qsub $scripts/sub_bayescan.sh ${filename%.vcf}.geno
+Rscript --vanilla $scripts/plot_bayescan.R ${filename%vcf}_fst.txt

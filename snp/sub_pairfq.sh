@@ -7,8 +7,8 @@
 
 #Usage: qsub sub_pairfq.sh forward_reads reverse_reads
 
-#The script accepts gunzipped (*.gz) FASTQ files: forward and reverse reads.
-#It re-pairs paired-end reads (output: suffix _p) which are out of sync, and outputs two files with singletons (output: suffix _s), which are subsequently gunzipped (compressed) again.
+#The script accepts FASTQ files: forward and reverse reads.
+#It re-pairs paired-end reads (output suffix: _f_p.fastq and _r_p.fastq) which are out of sync, and also outputs two files with singletons (output suffix: _f_s.fastq and _r_s.fastq), which are subsequently gunzipped (compressed).
 
 forward=$1
 reverse=$2
@@ -22,20 +22,17 @@ input_f=$(basename "$forward")
 input_r=$(basename "$reverse")
 cd $temp_dir
 
-gzip -d $input_f
-gzip -d $input_r
-
-unzipped_f=${$input_f%.gz}
-unzipped_g=${$input_g%.gz}
-
 pairfq=/home/sobczm/bin/Pairfq/bin/pairfq
 
-perl $pairfq makepairs -f $unzipped_f -r $unzipped_g -fp ${unzipped_f%.f*}_p.fastq -rp ${unzipped_r%.f*}_p.fastq -fs ${unzipped_f%.f*}_s.fastq -rs ${unzipped_r%.f*}_s.fastq
+mv $input_f input_f.fastq
+mv $input_r input_r.fastq
 
-gzip ${unzipped_f%.f*}_p.fastq 
-gzip ${unzipped_r%.f*}_p.fastq 
-gzip ${unzipped_f%.f*}_s.fastq
-gzip ${unzipped_r%.f*}_s.fastq
+perl $pairfq makepairs -c gzip -f input_f.fastq -r input_r.fastq -fp f_p.fastq -rp r_p.fastq -fs f_s.fastq -rs r_s.fastq
+
+mv f_p.fastq.gz "${input_f%.f*}_f_p.fastq.gz"
+mv r_p.fastq.gz "${input_r%.f*}_r_p.fastq.gz"
+mv f_s.fastq.gz "${input_f%.f*}_f_s.fastq.gz"
+mv r_s.fastq.gz "${input_r%.f*}_r_s.fastq.gz"
 
 cp -r *.gz $cpath
 rm -rf $temp_dir

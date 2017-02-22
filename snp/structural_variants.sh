@@ -39,30 +39,47 @@ done
 #and bwa-mem will complain about it, and exit prematurely. For those samples, one needs to first fix the input reads with
 #$scripts/sub_pairfq.sh  
 
-#Lastly, some samples contain 2 different libraries from different sequencing runs.
+################## STEPS FOR 2 and MORE LIBRARIES PER sample
+##################  START
+#Lastly, some samples contain 2 or 3 different libraries from different sequencing runs.
 #Need to concantenate them before aligning with bwa mem.
-for sample in $input_dip/Bc1 $input_dip/Bc16 $input_dip/Nov9 $input_dip/Nov71
+$input_dip/Bc1 $input_dip/Bc16 $input_dip/Nov9 
+for sample in $input_dip/Nov71
 do
 F1_Read=$(ls $sample/F/*.fq.gz | head -n1)
-R1_Read=$(ls $sample//R/*.fq.gz | head -n1)
-F2_Read=$(ls $sample//F/*.fq.gz | tail -n1)
-R2_Read=$(ls $sample//R/*.fq.gz | tail -n1)
 Forward_out=$(basename "$F1_Read")
-Reverse_out=$(basename "$R1_Read")
-#Copy the reads to the working folder
-cp -r $F1_Read $F2_Read $R1_Read $R2_Read ./
+#Copy the forward reads to the working folder
+cp -r $sample/F/*.fq.gz ./
 #Uncompress and concatenate
-gzip -d $(basename "$F1_Read") | cat >> ${Forward_out%.fq.gz}_concat_F.fastq 
-gzip -d $(basename "$F2_Read") | cat >> ${Forward_out%.fq.gz}_concat_F.fastq 
-gzip -d $(basename "$R1_Read") | cat >> ${Forward_out%.fq.gz}_concat_R.fastq 
-gzip -d $(basename "$R2_Read") | cat >> ${Forward_out%.fq.gz}_concat_R.fastq 
+for a in *.fq.gz
+do
+gzip -d $a
+cat ${a%.gz} >> ${Forward_out%.fq.gz}_concat_F.fastq 
+done
+
+#Copy the reverse reads to the working folder
+cp -r $sample/R/*.fq.gz ./
+#Uncompress and concatenate
+for b in *.fq.gz
+do
+gzip -d $b 
+cat ${b%.gz} >> ${Forward_out%.fq.gz}_concat_R.fastq 
+done
+
 #Compress the output
 gzip ${Forward_out%.fq.gz}_concat_F.fastq 
 gzip ${Forward_out%.fq.gz}_concat_R.fastq 
 done
 
+################## STEPS FOR 2 and MORE LIBRARIES PER sample
+##################  END
+
+#Going to discard PacBio alignment and only run Illumina.
+qsub $scripts/sub_lumpy.sh pfrag_struc_variants
 
 ##############End of model analysis file.
+
+
 ##############Repeat the same steps as above for V. inequalis (haploid)
 mkdir -p $input/vinequalis
 cd $input/vinequalis
@@ -79,3 +96,6 @@ done
 #Concatenated PaCBio subreads from one sample
 pacbio_con_2=/home/groups/harrisonlab/project_files/venturia/raw_dna/pacbio/v.inaequalis/172_pacbio/extracted
 qsub $scripts/sub_bwa_mem.sh Pacbio vinequalis $input_hap_assembly $pacbio_con_2/concatenated_pacbio.fastq 
+
+#Going to discard PacBio alignment and only run Illumina.
+qsub $scripts/sub_lumpy.sh vinequalis_struc_variants

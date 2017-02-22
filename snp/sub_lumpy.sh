@@ -5,33 +5,36 @@
 #$ -l h=blacklace01.blacklace|blacklace02.blacklace|blacklace04.blacklace|blacklace05.blacklace|blacklace06.blacklace|blacklace07.blacklace|blacklace08.blacklace|blacklace09.blacklace|blacklace10.blacklace|blacklace11.blacklace|blacklace12.blacklace
 ###
 
-bam=$1
-splitters=$2
-discordant=$3
+#Input: Just the name for output results files. The script needs to be run from the directory containing all the output files from sub_bwa_mem.sh for the samples of interest (but not any others!!)
 
-cpath=$PWD
+#Output: Genotype (*.gt) and VCF (*.vcf) files with structural variants
 
-temp_dir="$TMPDIR"
-mkdir -p $temp_dir
+output=$1
 
-cp -r $bam $splitters $discordant $temp_dir
-bam_in=$(basename "$bam")
-splitters_in=$(basename "$splitters")
-discordant_in=$(basename "$discordant")
+#First, obtain command line arguments with: 1) all the alignments
+# 2) discordant alignments, 3) split alignments to be used as input
+# by Lumpy
 
-cd $temp_dir
+#1)
+bams=()
+for b in *rg.bam; do bams+=("$b"); done;
+bam=$(IFS=, ; echo "${bams[*]}")
+
+#2)
+discs=()
+for b in *discordants.bam; do discs+=("$b"); done;
+discordant=$(IFS=, ; echo "${discs[*]}")
+
+#3)
+splits=()
+for b in *splitters.bam; do splits+=("$b"); done;
+splitters=$(IFS=, ; echo "${splits[*]}")
 
 lumpy=/home/sobczm/bin/lumpy-sv/bin
-output=${bam_in%.*}.gt
+out=${output}.gt
 
-$lumpy/lumpyexpress -B $bam_in -S $splitters_in -D $discordant_in -o $output 
-
-samtools index $bam_in
-samtools index $splitters_in
-samtools index $discordant_in
+$lumpy/lumpyexpress -B $bam -S $splitters -D $discordant -o $out
 
 svtyper=/home/sobczm/bin/svtyper
-$svtyper/svtyper -B $bam_in -S $splitters_in -i $output >${bam_in%.*}.vcf
+$svtyper/svtyper -B $bam -S $splitters -i $out >${output}.vcf
 
-rm $bam_in $splitters_in $discordant_in
-cp -r * $cpath
