@@ -9,22 +9,13 @@ input_dip_assembly=/home/groups/harrisonlab/project_files/phytophthora_fragariae
 scripts=/home/sobczm/bin/popgen/snp
 input=/home/sobczm/popgen/snp/sv_calling
 
-#Toyset example
-toyset=/home/sobczm/bin/speedseq/example/toyset
-cd $toyset
-
-#Read alignment with bwa-mem
-qsub $scripts/sub_bwa_mem.sh human_g1k_v37_20_42220611-42542245.fasta NA12878.20slice.30X_1.fastq NA12878.20slice.30X_2.fastq Pacbio test
-#Structural variant calling
-qsub $scripts/sub_lumpy.sh NA12878.20slice.30X_1_rg.bam NA12878.20slice.30X_1_rg_splitters.bam NA12878.20slice.30X_1_rg_discordants.bam
-
 mkdir -p $input/pfrag
 cd $input/pfrag
 ###Phytophthora fragariae (diploid) example
 #Concatenated PaCBio subreads from one sample
 #Alignment is extremely slow (days), recommend just to use Illumina.
 pacbio_con_1=/home/groups/harrisonlab/project_files/phytophthora_fragariae/raw_dna/pacbio/P.fragariae/Bc16/extracted
-qsub $scripts/sub_bwa_mem.sh Pacbio vinequalis $input_dip_assembly $pacbio_con_1/concatenated_pacbio.fastq 
+qsub $scripts/sub_bwa_mem.sh Pacbio pacbio_bc16 $input_dip_assembly $pacbio_con_1/concatenated_pacbio.fastq 
 
 #Illumina samples
 #QC-trimmed reads. Compressed here but don't have to be
@@ -32,7 +23,9 @@ for sample in $input_dip/*
 do
 reads_forward=$sample/F/*trim.fq.gz
 reads_reverse=$sample/R/*trim.fq.gz
-qsub $scripts/sub_bwa_mem.sh Illumina pfrag $input_dip_assembly $reads_forward $reads_reverse 
+#Sample name is the first part of the filename with reads, until the first underscore (_) encountered.
+sname=$(echo $(basename "$reads_forward") | cut -d"_" -f1)
+qsub $scripts/sub_bwa_mem.sh Illumina $sname $input_dip_assembly $reads_forward $reads_reverse 
 done
 
 ##Warning!!!!. In some cases, the forward and reverse read files are corrupted (reads do not match in the two files) 
@@ -89,13 +82,14 @@ cd $input/vinequalis
 for sample in $input_hap/*
 do
 reads_forward=$sample/F/*trim.fq.gz
-reads_reverse=$sample/R/*trim.fq.gz
-qsub $scripts/sub_bwa_mem.sh Illumina vinequalis $input_hap_assembly $reads_forward $reads_reverse 
+#Sample name is the first part of the filename with reads, until the first underscore (_) encountered.
+sname=$(echo $(basename "$reads_forward") | cut -d"_" -f1)
+qsub $scripts/sub_bwa_mem.sh Illumina $sname $input_dip_assembly $reads_forward $reads_reverse 
 done
 
 #Concatenated PaCBio subreads from one sample
 pacbio_con_2=/home/groups/harrisonlab/project_files/venturia/raw_dna/pacbio/v.inaequalis/172_pacbio/extracted
-qsub $scripts/sub_bwa_mem.sh Pacbio vinequalis $input_hap_assembly $pacbio_con_2/concatenated_pacbio.fastq 
+qsub $scripts/sub_bwa_mem.sh Pacbio pacbio_172 $input_hap_assembly $pacbio_con_2/concatenated_pacbio.fastq 
 
 #Going to discard PacBio alignment and only run Illumina.
 qsub $scripts/sub_lumpy.sh vinequalis_struc_variants

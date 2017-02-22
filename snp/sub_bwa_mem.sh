@@ -40,12 +40,10 @@ else
     echo "No read type given!"
 fi
 
-picard=/home/sobczm/bin/picard-tools-2.5.0/picard.jar
+bamaddrg=/home/sobczm/bin/freebayes/bamaddrg/bamaddrg
 output_rg=${output%.bam}_rg.bam
 ### Add group and sample name (prefix)
-java -jar $picard AddOrReplaceReadGroups INPUT=$output OUTPUT=$output_rg SORT_ORDER=coordinate CREATE_INDEX=true RGID=$prefix  RGSM=$prefix  RGPL=Illumina RGLB=library RGPU=barcode VALIDATION_STRINGENCY=LENIENT 
-samtools index $output_rg 
-
+$bamaddrg -b $output -s $prefix -r $prefix >$output_rg
 # Extract the discordant paired-end alignments.
 samtools view -b -F 1294 $output_rg > ${output_rg%.bam}_discordants_unsorted.bam
 
