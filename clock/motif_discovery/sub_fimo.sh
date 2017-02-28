@@ -17,7 +17,7 @@ motif_name=$2
 motif=$3
 
 ffilename=$(basename "$fasta")
-out=${mfilename%.*}_vs_${motif_name}
+out=${ffilename%.*}_vs_${motif_name}
 meme=/home/sobczm/bin/meme_4.11.2/bin
 
 $meme/iupac2meme $motif >${motif_name}.txt

@@ -20,6 +20,8 @@ sub1=ESA42508
 
 #Establish the orthogroups containing those genes in each genome
 pep=/home/sobczm/popgen/clock/pep_genomes
+for gene in adv1 frq os4 vvd al1 sub1
+do
 head -1 $pep/OrthoFinder2/Results_Oct26/Orthogroups.csv >>adv1.txt
 grep $adv1 $pep/OrthoFinder2/Results_Oct26/Orthogroups.csv >>adv1.txt
 head -1 $pep/OrthoFinder2/Results_Oct26/Orthogroups.csv >>os4.txt
@@ -32,22 +34,35 @@ head -1 $pep/OrthoFinder2/Results_Oct26/Orthogroups.csv >>al1.txt
 grep $al1 $pep/OrthoFinder2/Results_Oct26/Orthogroups.csv >>al1.txt
 head -1 $pep/OrthoFinder2/Results_Oct26/Orthogroups.csv >>sub1.txt
 grep $sub1 $pep/OrthoFinder2/Results_Oct26/Orthogroups.csv >>sub1.txt
-
+done
 
 #Fish out the homologs of the genes in other species
 #To accomplish that, first parse the input spreadsheet with protein names
 #to produce a custom list for each species.
-python $scripts/prepare_gene_list.py $input/extended/frq/frq.txt frq
-for a in *frq; do sed -i '/^$/d' $a; done
-#For each genome extract promoter sequences for given genes in the list.
-for a in *frq
+for gene in adv1 frq os4 vvd al1 sub1
 do
-fasta_file=$(echo )
-python $scripts/keep_list_genes.py $input/ace/Botrytis_cinerea.pep.fa.ace \
-Botrytis_cinerea.ASM83294v1.dna_rm.toplevel_promoters_2000.fasta
+cd $input/extended/$gene
+python $scripts/prepare_gene_list.py $input/extended/$gene/${gene}.txt $gene
+for a in *$gene; do sed -i '/^$/d' $a; done
+#For each genome extract promoter sequences for given genes in the list.
+for a in *$gene
+do
+fasta_file=$(echo $a | cut -d"." -f1)
+python $scripts/keep_list_genes.py $a ../${fasta_file}*_promoters_2000.fasta
+mv ../${fasta_file}*_promoters_2000_filtered.fasta ./
+done
 done
 
-
+# Use FIMO to scan for motif GATCGA. Had to temporarily change p-value threshold,
+# as the motif searched was very short, with the option --thresh 0.01
+for gene in adv1 frq os4 vvd al1 sub1
+do
+cd $input/extended/$gene
+for b in *_2000_filtered.fasta
+do
+qsub $scripts/sub_fimo.sh $input/extended/$gene/$b $gene GATCGA
+done
+done
 
 #If any new variations on the motif discovered here, check for
 #motif enrichment in top candidates and all candidates.
