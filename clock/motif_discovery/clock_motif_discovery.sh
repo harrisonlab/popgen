@@ -109,7 +109,7 @@ grep "$name" $pep/Neurospora_crassa.pep.fa
 done <$pep/clockbox_element_neurospora.txt >protein_ids_clockbox
 cat protein_ids_clockbox | cut -d">" -f2 | cut -d" " -f1 >clockbox_neurospora
 
-#Establish the orthogroups containing those genes in each genomes
+#Establish the orthogroups containing those genes in each genome
 while read name;
 do
 grep "$name" $pep/OrthoFinder2/Results_Oct26/Orthogroups.csv
