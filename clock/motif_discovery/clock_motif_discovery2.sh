@@ -37,8 +37,6 @@ grep $sub1 $pep/OrthoFinder2/Results_Oct26/Orthogroups.csv >>sub1.txt
 done
 
 #Fish out the homologs of the genes in other species
-#To accomplish that, first parse the input spreadsheet with protein names
-#to produce a custom list for each species.
 for gene in adv1 frq os4 vvd al1 sub1
 do
 cd $input/extended/$gene
@@ -64,12 +62,68 @@ qsub $scripts/sub_fimo.sh $input/extended/$gene/$b $gene GATCGA
 done
 done
 
-#If any new variations on the motif discovered here, check for
-#motif enrichment in top candidates and all candidates.
 
+#####Motif discovery - Top candidates and all candidates -> DREME 
+#####Where are they found? (position)
 
+#Establish the orthogroups containing those genes in each genome
+dna=/home/sobczm/popgen/clock/DNA_genomes
+pep=/home/sobczm/popgen/clock/pep_genomes
+while read name;
+do
+grep "$name" $pep/OrthoFinder2/Results_Oct26/Orthogroups.csv
+done <$dna/top_candidates.txt >top_candidates_orthogroups.txt
 
-#Motif discovery - Top candidates and all candidates -> DREME 
-#Where are they found? (position)
+while read name;
+do
+grep "$name" $pep/OrthoFinder2/Results_Oct26/Orthogroups.csv
+done <$dna/all_candidates.txt >all_candidates_orthogroups.txt
 
+for gene in all_candidates top_candidates
+do
+cd $input/extended/$gene
+python $scripts/prepare_gene_list.py $input/extended/$gene/${gene}.txt $gene
+for a in *$gene; do sed -i '/^$/d' $a; done
+#For each genome extract promoter sequences for given genes in the list.
+for a in *.$gene
+do
+echo $a
+fasta_file=$(echo $a | cut -d"." -f1)
+echo $fasta_file
+python $scripts/keep_list_genes.py $a ../${fasta_file}*_promoters_2000.fasta
+mv ../${fasta_file}*_promoters_2000_filtered.fasta ./
+done
+done
 
+#Count the number of sequences in each file and create an appropriate background
+#control file with the same number of random promoters.
+for file in $input/extended/all_candidates/*filtered.fasta 
+do
+lines=`wc -l $file | cut -f1 -d' '`
+ngenes="$((lines/2))"
+ffilename=$(basename "$file")
+assembly=${ffilename%_filtered.fasta}.fasta
+qsub $scripts/sub_fasta_subsample.sh $input/extended/$assembly $ngenes
+done
+
+for file in $input/extended/top_candidates/*filtered.fasta 
+do
+lines=`wc -l $file | cut -f1 -d' '`
+ngenes="$((lines/2))"
+ffilename=$(basename "$file")
+assembly=${ffilename%_filtered.fasta}.fasta
+qsub $scripts/sub_fasta_subsample.sh $input/extended/$assembly $ngenes
+done
+
+#DREME motif analysis
+for control in $input/extended/all_candidates/*random*.fasta
+do
+file=${control%_random*}_filtered.fasta
+qsub $scripts/sub_dreme.sh $file $control
+done
+
+for control in $input/extended/top_candidates/*random*.fasta
+do
+file=${control%_random*}_filtered.fasta
+qsub $scripts/sub_dreme.sh $file $control
+done
