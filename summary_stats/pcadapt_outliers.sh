@@ -1,7 +1,8 @@
 #!/bin/bash
 scripts=/home/sobczm/bin/popgen/summary_stats
 input=/home/sobczm/popgen/summary_stats
-#################### 1) Filter SNPs to retain only biallelic SNPs. Furthermore, keep only SNPs with max 5% missing genotypes (but can change that with --max-missing option below.
+#################### 1) Filter SNPs to retain only biallelic SNPs.
+#################### Furthermore, keep only SNPs with max 5% missing genotypes (but can change that with --max-missing option below.
 #!! It may be necessary to also pre-filter for samples which were poorly sequenced/
 #aligned beforehand to avoid removal of too many potentially informative SNPs.
 
