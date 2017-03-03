@@ -1,8 +1,7 @@
 #! /usr/bin/env python
 import os, sys, re, argparse
-from collections import defaultdict as dd
+import itertools
 from Bio import SeqIO
-
 #Prepare FASTA input for pairwise Ka/Ks comparisons. All pairwise comparisons for genes in a given orthogroups output. 
 ap = argparse.ArgumentParser()
 ap.add_argument('--o',required=True,type=str,help='OrthoFinder results table containing orthogroups of interest')
@@ -17,7 +16,7 @@ args = ap.parse_args()
 
 #Open the file with orthogroup results
 ortho_h = open(args.o)
-ortho_groups = dd(lambda: dd(str))
+ortho_groups = dict()
 all_ids_1 = list()
 all_ids_2 = list()
 
@@ -37,31 +36,34 @@ for line in ortho_h:
     all_ids_2.extend(species2_id)
     #Check if both lists non-empty, ie. ortholog sequences available for both species
     if (len(species1_id) > 0 and len(species2_id) > 0):
-        for id1 in species1_id:
-            for id2 in species2_id:
-                ortho_groups[fields[0]][id1] = id2
-
+        ortho_groups[fields[0]] = list(itertools.product(species1_id,species2_id))
 
 #Read in sequences for species 1 into memory 
-sequences_species1 = dict()
+sequences_species = dict()
 
 for seq_record in SeqIO.parse(args.fasta1, "fasta"):
     gene_id = str(seq_record.id)
     if gene_id in all_ids_1:
-        sequences_species1[gene_id] = str(seq_record.seq)
+        sequences_species[gene_id] = str(seq_record.seq)
 
 #Read in sequences for species 2 into memory 
-sequences_species2 = dict()
 
 for seq_record in SeqIO.parse(args.fasta2, "fasta"):
     gene_id = str(seq_record.id)
     if gene_id in all_ids_2:
-        sequences_species2[gene_id] = str(seq_record.seq)
+        sequences_species[gene_id] = str(seq_record.seq)
 
 #Print out all possible pairwise comparisons to file.
-ortho_names = ortho_groups.keys()
-for n in ortho_names:
-    keys_id = ortho_groups[n].keys()
-    counter = 1
-    for k in keys_id:
-        open 
+for n in ortho_groups:
+    counter = 0
+    for pair in ortho_groups[n]:
+       counter += 1
+       output_file = n + "_" + str(counter) + ".fasta"
+       file_h = open(output_file, 'w')
+       #Write sequence for species A
+       file_h.write(">" + pair[0] + "\n")
+       file_h.write(sequences_species[pair[0]] + "\n")
+       #Write sequence for species B
+       file_h.write(">" + pair[1] + "\n")
+       file_h.write(sequences_species[pair[1]] + "\n")
+       file_h.close()
