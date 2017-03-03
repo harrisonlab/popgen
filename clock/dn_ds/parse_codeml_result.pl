@@ -1,11 +1,17 @@
 #!/usr/local/bin/perl  -w
 
-open (RESULTS, '>', "codeml_table_nonfixed.txt");
-open (RESULTS_FIX, '>', "codeml_table_fixed.txt");
-print RESULTS "locus\tt\tN\tS\tdN\tdS\tdNdS\tlnL\n";
-print RESULTS_FIX "locus\tt\tN\tS\tdN\tdS\tdNdS\tlnL\n";
+#Parses codeml output for pairwise Ka/Ks calculation in a 
+#given folder, and calculates LRT based
+#on comparing to the model fixed at omega=0. LRT >3.841
+#implies significance at the 0.05 threshold in one-tailed test.
+
+#Parsed output file: codeml_table.txt
+
+open (RESULTS, '>', "codeml_table.txt");
+print RESULTS "locus\tt\tN\tS\tdN\tdS\tdNdS\tlnL\tLRT\n";
 
 @codemla= <*.out>;
+@codemla = grep !/fixed/, @codemla;
 foreach my $codeml (@codemla) 
 {
 	open (FILE, "$codeml");
@@ -27,13 +33,15 @@ foreach my $codeml (@codemla)
 			
 			if ($line =~ m/dN/)
 			{
-			@temp = split(/\s+/,$line);
+			@temp = split(/=/,$line);
+			foreach my $n (@temp)
+			{ $n =~ s/[^0-9\.]//g;  }
 			$time = $temp[1];
-			$s = $temp[3];
-			$n = $temp[5];
-			$dnds = $temp[7];
-			$dn = $temp[10];
-			$ds = $temp[13];
+			$s = $temp[2];
+			$n = $temp[3];
+			$dnds = $temp[4];
+			$dn = $temp[5];
+			$ds = $temp[6];
 				
 			}
 		
@@ -42,15 +50,31 @@ foreach my $codeml (@codemla)
 	}
 	
 	close FILE;
-	unless ($codeml =~ m/fixed/)
-	{ 
-		print RESULTS "$locus\t$time\t$n\t$s\t$dn\t$ds\t$dnds\t$likelihood\n";
-	}
-	else 	
+
+	$codeml =~ s/\.out/_fixed\.out/;
+	#print $codeml;
+	
+	open (FILE2, $codeml);
+	while (<FILE2>)
 	{
-		print RESULTS_FIX "$locus\t$time\t$n\t$s\t$dn\t$ds\t$dnds\t$likelihood\n";
+		next if 1 .. /pairwise comparison, codon frequencies: Fcodon./;
+		$line = $_;
+		chomp $line;
+		#print $line;
+		if ($line =~ m/lnL/)
+			{
+				#print "aaaa";
+				@temp = split(/=/, $line);
+				$likelihood2 = $temp[1];
+				$lrt = -2 * ($likelihood2 - $likelihood)
+			}
 	}
+	#print $likelihood2;
+	close FILE2;
+
+	print RESULTS "$locus\t$time\t$n\t$s\t$dn\t$ds\t$dnds\t$likelihood\t$lrt\n";
+	
+
 }
 	
 close RESULTS;
-close RESULTS_FIX;
