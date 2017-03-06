@@ -33,8 +33,10 @@ splitters=$(IFS=, ; echo "${splits[*]}")
 lumpy=/home/sobczm/bin/lumpy-sv/bin
 out=${output}.gt
 
+#Detect structural variants
 $lumpy/lumpyexpress -B $bam -S $splitters -D $discordant -o $out
 
+#Call genotypes
 svtyper=/home/sobczm/bin/svtyper
 $svtyper/svtyper -B $bam -S $splitters -i $out >${output}.vcf
 

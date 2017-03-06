@@ -68,6 +68,7 @@ done
 ##################  END
 
 #Going to discard PacBio alignment and only run Illumina.
+#Warning: the last stpe in the script - genotype calling takes days.
 qsub $scripts/sub_lumpy.sh pfrag_struc_variants
 
 ##############End of model analysis file.

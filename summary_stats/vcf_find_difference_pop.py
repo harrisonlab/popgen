@@ -1,3 +1,4 @@
+
 #! /usr/bin/env python
 import os, sys, re, argparse
 from collections import defaultdict as dd
@@ -9,8 +10,7 @@ from collections import defaultdict as dd
 #   IMPORTANT REMARKS
 ########################
 
-#Missing genotypes ignored in counting up allele frequencis, so advised to pre-filter 
-# the VCF file for variants with lots of #missing genotypes
+#Missing genotypes ignored in counting up allele frequencis, so advised to pre-filter the VCF file for variants with lots of #missing genotypes
  
 #BUT script can handle >2 alleles per variant, so no prefiltering required for biallelic variants. 
 
