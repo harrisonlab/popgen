@@ -12,7 +12,6 @@ from collections import defaultdict as dd
 #Missing genotypes ignored in counting up allele frequencis, so advised to pre-filter the VCF file for variants with lots of #missing genotypes
  
 #BUT script can handle >2 alleles per variant, so no prefiltering required for biallelic variants. 
-
 ap = argparse.ArgumentParser()
 ap.add_argument('--vcf',required=True,type=str,help='Input VCF file with variants')
 ap.add_argument('--out',required=True,type=str,help='Name of the output VCF file')
