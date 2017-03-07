@@ -99,6 +99,7 @@ Run the STRUCTURE analysis to test for thelikely number of population clusters (
 First, build genome database with [build_genome_database.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/build_genome_database.sh) Secondly, annotate the variants in select VCF file, get a summary report on variants in the input file and create subsets of SNPs with different effect (genic, coding, synonymous, non-synonymous, 4-fold degenerate) with [annotate_snps_genome.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/annotate_snps_genome.sh)
 
 3. Use the VCF files with SNPs and structural variants to scan for any potential outliers between populations with 3 different methods.
+
 **Model analysis file:** [establish_variant_differences.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/establish_variant_differences.sh)
 Assumption-free scan for varaints showing high allele frequency differences between populations with [vcf_find_difference_pop.py] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/vcf_find_difference_pop.py)
 
