@@ -5,7 +5,7 @@ Script execution order:
 4) [clock_motif_discovery_cont.sh] (https://github.com/harrisonlab/popgen/blob/master/clock/motif_discovery/clock_motif_discovery_cont.sh)
 5) [clock_motif_discovery2.sh] (https://github.com/harrisonlab/popgen/blob/master/clock/motif_discovery/clock_motif_discovery2.sh)
 6) [clock_dn_ds_analysis.sh] (https://github.com/harrisonlab/popgen/blob/master/clock/motif_discovery/clock_dn_ds_analysis.sh)
-7) [dn_ds_analysis_pairwise_verticillium.sh] (https://github.com/harrisonlab/popgen/blob/master/clock/motif_discovery/dn_ds_analysis_pairwise_verticillium.sh)
+7) [dn_ds_analysis_pairwise_verticillium.sh] (https://github.com/harrisonlab/popgen/blob/master/clock/dn_ds/dn_ds_analysis_pairwise_verticillium.sh)
 8) [domain_analysis.sh] (https://github.com/harrisonlab/popgen/blob/master/clock/motif_discovery/domain_analysis.sh)
 
 Genome DNA sequences (repeat-masked) and GFF3 annotation files as well as protein sequences were downloaded from Ensembl Fungi for the following species:
