@@ -104,7 +104,7 @@ First, build genome database with [build_genome_database.sh] (https://github.com
 Assumption-free scan for varaints showing high allele frequency differences between populations with [vcf_find_difference_pop.py] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/vcf_find_difference_pop.py)
 
 **Model analysis file:** [bayescan_outliers.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/bayescan_outliers.sh)
-Bayesian multinomial-Dirichlet model based on Fst values
+Bayesian multinomial-Dirichlet model based on Fst values in
 [sub_bayescan.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/sub_bayescan.sh)
 
 **Model analysis file:**  
