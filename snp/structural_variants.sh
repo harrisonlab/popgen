@@ -12,11 +12,6 @@ input=/home/sobczm/popgen/snp/sv_calling
 mkdir -p $input/pfrag
 cd $input/pfrag
 ###Phytophthora fragariae (diploid) example
-#Concatenated PaCBio subreads from one sample
-#Alignment is extremely slow (days), recommend just to use Illumina.
-pacbio_con_1=/home/groups/harrisonlab/project_files/phytophthora_fragariae/raw_dna/pacbio/P.fragariae/Bc16/extracted
-qsub $scripts/sub_bwa_mem.sh Pacbio pacbio_bc16 $input_dip_assembly $pacbio_con_1/concatenated_pacbio.fastq 
-
 #Illumina samples
 #QC-trimmed reads. Compressed here but don't have to be
 for sample in $input_dip/*
@@ -66,6 +61,11 @@ done
 
 ################## STEPS FOR 2 and MORE LIBRARIES PER sample
 ##################  END
+
+#Concatenated PaCBio subreads from one sample
+#Alignment is extremely slow (days), recommend just to use Illumina.
+pacbio_con_1=/home/groups/harrisonlab/project_files/phytophthora_fragariae/raw_dna/pacbio/P.fragariae/Bc16/extracted
+qsub $scripts/sub_bwa_mem.sh Pacbio pacbio_bc16 $input_dip_assembly $pacbio_con_1/concatenated_pacbio.fastq 
 
 #Going to discard PacBio alignment and only run Illumina.
 #Warning: the last stpe in the script - genotype calling takes days.
