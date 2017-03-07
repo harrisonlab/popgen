@@ -16,11 +16,11 @@ cd $input/outliers
 
 #################### 1) Filter SNPs to retain only biallelic SNPs, otherwise not compatible with PGDSpider
 #and Bayescan. Furthermore, keep only SNPs with max 5% missing genotypes.
-#!! It may be necessary to also pre-filter for samples which were poorly sequenced/
+### It may be necessary to also pre-filter for samples which were poorly sequenced/
 #aligned beforehand to avoid removal of too many potentially informative SNPs.
+vcftools=/home/sobczm/bin/vcftools/bin
 for filename in $input/outliers/*/*.vcf
 do
-vcftools=/home/sobczm/bin/vcftools/bin
 $vcftools/vcftools --vcf $filename --max-missing 0.95 --mac 1 --min-alleles 2 --max-alleles 2 --recode --out ${filename%.vcf}_bi_filtered
 done
 
@@ -37,8 +37,7 @@ grep "#CHROM" $filename | head -1
 #Resulting example file population assignment file: 
 cat $input/outliers/pfrag/95m_contigs_unmasked_UK123_bi_filtered.recode.lst
 
-#Now, need to prepare the configuration file. Copy the conversion script for diploid
-#organisms
+#Now, need to prepare the configuration file. Copy the conversion script
 pgdspid=/home/sobczm/bin/PGDSpider_2.0.5.2
 #For diploid:
 config=vcf_to_bayescan_diploid.spid
@@ -57,11 +56,8 @@ java -jar -Xmx1024m -Xms512m $pgdspid/PGDSpider2-cli.jar -inputfile $filename -i
 dos2unix ${filename%.vcf}.geno
 
 ############# 3) Bayescan analysis
-#Bayescan run.
+#Bayescan run and plot the results in R.
 qsub $scripts/sub_bayescan.sh ${filename%.vcf}.geno
-
-#Plot Bayescan results in R 
-Rscript --vanilla $scripts/plot_bayescan.R ${filename%vcf}_fst.txt
 
 
 ##### Repeat of steps 2-3, but for haploid organism (V. inequalis)
