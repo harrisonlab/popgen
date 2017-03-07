@@ -8,7 +8,6 @@
 input=$1
 cpath=$PWD
 
-
 temp_dir="$TMPDIR"
 mkdir -p $temp_dir
 
