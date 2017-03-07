@@ -62,7 +62,6 @@ qsub $scripts/sub_fimo.sh $input/extended/$gene/$b $gene GATCGA
 done
 done
 
-
 #####Motif discovery - Top candidates and all candidates -> DREME 
 #####Where are they found? (position)
 
