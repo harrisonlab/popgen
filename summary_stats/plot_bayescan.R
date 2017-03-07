@@ -15,6 +15,7 @@ write.table(out$outliers, file=out_table, sep ="\t", quote=FALSE, row.names=FALS
 
 y <- read.table(input)
 
+#Plot the distribution of FST values
 fst <- y[,5]
 d <- density(fst)
 out_fst <- paste(file_path_sans_ext(input), "_fst.pdf", sep="")
@@ -23,7 +24,7 @@ plot(d, main="Fst")
 polygon(d, col="purple", border="black") 
 dev.off()
 
-
+#Plot the distribution of alpha coefficients
 alpha <- y[,4]
 d <- density(alpha)
 out_alpha <- paste(file_path_sans_ext(input), "_alpha.pdf", sep="")
@@ -32,7 +33,7 @@ plot(d, main="alpha")
 polygon(d, col="blue", border="black") 
 dev.off()
 
-
+#Plot the distribution of qvalues
 qval <- y[,3]
 d <- density(qval)
 out_qval <- paste(file_path_sans_ext(input), "_qval.pdf", sep="")
