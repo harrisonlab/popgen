@@ -7,7 +7,7 @@
 
 #Input: Just the name for output results files. The script needs to be run from the directory containing all the output files from sub_bwa_mem.sh for the samples of interest (but not any others!!)
 
-#Output: Genotype (*.gt) and VCF (*.vcf) files with structural variants
+#Output: Genotype (*.gt) and VCF (*.vcf) files with structural variants.
 
 output=$1
 
