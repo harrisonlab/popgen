@@ -9,7 +9,6 @@
 #the R script then requires manual changing of the final_k parameter 
 #which is the k value best explaining the population structure.
 
-
 input=$1
 ploidy=$2
 
