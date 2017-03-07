@@ -90,7 +90,7 @@ Downsample the VCF file with SNPs prior to analysis with the STRUCTURE program.
 Run the STRUCTURE analysis to test for thelikely number of population clusters (K) (can be in the range of: K=1 up to K=number of individuals tested), summarise the results with StructureHarvester and CLUMPP, visualise with DISTRUCT. 
 
 ##Summary stats 
-###Scripts for functional annotation of SNPs, and calculation of general population genetics parameters (Fst, nuclotide diversity, Tajima's D) which can be informative about demographic and selection processes operating on a given gene(s) in tested populations. Analyses available include both haplotype- and nucleotide- based.
+###Scripts for functional annotation of SNPs, and calculation of general population genetics parameters (Fst, nuclotide diversity, Tajima's D) which can be informative about demographic and selection processes operating on a given gene(s) in tested populations. Methods to detect variant outliers useful for zeroing in on potentially adaptive loci. Analyses available include both haplotype- and nucleotide- based.
  **Model analysis file:** [fus_variant_annotation.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/fus_variant_annotation.sh)
 
 1. Create VCF file subsets only with certain individuals retained for downstream analysis with `/home/sobczm/bin/vcflib/bin/vcfremovesamples` and remove monomorphic (idential) positions in the output with `/home/sobczm/bin/vcftools/bin/vcftools`
@@ -98,9 +98,21 @@ Run the STRUCTURE analysis to test for thelikely number of population clusters (
 2. Create custom SNPEff annotation for each new genome which allows classification of variants into different functional categories
 First, build genome database with [build_genome_database.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/build_genome_database.sh) Secondly, annotate the variants in select VCF file, get a summary report on variants in the input file and create subsets of SNPs with different effect (genic, coding, synonymous, non-synonymous, 4-fold degenerate) with [annotate_snps_genome.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/annotate_snps_genome.sh)
 
-3. Convert a VCF file to independent FASTA sequences for each individual (sample), incorporating the polymorphisms stored in the VCF file - that is, generate a custom version of each genome based on the common reference and SNPs detected during variant calling [vcf_to_fasta.py] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/vcf_to_fasta.py)
+3. Use the VCF files with SNPs and structural variants to scan for any potential outliers between populations with 3 different methods.
+**Model analysis file:** [establish_variant_differences.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/establish_variant_differences.sh)
+Assumption-free scan for varaints showing high allele frequency differences between populations with [vcf_find_difference_pop.py] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/vcf_find_difference_pop.py)
 
-4. Split a GFF file with gene annotation for the reference genome into independent file per contig. Required by PopGenome used in the next script. [split_gff_contigs.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/split_gff_contig.sh)
+**Model analysis file:** [bayescan_outliers.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/bayescan_outliers.sh)
+Bayesian multinomial-Dirichlet model based on Fst values
+[sub_bayescan.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/sub_bayescan.sh)
+
+**Model analysis file:**  
+[pcadapt_outliers.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/pcadapt_outliers.sh)
+Detecting the underlying population structure with PCA, followed by outlier scan.
+
+4. Convert a VCF file to independent FASTA sequences for each individual (sample), incorporating the polymorphisms stored in the VCF file - that is, generate a custom version of each genome based on the common reference and SNPs detected during variant calling [vcf_to_fasta.py] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/vcf_to_fasta.py)
+
+5. Split a GFF file with gene annotation for the reference genome into independent file per contig. Required by PopGenome used in the next script. [split_gff_contigs.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/split_gff_contig.sh)
 
 **Model analysis file:** [fus_popgenome_analysis.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/fus_popgenome_analysis.sh)
 The scripts used in this part of the analysis described in the model analysis file above require a special FASTA and GFF input generated with scripts [vcf_to_fasta.py] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/vcf_to_fasta.py) (use option 1 for haploid and option 2 for diploid organisms) and [split_gff_contigs.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/split_gff_contig.sh). The input needs to be also arranged in a particular way described in the model analysis file above. Lastly, the submitted R scripts themselves require customisation for each analysis regarding sample names and their population assingment.
