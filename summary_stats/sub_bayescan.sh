@@ -8,6 +8,7 @@
 input=$1
 cpath=$PWD
 
+
 temp_dir="$TMPDIR"
 mkdir -p $temp_dir
 
@@ -21,3 +22,7 @@ $bayescan -threads 16 -od ./ $input_f
 rm $input_f
 cp -r * $cpath
 rm -rf $temp_dir
+
+scripts=/home/sobczm/bin/popgen/summary_stats
+cd $cpath
+Rscript --vanilla $scripts/plot_bayescan.R ${input%vcf}_fst.txt
