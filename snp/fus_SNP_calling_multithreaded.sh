@@ -1,6 +1,5 @@
 #!/bin/bash
 #To change in each analysis:
-
 input=/home/sobczm/popgen/input/mappings
 reference=Fus2_canu_contigs_unmasked.fa
 
