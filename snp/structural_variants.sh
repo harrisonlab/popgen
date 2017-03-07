@@ -68,7 +68,7 @@ pacbio_con_1=/home/groups/harrisonlab/project_files/phytophthora_fragariae/raw_d
 qsub $scripts/sub_bwa_mem.sh Pacbio pacbio_bc16 $input_dip_assembly $pacbio_con_1/concatenated_pacbio.fastq 
 
 #Going to discard PacBio alignment and only run Illumina.
-#Warning: the last stpe in the script - genotype calling takes days.
+#Warning: the last step in the script - genotype calling - takes days.
 qsub $scripts/sub_lumpy.sh pfrag_struc_variants
 
 ##############End of model analysis file.
