@@ -5,7 +5,7 @@ scripts=/home/sobczm/bin/popgen/summary_stats
 #candidate effector genes likely involved in resistance in different cultivars.
 
 ### V. inequalis SNPs
-##F irst, create a cut-down VCF file containing only individuals of interest 
+## First, create a cut-down VCF file containing only individuals of interest 
 ## (Worcester and Bramley populations) and then filter to remove SNPs with too many ##missing genotypes.
 input=/home/sobczm/popgen/other/passey
 cd $input
