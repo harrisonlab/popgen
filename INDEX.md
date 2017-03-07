@@ -51,7 +51,7 @@ phylogenetic tree (see the model analysis file for a example of an analysis)
 The BEAST analysis has to be so far set-up by hand. A guide to do so and obtain a final tree is given in the model analysis file above.
 
 ##SNP
-###Scripts to call SNPs on multiple individuals using a single genome/transcriptome reference, filter (and downsample) them, and establish the basic population structure.
+###Scripts to call SNPs on multiple individuals using a single genome/transcriptome reference, filter (and downsample) them, and establish the basic population structure. Also, call structural variants.
 
 **Model analysis file:** [pre_SNP_calling_cleanup.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/pre_SNP_calling_cleanup.sh)
 
@@ -88,6 +88,11 @@ Downsample the VCF file with SNPs prior to analysis with the STRUCTURE program.
 `/home/sobczm/bin/vcflib/bin/vcfrandomsample --rate 0.1 $input_vcf >$output_vcf`
 
 Run the STRUCTURE analysis to test for thelikely number of population clusters (K) (can be in the range of: K=1 up to K=number of individuals tested), summarise the results with StructureHarvester and CLUMPP, visualise with DISTRUCT. 
+
+**Model analysis file:** [structural_variants.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/structural_variants.sh)
+Call different types of structural variants with Lumpy Express, based on atypical bwa-mem Illumina short-read alignments ([sub_bwa_mem.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/sub_bwa_mem.sh)). Followed by genotype calling with SVTyper. Will detect: insertions, deletions, duplications, tandem duplications, copy number variable regions, inversions.
+
+
 
 ##Summary stats 
 ###Scripts for functional annotation of SNPs, and calculation of general population genetics parameters (Fst, nuclotide diversity, Tajima's D) which can be informative about demographic and selection processes operating on a given gene(s) in tested populations. Methods to detect variant outliers useful for zeroing in on potentially adaptive loci. Analyses available include both haplotype- and nucleotide- based.
