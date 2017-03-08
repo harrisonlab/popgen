@@ -30,6 +30,9 @@ Order of Shell script execution:
 
 15) [the_really_really_final_bait_design_part3.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/the_really_really_final_bait_design_part3.sh)
 
+#The result of Mycoarray QC for SLRK and NBS baits, along with filtered bait sequences sent for production are in:
+`/home/sobczm/popgen/renseq/input/transcriptomes/really_really_final_baits/revised_design_Mar2017`
+
 15) [apple_renseq_part1.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/apple_renseq_part1.sh)
 
 16) [apple_renseq_part2.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/apple_renseq_part2.sh)
