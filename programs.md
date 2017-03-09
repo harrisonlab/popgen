@@ -154,6 +154,8 @@ export PATH=/home/sobczm/bin/FastTree2.1.9:${PATH}
 
 [Sambamba ver. 0.6.5] (http://lomereiter.github.io/sambamba) Sambamba is a high performance modern robust and fast tool (and library) for working with SAM and BAM files. `/home/sobczm/bin/sambamba/`
 
+[Sniffles] (https://github.com/fritzsedlazeck/Sniffles) Sniffles is a structural variation caller using third generation sequencing (PacBio or Oxford Nanopore). `/home/sobczm/bin/Sniffles/bin`
+
 [snpEff & snpSift ver. 4.3] (http://snpeff.sourceforge.net/) Genetic variant annotation, effect prediction, VCF filtering and manipulation toolbox. `/home/sobczm/bin/snpEff`
 
 [SplitsTree ver. 4] (http://www.splitstree.org/) Program for computing unrooted phylogenetic networks from molecular sequence data. `/home/sobczm/bin/splitstree4`
