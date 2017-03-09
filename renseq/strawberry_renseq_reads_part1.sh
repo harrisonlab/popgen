@@ -117,8 +117,6 @@ cat F.vesca_Rpf2.fasta *_neg.fasta *_pos.fasta >F.vesca_Rpf2_fl1_a90_reads.fasta
 qsub $scripts/sub_mafft.sh F.vesca_Rpf2_fl1_a90_reads.fasta
 
 
-
-
 ###########Do the same for contigs
 for a in F.vesca_Rpf2_vs_F06.contigs_nucl.db F.vesca_Rpf2_vs_G06.contigs_nucl.db
 do
