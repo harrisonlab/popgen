@@ -116,6 +116,8 @@ Genomic Diversity `/home/sobczm/bin/DivStat`
 
 [MEME Suite ver. 4.11.2] (http://meme-suite.org/) MEME SUITE: tools for motif discovery and searching `/home/sobczm/bin/meme_4.11.2/bin`
 
+[NGMLR ver. 0.2.3] (https://github.com/philres/ngmlr) Ngmlr is a long-read mapper designed to align PacBilo or Oxford Nanopore to a reference genome with a focus on reads that span structural variations. Generates read mappings used by PacBio/Nanopore SV caller sniffles. `/home/sobczm/bin/ngmlr/bin`
+
 [NLR-Parser] (https://github.com/steuernb/NLR-Parser) A tool to rapidly annotate the NLR complement from sequenced plant genomes. `home/sobczm/bin/NLR-Parser` Requires meme 4.9.1 in `/home/sobczm/bin/meme_4.9.1/bin`
 
 [OrthoFinder v1.0.7] (https://github.com/davidemms/OrthoFinder/) OrthoFinder: Accurate inference of orthogroups, orthologues, gene trees and rooted species tree made easy `/home/sobczm/bin/OrthoFinder-1.0.7/orthofinder`
@@ -151,6 +153,8 @@ export PATH=/home/sobczm/bin/FastTree2.1.9:${PATH}
 `/home/sobczm/bin/rgaugury`
 
 [Sambamba ver. 0.6.5] (http://lomereiter.github.io/sambamba) Sambamba is a high performance modern robust and fast tool (and library) for working with SAM and BAM files. `/home/sobczm/bin/sambamba/`
+
+[Sniffles] (https://github.com/fritzsedlazeck/Sniffles) Sniffles is a structural variation caller using third generation sequencing (PacBio or Oxford Nanopore). `/home/sobczm/bin/Sniffles/bin`
 
 [snpEff & snpSift ver. 4.3] (http://snpeff.sourceforge.net/) Genetic variant annotation, effect prediction, VCF filtering and manipulation toolbox. `/home/sobczm/bin/snpEff`
 
