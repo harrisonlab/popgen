@@ -14,14 +14,12 @@ cd $input/extended
 adv1=EAA29240
 os4=EAA34928
 frq=ESA42015
-vvd=ESA42013
+vvd=EAA28370
 al1=EAA35477
 sub1=ESA42508
 
 #Establish the orthogroups containing those genes in each genome
 pep=/home/sobczm/popgen/clock/pep_genomes
-for gene in adv1 frq os4 vvd al1 sub1
-do
 head -1 $pep/OrthoFinder2/Results_Oct26/Orthogroups.csv >>adv1.txt
 grep $adv1 $pep/OrthoFinder2/Results_Oct26/Orthogroups.csv >>adv1.txt
 head -1 $pep/OrthoFinder2/Results_Oct26/Orthogroups.csv >>os4.txt
@@ -34,7 +32,6 @@ head -1 $pep/OrthoFinder2/Results_Oct26/Orthogroups.csv >>al1.txt
 grep $al1 $pep/OrthoFinder2/Results_Oct26/Orthogroups.csv >>al1.txt
 head -1 $pep/OrthoFinder2/Results_Oct26/Orthogroups.csv >>sub1.txt
 grep $sub1 $pep/OrthoFinder2/Results_Oct26/Orthogroups.csv >>sub1.txt
-done
 
 #Fish out the homologs of the genes in other species
 for gene in adv1 frq os4 vvd al1 sub1

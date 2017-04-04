@@ -21,4 +21,4 @@ out=${ffilename%.*}_vs_${motif_name}
 meme=/home/sobczm/bin/meme_4.11.2/bin
 
 $meme/iupac2meme $motif >${motif_name}.txt
-$meme/fimo --oc $out ${motif_name}.txt $fasta
+$meme/fimo --thresh 0.1 --norc --oc $out ${motif_name}.txt $fasta
