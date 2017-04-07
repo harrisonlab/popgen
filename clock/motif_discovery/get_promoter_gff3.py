@@ -63,8 +63,10 @@ for line in gff_h:
                     out_minus.write(str(new_start) + "\t" + str(new_end)  + "\t")
                     out_minus.write(fields2[5] + "\t" + fields2[6]  + "\t" + fields2[7]  + "\t")
                     out_minus.write(fields2[8] + "\n")
+                    ids2 = fields2[8].split(";")
+                    protein_id2 = ids2[2].split("=")
                     out_coords.write(fields2[0] + ":" + str(new_start - 1) + "-" + str(new_end))
-                    out_coords.write("\t" + protein_id[1] + "\n")
+                    out_coords.write("\t" + protein_id2[1] + "\n")
                     previous_line = fields
             else:
                 if fields[6] == "-":

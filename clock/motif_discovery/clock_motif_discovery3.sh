@@ -44,9 +44,8 @@ mv ../${fasta_file}*_promoters_2000_filtered.fasta ./
 done
 done
 
-
 # Use FIMO to scan for motif GATCGA. Had to temporarily change p-value threshold, as the motif searched was very short, with the option --thresh 0.1
-#Also, searched only on plus strand as the sequence is palindromic
+#Also, searched only on plus strand as the sequence is palindromic,
 for gene in adv1 frq os4 vvd al1 sub1 eas cry con8 bli4
 do
 cd $input/extended/$gene
@@ -55,3 +54,19 @@ do
 qsub $scripts/sub_fimo.sh $input/extended/$gene/$b LRE GATC
 done
 done
+
+#Use Glam2Scan to look for extended gap Cbox motif:
+#CGAT-----CCGCT
+#spacing between 0-30 bp
+cd $input/extended/frq
+for a in *_promoters_2000_filtered.fasta; do qsub $scripts/sub_glam2scan.sh $a ../cbox_extended.txt; done
+cd $input/extended/vvd
+for a in *_promoters_2000_filtered.fasta; do qsub $scripts/sub_glam2scan.sh $a ../cbox_extended.txt; done
+
+#Use Glam2Scan to look for extended gap motif from He (2005):
+#GATNC-----CGATN
+#spacing between 0-30 bp
+cd $input/extended/frq
+for a in *_promoters_2000_filtered.fasta; do qsub $scripts/sub_glam2scan.sh $a ../he2005_extended.txt; done
+cd $input/extended/vvd
+for a in *_promoters_2000_filtered.fasta; do qsub $scripts/sub_glam2scan.sh $a ../he2005_extended.txt; done
