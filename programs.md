@@ -117,6 +117,7 @@ Genomic Diversity `/home/sobczm/bin/DivStat`
 [MEME Suite ver. 4.11.2] (http://meme-suite.org/) MEME SUITE: tools for motif discovery and searching `/home/sobczm/bin/meme_4.11.2/bin`
 
 [MinorSeq] (https://github.com/PacificBiosciences/minorseq) Minor Variant Calling and Phasing Tools for PacBio reads `/home/sobczm/bin/minorseq` on Triticum
+
 [NGMLR ver. 0.2.3] (https://github.com/philres/ngmlr) Ngmlr is a long-read mapper designed to align PacBilo or Oxford Nanopore to a reference genome with a focus on reads that span structural variations. Generates read mappings used by PacBio/Nanopore SV caller sniffles. `/home/sobczm/bin/ngmlr/bin`
 
 [NLR-Parser] (https://github.com/steuernb/NLR-Parser) A tool to rapidly annotate the NLR complement from sequenced plant genomes. `home/sobczm/bin/NLR-Parser` Requires meme 4.9.1 in `/home/sobczm/bin/meme_4.9.1/bin`
