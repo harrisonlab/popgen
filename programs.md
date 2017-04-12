@@ -92,6 +92,8 @@ Genomic Diversity `/home/sobczm/bin/DivStat`
 
 [EIGENSOFT ver. 6.1.2] (https://genetics.med.harvard.edu/reich/Reich_Lab/Software.html) A set of population structure dectection methods. `/home/sobczm/bin/EIG/bin`
 
+[FALCON] (https://github.com/PacificBiosciences/FALCON) Falcon: a set of tools for fast aligning long reads for consensus and assembly `/home/sobczm/bin/FALCON-integrate` on Triticum
+
 [FastTree ver. 2.1.9] (http://www.microbesonline.org/fasttree/) Approximately Maximum-Likelihood Trees for Large Alignments `/home/sobczm/bin/FastTree2.1.9`  
 
 [FigTree ver. 1.4.2] (http://tree.bio.ed.ac.uk/software/figtree/) Viewing of phylogenetic trees and production of publication-ready figures. `/home/sobczm/bin/FigTree_v1.4.2/bin`
