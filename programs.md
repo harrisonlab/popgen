@@ -92,6 +92,8 @@ Genomic Diversity `/home/sobczm/bin/DivStat`
 
 [EIGENSOFT ver. 6.1.2] (https://genetics.med.harvard.edu/reich/Reich_Lab/Software.html) A set of population structure dectection methods. `/home/sobczm/bin/EIG/bin`
 
+[FALCON] (https://github.com/PacificBiosciences/FALCON) Falcon: a set of tools for fast aligning long reads for consensus and assembly `/home/sobczm/bin/FALCON-integrate` on Triticum
+
 [FastTree ver. 2.1.9] (http://www.microbesonline.org/fasttree/) Approximately Maximum-Likelihood Trees for Large Alignments `/home/sobczm/bin/FastTree2.1.9`  
 
 [FigTree ver. 1.4.2] (http://tree.bio.ed.ac.uk/software/figtree/) Viewing of phylogenetic trees and production of publication-ready figures. `/home/sobczm/bin/FigTree_v1.4.2/bin`
@@ -115,6 +117,8 @@ Genomic Diversity `/home/sobczm/bin/DivStat`
 [MEGA ver. 7] (http://www.megasoftware.net/) Sophisticated and user-friendly software suite for analyzing DNA and protein sequence data from species and populations. `/home/sobczm/bin/mega`
 
 [MEME Suite ver. 4.11.2] (http://meme-suite.org/) MEME SUITE: tools for motif discovery and searching `/home/sobczm/bin/meme_4.11.2/bin`
+
+[MinorSeq] (https://github.com/PacificBiosciences/minorseq) Minor Variant Calling and Phasing Tools for PacBio reads `/home/sobczm/bin/minorseq` on Triticum
 
 [NGMLR ver. 0.2.3] (https://github.com/philres/ngmlr) Ngmlr is a long-read mapper designed to align PacBilo or Oxford Nanopore to a reference genome with a focus on reads that span structural variations. Generates read mappings used by PacBio/Nanopore SV caller sniffles. `/home/sobczm/bin/ngmlr/bin`
 
