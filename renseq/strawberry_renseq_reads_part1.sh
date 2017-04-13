@@ -46,7 +46,7 @@ cd $input/assembly/nbs-parser
 sh $scripts/sub_nlrparser.sh F06.assembly.fasta 
 sh $scripts/sub_nlrparser.sh G06.assembly.fasta
 
-#Cluster at 98% ID
+#Cluster the assemblies at 98% ID
 usearch=/home/sobczm/bin/usearch/usearch9.0.2132_i86linux32
 for fasta in G06.assembly.fasta F06.assembly.fasta
 do
@@ -61,6 +61,7 @@ makeblastdb -in $assembly -input_type fasta -dbtype nucl \
 -title "${assembly%.*}"_nucl.db -parse_seqids -out "${assembly%.*}"_nucl.db
 done
 
+#Search the assemblies for Rpf2
 for db in F06.assembly_nucl.db G06.assembly_nucl.db
 do
 blastn -outfmt 6 -num_threads 1 -max_target_seqs 100 -evalue 0.0000000001 -query F.vesca_Rpf2.fasta -db $db >> F.vesca_Rpf2_vs_$db
@@ -78,7 +79,7 @@ do
 blastn -outfmt "6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore sstrand"  -num_threads 1 -max_target_seqs 100 -evalue 0.0000000001 -query F.vesca_Rpf2.fasta -db $db >> F.vesca_Rpf2_vs_$db
 done
 
-#Fish out all individual reads containing Rpf2
+#Fish out all individual ccs reads containing Rpf2 with blast
 for reads in F06_1_S1_roi_fl1_a90.fasta G06_1_S2_roi_fl1_a90.fasta
 do
 makeblastdb -in $reads -input_type fasta -dbtype nucl \
@@ -90,6 +91,8 @@ do
 blastn -outfmt "6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore sstrand" -num_threads 1 -max_target_seqs 100 -evalue 0.0000000001 -query -db $db >> F.vesca_Rpf2_vs_$db
 done
 
+
+###Alignment of individual Rpf2-like ccs reads
 #Separate the gene list into those on the positive and negative strands.
 for a in F.vesca_Rpf2_vs_F06_1_S1_roi_fl1_a90_nucl.db F.vesca_Rpf2_vs_G06_1_S2_roi_fl1_a90_nucl.db
 do
@@ -112,7 +115,7 @@ sed -i 's/>/>Hap_/g' F.vesca_Rpf2_vs_F06_1_S1_roi_fl1_a90_nucl_pos.fasta
 sed -i 's/>/>RG_/g' F.vesca_Rpf2_vs_G06_1_S2_roi_fl1_a90_nucl_neg.fasta
 sed -i 's/>/>RG_/g' F.vesca_Rpf2_vs_G06_1_S2_roi_fl1_a90_nucl_pos.fasta
 
-#Align with mafft
+####Align the ccs with mafft
 cat F.vesca_Rpf2.fasta *_neg.fasta *_pos.fasta >F.vesca_Rpf2_fl1_a90_reads.fasta
 qsub $scripts/sub_mafft.sh F.vesca_Rpf2_fl1_a90_reads.fasta
 
