@@ -20,4 +20,4 @@ mfilename=$(basename "$motif")
 out=${mfilename%.*}_vs_${ffilename%.*}
 
 meme=/home/sobczm/bin/meme_4.11.2/bin
-$meme/glam2scan n -2 -n 100 $motif $fasta -o $out
+$meme/glam2scan n -2 -n 100000 $motif $fasta -o $out
