@@ -13,7 +13,8 @@ for a in *.bax.h5; do $scripts/trim-h5.py $a; done
 ##Polish the RG Canu assembly with Pilon using Illumina reads,
 # [Carried out on EMR cluster]
 reads=/home/groups/harrisonlab/project_files/fragaria_x_ananassa/octoseq/PE
-qsub $scripts/sub_pilon_3_libs.sh $input/assembly/G06_assembly/G06.contigs.fasta $reads/ 1628_LIB19365_LDI16700_GCCAAT_L001_R1.fastq.gz $reads/1628_LIB19365_LDI16700_GCCAAT_L001_R2.fastq.gz $reads/1650_LIB19365_LDI16700_GCCAAT_L001_R1.fastq.gz $reads/1650_LIB19365_LDI16700_GCCAAT_L001_R2.fastq.gz $reads/1670_LIB19365_LDI16700_GCCAAT_L001_R1.fastq.gz $reads/1670_LIB19365_LDI16700_GCCAAT_L001_R2.fastq.gz $input/assembly/G06_assembly/pilon
+input2=/home/sobczm/popgen/renseq/strawberry/reads/Helen_Bates_EMR.RH.ENQ-1704.A.01
+qsub $scripts/sub_pilon_3_libs.sh $input2/assembly/G06_assembly/G06.contigs.fasta $reads/1628_LIB19365_LDI16700_GCCAAT_L001_R1.fastq.gz $reads/1628_LIB19365_LDI16700_GCCAAT_L001_R2.fastq.gz $reads/1650_LIB19365_LDI16700_GCCAAT_L001_R1.fastq.gz $reads/1650_LIB19365_LDI16700_GCCAAT_L001_R2.fastq.gz $reads/1670_LIB19365_LDI16700_GCCAAT_L001_R1.fastq.gz $reads/1670_LIB19365_LDI16700_GCCAAT_L001_R2.fastq.gz $input2/assembly/G06_assembly/pilon
 
 #Assemble each cultivar with Falcon on triticum.
 #For RedGauntlent, polish with Illumina reads using Canu.
