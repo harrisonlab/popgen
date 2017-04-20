@@ -14,7 +14,8 @@ cd $input
 #!!!! Need to change the path to file with population definitions !!!
 input_file=$input/Fus2_canu_contigs_unmasked_filtered_subsampled.vcf
 #Prepare population definition file. Each individual = new population
-grep "#CHROM" $input_file | head -1 | awk '{for(i=10;i<=NF;++i)print $i " " $i "_pop"}' >"${input_file%.vcf}.lst"
+#
+grep "#CHROM" $input_file | head -1 | awk '{for(start=10;start<=NF;++start)print $i " " $i "_pop"}' >"${input_file%.vcf}.lst"
 #Copy the configuration file and change the path to the population definition file.
 #For haploid organisms:
 config=vcf_to_structure_haploid_pop.spid
