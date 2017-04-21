@@ -65,4 +65,3 @@ samtools index "$Assembly"_aligned_sorted.bam
 JavaDir=/home/armita/prog/pilon
 java -jar $JavaDir/pilon-1.17.jar --threads 6 --tracks --vcf --mindepth 30 --diploid --genome $Assembly  --frags "$Assembly"_aligned_sorted.bam --outdir $PWD/pilon
 
-S
