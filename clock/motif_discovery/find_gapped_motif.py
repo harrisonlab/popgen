@@ -62,7 +62,7 @@ def print_output(motif_name):
     out.write("5' motif flank: " + flank_left + "\n")
     out.write("3' motif flank: " + flank_right + "\n")
     out.write("Gap length range: " + gap_range + "\n")
-    out.write("sequence name" + "\t" +  "match start" + "\t" + "match end" + "\t" + "gap length" + "\t" + "stand" + "\n")
+    out.write("sequence name" + "\t" +  "match start" + "\t" + "match end" + "\t" + "gap length" + "\t" + "strand" + "\n")
     for j in motifs:
         for k in motifs[j]:
              out.write(j + "\t" + str(motifs[j][k][0]+1) + "\t" + str(motifs[j][k][1]) + "\t" + str(motifs[j][k][2]) + "\t" + str(motifs[j][k][3]) + "\n")
