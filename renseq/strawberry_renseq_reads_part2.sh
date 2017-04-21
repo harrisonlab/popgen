@@ -5,9 +5,9 @@ input=/home/sobczm/files/Helen_Bates_EMR.RH.ENQ-1704.A.01
 ####Note: analysis carried out on NIAB's triticum.
 
 ###Trim Illumina adaptors from raw PacBio reads using a script from Giolai et al. (2016)
-cd $input//Raw_reads_S1/F06_1/Analysis_Results
+cd $input/Raw_reads_S1/F06_1/Analysis_Results
 for a in *.bax.h5; do $scripts/trim-h5.py $a; done
-cd $input//Raw_reads_S2/G06_1/Analysis_Results
+cd $input/Raw_reads_S2/G06_1/Analysis_Results
 for a in *.bax.h5; do $scripts/trim-h5.py $a; done
 
 ##Polish the RG Canu assembly with Pilon using Illumina reads,
