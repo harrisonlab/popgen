@@ -17,6 +17,18 @@ input2=/home/sobczm/popgen/renseq/strawberry/reads/Helen_Bates_EMR.RH.ENQ-1704.A
 qsub $scripts/sub_pilon_3_libs.sh $input2/assembly/G06_assembly/G06.contigs.fasta $reads/1628_LIB19365_LDI16700_GCCAAT_L001_R1.fastq.gz $reads/1628_LIB19365_LDI16700_GCCAAT_L001_R2.fastq.gz $reads/1650_LIB19365_LDI16700_GCCAAT_L001_R1.fastq.gz $reads/1650_LIB19365_LDI16700_GCCAAT_L001_R2.fastq.gz $reads/1670_LIB19365_LDI16700_GCCAAT_L001_R1.fastq.gz $reads/1670_LIB19365_LDI16700_GCCAAT_L001_R2.fastq.gz 
 
 #Assemble each cultivar with Falcon on triticum.
+#Load Falcon
+falcon=/home/sobczm/bin/FALCON-integrate/
+source /home/sobczm/bin/FALCON-integrate/env.sh
+
+#Lambda test dataset
+input=/data/projects/sobczm/lambda
+cd $input
+fc_run.py fc_run.cfg 
+
+#Renseq F06
+cd /data/projects/sobczm/renseq/F06
+fc_run.py fc_run.cfg 
 #For RedGauntlent, polish with Illumina reads using Canu.
 
 
