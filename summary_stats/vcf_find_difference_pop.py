@@ -3,7 +3,7 @@ import os, sys, re, argparse
 from collections import defaultdict as dd
 
 #Filter out variants in VCF file to keep only those showing fixation or near-fixation
-#(as per allele frequency threshold) in two different populations of samples.
+#(as per allele frequency threshold) and polarised in two different populations of samples.
 
 ######################## 
 #   IMPORTANT REMARKS
