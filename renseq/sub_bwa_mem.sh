@@ -38,3 +38,6 @@ $bamaddrg -b ${output%.bam}_sort.bam -s $prefix -r $prefix >$output_rg
 
 #index
 samtools index $output_rg
+
+
+#Annotate the assembly with RGaugury
