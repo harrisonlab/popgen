@@ -36,11 +36,11 @@ echo "Reverse trimmed reads - $Read_R1 $Read_R2 $Read_R3"
 # Sort the BAM file, in preparation for SNP calling:
 # Index the bam file
 
-for i in $Read_F1 $Read_F2 $Read_F3 $Read_R1 $Read_R2 $Read_R3
-do
-file=$(basename $i)
-gzip -dc < $i > $PWD/${file%.gz}
-done
+#for i in $Read_F1 $Read_F2 $Read_F3 $Read_R1 $Read_R2 $Read_R3
+#do
+#file=$(basename $i)
+#gzip -dc < $i > $PWD/${file%.gz}
+#done
 
 Read_R1_b=$(basename $Read_R1)
 Read_R2_b=$(basename $Read_R2)
@@ -51,7 +51,9 @@ Read_F2_b=$(basename $Read_F2)
 Read_F3_b=$(basename $Read_F3)
 
 bowtie2-build $Assembly $Assembly.indexed
-bowtie2 -p 6 -x $Assembly.indexed -1 ${Read_F1_b%.gz},${Read_F2_b%.gz},${Read_F3_b%.gz} -2 ${Read_R1_b%.gz},${Read_R2_b%.gz},${Read_R3_b%.gz} -S "$Assembly"_aligned.sam
+#bowtie2 -p 6 -x $Assembly.indexed -1 ${Read_F1_b%.gz},${Read_F2_b%.gz},${Read_F3_b%.gz} -2 ${Read_R1_b%.gz},${Read_R2_b%.gz},${Read_R3_b%.gz} -S "$Assembly"_aligned.sam
+
+bowtie2 --phred64 -p 6 -x $Assembly.indexed -1 $Read_F1_b,$Read_F2_b,$Read_F3_b -2 $Read_R1_b,$Read_R2_b,$Read_R3_b -S "$Assembly"_aligned.sam
 samtools view -bS "$Assembly"_aligned.sam -o "$Assembly"_aligned.bam
 samtools sort "$Assembly"_aligned.bam "$Assembly"_aligned_sorted
 samtools index "$Assembly"_aligned_sorted.bam
@@ -65,4 +67,3 @@ samtools index "$Assembly"_aligned_sorted.bam
 JavaDir=/home/armita/prog/pilon
 java -jar $JavaDir/pilon-1.17.jar --threads 6 --tracks --vcf --mindepth 30 --diploid --genome $Assembly  --frags "$Assembly"_aligned_sorted.bam --outdir $PWD/pilon
 
-S
