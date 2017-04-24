@@ -29,7 +29,22 @@ qsub $scripts/sub_pilon_3_libs.sh G06.contigs.fasta 1628_LIB19365_LDI16700_GCCAA
 #Going to use bwa mem instead. Each library will be aligned separately and then merged with samtools merge.
 qsub $scripts/sub_bwa_mem.sh Illumina 1628 G06.contigs.fasta 1628_LIB19365_LDI16700_GCCAAT_L001_R1.fastq 1628_LIB19365_LDI16700_GCCAAT_L001_R2.fastq 
 #OK, now bwa mem complaining about not matching read names. Need to resort.
+#sobczm@bio72:~/popgen/renseq/strawberry/reads/Helen_Bates_EMR.RH.ENQ-1704.A.01/assembly/G06_assembly$ grep -n D3NG5HQ1:391:H7HWCBCXX:1:1102:12271:51761 1628_LIB19365_LDI16700_GCCAAT_L001_R1.fastq 
+#6779115:@D3NG5HQ1:391:H7HWCBCXX:1:1102:12271:51761 1:N:0:GCCAAT
+
+#sobczm@bio72:~/popgen/renseq/strawberry/reads/Helen_Bates_EMR.RH.ENQ-1704.A.01/assembly/G06_assembly$ grep -n D3NG5HQ1:391:H7HWCBCXX:1:1102:12271:51761 1628_LIB19365_LDI16700_GCCAAT_L001_R2.fastq 
+#10432589:@D3NG5HQ1:391:H7HWCBCXX:1:1102:12271:51761 2:N:0:GCCAAT
+
+###TOO SLOW AND LOADS EVERYTHING INTO MEMORY:
 qsub $scripts/sub_pairfq.sh 1628_LIB19365_LDI16700_GCCAAT_L001_R1.fastq 1628_LIB19365_LDI16700_GCCAAT_L001_R2.fastq
+
+#Use FASTQ Tools instead
+qsub $scripts/sub_fastq_sort.sh 1628_LIB19365_LDI16700_GCCAAT_L001_R1.fastq 
+
+#Get an error involving too small bufffer size, even if mem allocated
+#100 GB.
+#Going to try something else:
+
 
 #Assemble each cultivar with Falcon on triticum.
 #Load Falcon
