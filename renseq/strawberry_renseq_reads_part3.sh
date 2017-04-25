@@ -70,13 +70,13 @@ makeblastdb -in Fragaria_vesca_v1.1.a2_cds_removed.fasta -input_type fasta -dbty
 makeblastdb -in Fragaria_vesca_v1.1.a2_mrna_removed.fasta -input_type fasta -dbtype nucl \
 -title Fragaria_vesca_v1.1.a2_mrna.fasta_nucl.db -parse_seqids -out Fragaria_vesca_v1.1.a2_mrna_removed.fasta_nucl.db
 
-##Copied over putative bait sequences from /home/vicker/ananassa_renseq/baits/2x/unmasked_final.fa
+##Copied over putative bait sequences from /home/vicker/ananassa_renseq/final_bait_library_versions/2015-07-20_1x_masked_20K/mycroarray_vescaandiinumae/MYbaits-150720-Vickerstaff-Strawberry/probes-R4-final.fas
 #Make Blast database
-makeblastdb -in unmasked_final.fa -input_type fasta -dbtype nucl \
--title unmasked_final_nucl.db -parse_seqids -out unmasked_final_nucl.db
+makeblastdb -in probes-R4-final.fas -input_type fasta -dbtype nucl \
+-title probes-R4-final.nucl.db -parse_seqids -out probes-R4-final.nucl.db
 
 #Run blast search against the CDS database of chosen genes as well as the entire strawberry genome CDS database as well as baits database.
-for db in vesca_v1.1_nblrrs_augustus_cds_nucl.db Fragaria_vesca_v1.1.a2_cds_removed.fasta_nucl.db unmasked_final_nucl.db
+for db in probes-R4-final.nucl.db Fragaria_vesca_v1.1.a2_cds_removed.fasta_nucl.db vesca_v1.1_nblrrs_augustus_cds_nucl.db
 do
 for ass in $input/assembly/G06.contigs.fasta $input/assembly/F06.contigs.fasta $input/assembly/F06_1_S1_roi_fl1_a90.fasta $input/assembly/G06_1_S2_roi_fl1_a90.fasta
 do

@@ -44,7 +44,9 @@ qsub $scripts/sub_fastq_sort.sh 1628_LIB19365_LDI16700_GCCAAT_L001_R1.fastq
 #Get an error involving too small bufffer size, even if mem allocated
 #100 GB.
 #Going to try something else:
-
+qsub $scripts/sub_ngsutils_sort.sh 1628_LIB19365_LDI16700_GCCAAT_L001_R1.fastq
+#Another error!!
+#IOError: [Errno 24] Too many open files: '/home/groups/harrisonlab/project_files/popgen/renseq/strawberry/reads/Helen_Bates_EMR.RH.ENQ-1704.A.01/assembly/G06_assembly/.tmp.1628_LIB19365_LDI16700_GCCAAT_L001_R1.fastqVFHs1T'
 
 #Assemble each cultivar with Falcon on triticum.
 #Load Falcon

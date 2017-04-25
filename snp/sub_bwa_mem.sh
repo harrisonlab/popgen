@@ -41,9 +41,12 @@ else
 fi
 
 bamaddrg=/home/sobczm/bin/freebayes/bamaddrg/bamaddrg
+output_rg_un=${output%.bam}_rg_unsorted.bam
 output_rg=${output%.bam}_rg.bam
 ### Add group and sample name (prefix)
-$bamaddrg -b $output -s $prefix -r $prefix >$output_rg
+$bamaddrg -b $output -s $prefix -r $prefix >$output_rg_un
+### Sort the full BAM file.
+samtools sort $output_rg_un ${output%.bam}_rg
 # Extract the discordant paired-end alignments.
 samtools view -b -F 1294 $output_rg > ${output_rg%.bam}_discordants_unsorted.bam
 
@@ -59,7 +62,7 @@ samtools index $output_rg
 samtools index ${output_rg%.bam}_discordants.bam
 samtools index ${output_rg%.bam}_splitters.bam
 
-rm ${output_rg%.bam}_splitters_unsorted.bam ${output_rg%.bam}_discordants_unsorted.bam $output
+rm ${output_rg%.bam}_splitters_unsorted.bam ${output_rg%.bam}_discordants_unsorted.bam $output $output_rg_un
 rm $fr $rr
 cp -r * $cpath
 rm -rf $temp_dir
