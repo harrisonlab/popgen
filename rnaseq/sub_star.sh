@@ -38,12 +38,12 @@ mkdir -p $GenomeDir
 # Copy over input files
 cd $WorkDir
 
-cp $CurDir/$1 $InGenome
-cp $CurDir/$2 $InReadF
-cp $CurDir/$3 $InReadR
+cp $1 ./
+cp $2 ./
+cp $3 ./
 
 if [ $GffProvided == "Y" ]; then
-cp $CurDir/$5 $InGff
+cp $5 ./
 fi
 
 

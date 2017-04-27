@@ -48,6 +48,13 @@ qsub $scripts/sub_ngsutils_sort.sh 1628_LIB19365_LDI16700_GCCAAT_L001_R1.fastq
 #Another error!!
 #IOError: [Errno 24] Too many open files: '/home/groups/harrisonlab/project_files/popgen/renseq/strawberry/reads/Helen_Bates_EMR.RH.ENQ-1704.A.01/assembly/G06_assembly/.tmp.1628_LIB19365_LDI16700_GCCAAT_L001_R1.fastqVFHs1T'
 
+#Sort using bash commands on blacklace11
+cat 1628_LIB19365_LDI16700_GCCAAT_L001_R1.fastq | paste - - - - | sort -k1,1 -S 3G | tr '\t' '\n' >1628_LIB19365_LDI16700_GCCAAT_L001_R1_sort.fastq
+cat 1628_LIB19365_LDI16700_GCCAAT_L001_R2.fastq | paste - - - - | sort -k1,1 -S 3G | tr '\t' '\n' >1628_LIB19365_LDI16700_GCCAAT_L001_R2_sort.fastq
+
+
+
+
 #Assemble each cultivar with Falcon on triticum.
 #Load Falcon
 falcon=/home/sobczm/bin/FALCON-integrate/
@@ -61,6 +68,11 @@ fc_run.py fc_run.cfg
 #Renseq F06
 cd /data/projects/sobczm/renseq/F06
 fc_run.py fc_run.cfg 
+#Get the following error in /data/projects/sobczm/renseq/F06/0-rawreads/pwatcher.dir/stderr
+#AssertionError: Not enough genome coverage (target=3000000000 < actual=1377800802)
+###Changed genome size to 100000 and seed coverage to 10
+
+
 #For RedGauntlent, polish with Illumina reads using Canu.
 
 
