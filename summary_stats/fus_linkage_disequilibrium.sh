@@ -20,7 +20,7 @@ qsub $scripts/sub_plot_ld.sh ld.nonpatho
 #listed after "--indv" switch). These are just exemplary settings, in different cases
 #it may be good to compare all SNPs vs all (ie. remove options --ld-window-bp-min 1000 and --ld-window-bp 100000)
 
-$vcftools/vcftools --vcf Fus2_canu_contigs_unmasked_noA13_filtered.recode.vcf \
+$vcftools/vcftools --vcf Fus2_canu_contigs_unmasked_noA13_filtered.recode.vcf --max-missing 1 \
 --hap-r2 --ld-window-bp-min 1000 --ld-window-bp 100000 \
 --indv FOC55 --indv FOCA23 --indv FOC125 --indv FOCFus2
 
