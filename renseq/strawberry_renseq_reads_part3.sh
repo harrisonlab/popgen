@@ -51,14 +51,12 @@ grep ">" Fragaria_vesca_v1.1.a2_cds.fasta | cut -f1 -d" " | sort | uniq -c | sor
 #      5 >XS:temp1
 #      6 >XS:temp3
 grep ">" Fragaria_vesca_v1.1.a2_mrna.fasta | cut -f1 -d" " | sort | uniq -c | sort -n -k1,1
-
 #3 >XS:temp5
 #      3 >XS:temp6
 #      4 >XS:temp2
 #      4 >XS:temp4
 #      5 >XS:temp1
 #      6 >XS:temp3
-
 
 makeblastdb -in Fragaria_vesca_v1.1.a2_cds.fasta -input_type fasta -dbtype nucl \
 -title Fragaria_vesca_v1.1.a2_mrna.fasta_nucl.db -parse_seqids -out Fragaria_vesca_v1.1.a2_cds.fasta_nucl.db

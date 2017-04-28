@@ -53,7 +53,7 @@ fq_p="${fq_fd%/F}/R"
 qsub $scripts/sub_star_sensitive.sh $input/contigs_min_500bp_renamed.fasta $fq_f $fq_p/$fq_r "pcac_${fq_fb%_R1_trim.fq.gz}" $input/final_genes_appended.gff3
 done
 
-#Remove not needed mapping files from the first round of mappind
+#Remove not needed mapping files from the first round of mapping
 for n in vesca_*/ pcac_*/
 do
 cd $n
