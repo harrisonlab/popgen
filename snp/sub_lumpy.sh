@@ -1,6 +1,6 @@
 #$ -S /bin/bash
 #$ -cwd
-#$ -pe smp 4
+#$ -pe smp 1
 #$ -l h_vmem=1G
 #$ -l h=blacklace06.blacklace
 ###

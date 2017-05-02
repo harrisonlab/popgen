@@ -78,7 +78,7 @@ for db in probes-R4-final.nucl.db Fragaria_vesca_v1.1.a2_cds_removed.fasta_nucl.
 do
 for ass in $input/assembly/G06.contigs.fasta $input/assembly/F06.contigs.fasta $input/assembly/F06_1_S1_roi_fl1_a90.fasta $input/assembly/G06_1_S2_roi_fl1_a90.fasta
 do
-    blastn -outfmt "6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore sstrand"  -num_threads 1 -max_target_seqs 100 -evalue 0.0000000001 -query $ass -db $db >> $(basename $ass)_vs_$db
+    blastn -outfmt "6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore qlen slen sstrand"  -num_threads 1 -max_target_seqs 100 -evalue 0.0000000001 -query $ass -db $db >> $(basename $ass)_vs_$db
 done
 done
 #Generate a file with sequence lengths for CDS input files.

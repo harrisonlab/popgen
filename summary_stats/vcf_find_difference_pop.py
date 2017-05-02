@@ -46,7 +46,7 @@ def iterate_genotypes(indexes, fields):
     pop_dict = dd(int)
     for a in indexes:
         #Ignore empty genotypes
-        if fields[a] == ".":
+        if (fields[a] == "." or fields[a] == "./."):
             pass        
         else:
             n = fields[a].split(":")
@@ -103,6 +103,7 @@ def vcf_handling():
                     pop1_freq = pop1_dict[pop1_top]/pop1_total 
                     pop2_freq = pop2_dict[pop2_top]/pop2_total
                     #Check that top allele frequency higher than threshold in both populations
+                    #print (threshold)
                     if (pop1_freq >= threshold and pop2_freq >= threshold):
                         #Print the selected fixed variants to file
                         #print ("Writing fixed variant to file.")

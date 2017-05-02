@@ -23,7 +23,7 @@ done
 #Search the assemblies for Rpf2
 for db in S1_ccs_3_99_nucl.db S2_ccs_3_99_nucl.db S1_HGAP_polished_assembly_nucl.db S2_HGAP_polished_assembly_nucl.db
 do
-blastn -outfmt "6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore sstrand"  -num_threads 1 -max_target_seqs 100 -evalue 0.0000000001 -query F.vesca_Rpf2.fasta -db $db >> F.vesca_Rpf2_vs_$db
+blastn -outfmt "6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore qlen slen sstrand"  -num_threads 1 -max_target_seqs 100 -evalue 0.0000000001 -query F.vesca_Rpf2.fasta -db $db >> F.vesca_Rpf2_vs_$db
 done
 
 #Run blast search against the CDS database of chosen genes as well as the entire strawberry genome CDS database as well as baits database.
@@ -32,7 +32,7 @@ for db in probes-R4-final.nucl.db Fragaria_vesca_v1.1.a2_cds_removed.fasta_nucl.
 do
 for ass in S1_ccs_3_99.fasta S2_ccs_3_99.fasta S2_HGAP_polished_assembly.fasta S1_HGAP_polished_assembly.fasta
 do
-    blastn -outfmt "6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore sstrand"  -num_threads 1 -max_target_seqs 100 -evalue 0.0000000001 -query $ass -db $db >> $(basename $ass)_vs_$db
+    blastn -outfmt "6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore qlen slen sstrand"  -num_threads 1 -max_target_seqs 100 -evalue 0.0000000001 -query $ass -db $db >> $(basename $ass)_vs_$db
 done
 done
 #Generate a file with sequence lengths for CDS input files.

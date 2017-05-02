@@ -77,7 +77,7 @@ done
 
 for db in F06.contigs_nucl.db G06.contigs_nucl.db
 do
-blastn -outfmt "6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore sstrand"  -num_threads 1 -max_target_seqs 100 -evalue 0.0000000001 -query F.vesca_Rpf2.fasta -db $db >> F.vesca_Rpf2_vs_$db
+blastn -outfmt "6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore qlen slen sstrand"  -num_threads 1 -max_target_seqs 100 -evalue 0.0000000001 -query F.vesca_Rpf2.fasta -db $db >> F.vesca_Rpf2_vs_$db
 done
 
 #Fish out all individual ccs reads containing Rpf2 with blast
@@ -89,7 +89,7 @@ done
 
 for db in F06_1_S1_roi_fl1_a90_nucl.db G06_1_S2_roi_fl1_a90_nucl.db
 do
-blastn -outfmt "6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore sstrand" -num_threads 1 -max_target_seqs 100 -evalue 0.0000000001 -query -db $db >> F.vesca_Rpf2_vs_$db
+blastn -outfmt "6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore qlen slen sstrand" -num_threads 1 -max_target_seqs 100 -evalue 0.0000000001 -query -db $db >> F.vesca_Rpf2_vs_$db
 done
 
 

@@ -48,7 +48,7 @@ def iterate_genotypes(indexes, fields):
     pop_dict = dd(int)
     for a in indexes:
         #Ignore empty genotypes
-        if fields[a] == ".":
+        if (fields[a] == "." or fields[a] == "./."):
             pass        
         else:
             n = fields[a].split(":")
