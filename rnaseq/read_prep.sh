@@ -63,17 +63,17 @@ done
 
 ###Cross-alignment of unmapped reads
 ##To vesca 1.1
-for k in pcac_*/
+for k in ./pcac_*
 do
-cd $k
-qsub $scripts/sub_star_sensitive.sh $input/fvesca_v1.1_all.fa star_aligmentUnmapped.out.mate1 star_aligmentUnmapped.out.mate2 vesca $input/Fragaria_vesca_v1.1.a2.gff3
+cd $PWD/$k
+qsub $scripts/sub_star_sensitive_unzipped.sh $input/fvesca_v1.1_all.fa $PWD/star_aligmentUnmapped.out.mate1 $PWD/star_aligmentUnmapped.out.mate2 vesca $input/Fragaria_vesca_v1.1.a2.gff3
 cd ../
 done
 
 ##To P.cactorum
-for k in vesca_*/
+for k in ./vesca_*
 do
-cd $k
-qsub $scripts/sub_star_sensitive.sh $input/contigs_min_500bp_renamed.fasta star_aligmentUnmapped.out.mate1  star_aligmentUnmapped.out.mate2 pcac $input/final_genes_appended.gff3
+cd $PWD/$k
+qsub $scripts/sub_star_sensitive_unzipped.sh $input/contigs_min_500bp_renamed.fasta star_aligmentUnmapped.out.mate1 star_aligmentUnmapped.out.mate2 pcac $input/final_genes_appended.gff3
 cd ../
 done
