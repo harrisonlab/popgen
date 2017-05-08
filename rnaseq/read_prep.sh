@@ -53,20 +53,14 @@ fq_p="${fq_fd%/F}/R"
 qsub $scripts/sub_star_sensitive.sh $input/contigs_min_500bp_renamed.fasta $fq_f $fq_p/$fq_r "pcac_${fq_fb%_R1_trim.fq.gz}" $input/final_genes_appended.gff3
 done
 
-#Remove not needed mapping files from the first round of mapping
-for n in vesca_*/ pcac_*/
-do
-cd $n
-rm *.bam
-cd ../
-done
-
 ###Cross-alignment of unmapped reads
 ##To vesca 1.1
 for k in ./pcac_*
 do
 cd $PWD/$k
-qsub $scripts/sub_star_sensitive_unzipped.sh $input/fvesca_v1.1_all.fa $PWD/star_aligmentUnmapped.out.mate1 $PWD/star_aligmentUnmapped.out.mate2 vesca $input/Fragaria_vesca_v1.1.a2.gff3
+cat star_aligmentUnmapped.out.mate1 | gzip -cf >star_aligmentUnmapped.out.mate1.fq.gz
+cat star_aligmentUnmapped.out.mate2 | gzip -cf >star_aligmentUnmapped.out.mate2.fq.gz  
+qsub $scripts/sub_star_sensitive.sh $input/fvesca_v1.1_all.fa $PWD/star_aligmentUnmapped.out.mate1.fq.gz $PWD/star_aligmentUnmapped.out.mate2.fq.gz vesca $input/Fragaria_vesca_v1.1.a2.gff3
 cd ../
 done
 
@@ -74,6 +68,8 @@ done
 for k in ./vesca_*
 do
 cd $PWD/$k
-qsub $scripts/sub_star_sensitive_unzipped.sh $input/contigs_min_500bp_renamed.fasta star_aligmentUnmapped.out.mate1 star_aligmentUnmapped.out.mate2 pcac $input/final_genes_appended.gff3
+cat star_aligmentUnmapped.out.mate1 | gzip -cf >star_aligmentUnmapped.out.mate1.fq.gz
+cat star_aligmentUnmapped.out.mate2 | gzip -cf >star_aligmentUnmapped.out.mate2.fq.gz 
+qsub $scripts/sub_star_sensitive.sh $input/contigs_min_500bp_renamed.fasta $PWD/star_aligmentUnmapped.out.mate1.fq.gz $PWD/star_aligmentUnmapped.out.mate2.fq.gz pcac $input/final_genes_appended.gff3
 cd ../
 done
