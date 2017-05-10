@@ -47,6 +47,7 @@ output_rg=${output%.bam}_rg.bam
 $bamaddrg -b $output -s $prefix -r $prefix >$output_rg_un
 ### Sort the full BAM file.
 samtools sort $output_rg_un ${output%.bam}_rg
+
 # Extract the discordant paired-end alignments.
 samtools view -b -F 1294 $output_rg > ${output_rg%.bam}_discordants_unsorted.bam
 
@@ -56,6 +57,14 @@ samtools view -h $output_rg | $scripts/extractSplitReads_BwaMem -i stdin | samto
 # Sort both alignments
 samtools sort ${output_rg%.bam}_discordants_unsorted.bam ${output_rg%.bam}_discordants
 samtools sort ${output_rg%.bam}_splitters_unsorted.bam ${output_rg%.bam}_splitters
+
+for BAM in $output_rg ${output_rg%.bam}_discordants.bam ${output_rg%.bam}_splitters.bam
+do
+     samtools view -H $BAM >header.sam
+     cat /home/sobczm/bin/popgen/snp/sorted_line.txt header.sam >new_header.sam
+     samtools reheader new_header.sam $BAM >${BAM%.bam}_test.bam
+     mv ${BAM%.bam}_test.bam $BAM
+done
 
 #index
 samtools index $output_rg
