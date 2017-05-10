@@ -55,4 +55,4 @@ do
     $temp_dir/structure_$k\_$n/structure -K $k -o ${outfile}_k${k}_${i}
 done
 
-cp $temp_dir/structure_$k\_$n $cdir
+cp -r $temp_dir/structure_$k\_$n $cdir
