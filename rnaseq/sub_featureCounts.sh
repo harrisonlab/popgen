@@ -16,23 +16,21 @@ Usage='qsub $ProgDir/sub_featureCounts.sh $BamFile $Gff $OutDir $OutFilePrefix'
 
 InBam=$(basename $1)
 InGff=$(basename $2)
-OutDir=$3
-Prefix=$4
+Prefix=$3
 
 CurDir=$PWD
 WorkDir=$TMPDIR/featureCounts
-echo "$WorkDir"
-mkdir -p $WorkDir
+
 cd $WorkDir
 
 cp $1 ./
 cp $2 ./
 
-
 # ---------------
 # Step 2
 # Run featureCounts
 # ---------------
+
 
 featureCounts \
   -p -B -M -R \
@@ -43,7 +41,5 @@ featureCounts \
   -o "$Prefix"_featurecounts.txt \
   $InBam
 
-rm $InBam
-rm $InGff
-mkdir -p $CurDir/$OutDir
-cp -r $WorkDir/* $CurDir/$OutDir/.
+rm $WorkDir/$InBam $WorkDir/$InGff
+cp -r $WorkDir/* $CurDir
