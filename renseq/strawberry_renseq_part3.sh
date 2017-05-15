@@ -47,3 +47,27 @@ do
 cut -f 17 $b | cut -d";" -f1 | sed 's/ID=//' >${b}.lst
 python $scripts/keep_list_genes2.py ${b}.lst $input/genome/fvesca_v1.1_all_annotated.fa No
 done
+
+####The same analysis, as above but for P. cactorum QTLs for Charlotte (preliminary analysis)
+#Extract all gene ID within each QTLS.
+intersectBed -wb -a charlotte_qtls.txt -b Fragaria_vesca_v1.1.a2.mrna.gff3 >qtls_charlotte_overlap_mrna.gff
+#Only extract the gene names for matches
+cat qtls_charlotte_overlap_mrna.gff | cut -f18 | cut -d ";" -f1 | sed 's/ID=//' >qtls_charlotte_overlap_mrna.lst
+#Any resistance genes among them?
+for a in vesca*.gff3
+do
+intersectBed -wb -a charlotte_qtls.txt -b $a >charlotte_${a%.gff3}_qtl_overlap
+cat charlotte_${a%.gff3}_qtl_overlap | cut -f18 | cut -d ";" -f1 | sed 's/ID=//' >charlotte_${a%.gff3}.lst
+done
+
+#Extract all gene ID withins 1 Mbp of each QTLS.
+intersectBed -wb -a charlotte_qtls_1mbp.txt -b Fragaria_vesca_v1.1.a2.mrna.gff3 >qtls_charlotte_1mbp_overlap_mrna.gff
+#Only extract the gene names for matches
+cat qtls_charlotte_1mbp_overlap_mrna.gff | cut -f18 | cut -d ";" -f1 | sed 's/ID=//' >qtls_charlotte_1mbp_overlap_mrna.lst
+
+#Any resistance genes among them?
+for a in vesca*.gff3
+do
+intersectBed -wb -a charlotte_qtls_1mbp.txt -b $a >charlotte_1mbp_${a%.gff3}_qtl_overlap
+cat charlotte_1mbp_${a%.gff3}_qtl_overlap | cut -f18 | cut -d ";" -f1 | sed 's/ID=//' >charlotte_1mbp_${a%.gff3}.lst
+done
