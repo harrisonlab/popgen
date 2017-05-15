@@ -14,7 +14,7 @@ qsub $scripts/sub_featureCounts.sh $PWD/$BamFile $Gff $Prefix
 cd $input
 done
 
-Alignment stats were collected:
+#Alignment stats were collected:
 #First round of alignment
 cd $input
 for File in $(ls vesca_*/star_aligmentLog.final.out); do
@@ -52,7 +52,7 @@ done
 #A file was created with columns referring to experimental treatments. Copy it over
 cd $input/featureCounts
 OutDir=/home/groups/harrisonlab/project_files/idris/alignment/star/P.cactorum/414_v2/DeSeq
-cp $OutDir/P.cactorum_RNAseq_design_parsed.txt $input/featureCounts
+cp $OutDir/P.cactorum_RNAseq_design.txt $input/featureCounts
 
 for a in *featurecounts.txt
 do

@@ -16,6 +16,6 @@ out = open(o, 'w')
 for seq_record in SeqIO.parse(fasta, "fasta"):
     gene_id = str(seq_record.id)
     gene_len = len(seq_record.seq)
-    out.write(gene_id + "," + str(gene_len) + "\n")
+    out.write(gene_id + "\t" + str(gene_len) + "\n")
 
 out.close
