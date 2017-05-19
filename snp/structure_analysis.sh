@@ -24,7 +24,7 @@ config=vcf_to_structure_haploid_pop.spid
 cp $pgdspid/$config ./
 dir=$PWD
 list_file=$(echo "${input_file%.vcf}.lst")
-sed -i 's,^\(VCF_PARSER_POP_FILE_QUESTION=\).*,\1'"$dir/$list_file"',' vcf_to_structure_haploid_pop.spid
+sed -i 's,^\(VCF_PARSER_POP_FILE_QUESTION=\).*,\1'"$list_file"',' vcf_to_structure_haploid_pop.spid
 
 #Also, create a label reference file to be used in the final step by distruct to label indidviduals in the output
 #DO NOT CHANGE THE $start VALUE BELOW:
