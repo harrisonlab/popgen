@@ -53,7 +53,7 @@ done
 #Analyze STRUCTURE output
 # Generate a folder containing all STRUCTURE output files for all K analyzed
 mkdir structureHarvester
-for d in $PWD/*
+for d in $PWD/structure*
 do
 mv $d/*_f $PWD/structureHarvester
 done
