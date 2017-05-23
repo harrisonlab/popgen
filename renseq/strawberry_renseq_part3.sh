@@ -71,3 +71,22 @@ do
 intersectBed -wb -a charlotte_qtls_1mbp.txt -b $a >charlotte_1mbp_${a%.gff3}_qtl_overlap
 cat charlotte_1mbp_${a%.gff3}_qtl_overlap | cut -f18 | cut -d ";" -f1 | sed 's/ID=//' >charlotte_1mbp_${a%.gff3}.lst
 done
+
+###Re-doing the analysis for Charlotte's QTL. Each QTL analysed independently. '
+intersectBed -wb -a charlotte_qtls_1mbp2.txt -b Fragaria_vesca_v1.1.a2.mrna.gff3 >qtls_charlotte_1mbp_overlap_mrna2.gff
+#Only extract the gene names for matches
+for a in Affx-88809889 Affx-88827921 Affx-88844379 Affx-88842586 Affx-88836348 Affx-88903841 Affx-88816266 Affx-88882258 Affx-88880166 Affx-88894447 Affx-88901982 Affx-88902178
+do
+cat qtls_charlotte_1mbp_overlap_mrna2.gff | grep $a | cut -f18 | cut -d ";" -f1 | sed 's/ID=//' >${a}_charlotte_1mbp_overlap_mrna.lst
+done
+
+#Any resistance genes among them?
+for a in vesca*.gff3
+do
+intersectBed -wb -a charlotte_qtls_1mbp2.txt -b $a >charlotte_1mbp2_${a%.gff3}_qtl_overlap
+done
+
+for a in Affx-88809889 Affx-88827921 Affx-88844379 Affx-88842586 Affx-88836348 Affx-88903841 Affx-88816266 Affx-88882258 Affx-88880166 Affx-88894447 Affx-88901982 Affx-88902178
+do
+cat charlotte_1mbp2_${a%.gff3}_qtl_overlap | grep $a | cut -f18 | cut -d ";" -f1 | sed 's/ID=//' >>${a}_charlotte_1mbp_overlap_resistance.lst
+done
