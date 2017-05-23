@@ -3,6 +3,7 @@ scripts=/home/sobczm/bin/popgen/renseq/rpf2
 input=/home/sobczm/popgen/renseq/strawberry
 
 #Discover the sequence of the 3 markers for Rpf2 in vesca 1.1 
+mysql -u strawreadonly -h mongo -D strawberry_samples -p$(cat /home/sobczm/.my.cnf)
 mysql -u strawreadonly -h mongo -D strawberry_samples -p$(cat /home/sobczm/bin/mysql_sample_database/login)
 SELECT probe_id, snp_id, alleles, strand, context FROM marker WHERE probe_id = "AX-89882775" OR probe_id = "AX-89825497" OR probe_id = "AX-89785467";
 
