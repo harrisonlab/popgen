@@ -76,3 +76,13 @@ select * FROM genotype WHERE (sample_id = 1024 OR sample_id = 1113 OR sample_id 
 
 #What haplotype is it?
 
+#Make database out of the RG scaffolds. 
+makeblastdb -in redgauntlet_scaffolds_abyss_ei_all_100_mp1_3-6-scaffolds.fa -input_type fasta -dbtype nucl -title redgauntlet_scaffolds_abyss_ei_all_100_mp1_3-6-scaffolds_nucl.db -parse_seqids -out redgauntlet_scaffolds_abyss_ei_all_100_mp1_3-6-scaffolds_nucl.db
+
+#Extract the 3 marker haplotype from vesca 1.1 and blast against Redgauntlet assembly.
+bedtools getfasta -fi /home/sobczm/popgen/renseq/strawberry/genome/fvesca_v1.1_all.fa -bed haplotype.gff3 -fo haplotype.fasta
+
+ass=haplotype.fasta
+db=redgauntlet_scaffolds_abyss_ei_all_100_mp1_3-6-scaffolds_nucl.db
+
+blastn -outfmt "6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore qlen slen sstrand"  -num_threads 1 -max_target_seqs 100 -evalue 0.0000000001 -query $ass -db $db >> $(basename $ass)_vs_$db
