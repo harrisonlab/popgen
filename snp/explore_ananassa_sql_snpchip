@@ -231,3 +231,12 @@ mysql> SELECT * FROM sample LIMIT 10;
 mysql> SELECT * FROM sample_tag LIMIT 10;
 Empty set (0.00 sec)
 
+SELECT * FROM clone INTO OUTFILE 'clone.tsv' FIELDS TERMINATED BY '\t' LINES TERMINATED BY '\n';
+ERROR 1045 (28000): Access denied for user 'marias'@'%' (using password: YES)
+
+input=/home/sobczm/popgen/snp/snp_chip
+cd $input
+
+#Temporary workaround:
+echo "SELECT * FROM clone" | mysql -u marias -h mongo -D strawberry_samples -p$(cat /home/sobczm/bin/mysql_sample_database/login)> clone.tsv
+
