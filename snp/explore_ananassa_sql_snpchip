@@ -1,0 +1,233 @@
+mysql> SHOW tables;
++------------------------------+
+| Tables_in_strawberry_samples |
++------------------------------+
+| alias                        |
+| clone                        |
+| clone_tag                    |
+| genotype                     |
+| marker                       |
+| pipeline_run                 |
+| sample                       |
+| sample_tag                   |
++------------------------------+
+8 rows in set (0.00 sec)
+
+mysql> DESCRIBE alias;
++-----------+------------+------+-----+---------+----------------+
+| Field     | Type       | Null | Key | Default | Extra          |
++-----------+------------+------+-----+---------+----------------+
+| id        | bigint(20) | NO   | PRI | NULL    | auto_increment |
+| platform  | char(30)   | YES  |     | NULL    |                |
+| probe_id  | char(30)   | YES  | MUL | NULL    |                |
+| snp_id    | char(30)   | YES  |     | NULL    |                |
+| marker_id | bigint(20) | YES  |     | NULL    |                |
++-----------+------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> DESCRIBE clone;
++--------+--------------+------+-----+---------+----------------+
+| Field  | Type         | Null | Key | Default | Extra          |
++--------+--------------+------+-----+---------+----------------+
+| id     | int(11)      | NO   | PRI | NULL    | auto_increment |
+| name   | varchar(100) | YES  |     | NULL    |                |
+| mat_id | int(11)      | YES  |     | NULL    |                |
+| pat_id | int(11)      | YES  |     | NULL    |                |
++--------+--------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> DESCRIBE clone_tag;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| clone_id | int(11)      | YES  |     | NULL    |       |
+| tag      | varchar(100) | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> DESCRIBE genotype;
++-------------+------------+------+-----+---------+----------------+
+| Field       | Type       | Null | Key | Default | Extra          |
++-------------+------------+------+-----+---------+----------------+
+| id          | bigint(20) | NO   | PRI | NULL    | auto_increment |
+| pipeline_id | int(11)    | YES  |     | NULL    |                |
+| sample_id   | int(11)    | YES  |     | NULL    |                |
+| alias_id    | bigint(20) | YES  |     | NULL    |                |
+| clustering  | char(3)    | YES  |     | NULL    |                |
+| genotype    | char(2)    | YES  |     | NULL    |                |
+| haplotype   | char(2)    | YES  |     | NULL    |                |
++-------------+------------+------+-----+---------+----------------+
+7 rows in set (0.00 sec)
+
+mysql> DESCRIBE marker;
++----------+------------+------+-----+---------+----------------+
+| Field    | Type       | Null | Key | Default | Extra          |
++----------+------------+------+-----+---------+----------------+
+| id       | bigint(20) | NO   | PRI | NULL    | auto_increment |
+| probe_id | char(30)   | YES  | UNI | NULL    |                |
+| snp_id   | char(30)   | YES  | MUL | NULL    |                |
+| alleles  | char(30)   | YES  |     | NULL    |                |
+| strand   | char(5)    | YES  |     | NULL    |                |
+| context  | char(100)  | YES  | MUL | NULL    |                |
++----------+------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> DESCRIBE pipeline_run;
++-------------+---------------+------+-----+---------+----------------+
+| Field       | Type          | Null | Key | Default | Extra          |
++-------------+---------------+------+-----+---------+----------------+
+| id          | int(11)       | NO   | PRI | NULL    | auto_increment |
+| name        | char(50)      | YES  |     | NULL    |                |
+| script_path | char(250)     | YES  |     | NULL    |                |
+| data_path   | char(250)     | YES  |     | NULL    |                |
+| date        | date          | YES  |     | NULL    |                |
+| notes       | varchar(1000) | YES  |     | NULL    |                |
++-------------+---------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> DESCRIBE sample;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| id       | int(11)      | NO   | PRI | NULL    | auto_increment |
+| clone_id | int(11)      | YES  |     | NULL    |                |
+| file     | varchar(100) | YES  | MUL | NULL    |                |
+| path     | varchar(200) | YES  |     | NULL    |                |
+| type     | varchar(100) | YES  |     | NULL    |                |
+| date     | date         | YES  |     | NULL    |                |
+| batch    | varchar(100) | YES  |     | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
+7 rows in set (0.00 sec)
+
+mysql> DESCRIBE sample_tag;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| sample_id | int(11)      | YES  |     | NULL    |       |
+| tag       | varchar(100) | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM alias LIMIT 10;
++----+----------+-------------+---------------+-----------+
+| id | platform | probe_id    | snp_id        | marker_id |
++----+----------+-------------+---------------+-----------+
+|  1 | istraw90 | AX-89803679 | Affx-88819427 |         1 |
+|  2 | istraw90 | AX-89804064 | Affx-88831685 |         2 |
+|  3 | istraw90 | AX-89804316 | Affx-88832267 |         3 |
+|  4 | istraw90 | AX-89805693 | Affx-88810467 |         4 |
+|  5 | istraw90 | AX-89806602 | Affx-88819381 |         5 |
+|  6 | istraw90 | AX-89779627 | Affx-88809314 |         6 |
+|  7 | istraw90 | AX-89782268 | Affx-88819410 |         7 |
+|  8 | istraw90 | AX-89782909 | Affx-88819426 |         8 |
+|  9 | istraw90 | AX-89783470 | Affx-88819558 |         9 |
+| 10 | istraw90 | AX-89783911 | Affx-88819697 |        10 |
++----+----------+-------------+---------------+-----------+
+10 rows in set (0.00 sec)
+
+mysql> SELECT * FROM clone LIMIT 10;
++----+-------------+--------+--------+
+| id | name        | mat_id | pat_id |
++----+-------------+--------+--------+
+|  1 | Redgauntlet |   NULL |   NULL |
+|  2 | Hapil       |   NULL |   NULL |
+|  3 | Emily       |   NULL |   NULL |
+|  4 | Fenella     |   NULL |   NULL |
+|  5 | Flamenco    |   NULL |   NULL |
+|  6 | Chandler    |   NULL |   NULL |
+|  7 | BSP14       |   NULL |   NULL |
+|  8 | Elvira      |   NULL |   NULL |
+|  9 | Camarosa    |   NULL |   NULL |
+| 10 | Capitola    |   NULL |   NULL |
++----+-------------+--------+--------+
+10 rows in set (0.00 sec)
+
+mysql> SELECT COUNT(*) FROM clone;
++----------+
+| COUNT(*) |
++----------+
+|     1777 |
++----------+
+1 row in set (0.00 sec)
+
+#Export the table into a TAB file.
+
+mysql> SELECT * FROM clone_tag LIMIT 10;
++----------+-------+
+| clone_id | tag   |
++----------+-------+
+|     3168 | rogue |
+|     3169 | rogue |
+|     3170 | rogue |
+|     3171 | rogue |
+|     3172 | rogue |
+|     3173 | rogue |
+|     3174 | rogue |
+|     3175 | rogue |
+|     3176 | rogue |
+|     3177 | rogue |
++----------+-------+
+10 rows in set (0.00 sec)
+
+mysql> SELECT * FROM genotype LIMIT 10;
++----+-------------+-----------+----------+------------+----------+-----------+
+| id | pipeline_id | sample_id | alias_id | clustering | genotype | haplotype |
++----+-------------+-----------+----------+------------+----------+-----------+
+|  1 |           1 |      1481 |   139660 | PHR        | BB       | NULL      |
+|  2 |           1 |      1863 |   139660 | PHR        | BB       | NULL      |
+|  3 |           1 |      1483 |   139660 | PHR        | AA       | NULL      |
+|  4 |           1 |      1482 |   139660 | PHR        | AB       | NULL      |
+|  5 |           1 |      1484 |   139660 | PHR        | AB       | NULL      |
+|  6 |           1 |      1486 |   139660 | PHR        | BB       | NULL      |
+|  7 |           1 |      1487 |   139660 | PHR        | AB       | NULL      |
+|  8 |           1 |      1488 |   139660 | PHR        | BB       | NULL      |
+|  9 |           1 |      1489 |   139660 | PHR        | AB       | NULL      |
+| 10 |           1 |      1490 |   139660 | PHR        | AB       | NULL      |
++----+-------------+-----------+----------+------------+----------+-----------+
+10 rows in set (0.00 sec)
+
+mysql> SELECT * FROM marker LIMIT 10;
++----+-------------+---------------+---------+--------+---------------------------------------------------------------+
+| id | probe_id    | snp_id        | alleles | strand | context                                                       |
++----+-------------+---------------+---------+--------+---------------------------------------------------------------+
+|  1 | AX-89803679 | Affx-88819427 | /GGA    | f      | ATATCAATAGAGGCCATGAGTAAAAACCAG/GGAGTAGTGACTCTGAGGGGATGAAAACTT |
+|  2 | AX-89804064 | Affx-88831685 | /GAG    | f      | ACCACTGGAACATAAGTTGGGAATGGATGA/GGGAATTCATACAAACTATGAAAGGAGCTT |
+|  3 | AX-89804316 | Affx-88832267 | /AGG    | f      | CAAGCTATATCATTTCCTTCGACTTCAACA/AGGAGTTTTGCTGGACTCCCCATCCTACCT |
+|  4 | AX-89805693 | Affx-88810467 | T/C     | f      | TACCAGAGTTGCTGCTTAAAGTATTAGAAC/TTATCGAAAAGAGGGTAGGTCTTGTCTCTA |
+|  5 | AX-89806602 | Affx-88819381 | /TCT    | f      | TTCCGGCACACACGCAATGCATTATGCATG/TGTAAATGTCACACTTGTAAAGATTGAGCG |
+|  6 | AX-89779627 | Affx-88809314 | A/C     | f      | TTTCACGTACTTCCTCGACTTCGGCTTAAT/TCCACCGCCATTGAAGCAATCTCACTACAC |
+|  7 | AX-89782268 | Affx-88819410 | T/C     | f      | CTTCTTCAATAACAAGTTGGAACAGAAACC/GAGTTTTCTATTGGTGATTGTTCGTGATTT |
+|  8 | AX-89782909 | Affx-88819426 | T/C     | f      | TACTCTATGTGATGGAAGAGCAGCACAAGA/CATCACCCACATGGCCACCTCCTTGGCCCA |
+|  9 | AX-89783470 | Affx-88819558 | T/G     | f      | TGCGTTCTAAAGTTTTTGCCAAGGTTTCAA/ATCCATGGCTGAATGAGTTTCTCTTGTATG |
+| 10 | AX-89783911 | Affx-88819697 | T/C     | f      | ATCAAAACCATAAGGAACACAGAACAGAAC/TTTCCCAATAGATGGGCCACTTCTCCCTTC |
++----+-------------+---------------+---------+--------+---------------------------------------------------------------+
+10 rows in set (0.00 sec)
+
+mysql> SELECT * FROM pipeline_run LIMIT 10;
++----+--------------------------+--------------------------------------------------------------------------------+---------------------------------------------------------------------------------+------------+------------------------------------------------------------------------------------------------------------------------------------+
+| id | name                     | script_path                                                                    | data_path                                                                       | date       | notes                                                                                                                              |
++----+--------------------------+--------------------------------------------------------------------------------+---------------------------------------------------------------------------------+------------+------------------------------------------------------------------------------------------------------------------------------------+
+|  1 | istraw35 first plate     | /home/vicker/git_repos/axiom_strawberry/istraw35_call/000_istraw35_call.sh     | /home/vicker/octoploid_mapping/istraw35_call/affy_calls/markers/mhr_phr_nmh.tsv | 2017-05-11 | command used: affycall_apt1.19.0.sh input_files istraw35 0.82 96 0.01 affy_calls                                                   |
+|  2 | consensus map 4 pipeline | /home/vicker/git_repos/axiom_strawberry/consensus_call4/000_affycall_and_qc.sh | /home/vicker/octoploid_mapping/consensus_map4/popn_*/markers/mhr_phr_nmh.tsv    | 2016-11-17 | just mapping population samples, grouped by population, loading raw genotype calls without genetic mapping based error corrections |
++----+--------------------------+--------------------------------------------------------------------------------+---------------------------------------------------------------------------------+------------+------------------------------------------------------------------------------------------------------------------------------------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM sample LIMIT 10;
++----+----------+--------------------+-----------------------------------------------+----------+------------+-------+
+| id | clone_id | file               | path                                          | type     | date       | batch |
++----+----------+--------------------+-----------------------------------------------+----------+------------+-------+
+|  1 |     2083 | inra_1_X00_009.CEL | /home/vicker/octoploid_mapping/caxcf/celfiles | istraw90 | 2014-12-10 | inra  |
+|  2 |     2048 | inra_1_X00_010.CEL | /home/vicker/octoploid_mapping/caxcf/celfiles | istraw90 | 2014-12-10 | inra  |
+|  3 |     2029 | inra_1_X00_011.CEL | /home/vicker/octoploid_mapping/caxcf/celfiles | istraw90 | 2014-12-10 | inra  |
+|  4 |     2066 | inra_1_X00_013.CEL | /home/vicker/octoploid_mapping/caxcf/celfiles | istraw90 | 2014-12-10 | inra  |
+|  5 |     2088 | inra_1_X00_014.CEL | /home/vicker/octoploid_mapping/caxcf/celfiles | istraw90 | 2014-12-10 | inra  |
+|  6 |     2168 | inra_1_X00_015.CEL | /home/vicker/octoploid_mapping/caxcf/celfiles | istraw90 | 2014-12-10 | inra  |
+|  7 |     2086 | inra_1_X00_018.CEL | /home/vicker/octoploid_mapping/caxcf/celfiles | istraw90 | 2014-12-10 | inra  |
+|  8 |     2152 | inra_1_X00_019.CEL | /home/vicker/octoploid_mapping/caxcf/celfiles | istraw90 | 2014-12-10 | inra  |
+|  9 |     2053 | inra_1_X00_020.CEL | /home/vicker/octoploid_mapping/caxcf/celfiles | istraw90 | 2014-12-10 | inra  |
+| 10 |     2102 | inra_1_X00_022.CEL | /home/vicker/octoploid_mapping/caxcf/celfiles | istraw90 | 2014-12-10 | inra  |
++----+----------+--------------------+-----------------------------------------------+----------+------------+-------+
+
+mysql> SELECT * FROM sample_tag LIMIT 10;
+Empty set (0.00 sec)
+
