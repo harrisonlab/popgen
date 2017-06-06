@@ -240,3 +240,14 @@ cd $input
 #Temporary workaround:
 echo "SELECT * FROM clone" | mysql -u marias -h mongo -D strawberry_samples -p$(cat /home/sobczm/bin/mysql_sample_database/login)> clone.tsv
 
+#List all the samples and their cultivars (clones) output using pipeline 1
+b="SELECT DISTINCT s.id, s.clone_id, c.name, g.pipeline_id FROM sample s JOIN clone c ON s.clone_id = c.id JOIN genotype g ON s.id=g.sample_id WHERE g.pipeline_id = 1 ORDER BY c.name;"
+
+echo $b | mysql -u marias -h mongo -D strawberry_samples -p$(cat /home/sobczm/bin/mysql_sample_database/login)> pipe1.tsv
+
+#List all the samples and their cultivars (clones) output using pipeline 2
+c="SELECT DISTINCT s.id, s.clone_id, c.name, g.pipeline_id
+FROM sample s JOIN clone c ON s.clone_id = c.id JOIN genotype g ON s.id=g.sample_id WHERE g.pipeline_id = 2 ORDER BY c.name;"
+
+echo $c | mysql -u marias -h mongo -D strawberry_samples -p$(cat /home/sobczm/bin/mysql_sample_database/login)> pipe2.tsv
+
