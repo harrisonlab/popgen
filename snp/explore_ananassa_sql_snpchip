@@ -268,3 +268,8 @@ echo $f | mysql -u marias -h mongo -D strawberry_copy -p$(cat /home/sobczm/bin/m
 
 #Extract genotypes for selected samples for downstream processing.
 python $scripts/ananassa_genotypes_db.py samples_to_analyze.txt samples_to_analyze.out
+
+#Output the genotypes in the VCF format with locations substituted 
+according to map positions relative to vesca 1.1. 
+
+
