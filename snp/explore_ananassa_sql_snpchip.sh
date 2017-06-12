@@ -304,26 +304,75 @@ $scripts/similarity_percentage.py samples_to_analyze.out_new_names_sorted_nomiss
 #Visualise the output as heatmap and clustering dendrogram
 Rscript --vanilla $scripts/distance_matrix.R samples_to_analyze.out_new_names_sorted_nomissing.recode_distance.log
 
-#Create vesca1.1 genome db with Snpeff and annotate samples.
+#Create vesca1.1 genome db with Snpeff and annotate samples. Have to do it chrom by chrom, otherwise does not work.
 strawberry=/home/sobczm/popgen/renseq/strawberry/genome
-/home/sobczm/bin/popgen/summary_stats/build_genome_database.sh $strawberry/fvesca_v1.1_all_annotated.fa $strawberry/Fragaria_vesca_v1.1.a2.noL0.gff3 vesca1.1
-#Error occured.
-/home/sobczm/bin/popgen/summary_stats/annotate_snps_genome.sh samples_to_analyze.out_new_names_sorted_filtered.recode.vcf vesca1.1
-
+/home/sobczm/bin/popgen/summary_stats/build_genome_database.sh $strawberry/fvesca_v1.1_all.fa $strawberry/Fragaria_vesca_v1.1.a2.gff3 vesca1.1
+#Annotate the output file (no unanchored variants)
 snpeff=/home/sobczm/bin/snpEff
-vcf=samples_to_analyze.out_new_names_sorted_filtered.recode.vcf
-java -Xmx4g -jar $snpeff/snpEff.jar -v -ud 0 vesca1.1 $vcf > ${vcf%.vcf}_annotated.vcf
+cat samples_to_analyze.out_new_names_sorted_filtered.recode.vcf >samples_to_analyze.out_new_names_sorted_filtered.recode.bak.vcf
+for k in {1..7}
+do
+vcf=samples_to_analyze.out_new_names_sorted_filtered.recode.bak.vcf
+java -Xmx4g -jar $snpeff/snpEff.jar -v -ud 0 vesca1.1_1 $vcf > ${vcf%.vcf}_annotated.vcf
+mv ${vcf%.vcf}_annotated.vcf $vcf
+done
+
+#Create subsamples of SNPs containing those in a given category
+#non-synonymous
+java -jar $snpeff/SnpSift.jar filter "(ANN[0].EFFECT has 'missense_variant') || (ANN[0].EFFECT has 'nonsense_variant')" $vcf > ${vcf%.vcf}_nonsyn.vcf
+#synonymous
+java -jar $snpeff/SnpSift.jar filter "(ANN[0].EFFECT has 'synonymous_variant')"  $vcf > ${vcf%.vcf}_syn.vcf
+#Four-fold degenrate sites (output file suffix: 4fd)
+python /home/sobczm/bin/popgen/summary_stats/parse_snpeff_synonymous.py ${vcf%.vcf}_syn.vcf
+
+
 #Calculate nucleotide diversity for different subsets.
 vcftools=/home/sobczm/bin/vcftools/bin
-$vcftools/vcftools --vcf samples_to_analyze.out_new_names_sorted_filtered.recode.vcf --site-pi  --out nucleotide_diversity
-#Calculate Mean, SD, Max, MIn of the nucleotide diversity (all sites). 
+$vcftools/vcftools --vcf samples_to_analyze.out_new_names_sorted_filtered.recode.vcf --site-pi  --out nucleotide_diversity.all 
+$vcftools/vcftools --vcf ${vcf%.vcf}_nonsyn.vcf --site-pi  --out nucleotide_diversity.nonsyn
+$vcftools/vcftools --vcf ${vcf%.vcf}_syn.vcf --site-pi  --out nucleotide_diversity.syn
+$vcftools/vcftools --vcf ${vcf%.vcf}_syn_4fd.vcf --site-pi  --out nucleotide_diversity.syn4fd
+
+#Calculate Mean, SD, Max, MIn of the nucleotide diversity 
 R
-my_data <- read.csv("nucleotide_diversity.sites.pi", sep="\t", header=TRUE)
+my_data <- read.csv("nucleotide_diversity.all.sites.pi", sep="\t", header=TRUE)
 summary(my_data$PI)
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
  0.0000  0.1091  0.1920  0.2211  0.3285  0.5041
 
- ###Repeat the analysis using newer genotypes in the strawberry_samples db in a new subfolder more_samples.
- #All-sites nuc div:
+my_data <- read.csv("nucleotide_diversity.nonsyn.sites.pi", sep="\t", header=TRUE)
+summary(my_data$PI)
+
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.0000  0.0943  0.1378  0.1918  0.2651  0.5040 
+
+
+my_data <- read.csv("nucleotide_diversity.syn.sites.pi", sep="\t", header=TRUE)
+summary(my_data$PI)
+
+> summary(my_data$PI)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.0000  0.1091  0.1654  0.2158  0.3285  0.5041 
+
+
+my_data <- read.csv("nucleotide_diversity.syn4fd.sites.pi", sep="\t", header=TRUE)
+summary(my_data$PI)
+
+> summary(my_data$PI)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.0000  0.1091  0.1654  0.2131  0.3085  0.5041 
+
+
+###Repeat the analysis using newer genotypes in the strawberry_samples db in a new subfolder more_samples.
+#All-sites nuc div:
   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
  0.0000  0.1169  0.1992  0.2306  0.3378  0.5016 
+#nonsyn
+    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+0.03669 0.11690 0.17960 0.21350 0.27380 0.50150 
+#syn
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.0000  0.1169  0.1895  0.2224  0.3081  0.5015 
+ #4fd
+    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+0.03067 0.11690 0.18450 0.21240 0.28000 0.50150 
