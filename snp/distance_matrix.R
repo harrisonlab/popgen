@@ -21,7 +21,7 @@ distance = read.table(args[1], header=T, stringsAsFactors=F)
 mypalette<-brewer.pal(9, "YlGn")
 #Ramp up the color palette
 cols <- colorRampPalette (mypalette) (100)
-pdf(args[2], width=22, height=16)
+pdf(args[2], width=88, height=64)
 heatmap.2(as.matrix(distance),dendrogram="col", cellnote=as.matrix(distance),
           notecol="black",col=cols,scale="none",key=TRUE, keysize=0.75,
           density.info="none", trace="none", cexRow=1.0,cexCol=1.0)
