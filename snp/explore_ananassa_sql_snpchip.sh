@@ -358,10 +358,8 @@ summary(my_data$PI)
 my_data <- read.csv("nucleotide_diversity.syn4fd.sites.pi", sep="\t", header=TRUE)
 summary(my_data$PI)
 
-> summary(my_data$PI)
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
- 0.0000  0.1091  0.1654  0.2131  0.3085  0.5041 
-
+my_data <- read.csv("nucleotide_diversity.syn4fd.sites.pi", sep="\t", header=TRUE)
+summary(my_data$PI)
 
 ###Repeat the analysis using newer genotypes in the strawberry_samples db in a new subfolder more_samples.
 #All-sites nuc div:
