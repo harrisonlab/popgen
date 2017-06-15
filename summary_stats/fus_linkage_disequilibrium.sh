@@ -5,7 +5,7 @@ vcftools=/home/sobczm/bin/vcftools/bin
 
 #Calculate D, D' and r^2 for SNPs separated by between 1 and 100 kbp
 #in non-pathogens (program calculates the stats using only the individuals
-#listed after "--indv" switch)
+#listed after "--indv" switch, if that option ignored, all the individuals input)
 #In order to calculate all versus all SNP comparison, remove options --ld-window-bp-min
 #and --ld-window-bp
 $vcftools/vcftools --vcf Fus2_canu_contigs_unmasked_noA13_filtered.recode.vcf \
