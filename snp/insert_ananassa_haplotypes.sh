@@ -9,6 +9,19 @@ python $scripts/insert_into_pipeline.py
 DELETE FROM pipeline_run WHERE id=4;
 #Create a new table schema.
 source /home/sobczm/bin/popgen/snp/haplotype.sql
+mysql> DESCRIBE haplotype;
++-----------------+-------------+------+-----+---------+----------------+
+| Field           | Type        | Null | Key | Default | Extra          |
++-----------------+-------------+------+-----+---------+----------------+
+| haplo_id        | bigint(20)  | NO   | PRI | NULL    | auto_increment |
+| genotype_id     | bigint(20)  | NO   |     | NULL    |                |
+| pipeline_id     | int(11)     | NO   |     | NULL    |                |
+| chromosome      | varchar(45) | YES  |     | NULL    |                |
+| subgenome       | varchar(45) | YES  |     | NULL    |                |
+| phased_genotype | varchar(45) | NO   |     | NULL    |                |
++-----------------+-------------+------+-----+---------+----------------+
+6 rows in set (0.01 sec)
+
 ##Prepare a table gathering info to be loaded into the database.
 #Extract the marker info from the alias table.
 echo "SELECT * FROM marker" | mysql -u marias -h mongo -D strawberry_copy -p$(cat /home/sobczm/bin/mysql_sample_database/login)> marker.tsv
@@ -33,3 +46,15 @@ source /home/sobczm/bin/popgen/snp/load_haplotype_table.sql
 mysqlimport --fields-terminated-by=\t --local -u root -p strawberry_copy haplotype_table_keys.txt
 #Trying Rob's way
 python $scripts/load_haplotype_table.py haplotype_table.txt
+#Worked!
+
+#Extract phased genotypes from the db and convert to VCF.
+python $scripts/ananassa_haplotypes_db.py samples_to_analyze.txt samples_to_analyze.out
+
+#Output the genotypes in the VCF format with locations substituted 
+#according to map positions relative to vesca 1.1. 
+python $scripts/ananassa_haplotypes_vcf.py samples_to_analyze.out istraw90_vesca_v1.1_snp_positions.gff3
+
+python $scripts/substitute_sample_names.py samples_to_analyze.out.vcf cultivar_names.txt sample_clone_id.txt
+
+#Utilise old scripts involving haplotype-based stats.

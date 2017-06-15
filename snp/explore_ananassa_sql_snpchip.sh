@@ -276,10 +276,10 @@ according to map positions relative to vesca 1.1.
 python $scripts/ananassa_genotypes_vcf.py samples_to_analyze.out istraw90_vesca_v1.1_snp_positions.gff3
 
 #General VCF stats (remember that vcftools needs to have the PERL library exported)
+python $scripts/substitute_sample_names.py samples_to_analyze.out.vcf cultivar_names.txt sample_clone_id.txt
+
 perl /home/sobczm/bin/vcftools/bin/vcf-stats \
 samples_to_analyze.out_new_names.vcf  >samples_to_analyze.out_new_names.stat
-
-python $scripts/substitute_sample_names.py samples_to_analyze.out.vcf cultivar_names.txt sample_clone_id.txt
 
 #Sort the VCF file.
 cat samples_to_analyze.out_new_names.vcf | perl /home/sobczm/bin/vcftools/bin/vcf-sort > samples_to_analyze.out_new_names_sorted.vcf
