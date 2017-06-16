@@ -46,3 +46,9 @@ Order of Shell script execution:
 20) [strawberry_renseq_part3.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/strawberry_renseq_part3.sh)
 
 21) [strawberry_renseq_reads_part1.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/strawberry_renseq_reads_part1.sh)
+
+22) [strawberry_renseq_reads_part2.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/strawberry_renseq_reads_part2.sh)
+
+21) [strawberry_renseq_reads_part3.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/strawberry_renseq_reads_part3.sh)
+
+21) [strawberry_renseq_reads_part4.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/strawberry_renseq_reads_part4.sh)
