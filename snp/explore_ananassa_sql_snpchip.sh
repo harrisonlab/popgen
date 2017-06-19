@@ -289,15 +289,18 @@ vcftools=/home/sobczm/bin/vcftools/bin
 filename=samples_to_analyze.out_new_names_sorted.vcf 
 $vcftools/vcftools --vcf $filename --max-missing 0.8 --recode --out ${filename%.vcf}_filtered
 
-#Carry out PCA and plot the results
-Rscript --vanilla $scripts/pca.R samples_to_analyze.out_new_names_sorted_filtered.recode.vcf 
-
-#Remove any SNPs with missing data and do an NJ tree and similarity heatmap
+#Remove any SNPs with missing data
 vcftools=/home/sobczm/bin/vcftools/bin
 filename=samples_to_analyze.out_new_names_sorted.vcf 
 $vcftools/vcftools --vcf $filename --max-missing 1 --recode --out ${filename%.vcf}_nomissing
-$scripts/nj_tree.sh samples_to_analyze.out_new_names_sorted_nomissing.recode.vcf 2
 
+#Carry out PCA and plot the results
+#First just get only sample num IDs.
+sed 's/_\w\+//g' samples_to_analyze.out_new_names_sorted_nomissing.recode.vcf >samples_to_analyze.out_new_names_sorted_nomissing.recode.num.vcf
+Rscript --vanilla $scripts/pca.R samples_to_analyze.out_new_names_sorted_nomissing.recode.num.vcf
+
+#Make an NJ tree 
+$scripts/nj_tree.sh samples_to_analyze.out_new_names_sorted_nomissing.recode.vcf 2
 
 #Calculate the index for percentage of shared SNP alleles between the individs.
 $scripts/similarity_percentage.py samples_to_analyze.out_new_names_sorted_nomissing.recode.vcf
@@ -313,11 +316,11 @@ cat samples_to_analyze.out_new_names_sorted_filtered.recode.vcf >samples_to_anal
 for k in {1..7}
 do
 vcf=samples_to_analyze.out_new_names_sorted_filtered.recode.bak.vcf
-java -Xmx4g -jar $snpeff/snpEff.jar -v -ud 0 vesca1.1_1 $vcf > ${vcf%.vcf}_annotated.vcf
-mv ${vcf%.vcf}_annotated.vcf $vcf
+java -Xmx4g -jar $snpeff/snpEff.jar -v -ud 0 vesca1.1_${k} $vcf >> ${vcf%.vcf}_annotated.vcf
 done
 
 #Create subsamples of SNPs containing those in a given category
+vcf=samples_to_analyze.out_new_names_sorted_filtered.recode.bak_annotated.vcf
 #non-synonymous
 java -jar $snpeff/SnpSift.jar filter "(ANN[0].EFFECT has 'missense_variant') || (ANN[0].EFFECT has 'nonsense_variant')" $vcf > ${vcf%.vcf}_nonsyn.vcf
 #synonymous
@@ -328,7 +331,7 @@ python /home/sobczm/bin/popgen/summary_stats/parse_snpeff_synonymous.py ${vcf%.v
 
 #Calculate nucleotide diversity for different subsets.
 vcftools=/home/sobczm/bin/vcftools/bin
-$vcftools/vcftools --vcf samples_to_analyze.out_new_names_sorted_filtered.recode.vcf --site-pi  --out nucleotide_diversity.all 
+$vcftools/vcftools --vcf samples_to_analyze.out_new_names_sorted_filtered.recode.bak.vcf --site-pi  --out nucleotide_diversity.all 
 $vcftools/vcftools --vcf ${vcf%.vcf}_nonsyn.vcf --site-pi  --out nucleotide_diversity.nonsyn
 $vcftools/vcftools --vcf ${vcf%.vcf}_syn.vcf --site-pi  --out nucleotide_diversity.syn
 $vcftools/vcftools --vcf ${vcf%.vcf}_syn_4fd.vcf --site-pi  --out nucleotide_diversity.syn4fd
@@ -337,40 +340,42 @@ $vcftools/vcftools --vcf ${vcf%.vcf}_syn_4fd.vcf --site-pi  --out nucleotide_div
 R
 my_data <- read.csv("nucleotide_diversity.all.sites.pi", sep="\t", header=TRUE)
 summary(my_data$PI)
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
- 0.0000  0.1091  0.1920  0.2211  0.3285  0.5041
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA
+ 0.0000  0.1091  0.1920  0.2211  0.3285  0.5041       6 
+
 
 my_data <- read.csv("nucleotide_diversity.nonsyn.sites.pi", sep="\t", header=TRUE)
 summary(my_data$PI)
 
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
- 0.0000  0.0943  0.1378  0.1918  0.2651  0.5040 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA 
+ 0.0000  0.0943  0.1654  0.2040  0.2981  0.5041       6 
 
 
 my_data <- read.csv("nucleotide_diversity.syn.sites.pi", sep="\t", header=TRUE)
 summary(my_data$PI)
 
-> summary(my_data$PI)
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
- 0.0000  0.1091  0.1654  0.2158  0.3285  0.5041 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA
+ 0.0000  0.0943  0.1788  0.2140  0.3187  0.5041       6 
 
 
 my_data <- read.csv("nucleotide_diversity.syn4fd.sites.pi", sep="\t", header=TRUE)
 summary(my_data$PI)
 
-my_data <- read.csv("nucleotide_diversity.syn4fd.sites.pi", sep="\t", header=TRUE)
-summary(my_data$PI)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA
+   0.0000  0.1091  0.1788  0.2105  0.2981  0.5041       6 
+
 
 ###Repeat the analysis using newer genotypes in the strawberry_samples db in a new subfolder more_samples.
 #All-sites nuc div:
   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
  0.0000  0.1169  0.1992  0.2306  0.3378  0.5016 
 #nonsyn
-    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-0.03669 0.11690 0.17960 0.21350 0.27380 0.50150 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA
+ 0.0000  0.1059  0.1845  0.2171  0.3157  0.5015       6 
 #syn
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
- 0.0000  0.1169  0.1895  0.2224  0.3081  0.5015 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA 
+ 0.0000  0.1169  0.1895  0.2204  0.3157  0.5016       6
  #4fd
-    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-0.03067 0.11690 0.18450 0.21240 0.28000 0.50150 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA
+ 0.0000  0.1169  0.1895  0.2168  0.3042  0.5016       6 
+

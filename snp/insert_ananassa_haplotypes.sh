@@ -57,4 +57,16 @@ python $scripts/ananassa_haplotypes_vcf.py samples_to_analyze.out istraw90_vesca
 
 python $scripts/substitute_sample_names.py samples_to_analyze.out.vcf cultivar_names.txt sample_clone_id.txt
 
+#Sort the VCF file.
+cat samples_to_analyze.out_new_names.vcf | perl /home/sobczm/bin/vcftools/bin/vcf-sort > samples_to_analyze.out_new_names_sorted.vcf
+
 #Utilise old scripts involving haplotype-based stats.
+vcftools=/home/sobczm/bin/vcftools/bin
+scripts2=/home/sobczm/bin/popgen/summary_stats
+$vcftools/vcftools --vcf samples_to_analyze.out_new_names_sorted.vcf \
+--hap-r2 --ld-window-bp-min 1000 --ld-window-bp 100000 
+
+qsub $scripts2/sub_plot_ld.sh out.hap.ld
+#Change the number of chroms to constant so that compatible with the script.
+awk '$4=246' out.hap.ld >out.hap.ld.cons
+qsub $scripts2/sub_ld_plot.sh out.hap.ld.cons

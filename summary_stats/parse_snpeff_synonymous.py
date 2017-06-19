@@ -23,17 +23,18 @@ for line in vcf_h:
         ann = fields[7].split("|")
         aa = r"p.([a-zA-Z]+)(\d+)([a-zA-Z]+)"
         match = re.search(aa, ann[10])
-        b = match.group(1)
-        if b in aa_deg:
-            pos = r"(\d+)/(\d+)"
-            num = re.search(pos, ann[11])
-            a = int(num.group(1))
-            if a % 3 == 0:
-                vcf_out.write(str(line))
+        if match:
+            b = match.group(1)
+            if b in aa_deg:
+                pos = r"(\d+)/(\d+)"
+                num = re.search(pos, ann[11])
+                a = int(num.group(1))
+                if a % 3 == 0:
+                    vcf_out.write(str(line))
+                else:
+                    pass
             else:
                 pass
-        else:
-            pass
 
 vcf_out.close()
 vcf_h.close()
