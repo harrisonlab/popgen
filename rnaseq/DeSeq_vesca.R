@@ -257,18 +257,3 @@ write.table(raw_counts,"Fvesca_raw_counts2.txt",sep="\t",na="",quote=F)
 norm_counts <- data.frame(counts(dds, normalized=TRUE))
 colnames(norm_counts) <- paste(colData$Group)
 write.table(norm_counts,"Fvesca_normalised_counts.txt",sep="\t",na="",quote=F)
-
-library(Biostrings)
-library(naturalsort)
-mygenes <- readDNAStringSet("Fragaria_vesca_v1.1.a2_cds.fasta")
-t1 <- counts(dds)
-t1 <- mygenes[rownames(t1)]
-rowRanges(dds) <- GRanges(t1@ranges@NAMES,t1@ranges)
-
-# robust may be better set at false to normalise based on total counts rather than 'library normalisation factors'
-fpkm_counts <- data.frame(fpkm(dds, robust = TRUE))
-colnames(fpkm_counts) <- paste(colData$Group)
-write.table(fpkm_counts,"fvesca_fpkm_norm_counts.txt",sep="\t",na="",quote=F)
-fpkm_counts <- data.frame(fpkm(dds, robust = FALSE))
-colnames(fpkm_counts) <- paste(colData$Group)
-write.table(fpkm_counts,"fvesca_fpkm_counts.txt",sep="\t",na="",quote=F)
