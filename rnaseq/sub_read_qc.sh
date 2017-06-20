@@ -22,6 +22,7 @@ WORK_DIR=$TMPDIR/rna_qc
 
 F_IN=$1
 R_IN=$2
+OUTDIR=$PWD
 ILLUMINA_ADAPTERS=/home/armita/git_repos/emr_repos/tools/seq_tools/ncbi_adapters.fa
 
 #######  Step 2	 ########
@@ -47,7 +48,6 @@ cat "$R_IN" | gunzip -fc > "$R_FILE"
 
 $fastq_mcf $ILLUMINA_ADAPTERS $F_FILE $R_FILE -o F/"$F_OUT" -o R/"$R_OUT" -C 1000000 -u -k 20 -t 0.01 -q 30 -p 5
 
-OUTDIR=$(dirname "$F_IN")
 gzip F/"$F_OUT"
 gzip R/"$R_OUT"
 cp -r F/"$F_OUT".gz $OUTDIR
