@@ -364,6 +364,9 @@ summary(my_data$PI)
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA
    0.0000  0.1091  0.1788  0.2105  0.2981  0.5041       6 
 
+#Plot the distribution as box plot.
+Rscript --vanilla $scripts/pi_box_plots.R
+
 
 ###Repeat the analysis using newer genotypes in the strawberry_samples db in a new subfolder more_samples.
 #All-sites nuc div:
