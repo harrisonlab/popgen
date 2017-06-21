@@ -70,3 +70,9 @@ Rscript --vanilla $scripts/distance_matrix.R samples_to_analyze.out_new_names_so
 #Calculate nucleotide diversity for different subsets.
 vcftools=/home/sobczm/bin/vcftools/bin
 $vcftools/vcftools --vcf samples_to_analyze.out_new_names_sorted_filtered.recode.vcf --site-pi  --out nucleotide_diversity.all
+
+#Analyze the origin of the Dover sample.
+mkdir Dover && cd Dover
+c="SELECT id FROM sample WHERE clone_id in (9,16,17,3229,3230,3231,3718,3721,3735) AND clone_id NOT IN (SELECT clone_id AS ci FROM clone_tag WHERE tag = 'rogue') AND type = 'istraw90';"
+echo $c | mysql -u marias -h mongo -D strawberry_copy -p$(cat /home/sobczm/bin/mysql_sample_database/login)> samples_to_analyze.txt
+
