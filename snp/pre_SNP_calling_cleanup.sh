@@ -1,5 +1,4 @@
 #!/bin/bash
-
 input=/home/sobczm/popgen/input/mappings
 scripts=/home/sobczm/bin/popgen/snp
 
