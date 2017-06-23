@@ -3,7 +3,7 @@
 #$ -cwd
 #$ -pe smp 1
 #$ -l virtual_free=1G
-#$ -l h=blacklace03.blacklace|blacklace04.blacklace|blacklace05.blacklace|blacklace06.blacklace|blacklace07.blacklace|blacklace08.blacklace|blacklace09.blacklace|blacklace10.blacklace
+#$ -l h=blacklace03.blacklace|blacklace04.blacklace|blacklace05.blacklace|blacklace06.blacklace|blacklace07.blacklace|blacklace08.blacklace|blacklace09.blacklace|blacklace11.blacklace
 
 # Script to prepare rna for downstream applications.
 # Will filter poor quality reads, perform trimming and
@@ -32,15 +32,12 @@ ILLUMINA_ADAPTERS=/home/armita/git_repos/emr_repos/tools/seq_tools/ncbi_adapters
 mkdir -p "$WORK_DIR"/F "$WORK_DIR"/R
 cd "$WORK_DIR"
 
-F_FILE=$(echo $F_IN | rev | cut -d "/" -f1 | rev | sed 's/.gz//')
-R_FILE=$(echo $R_IN | rev | cut -d "/" -f1 | rev | sed 's/.gz//')
+F_FILE=$(echo $F_IN | rev | cut -d "/" -f1 | rev )
+R_FILE=$(echo $R_IN | rev | cut -d "/" -f1 | rev )
 
 F_OUT=$(echo "$F_FILE" | sed 's/.fq/_trim.fq/g' | sed 's/.fastq/_trim.fq/g')
 R_OUT=$(echo "$R_FILE" | sed 's/.fq/_trim.fq/g' | sed 's/.fastq/_trim.fq/g')
 
-
-cat "$F_IN" | gunzip -fc > "$F_FILE"
-cat "$R_IN" | gunzip -fc > "$R_FILE"
 
 #######  Step 4	 ########
 # 	Quality trim		#
