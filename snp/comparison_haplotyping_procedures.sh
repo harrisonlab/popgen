@@ -23,3 +23,8 @@ do
 Rscript --vanilla $scripts/short_identical_haplotypes_fig1.R $a 20 4
 Rscript --vanilla $scripts/short_identical_haplotypes_fig2.R $a 8 4
 done
+
+for a in *_match_length.stat
+do
+Rscript --vanilla $scripts/haplotype_length_distribution_fig.R $a 20 4
+done

@@ -62,7 +62,7 @@ def write_results(sample_1, matches, nonmatches, end):
             haplotype_end = limit_matches[0]
         else:
             haplotype_end = end
-        haplotype_len_relative = float(haplotype_end - m) / float (end - m)
+        haplotype_len_relative = float(haplotype_end - m) / float (end - m) * 100
         out_h.write(sample_1 + "\t" + str(m) + "\t" + str(haplotype_end) + "\t" + str(haplotype_len_relative) + "\n")
 
 
