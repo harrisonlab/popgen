@@ -51,6 +51,8 @@ haplotype1 = read_in_haplotype(ped1, info_file1_pos)
 haplotype2 = read_in_haplotype(ped2, info_file2_pos)
 
 out_h = open(out, 'w')
+#Write header
+out_h.write("sample_name" + "\t" + "matching_haplo" + "\t" + "all_haplo" + "\t" + "perc_matching_haplo" + "\n")
 #Count the matches
 for sample_1 in haplotype1:
     number_matches = 0

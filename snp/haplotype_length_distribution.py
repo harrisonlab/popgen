@@ -67,6 +67,8 @@ def write_results(sample_1, matches, nonmatches, end):
 
 
 out_h = open(out, 'w')
+#Write header
+out_h.write("sample_name" + "\t" + "marker_pos" + "\t" + "haplotype_end" + "\t" + "perc_max_possible_haplo_len" +  "\n")
 #Count the matches
 for sample_1 in haplotype1:
     matches = list()

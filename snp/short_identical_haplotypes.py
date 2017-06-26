@@ -76,6 +76,8 @@ def write_results(sample_1, interval, positions_sorted, number_matches, number_m
         out_h.write(sample_1 + "\t" + str(start) + "\t" + str(end) + "\t" + str(match_count) + "\t" + str(marker_count) + "\t" + str(percentage_ag) + "\n")
 
 out_h = open(out, 'w')
+#Write header
+out_h.write("sample_name" + "\t" + "interval_start" + "\t" + "interval_end" + "\t" + "matching_haplo" + "\t" + "all_haplo" + "\t" + "perc_matching_haplo" + "\n")
 #Count the matches
 for sample_1 in haplotype1:
     number_matches = dd(int)
