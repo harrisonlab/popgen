@@ -17,3 +17,9 @@ for a in *_overall.stat
 do
 Rscript --vanilla $scripts/overall_haplotype_similarity_fig.R $a 8 4
 done
+
+for a in *_matching_fragments.stat
+do
+Rscript --vanilla $scripts/short_identical_haplotypes_fig1.R $a 20 4
+Rscript --vanilla $scripts/short_identical_haplotypes_fig2.R $a 8 4
+done
