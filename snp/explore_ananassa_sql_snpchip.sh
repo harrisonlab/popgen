@@ -272,7 +272,7 @@ scripts=/home/sobczm/bin/popgen/snp
 python $scripts/ananassa_genotypes_db.py samples_to_analyze.txt samples_to_analyze.out
 
 #Output the genotypes in the VCF format with locations substituted 
-according to map positions relative to vesca 1.1. 
+#according to map positions relative to vesca 1.1. 
 python $scripts/ananassa_genotypes_vcf.py samples_to_analyze.out istraw90_vesca_v1.1_snp_positions.gff3
 
 #General VCF stats (remember that vcftools needs to have the PERL library exported)
