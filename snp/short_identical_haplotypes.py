@@ -3,6 +3,7 @@ import sys
 import re
 from sys import argv
 from collections import defaultdict as dd
+from ped_functions import *
 
 #chop the chromosome every 1% total length and calculate the percentage of haplotypes which agree 100%, then plot percentage agreement relative to the position in the genome.
 
@@ -12,42 +13,15 @@ bare = r"(^[a-zA-Z0-9]+)(.*$)"
 out_sub = r"\1_matching_fragments.stat"
 out = re.sub(bare, out_sub, ped1)
 
-def read_in_marker_definition (infile):
-    count = 0
-    dict_file = dd()
-    with open (infile) as infile_h:
-        for line in infile_h:
-            lines = line.strip().split()
-            dict_file[count] = lines[1]
-            count += 1
-    return dict_file
-
 #Read in the marker definitions file 1
-info_file1_pos = read_in_marker_definition(info_file1)
+info_file1_pos = read_in_marker_definition_2(info_file1)
 #Read in the marker definition file 2
-info_file2_pos = read_in_marker_definition(info_file2)
+info_file2_pos = read_in_marker_definition_2(info_file2)
 
 #Calculate the interval length by which to chop the chromosome.
 positions = info_file1_pos.values()
 positions_sorted = sorted(positions, key=int)
 interval = (int(positions_sorted[-1]) - int(positions_sorted[0])) / 20
-
-def read_in_haplotype (ped, info_file_pos):
-    bare = r"(.*/)([a-zA-Z0-9-_]*.CEL$)"
-    matched = r"\2"
-    #Read in haplotypes file 1
-    haplotype = dd(lambda: dd(str))
-    with open (ped) as ped_h:
-        for line in ped_h:
-            count = 0
-            lines = line.strip().split()
-            sample_name =  re.sub(bare, matched, lines[1])
-            for i,k in zip(lines[6::2], lines[7::2]):
-                if i != k:
-                    haplo = i + "|" + k
-                    haplotype[sample_name][info_file_pos[count]] = haplo
-                count += 1
-    return haplotype
 
 #Read in haplotypes file 1
 haplotype1 = read_in_haplotype(ped1, info_file1_pos)

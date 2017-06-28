@@ -3,6 +3,7 @@ import sys
 import re
 from sys import argv
 from collections import defaultdict as dd
+#from ped_functions import *
 
 #count how many loci they have the same allele call, ignoring homozygous loci, then if the agreement is less than 50% this implies that they were in fact using the opposite convention (ie haplo pipeline0 == genotype pipeline1)
 
@@ -18,15 +19,9 @@ def read_in_marker_definition (infile):
     with open (infile) as infile_h:
         for line in infile_h:
             lines = line.strip().split()
-            dict_file[count] = lines[0] 
+            dict_file[count] = lines[0]
             count += 1
     return dict_file
-
-#Read in the marker definitions file 1
-info_file1_pos = read_in_marker_definition(info_file1)
-#Read in the marker definition file 2
-info_file2_pos = read_in_marker_definition(info_file2)
-
 
 def read_in_haplotype (ped, info_file_pos):
     bare = r"(.*/)([a-zA-Z0-9-_]*.CEL$)"
@@ -42,15 +37,20 @@ def read_in_haplotype (ped, info_file_pos):
                 if i != k:
                     haplo = i + "|" + k
                     haplotype[sample_name][info_file_pos[count]] = haplo
-                    out_all.write(ped + "\t" + sample_name + "\t" + str(count) + "\t" + info_file_pos[count] + "\t" + haplo + "\n")
-                count += 1
+            count += 1
     return haplotype
+
+#Read in the marker definitions file 1
+info_file1_pos = read_in_marker_definition(info_file1)
+#Read in the marker definition file 2
+info_file2_pos = read_in_marker_definition(info_file2)
 
 #Read in haplotypes file 1
 out_all = open("all_markers.txt", 'w')
 haplotype1 = read_in_haplotype(ped1, info_file1_pos)
 #Read in haplotypes file 2
 haplotype2 = read_in_haplotype(ped2, info_file2_pos)
+print (haplotype1)
 
 out_h = open(out, 'w')
 out_diff = open("differences.txt", 'w')
