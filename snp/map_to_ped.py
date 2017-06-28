@@ -40,8 +40,13 @@ with open (map_file) as map_file_h:
         for i, (a, b) in enumerate(zip(lines[8::2], lines[9::2])):
             if a == "B":
                 a = a.replace("B", "C")
+            #elif a == "A":
+             #   a = a.replace("A", "C")
             if b == "B":
                 b = b.replace("B", "C")
+            #elif b == "A":
+             #   b = b.replace("A", "C")
+
             names = headers[start].split("-")
             true_name = names[0]
             data_haplotypes[true_name][marker] = a + " " + b

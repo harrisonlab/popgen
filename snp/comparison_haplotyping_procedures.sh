@@ -44,3 +44,6 @@ cp -r $map/popn_FLxCH/map/haplotypes popn_FLxCH
 echo "SELECT id, file FROM sample" | mysql -u marias -h mongo -D strawberry_copy -p$(cat /home/sobczm/bin/mysql_sample_database/login)> id_filename.tsv
 
 python $scripts/map_to_ped.py 1A_haplotypes.csv id_filename.tsv vesca2consensus_map_noduplicates_2017-05-17.csv
+python $scripts/overall_haplotype_similarity.py 1A_phased.ped 1A.shapeit.ped.phased 1A.info 1A.shapeit.info
+python $scripts/short_identical_haplotypes.py 1A_phased.ped 1A.shapeit.ped.phased 1A.info 1A.shapeit.info
+python $scripts/haplotype_length_distribution.py 1A_phased.ped 1A.shapeit.ped.phased 1A.info 1A.shapeit.info

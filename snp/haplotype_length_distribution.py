@@ -29,7 +29,6 @@ info_file2_pos = read_in_marker_definition(info_file2)
 
 positions = info_file1_pos.values()
 positions_sorted = sorted(positions, key=int)
-end = int(positions_sorted[-1])
 
 def read_in_haplotype (ped, info_file_pos):
     bare = r"(.*/)([a-zA-Z0-9-_]*.CEL$)"
@@ -53,16 +52,26 @@ haplotype1 = read_in_haplotype(ped1, info_file1_pos)
 #Read in haplotypes file 2
 haplotype2 = read_in_haplotype(ped2, info_file2_pos)
 
-def write_results(sample_1, matches, nonmatches, end):
+def write_results(sample_1, matches, nonmatches):
+    all_matches = matches + nonmatches
+    all_matches_sorted = sorted(all_matches, key=int)
+    end = all_matches_sorted[-1]
     matches_sorted = sorted(matches, key=int)
     nonmatches_sorted = sorted(nonmatches, key=int)
     for m in matches_sorted:
+        #Find non-matching markers further down the chromosome
         limit_matches = [i for i in nonmatches_sorted if i > m]
         if len(limit_matches) > 0:
             haplotype_end = limit_matches[0]
         else:
             haplotype_end = end
-        haplotype_len_relative = float(haplotype_end - m) / float (end - m) * 100
+        haplo_len = float(haplotype_end - m) 
+        max_possible_len = float (end - m) 
+        #When reaching the end of chromosome
+        if (max_possible_len == 0 and haplo_len == 0):
+            max_possible_len = 1
+            haplo_len = 1
+        haplotype_len_relative = haplo_len / max_possible_len * 100
         out_h.write(sample_1 + "\t" + str(m) + "\t" + str(haplotype_end) + "\t" + str(haplotype_len_relative) + "\n")
 
 
@@ -85,7 +94,7 @@ for sample_1 in haplotype1:
             else:
                 print ("Marker " + str(marker_1) + " not found")
         #write results:
-        write_results(sample_1, matches, nonmatches, end)
+        write_results(sample_1, matches, nonmatches)
     else:
         print ("Sample " + sample_1 + " not found")  
 

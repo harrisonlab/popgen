@@ -65,6 +65,8 @@ for sample_1 in haplotype1:
                 if haplotype1[sample_1][marker_1] == haplotype2[sample_1][marker_1]:
                     number_matches += 1
                 else:
+                    print haplotype1[sample_1][marker_1]
+                    print haplotype2[sample_1][marker_1]
                     print ("Haplotypes of " + str(marker_1) + " do not agree")       
             else:
                 print ("Marker " + str(marker_1) + " not found")
