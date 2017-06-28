@@ -18,7 +18,7 @@ def read_in_marker_definition (infile):
     with open (infile) as infile_h:
         for line in infile_h:
             lines = line.strip().split()
-            dict_file[count] = lines[0]
+            dict_file[count] = lines[0] 
             count += 1
     return dict_file
 
@@ -42,15 +42,18 @@ def read_in_haplotype (ped, info_file_pos):
                 if i != k:
                     haplo = i + "|" + k
                     haplotype[sample_name][info_file_pos[count]] = haplo
-            count += 1
+                    out_all.write(ped + "\t" + sample_name + "\t" + str(count) + "\t" + info_file_pos[count] + "\t" + haplo + "\n")
+                count += 1
     return haplotype
 
 #Read in haplotypes file 1
+out_all = open("all_markers.txt", 'w')
 haplotype1 = read_in_haplotype(ped1, info_file1_pos)
 #Read in haplotypes file 2
 haplotype2 = read_in_haplotype(ped2, info_file2_pos)
 
 out_h = open(out, 'w')
+out_diff = open("differences.txt", 'w')
 #Write header
 out_h.write("sample_name" + "\t" + "matching_haplo" + "\t" + "all_haplo" + "\t" + "perc_matching_haplo" + "\n")
 #Count the matches
@@ -65,8 +68,9 @@ for sample_1 in haplotype1:
                 if haplotype1[sample_1][marker_1] == haplotype2[sample_1][marker_1]:
                     number_matches += 1
                 else:
-                    print haplotype1[sample_1][marker_1]
-                    print haplotype2[sample_1][marker_1]
+                    out_diff.write("Non-matching haplotypes:\n")
+                    out_diff.write(sample_1 + "\t" + str(marker_1) + "\t" + haplotype1[sample_1][marker_1] + "\n")
+                    out_diff.write(sample_1 + "\t" + str(marker_1) + "\t" + haplotype2[sample_1][marker_1] + "\n")
                     print ("Haplotypes of " + str(marker_1) + " do not agree")       
             else:
                 print ("Marker " + str(marker_1) + " not found")
@@ -78,3 +82,5 @@ for sample_1 in haplotype1:
         print ("Sample " + sample_1 + " not found")  
 
 out_h.close()
+out_diff.close()
+out_all.close()

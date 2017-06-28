@@ -46,6 +46,7 @@ mkdir test && cd test
 cp $input/id_filename.tsv $input/popn_RGxHA/1A_haplotypes.csv $input/vesca2consensus_map_noduplicates_2017-05-17.csv ./
 python $scripts/map_to_ped.py 1A_haplotypes.csv id_filename.tsv vesca2consensus_map_noduplicates_2017-05-17.csv
 
-python $scripts/overall_haplotype_similarity.py 1A_phased.ped ../shapeit_all_samples/1A.ped.phased 1A.info ../shapeit_all_samples/1A.info 
+python $scripts/overall_haplotype_similarity_test.py 1A_phased.ped ../shapeit_all_samples/1A.ped.phased 1A.info ../shapeit_all_samples/1A.info 
+python $scripts/overall_haplotype_similarity_test.py 1A_phased.ped ../shapeit_all_samples/1A.ped.phased 1A.info ../shapeit_all_samples/1A.info 
 python $scripts/short_identical_haplotypes.py 1A_phased.ped ../shapeit_all_samples/1A.ped.phased 1A.info ../shapeit_all_samples/1A.info 
 python $scripts/haplotype_length_distribution.py 1A_phased.ped ../shapeit_all_samples/1A.ped.phased 1A.info ../shapeit_all_samples/1A.info 
