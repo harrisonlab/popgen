@@ -45,8 +45,8 @@ def read_in_haplotype (ped, info_file_pos):
             for i,k in zip(lines[6::2], lines[7::2]):
                 if i != k:
                     haplo = i + "|" + k
-                    count += 1
                     haplotype[sample_name][info_file_pos[count]] = haplo
+                count += 1
     return haplotype
 
 #Read in haplotypes file 1
