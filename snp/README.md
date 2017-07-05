@@ -10,3 +10,5 @@ The order in which main bash scripts in the folder are executed:
 
 5) [structure_analysis.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/structure_analysis.sh)
 
+6) [fast_structure_analysis.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/fast_structure_analysis.sh)
+

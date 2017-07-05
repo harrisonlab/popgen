@@ -24,7 +24,7 @@ config=vcf_to_structure_haploid_pop.spid
 cp $pgdspid/$config ./
 dir=$PWD
 list_file=$(echo "${input_file%.vcf}.lst")
-sed -i 's,^\(VCF_PARSER_POP_FILE_QUESTION=\).*,\1'"$list_file"',' vcf_to_structure_haploid_pop.spid
+sed -i 's,^\(VCF_PARSER_POP_FILE_QUESTION=\).*,\1'"$list_file"',' $config
 
 #Also, create a label reference file to be used in the final step by distruct to label indidviduals in the output
 #DO NOT CHANGE THE $start VALUE BELOW:
@@ -34,7 +34,7 @@ nl temp | sed 's/^ *//' | sed 's/\t/ /g' >$names
 outfile="${input_file%.vcf}.struc"
 #Execute VCF to .struc (input format for STRUCTURE) conversion
 java -jar $pgdspid/PGDSpider2-cli.jar -inputfile $input_file \
--inputformat VCF -outputfile $outfile -outputformat STRUCTURE -spid vcf_to_structure_haploid_pop.spid
+-inputformat VCF -outputfile $outfile -outputformat STRUCTURE -spid $config
 dos2unix $outfile
 
 #Run STRUCTURE analysis to test for the presence of K (population clusters) 1 to 11, with 5 replicates for each K run consecutively. 
