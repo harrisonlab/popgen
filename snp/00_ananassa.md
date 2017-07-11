@@ -11,4 +11,4 @@ https://github.com/harrisonlab/popgen/blob/master/snp/ananassa_nuc_div_by_chromo
 https://github.com/harrisonlab/popgen/blob/master/snp/insert_ananassa_haplotypes.sh
 
 ### Comparison of map-based and Impute-based haplotyping
-https://github.com/harrisonlab/popgen/blob/master/snp/comparison_haplotyping_procesdures.sh
+https://github.com/harrisonlab/popgen/blob/master/snp/comparison_haplotyping_procedures.sh
