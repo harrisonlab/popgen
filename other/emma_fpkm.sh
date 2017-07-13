@@ -12,6 +12,5 @@ sed -i '1s/^/Gene\tLength\n/' Verticillium_dahliaejr2.VDAG_JR2v.4.0.cds.all_leng
 scripts=/home/sobczm/bin/popgen/rnaseq
 
 python $scripts/calculate_fpkm.py countData_53 Verticillium_dahliaejr2.VDAG_JR2v.4.0.cds.all_lengths.txt
- 
 python $scripts/calculate_fpkm.py countData_08 Verticillium_dahliaejr2.VDAG_JR2v.4.0.cds.all_lengths.txt
  
