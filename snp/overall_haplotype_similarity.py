@@ -5,7 +5,8 @@ from sys import argv
 from collections import defaultdict as dd
 from ped_functions import *
 
-#count how many loci they have the same allele call, ignoring homozygous loci, then if the agreement is less than 50% this implies that they were in fact using the opposite convention (ie haplo pipeline0 == genotype pipeline1)
+#count how many loci they have the same allele call, ignoring homozygous loci, then if the agreement is less than 50% 
+#this implies that they were in fact using the opposite convention (ie haplo pipeline0 == genotype pipeline1)
 
 script, ped1, ped2, info_file1, info_file2 = argv
 
