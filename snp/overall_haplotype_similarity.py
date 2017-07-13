@@ -18,19 +18,21 @@ info_file1_pos = read_in_marker_definition(info_file1)
 #Read in the marker definition file 2
 info_file2_pos = read_in_marker_definition(info_file2)
 
-#Read in haplotypes file 1
+#Read in haplotypes file 1 
 haplotype1 = read_in_haplotype(ped1, info_file1_pos)
-#Read in haplotypes file 2
+#Read in haplotypes file 2 
 haplotype2 = read_in_haplotype(ped2, info_file2_pos)
 
 out_h = open(out, 'w')
 #Write header
 out_h.write("sample_name" + "\t" + "matching_haplo" + "\t" + "all_haplo" + "\t" + "perc_matching_haplo" + "\n")
-#Count the matches
+#Count the matches per chromosome per sample
 for sample_1 in haplotype1:
     number_matches = 0
     number_markers = 0
+    #Check if the individual present in both files being compared
     if sample_1 in haplotype2:
+        #Check if the marker present in both files being compared
         for marker_1 in haplotype1[sample_1]:
             if marker_1 in haplotype2[sample_1]:
                 number_markers += 1
@@ -44,7 +46,7 @@ for sample_1 in haplotype1:
             else:
                 print ("Marker " + str(marker_1) + " not found")
         #print results:
-     #Percentage matches:
+        #Percentage matches:
         per_mat = (float(number_matches) / float(number_markers)) * 100
         out_h.write(sample_1 + "\t" + str(number_matches) + "\t" + str(number_markers) + "\t" + str(per_mat) + "\n")
     else:
