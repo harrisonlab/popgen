@@ -17,7 +17,6 @@ source ${scripts}/haplotyping_all_samples_funcs.sh
 export NODES="-N2,5,6,7,8,9,10"
 export MAXJOBS="-L14"
 
-if false ; then ########################################################
 
 #Retrieve file with all the FLxCH genotypes dumped.
 mysql -B -u marias -h mongo -p$(cat /home/sobczm/bin/mysql_sample_database/login) -D strawberry_samples \
@@ -82,3 +81,29 @@ impute_haplotypes $genotypes
 estimate_haploblocks $genotypes
 extract_haplotypes2ped $genotypes
 done
+
+##Comparison of shapeit and map-based haplotypes.
+input=/home/sobczm/popgen/snp/snp_chip/haplotypes/comparison
+#For EMxFE
+#conversion of map-based haplos to ped
+mkdir $datadir/genotypes-emfe_shapeit/comparison 
+cd $datadir/genotypes-emfe_shapeit/comparison 
+cp $input/id_filename.tsv $input/popn_EMxFE/1A_haplotypes.csv $input/vesca2consensus_map_noduplicates_2017-05-17.csv ./
+python $scripts/map_to_ped.py 1A_haplotypes.csv id_filename.tsv vesca2consensus_map_noduplicates_2017-05-17.csv
+python $scripts/overall_haplotype_similarity.py 1A_phased.ped ../1A.ped.phased 1A.info ../1A.info 
+
+#For FLxCH
+#conversion of map-based haplos to ped
+mkdir $datadir/genotypes-flch_shapeit/comparison
+cd $datadir/genotypes-flch_shapeit/comparison 
+cp $input/id_filename.tsv $input/popn_FLxCH/1A_haplotypes.csv $input/vesca2consensus_map_noduplicates_2017-05-17.csv ./
+python $scripts/map_to_ped.py 1A_haplotypes.csv id_filename.tsv vesca2consensus_map_noduplicates_2017-05-17.csv
+python $scripts/overall_haplotype_similarity.py 1A_phased.ped ../1A.ped.phased 1A.info ../1A.info 
+
+#For RGxH
+#A#conversion of map-based haplos to ped
+mkdir $datadir/genotypes-rgha_shapeit/comparison
+cd $datadir/genotypes-rgha_shapeit/comparison 
+cp $input/id_filename.tsv $input/popn_RGxHA/1A_haplotypes.csv $input/vesca2consensus_map_noduplicates_2017-05-17.csv ./
+python $scripts/map_to_ped.py 1A_haplotypes.csv id_filename.tsv vesca2consensus_map_noduplicates_2017-05-17.csv
+python $scripts/overall_haplotype_similarity.py 1A_phased.ped ../1A.ped.phased 1A.info ../1A.info 
