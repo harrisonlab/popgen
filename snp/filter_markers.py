@@ -9,13 +9,10 @@
 import sys
 import MySQLdb
 
-with open ("/home/sobczm/bin/mysql_sample_database/login", "r") as myfile:
-    password = myfile.read().strip()
-
 #main database
 db = MySQLdb.connect(host="mongo",   #192.168.1.100
-                     user="marias",
-                     passwd=password,
+                     user="vicker",
+                     passwd=open("/home/vicker/passwords/mysql_mongo_vicker").read(),
                      db="strawberry_samples")
 
 cc = db.cursor()

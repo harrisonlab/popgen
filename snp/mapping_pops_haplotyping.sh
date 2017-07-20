@@ -7,16 +7,15 @@
 
 set -eu
 
-SCRIPT_PATH=/home/vicker/git_repos/axiom_strawberry/haplotyping4
-export PATH=${SCRIPT_PATH}:${PATH}
-export PATH=~/programs/shapeit.v2.r837.GLIBCv2.12.Linux.static/bin:${PATH}
-export PATH=~/programs/plink-1.90beta:${PATH}
-source ${SCRIPT_PATH}/haplotyping_all_samples_funcs.sh
-export NODES="-N2,5,6,7,8,9,10"
-export MAXJOBS="-L14"
 input=/home/vicker/octoploid_mapping/haplotyping4
 datadir=/home/sobczm/popgen/snp/snp_chip/haplotypes/comparison/haplotyping4_mapping_pops
 scripts=/home/sobczm/bin/popgen/snp
+export PATH=${scripts}:${PATH}
+export PATH=/home/vicker/programs/shapeit.v2.r837.GLIBCv2.12.Linux.static/bin:${PATH}
+export PATH=/home/vicker/programs/plink-1.90beta:${PATH}
+source ${scripts}/haplotyping_all_samples_funcs.sh
+export NODES="-N2,5,6,7,8,9,10"
+export MAXJOBS="-L14"
 
 if false ; then ########################################################
 
@@ -39,7 +38,7 @@ mysql -B -u marias -h mongo -p$(cat /home/sobczm/bin/mysql_sample_database/login
 
 #select best pipeline per sample
 mysql -B -u marias -h mongo -p$(cat /home/sobczm/bin/mysql_sample_database/login)  -D strawberry_samples \
-    < ${SCRIPT_PATH}/find_best_pipeline.sql \
+    < $scripts/find_best_pipeline.sql \
     | gzip \
     > best_pipeline.tsv.gz
 
@@ -47,7 +46,7 @@ mysql -B -u marias -h mongo -p$(cat /home/sobczm/bin/mysql_sample_database/login
 for genotypes in genotypes-flch.tsv.gz genotypes-rgha.tsv.gz genotypes-emfe.tsv.gz
 do
 zcat $genotypes \
-    | python $SCRIPT_PATH/filter_pipeline.py best_pipeline.tsv.gz \
+    | python $scripts/filter_pipeline.py best_pipeline.tsv.gz \
     | gzip \
     > ${genotypes%.tsv.gz}_best_pipeline.tsv.gz
 done 
@@ -64,16 +63,18 @@ done
 #convert to tablular csv format
 for genotypes in *_filtered_markers.tsv.gz
 do
-python ${SCRIPT_PATH}/convert_to_table.py $genotypes \
+python $scripts/convert_to_table.py $genotypes \
     | gzip \
-    > ${genotype%_filtered_markers.tsv.gz}_table_all_samples.csv.gz
+    > ${genotypes%_filtered_markers.tsv.gz}_table_all_samples.csv.gz
 done
 
 #reformat ready for shapeit
 for genotypes in *_table_all_samples.csv.gz
-python ${SCRIPT_PATH}/convert2shapeit \
+do
+convert2shapeit \
 /home/groups/harrisonlab/project_files/fragaria_x_ananassa/octoseq/maps/consensus/vesca2consensus_map_noduplicates_2017-05-17.csv \
 $genotypes ${genotypes%_table_all_samples.csv.gz}_shapeit
+done
 
 for genotypes in *_shapeit
 do
