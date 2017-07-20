@@ -13,5 +13,5 @@ https://github. om/harrisonlab/popgen/blob/master/snp/insert_ananassa_haplotypes
 ### Comparison of map-based and Impute-based haplotyping
 https://github.com/harrisonlab/popgen/blob/master/snp/comparison_haplotyping_procedures.sh
 
-### Haplotyping of EmxFe, FLxCh, hapilxrg EMR mapping populations with shapeit
+### Haplotyping of EMxFE, FLxCH, HAxRG EMR mapping populations with shapeit
 https://github.com/harrisonlab/popgen/blob/master/snp/mapping_pops_haplotyping.sh
