@@ -12,6 +12,10 @@ do
 grep -f $a Fragaria_vesca_v1.1.a2.mrna.gff3 > ${a%.lst}.gff3
 done
 
+#Checking for potential mlo genes
+a=mlo.lst
+grep -f $a Fragaria_vesca_v1.1.a2.mrna.gff3 >${a%.lst}.gff3
+
 #Check if the QTLs are within any gene?
 intersectBed -wb -a qtls_helenc2.gff -b Fragaria_vesca_v1.1.a2.mrna.gff3 >qtls_helenc_overlap_mrna.gff
 #All of them, apart from ID=89860579, are within a gene.
@@ -28,6 +32,10 @@ do
 intersectBed -wb -a qtls_helenc2.gff -b $a >${a%.gff3}_qtl_overlap
 done
 
+#How about a mlo gene?
+a=mlo.gff3
+intersectBed -wb -a qtls_helenc2.gff -b $a >${a%.gff3}_qtl_overlap
+
 #Extract the CDS of the genes associated with QTLs
 python $scripts/keep_list_genes2.py $input/genome/helen_qtl_associated_genes.txt $input/genome/fvesca_v1.1_all_annotated.fa No
 
@@ -40,6 +48,10 @@ for a in vesca*.gff3
 do
 intersectBed -wb -a qtls_helenc2_100kbp.gff -b $a >${a%.gff3}_qtl_overlap_100kbp
 done
+
+#How about a mlo gene?
+a=mlo.gff3
+intersectBed -wb -a qtls_helenc2_100kbp.gff -b $a >${a%.gff3}_qtl_overlap_100kbp
 
 #Extract the CDS of the genes associated with extended intervals around QTLs
 for b in *qtl_overlap_100kbp

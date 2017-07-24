@@ -107,3 +107,33 @@ cd $datadir/genotypes-rgha_shapeit/comparison
 cp $input/id_filename.tsv $input/popn_RGxHA/1A_haplotypes.csv $input/vesca2consensus_map_noduplicates_2017-05-17.csv ./
 python $scripts/map_to_ped.py 1A_haplotypes.csv id_filename.tsv vesca2consensus_map_noduplicates_2017-05-17.csv
 python $scripts/overall_haplotype_similarity.py 1A_phased.ped ../1A.ped.phased 1A.info ../1A.info 
+
+for folder in $datadir/genotypes-rgha_shapeit/comparison $datadir/genotypes-emfe_shapeit/comparison $datadir/genotypes-flch_shapeit/comparison
+do
+cd $folder
+python $scripts/short_identical_haplotypes.py 1A_phased.ped ../1A.ped.phased 1A.info ../1A.info 
+python $scripts/haplotype_length_distribution.py 1A_phased.ped ../1A.ped.phased 1A.info ../1A.info 
+done
+
+#Plot results using ggplot2. 
+for folder in $datadir/genotypes-rgha_shapeit/comparison $datadir/genotypes-emfe_shapeit/comparison $datadir/genotypes-flch_shapeit/comparison
+do
+cd $folder
+for a in *_overall.stat
+do
+    Rscript --vanilla $scripts/overall_haplotype_similarity_fig.R $a 45 4
+done
+
+for a in *_matching_fragments.stat
+do
+    Rscript --vanilla $scripts/short_identical_haplotypes_fig1.R $a 45 4
+    Rscript --vanilla $scripts/short_identical_haplotypes_fig2.R $a 45 4
+done
+
+for a in *_match_length.stat
+do
+    Rscript --vanilla $scripts/haplotype_length_distribution_fig.R $a 45 4
+done
+done
+
+##Do the stats and viz only on selected individuals

@@ -15,3 +15,6 @@ https://github.com/harrisonlab/popgen/blob/master/snp/comparison_haplotyping_pro
 
 ### Haplotyping of EMxFE, FLxCH, HAxRG EMR mapping populations with shapeit
 https://github.com/harrisonlab/popgen/blob/master/snp/mapping_pops_haplotyping.sh
+
+### Troubleshooting haplotyping carried out in the file above.
+https://github.com/harrisonlab/popgen/blob/master/snp/troubleshooting_haplotyping.sh
