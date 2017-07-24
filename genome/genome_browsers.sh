@@ -1,21 +1,13 @@
 #!/bin/bash
-input=/home/sobczm/popgen/genome
-scripts=/home/sobczm/bin/popgen/genome
-browsers=/home/sobczm/bin/browsers
+#This carried out on the genome server.
 
-#Install UCSC, GBrowse and Ensembl genome browsers for ananassa latest genome.
-
-#Copy input genome. (Latest D. Swarbreck annotation)
-cp -r /home/sobczm/popgen/rnaseq/ananassa_annotation $input
-
-#USCS
-cd $browsers
-git clone http://genome-source.cse.ucsc.edu/kent.git
-#Most users want to use the beta branch, which has tested, released versions of the browser. To create a beta tracking branch:
-cd kent
-git checkout -t -b beta origin/beta
-#The -b creates a local branch with the name "beta", and checks it out.
-#The -t makes it a tracking branch, so that "git pull" pulls in updates from origin/beta, the "real" beta branch in our public central read-only repository.
-
-#To get the latest UCSC release:
-git pull
+#Install UCSC and Ensembl genome browsers for ananassa latest genome.
+#USCS tools (kentUtils) installed as well GBiB Assembly Hubs.
+#Aim: create an assembly hub for the latest version of the ananassa genome along with
+#its annotation by D. Swoerbreck group.
+input=/home/sobczm/ananassa_ah
+cp /home/sobczm/ananassa_annotation/Data_for_Maria_Sobczyk_02May2017/genome/v1_ns_remapped.fasta $input
+#The .2bit file is constructed from the fasta sequence for the assembly. 
+faToTwoBit v1_ns_remapped.fasta ananassa_05_17.2bit
+#Use the twoBitInfo to verify the sequences in this assembly and create a chrom.sizes file which is not used in the hub, but is useful in later processing to construct the big* files:
+twoBitInfo ananassa_05_17.2bit stdout | sort -k2rn > ananassa_05_17.chrom.sizes
