@@ -90,6 +90,8 @@ export PATH=/home/armita/prog/emboss/EMBOSS-4.0.0/bin:${PATH}
 [DivStat] (http://www.portugene.com/DivStat.html): A User-Friendly Tool for Single Nucleotide Polymorphism Analysis of
 Genomic Diversity `/home/sobczm/bin/DivStat`
 
+[DuoHMM ver. 0.1.7] (https://mathgen.stats.ox.ac.uk/genetics_software/duohmm/duohmm.html): duoHMM is a software package for post-processing haplotypes estimated by SHAPEIT. It incorporates pedigree information into the haplotype estimates in a post-hoc manner.
+`/home/sobczm/bin/duohmm_v0.1.7`
 [EIGENSOFT ver. 6.1.2] (https://genetics.med.harvard.edu/reich/Reich_Lab/Software.html) A set of population structure dectection methods. `/home/sobczm/bin/EIG/bin`
 
 [FALCON] (https://github.com/PacificBiosciences/FALCON) Falcon: a set of tools for fast aligning long reads for consensus and assembly `/home/sobczm/bin/FALCON-integrate` on Triticum
