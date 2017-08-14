@@ -36,7 +36,7 @@ For the changes to take place, either type ```source ~/.profile``` or close and 
 
 [SNPRelate] (http://corearray.sourceforge.net/tutorials/SNPRelate/): Parallel Computing Toolset for Relatedness and Principal Component Analysis of SNP Data
 
-[vcfR] (https://cran.r-project.org/web/packages/vcfR/index.html): Manipulate and Visualize VCF Data
+[vcfR](https://cran.r-project.org/web/packages/vcfR/index.html): Manipulate and Visualize VCF Data
 
 [WhopGenome] (https://cran.r-project.org/web/packages/WhopGenome/index.html): High-Speed Processing of VCF, FASTA and Alignment Data
 
