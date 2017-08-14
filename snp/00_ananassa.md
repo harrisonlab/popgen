@@ -18,3 +18,6 @@ https://github.com/harrisonlab/popgen/blob/master/snp/mapping_pops_haplotyping.s
 
 ### Troubleshooting haplotyping carried out in the file above.
 https://github.com/harrisonlab/popgen/blob/master/snp/troubleshooting_haplotyping.sh
+
+### Testing shapeit settings to improve haplotyping
+https://github.com/harrisonlab/popgen/blob/master/snp/improve_haplotyping.sh
