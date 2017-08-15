@@ -10,7 +10,7 @@ export PATH=/home/vicker/git_repos/crosslink/bin:${PATH}
 source ${SCRIPT_PATH}/haplotyping_all_samples_funcs.sh
 export NODES="-N2,5,6,7,8,9,10"
 export MAXJOBS="-L30"
-
+script=/home/sobczm/bin/popgen/snp
 name=rgxha_test_ms
 
 cd $datadir
@@ -69,4 +69,76 @@ do
     cat ${map2file} > ${locfile/\.loc/}_map.csv
 done
 
-#Convert from 
+zcat popnordergrps/1A.csv.gz | head -n 1 > ${name}.csv 
+#Need to edit this to add the parents at the end of the line
+sed -i 's/$/,RG(168),HA(169)/' ${name}.csv 
+
+
+#Convert from .alt to .csv and overwrite the .csv files produced by conv_cl2affy3.py 
+for altfile in popnordergrps/*.alt
+do
+python $scripts/convert_to_affy.py $altfile | gzip >${altfile/alt/csv}.gz
+done 
+
+rm -f ${name}.csv.gz
+zcat popnordergrps/*.csv.gz >> ${name}.csv
+gzip ${name}.csv
+
+#reformat ready for shapeit
+convert2shapeit filtered_map.csv ${name}.csv.gz ${name}_shapeit
+
+#Default run (all default apart from eff pop size)
+export SHAPEIT_EFF_POPN_SIZE=1000
+export SHAPEIT_SEED=${RANDOM}${RANDOM}
+export SHAPEIT_PRUNE=8
+export SHAPEIT_BURN=7
+export SHAPEIT_MAIN=20
+export SHAPEIT_STATES=100
+export SHAPEIT_WINDOW=2
+impute_haplotypes ${name}_shapeit
+
+##Start changing values
+#Prune
+#6
+cp -r ${name}_shapeit ${name}_shapeit_prune_6
+export SHAPEIT_PRUNE=6
+impute_haplotypes ${name}_shapeit_prune_6
+#10
+cp -r ${name}_shapeit ${name}_shapeit_prune_10
+export SHAPEIT_PRUNE=10
+impute_haplotypes ${name}_shapeit_prune_10
+#12
+cp -r ${name}_shapeit ${name}_shapeit_prune_12
+export SHAPEIT_PRUNE=12
+impute_haplotypes ${name}_shapeit_prune_12
+
+#Burn
+export SHAPEIT_PRUNE=8
+#5
+cp -r ${name}_shapeit ${name}_shapeit_burn_5
+export SHAPEIT_BURN=5
+impute_haplotypes ${name}_shapeit_burn_5
+#10
+cp -r ${name}_shapeit ${name}_shapeit_burn_10
+export SHAPEIT_BURN=10
+impute_haplotypes ${name}_shapeit_burn_10
+#15
+cp -r ${name}_shapeit ${name}_shapeit_burn_15
+export SHAPEIT_BURN=15
+impute_haplotypes ${name}_shapeit_burn_15
+
+
+#Main
+export SHAPEIT_BURN=7
+#10
+cp -r ${name}_shapeit ${name}_shapeit_main_10
+export SHAPEIT_MAIN=10
+impute_haplotypes ${name}_shapeit_main_10
+#50
+cp -r ${name}_shapeit ${name}_shapeit_main_50
+export SHAPEIT_MAIN=50
+impute_haplotypes ${name}_shapeit_main_50
+#75
+cp -r ${name}_shapeit ${name}_shapeit_main_75
+export SHAPEIT_MAIN=75
+impute_haplotypes ${name}_shapeit_main_75
