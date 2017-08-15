@@ -142,3 +142,54 @@ impute_haplotypes ${name}_shapeit_main_50
 cp -r ${name}_shapeit ${name}_shapeit_main_75
 export SHAPEIT_MAIN=75
 impute_haplotypes ${name}_shapeit_main_75
+
+#Conditioning
+export SHAPEIT_MAIN=20
+#50
+cp -r ${name}_shapeit ${name}_shapeit_states_50
+export SHAPEIT_STATES=50
+impute_haplotypes ${name}_shapeit_states_50
+#200
+cp -r ${name}_shapeit ${name}_shapeit_states_200
+export SHAPEIT_STATES=200
+impute_haplotypes ${name}_shapeit_states_200
+#300
+cp -r ${name}_shapeit ${name}_shapeit_states_300
+export SHAPEIT_STATES=300
+impute_haplotypes ${name}_shapeit_states_300
+
+#Window
+export SHAPEIT_STATES=100
+#0.5
+cp -r ${name}_shapeit ${name}_shapeit_window_05
+export SHAPEIT_WINDOW=0.5
+impute_haplotypes ${name}_shapeit_window_05
+#3
+cp -r ${name}_shapeit ${name}_shapeit_window_3
+export SHAPEIT_WINDOW=3
+impute_haplotypes ${name}_shapeit_window_3
+#4
+cp -r ${name}_shapeit ${name}_shapeit_window_4
+export SHAPEIT_WINDOW=4
+impute_haplotypes ${name}_shapeit_window_4
+
+#For comparison purposes with map-based dataset, need to print out everything
+#per line but the last 4 haplotypes (i.e. the parents)
+for hap in *_shapeit*/*.haps
+do
+cat $hap | rev | cut -c 10- | rev >${hap/haps/haps2}
+done
+
+for locfile in popnordergrps/*.loc2
+do
+    lg=$(basename ${locfile} .loc2)
+    conv_cl2AB2.py     ${locfile}  ${locfile/loc2/csv.gz}  >  ${name}_${lg}_orig_AB    #original
+done
+
+#Compare haplotypes
+for hapfile in *_shapeit*/*.haps2
+do
+    lg=$(basename ${hapfile} .phased.haps)
+    conv_phased2AB.py  ${hapfile}  > ${name}_${lg}_imputed_AB         
+    compare_haplotypes.py ${name}_${lg}_imputed_AB ${name}_${lg}_orig_AB  > ${name}_${lg}_out
+done
