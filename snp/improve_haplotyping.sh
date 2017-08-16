@@ -192,3 +192,115 @@ do
     conv_phased2AB.py  ${hapfile}  > ${hapfile/.phased.haps2/_imputed_AB}   
     compare_haplotypes.py ${hapfile/.phased.haps2/_imputed_AB} ${name}_${lg}_orig_AB  > ${hapfile/.phased.haps2/_out}
 done
+
+#Print comparison figures for shapeit runs using original dataset
+#(without parents, just progeny)
+datadir=/home/sobczm/popgen/snp/snp_chip/haplotypes/comparison/rgxha_tweaking_original
+cd $datadir
+Rscript --vanilla $scripts/plots_phasing.R burn_10 $datadir/rgxha_test_ms_shapeit $datadir/rgxha_test_ms_shapeit_burn_10
+
+Rscript --vanilla $scripts/plots_phasing.R burn_15 $datadir/rgxha_test_ms_shapeit $datadir/rgxha_test_ms_shapeit_burn_15
+
+Rscript --vanilla $scripts/plots_phasing.R burn_5 $datadir/rgxha_test_ms_shapeit $datadir/rgxha_test_ms_shapeit_burn_5
+
+Rscript --vanilla $scripts/plots_phasing.R main_10 $datadir/rgxha_test_ms_shapeit $datadir/rgxha_test_ms_shapeit_main_10
+
+Rscript --vanilla $scripts/plots_phasing.R main_50 $datadir/rgxha_test_ms_shapeit $datadir/rgxha_test_ms_shapeit_main_50
+
+Rscript --vanilla $scripts/plots_phasing.R main_75 $datadir/rgxha_test_ms_shapeit $datadir/rgxha_test_ms_shapeit_main_75
+
+Rscript --vanilla $scripts/plots_phasing.R prune_10 $datadir/rgxha_test_ms_shapeit $datadir/rgxha_test_ms_shapeit_prune_10
+
+Rscript --vanilla $scripts/plots_phasing.R prune_12 $datadir/rgxha_test_ms_shapeit $datadir/rgxha_test_ms_shapeit_prune_12
+
+Rscript --vanilla $scripts/plots_phasing.R prune_6 $datadir/rgxha_test_ms_shapeit $datadir/rgxha_test_ms_shapeit_prune_6
+
+Rscript --vanilla $scripts/plots_phasing.R states_200 $datadir/rgxha_test_ms_shapeit $datadir/rgxha_test_ms_shapeit_states_200
+
+Rscript --vanilla $scripts/plots_phasing.R states_300 $datadir/rgxha_test_ms_shapeit $datadir/rgxha_test_ms_shapeit_states_300
+
+Rscript --vanilla $scripts/plots_phasing.R states_50 $datadir/rgxha_test_ms_shapeit $datadir/rgxha_test_ms_shapeit_states_50
+
+Rscript --vanilla $scripts/plots_phasing.R window_05 $datadir/rgxha_test_ms_shapeit $datadir/rgxha_test_ms_shapeit_window_05
+
+Rscript --vanilla $scripts/plots_phasing.R window_05 $datadir/rgxha_test_ms_shapeit $datadir/rgxha_test_ms_shapeit_window_05
+
+Rscript --vanilla $scripts/plots_phasing.R window_3 $datadir/rgxha_test_ms_shapeit $datadir/rgxha_test_ms_shapeit_window_3
+
+Rscript --vanilla $scripts/plots_phasing.R window_4 $datadir/rgxha_test_ms_shapeit $datadir/rgxha_test_ms_shapeit_window_4
+
+#Copy all the PDFs to a singledir
+for my_pdf in *_shapeit*/*.pdf 
+do
+cp $my_pdf $datadir/figures
+done
+
+#Compare phasing with parents added to that without
+Rscript --vanilla $scripts/plots_phasing.R parents_added $datadir/rgxha_test_ms_shapeit /home/sobczm/popgen/snp/snp_chip/haplotypes/comparison/rgxha_tweaking/rgxha_test_ms_shapeit
+
+cp /home/sobczm/popgen/snp/snp_chip/haplotypes/comparison/rgxha_tweaking/rgxha_test_ms_shapeit/*.pdf $datadir/figures
+
+#Convert to png 
+for my_pdf in $datadir/figures/*.pdf
+do
+convert -verbose -density 500 "${my_pdf}" "${my_pdf%.*}.png"
+done
+
+#In the original dataset directory, fine-tuning additional options.
+#burn 
+#15
+cp -r ${name}_shapeit ${name}_shapeit_burn_15
+export SHAPEIT_BURN=15
+impute_haplotypes ${name}_shapeit_burn_15
+#20
+cp -r ${name}_shapeit ${name}_shapeit_burn_20
+export SHAPEIT_BURN=20
+impute_haplotypes ${name}_shapeit_burn_20
+#25
+cp -r ${name}_shapeit ${name}_shapeit_burn_25
+export SHAPEIT_BURN=25
+impute_haplotypes ${name}_shapeit_burn_25
+#30
+cp -r ${name}_shapeit ${name}_shapeit_burn_30
+export SHAPEIT_BURN=30
+impute_haplotypes ${name}_shapeit_burn_30
+
+#states 
+export SHAPEIT_BURN=7
+#300
+cp -r ${name}_shapeit ${name}_shapeit_states_300
+export SHAPEIT_STATES=300
+impute_haplotypes ${name}_shapeit_states_300
+#375
+cp -r ${name}_shapeit ${name}_shapeit_states_375
+export SHAPEIT_STATES=375
+impute_haplotypes ${name}_shapeit_states_375
+#450
+cp -r ${name}_shapeit ${name}_shapeit_states_450
+export SHAPEIT_STATES=450
+impute_haplotypes ${name}_shapeit_states_450
+#525
+cp -r ${name}_shapeit ${name}_shapeit_states_525
+export SHAPEIT_STATES=525
+impute_haplotypes ${name}_shapeit_states_525
+
+export SHAPEIT_STATES=100
+#1.8
+cp -r ${name}_shapeit ${name}_shapeit_window_1_8
+export SHAPEIT_WINDOW=1.8
+impute_haplotypes ${name}_shapeit_window_1_8
+#1.5
+cp -r ${name}_shapeit ${name}_shapeit_window_1_5
+export SHAPEIT_WINDOW=1.5
+impute_haplotypes ${name}_shapeit_window_1_5
+#1.2
+cp -r ${name}_shapeit ${name}_shapeit_window_1_2
+export SHAPEIT_WINDOW=1.2
+impute_haplotypes ${name}_shapeit_window_1_2
+#0.9
+cp -r ${name}_shapeit ${name}_shapeit_window_0_9
+export SHAPEIT_WINDOW=0.9
+impute_haplotypes ${name}_shapeit_window_0_9
+
+#Test all the selected changed options combined, for state, window_size and burn.
+
