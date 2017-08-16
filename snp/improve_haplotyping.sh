@@ -10,7 +10,7 @@ export PATH=/home/vicker/git_repos/crosslink/bin:${PATH}
 source ${SCRIPT_PATH}/haplotyping_all_samples_funcs.sh
 export NODES="-N2,5,6,7,8,9,10"
 export MAXJOBS="-L30"
-script=/home/sobczm/bin/popgen/snp
+scripts=/home/sobczm/bin/popgen/snp
 name=rgxha_test_ms
 
 cd $datadir
@@ -72,7 +72,6 @@ done
 zcat popnordergrps/1A.csv.gz | head -n 1 > ${name}.csv 
 #Need to edit this to add the parents at the end of the line
 sed -i 's/$/,RG(168),HA(169)/' ${name}.csv 
-
 
 #Convert from .alt to .csv and overwrite the .csv files produced by conv_cl2affy3.py 
 for altfile in popnordergrps/*.alt
@@ -177,7 +176,7 @@ impute_haplotypes ${name}_shapeit_window_4
 #per line but the last 4 haplotypes (i.e. the parents)
 for hap in *_shapeit*/*.haps
 do
-cat $hap | rev | cut -c 10- | rev >${hap/haps/haps2}
+cat $hap | rev | cut -c 8- | rev >${hap/haps/haps2}
 done
 
 for locfile in popnordergrps/*.loc2
@@ -189,7 +188,7 @@ done
 #Compare haplotypes
 for hapfile in *_shapeit*/*.haps2
 do
-    lg=$(basename ${hapfile} .phased.haps)
-    conv_phased2AB.py  ${hapfile}  > ${name}_${lg}_imputed_AB         
-    compare_haplotypes.py ${name}_${lg}_imputed_AB ${name}_${lg}_orig_AB  > ${name}_${lg}_out
+    lg=$(basename ${hapfile} .phased.haps2)
+    conv_phased2AB.py  ${hapfile}  > ${hapfile/.phased.haps2/_imputed_AB}   
+    compare_haplotypes.py ${hapfile/.phased.haps2/_imputed_AB} ${name}_${lg}_orig_AB  > ${hapfile/.phased.haps2/_out}
 done
