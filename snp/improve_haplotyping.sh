@@ -302,5 +302,37 @@ cp -r ${name}_shapeit ${name}_shapeit_window_0_9
 export SHAPEIT_WINDOW=0.9
 impute_haplotypes ${name}_shapeit_window_0_9
 
+#Plot 
+Rscript --vanilla $scripts/plots_phasing.R burn_15 $datadir/rgxha_test_ms_shapeit $datadir/rgxha_test_ms_shapeit_burn_15
+Rscript --vanilla $scripts/plots_phasing.R burn_20 $datadir/rgxha_test_ms_shapeit $datadir/rgxha_test_ms_shapeit_burn_20
+Rscript --vanilla $scripts/plots_phasing.R burn_25 $datadir/rgxha_test_ms_shapeit $datadir/rgxha_test_ms_shapeit_burn_25
+Rscript --vanilla $scripts/plots_phasing.R burn_30 $datadir/rgxha_test_ms_shapeit $datadir/rgxha_test_ms_shapeit_burn_30
+
+Rscript --vanilla $scripts/plots_phasing.R states_300 $datadir/rgxha_test_ms_shapeit $datadir/rgxha_test_ms_shapeit_states_300
+Rscript --vanilla $scripts/plots_phasing.R states_375 $datadir/rgxha_test_ms_shapeit $datadir/rgxha_test_ms_shapeit_states_375
+Rscript --vanilla $scripts/plots_phasing.R states_450 $datadir/rgxha_test_ms_shapeit $datadir/rgxha_test_ms_shapeit_states_450
+Rscript --vanilla $scripts/plots_phasing.R states_525 $datadir/rgxha_test_ms_shapeit $datadir/rgxha_test_ms_shapeit_states_525
+
+Rscript --vanilla $scripts/plots_phasing.R window_1_8 $datadir/rgxha_test_ms_shapeit $datadir/rgxha_test_ms_shapeit_window_1_8
+Rscript --vanilla $scripts/plots_phasing.R window_1_5 $datadir/rgxha_test_ms_shapeit $datadir/rgxha_test_ms_shapeit_window_1_5
+Rscript --vanilla $scripts/plots_phasing.R window_1_2 $datadir/rgxha_test_ms_shapeit $datadir/rgxha_test_ms_shapeit_window_1_2
+Rscript --vanilla $scripts/plots_phasing.R window_0_9 $datadir/rgxha_test_ms_shapeit $datadir/rgxha_test_ms_shapeit_window_0_9
 #Test all the selected changed options combined, for state, window_size and burn.
+export SHAPEIT_BURN=30
+export SHAPEIT_STATES=500
+export SHAPEIT_WINDOW=1.5
+cp -r ${name}_shapeit ${name}_shapeit_combined_1
+impute_haplotypes ${name}_shapeit_combined_1
+
+cp -r ${name}_shapeit ${name}_shapeit_combined_1_rep1
+impute_haplotypes ${name}_shapeit_combined_1_rep1
+
+cp -r ${name}_shapeit ${name}_shapeit_combined_1_rep2
+impute_haplotypes ${name}_shapeit_combined_1_rep2
+
+#To convert map-based haplotypes to the IMPUTE2 format needed for reference panel option,
+#Use the orig_A_B file to get haplotypes and the shapeit input files to get other info
+Rscript --vanilla $scripts/plots_phasing.R combined_rep1 $datadir/rgxha_test_ms_shapeit $datadir/rgxha_test_ms_shapeit_combined_1
+Rscript --vanilla $scripts/plots_phasing.R combined_rep2 $datadir/rgxha_test_ms_shapeit $datadir/rgxha_test_ms_shapeit_combined_1_rep1
+Rscript --vanilla $scripts/plots_phasing.R combined_rep3 $datadir/rgxha_test_ms_shapeit $datadir/rgxha_test_ms_shapeit_combined_1_rep2
 
