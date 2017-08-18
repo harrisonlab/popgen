@@ -39,3 +39,23 @@ vcf=$(basename $vcf_file)
 intersectBed -wb -a $vcf_file -b $gff_file > ${gff_file}_${vcf%.vcf}_overlap
 done
 done
+
+#Do the same for Swissprot annotation
+cd $input/Maria/Swissprot 
+cat swissprot_v2015_tophit_parsed.tbl | cut -f1 >swissprot_transcript_list
+grep -f swissprot_transcript_list $input/Maria/all_genes/final_genes_appended.gff3  | awk '$3=="mRNA"' >swissprot_mrnas.gff
+
+for vcf_file in $input/Maria/vcf_files/Ash_farm_172_pacbio_contigs_unmasked_3_bw_filtered_fixed_gene.vcf $input/Maria/vcf_files/Ash_farm_172_pacbio_contigs_unmasked_3_bw_filtered_fixed_coding.vcf $input/Maria/vcf_files/Ash_farm_172_pacbio_contigs_unmasked_3_bw_filtered_fixed_nonsyn.vcf $input/Maria/vcf_files/Ash_farm_struc_variants_fixed.vcf  
+do
+for gff_file in swissprot_mrnas.gff
+do
+vcf=$(basename $vcf_file)
+intersectBed -wb -a $vcf_file -b $gff_file > ${gff_file}_${vcf%.vcf}_overlap
+done
+done
+
+#As a reference, for each file with overlaps in the swissprot directory, print a matching file listing trancript ids, swissprot hit species and swissprot hit gene function.
+for overlap_file in $input/Maria/swissprot/*overlap
+do
+python $scripts/other/tom_passey_filter_swissprot_annotations.py $overlap_file swissprot_v2015_tophit_parsed.tbl 
+done
