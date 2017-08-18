@@ -25,3 +25,17 @@ vcf=$(basename $vcf_file)
 intersectBed -wb -a $vcf_file -b $gff_file > ${gff_file}_${vcf%.vcf}_overlap
 done
 done 
+
+#In addition, get the transcript IDs of genes that have SSCP, and then filter the gene GFF file to output only those.
+cd $input/Maria/sscp
+cat 172_pacbio_sscp_headers.txt | cut -f1 >sscp_transcript_list
+grep -f sscp_transcript_list $input/Maria/all_genes/final_genes_appended.gff3  | awk '$3=="mRNA"' >sscp_mrnas.gff
+#Now, check for the overlap with fixed variants as for the other gene classes.
+for vcf_file in $input/Maria/vcf_files/Ash_farm_172_pacbio_contigs_unmasked_3_bw_filtered_fixed_gene.vcf $input/Maria/vcf_files/Ash_farm_172_pacbio_contigs_unmasked_3_bw_filtered_fixed_coding.vcf $input/Maria/vcf_files/Ash_farm_172_pacbio_contigs_unmasked_3_bw_filtered_fixed_nonsyn.vcf $input/Maria/vcf_files/Ash_farm_struc_variants_fixed.vcf  
+do
+for gff_file in sscp_mrnas.gff
+do
+vcf=$(basename $vcf_file)
+intersectBed -wb -a $vcf_file -b $gff_file > ${gff_file}_${vcf%.vcf}_overlap
+done
+done
