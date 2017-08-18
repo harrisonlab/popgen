@@ -21,3 +21,5 @@
 
 ### Testing shapeit settings to improve haplotyping
 [improve_haplotyping.sh](https://github.com/harrisonlab/popgen/blob/master/snp/improve_haplotyping.sh)
+### Testing shapeit settings to improve haplotyping 2
+[improve_haplotyping2.sh](https://github.com/harrisonlab/popgen/blob/master/snp/improve_haplotyping2.sh)

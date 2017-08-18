@@ -330,9 +330,30 @@ impute_haplotypes ${name}_shapeit_combined_1_rep1
 cp -r ${name}_shapeit ${name}_shapeit_combined_1_rep2
 impute_haplotypes ${name}_shapeit_combined_1_rep2
 
-#To convert map-based haplotypes to the IMPUTE2 format needed for reference panel option,
-#Use the orig_A_B file to get haplotypes and the shapeit input files to get other info
 Rscript --vanilla $scripts/plots_phasing.R combined_rep1 $datadir/rgxha_test_ms_shapeit $datadir/rgxha_test_ms_shapeit_combined_1
 Rscript --vanilla $scripts/plots_phasing.R combined_rep2 $datadir/rgxha_test_ms_shapeit $datadir/rgxha_test_ms_shapeit_combined_1_rep1
 Rscript --vanilla $scripts/plots_phasing.R combined_rep3 $datadir/rgxha_test_ms_shapeit $datadir/rgxha_test_ms_shapeit_combined_1_rep2
 
+#To convert map-based haplotypes to the IMPUTE2 format needed for reference panel option,
+#Use the orig_A_B file to get haplotypes and the shapeit input files to get other info.
+for number in 1 2 3 4 5 6 7
+do
+for subgenome in A B C D 
+do
+python $scripts/convert_to_impute2.py $datadir/rgxha_test_ms_${number}${subgenome}_orig_AB $datadir/rgxha_test_ms_shapeit/${number}${subgenome}.pmap
+done
+done
+
+#Phase using already phased data based on linkage map.
+cp -r ${name}_shapeit ${name}_shapeit_reference
+impute_haplotypes2 ${name}_shapeit_reference
+
+#And combined that with best setting complement
+cp -r ${name}_shapeit ${name}_shapeit_reference_combined
+export SHAPEIT_BURN=30
+export SHAPEIT_STATES=500
+export SHAPEIT_WINDOW=1.5
+impute_haplotypes2 ${name}_shapeit_reference_combined
+
+Rscript --vanilla $scripts/plots_phasing.R reference_panel $datadir/rgxha_test_ms_shapeit $datadir/${name}_shapeit_reference
+Rscript --vanilla $scripts/plots_phasing.R reference_panel_combined $datadir/rgxha_test_ms_shapeit $datadir/${name}_shapeit_reference_combined
