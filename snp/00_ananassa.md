@@ -23,3 +23,7 @@
 [improve_haplotyping.sh](https://github.com/harrisonlab/popgen/blob/master/snp/improve_haplotyping.sh)
 ### Testing shapeit settings to improve haplotyping 2
 [improve_haplotyping2.sh](https://github.com/harrisonlab/popgen/blob/master/snp/improve_haplotyping2.sh)
+### Testing shapeit settings to improve haplotyping based on vcf input.
+[improve_haplotyping3.sh](https://github.com/harrisonlab/popgen/blob/master/snp/improve_haplotyping3.sh)
+### Testing shapeit settings to improve haplotyping based on vcf input.
+[improve_haplotyping4.sh](https://github.com/harrisonlab/popgen/blob/master/snp/improve_haplotyping4.sh)
