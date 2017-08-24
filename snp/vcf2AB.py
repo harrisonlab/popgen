@@ -2,38 +2,43 @@
 
 #
 # convert shapeit phased VCF file into crosslink-style phased loc file
-# to enable haplotyping accuracy to be determined. No missing data allowed. Split by chromosome (assumes sorted file).
+# to enable haplotyping accuracy to be determined. No missing data allowed. 
+# Use the corresponding pmap file for a given chromosome to filter variants.
 #
 
 import sys
 
-vcffile = sys.argv[1]  #shapedit phased hap file
+vcffile = sys.argv[1]  #vcf file split by chrom
+chrom = sys.argv[2]  #chrom name
 
-def convert(haplos):
+def convert(ref, alt, haplos):
     if haplos == "0":
-        return 'A'
+        return ref
     elif haplos == "1":
-        return 'B'
+        return alt
+
+pmap = open(chrom + ".pmap")
+snp_ids = list()
+for line in pmap:
+    lines = line.split()
+    snp_ids.append(lines[1])
 
 f = open(vcffile)
-open_fh = dict()
+of = open(chrom + "_original_vcf", 'w')
 for line in f:
     if line.startswith("#"):
         pass
     else:
         gen_array = list()
         fields = line.split()
-        chrom = fields[0]
         uid = fields[2]
-        for idx in fields[9:]:
-            haplo = idx.split("|")
-            gen_array.extend(haplo)
-        codes = [convert(x) for x in gen_array]
-        if chrom not in open_fh:
-            filename = chrom + "_original_vcf"
-            open_fh[chrom] = open(filename, 'w')
-        else:
-            open_fh[chrom].write(uid + ' ' +  ' '.join(codes) + "\n")
+        if uid in snp_ids:
+            alt = fields[3]
+            ref = fields[4]
+            for idx in fields[9:]:
+                haplo = idx.split("|")
+                gen_array.extend(haplo)
+            codes = [convert(ref, alt, x) for x in gen_array]
+            of.write(uid + ' ' +  ' '.join(codes) + "\n")
 f.close()
-for ff in open_fh.values():
-    ff.close()
+of.close()

@@ -1,6 +1,7 @@
 #!/usr/bin/python
 import sys
 import re
+import gzip
 from sys import argv
 from collections import defaultdict as dd
 #First argument: Rob's VCF file to be converted into ped file (only containing markes from a single). 
@@ -66,9 +67,9 @@ def print_output(vcf_data, vcf_alleles, snps):
            hap_file.write("\n")
 snps = read_in_pmap(pmapfile)        
 vcf_handling(vcffile)
-legend_file = open(pmapfile[:-5] + ".legend", 'w')
+legend_file = gzip.open(pmapfile[:-5] + ".legend.gz", 'w')
 sample_file = open(pmapfile[:-5] + ".sample", 'w')
-hap_file = open(pmapfile[:-5] + ".hap", 'w')
+hap_file = gzip.open(pmapfile[:-5] + ".hap.gz", 'w')
 print_output(vcf_data, vcf_alleles, snps)
 legend_file.close()
 sample_file.close()

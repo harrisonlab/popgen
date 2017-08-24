@@ -14,11 +14,11 @@ inpfile = sys.argv[1]
 #convert to integer
 
 f = open(inpfile)
-f.readline() #skip header
+#f.readline() #skip header
 print 'pposition rrate gposition'
 for i,line in enumerate(f):
     tok = line.strip().split()
     cm = float(tok[2])
     bp = int(tok[3])
-    print bp,3.125,cm
+    print bp,3.333,cm
 f.close()

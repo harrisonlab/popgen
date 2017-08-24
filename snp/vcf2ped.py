@@ -42,6 +42,7 @@ def save_snp_diploid(snp_id, ref, alt, indiv, f):
         vcf_data[indiv][snp_id] = geno
           
 inds = []
+marker_names = []
 def vcf_handling(vcf_file):
     vcf_h = open(vcf_file)
     for line in vcf_h:
@@ -54,6 +55,7 @@ def vcf_handling(vcf_file):
                 inds.append(f)
         else:
             fields = line.split()
+            marker_names.append(fields[2])
             #Iterate over individual genotypes
             for idx, f in enumerate(fields[9:]):
             #Cross-reference to individuals
@@ -70,11 +72,36 @@ def print_ped(vcf_data, snps):
             if snp in vcf_data[ind]:
                 ped_file.write(" ".join(vcf_data[ind][snp]) + " ")
             else:
-                ped_file.write("0 0 ")
+                pass
         ped_file.write("\n")
+
+def print_pmap2_rec2(pmapfile, vcf_data):
+    #Print only variants from the pmap and rec files which are present in the VCF file.
+    #Output as pmap2 and rec2.
+    marker_pos = list()
+    pmap_file2 = open(pmapfile[:-5] + ".pmap2", 'w')
+    with open (pmapfile) as p_h:
+        for line in p_h:
+            lines = line.split()
+            if lines[1] in marker_names:
+                pmap_file2.write(line)
+                marker_pos.append(lines[3])
+    pmap_file2.close()
+    #Now print rec2 file with matching positions.
+    rec_file2 = open(pmapfile[:-5] + ".rec2", 'w')
+    rec_file2.write("pposition rrate gposition\n")
+    recfile = pmapfile[:-5] + ".rec"
+    with open (recfile) as r_h:
+        for line in r_h:
+            lines = line.split()
+            if lines[0] in marker_pos:
+                rec_file2.write(line)
+    rec_file2.close()
+
 snps = read_in_pmap(pmapfile)        
 vcf_handling(vcffile)
 ped_file = open(pmapfile[:-5] + ".ped", 'w')
 print_ped(vcf_data, snps)
 ped_file.close()
+print_pmap2_rec2(pmapfile, vcf_data)
 
