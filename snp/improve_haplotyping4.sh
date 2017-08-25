@@ -117,7 +117,7 @@ done
 #Convert B to Cs in the legend file.
 for leg in $datadir/rgxha_test_ms_shapeit_rgxha_impute2/*.legend
 do
-sed -i 's/B/C/g'
+sed -i 's/B/C/g' $leg
 done
 
 for number in 1 2 3 4 5 6 7
