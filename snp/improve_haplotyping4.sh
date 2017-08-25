@@ -26,14 +26,6 @@ do
 python $scripts/vcf2ped.py rgxha_vcf_test_withcoords.${number}${subgenome}.vcf ${number}${subgenome}.pmap random
 done
 done
-#Convert VCF to Impute2 ref panel format.
-for number in 1 2 3 4 5 6 7
-do
-for subgenome in A B C D 
-do
-python $scripts/vcf2haps.py rgxha_vcf_test_withcoords.${number}${subgenome}.vcf ${number}${subgenome}.pmap rgxha
-done 
-done
 rm *pmap *rec
 #Substitute rec2 for rec and pmap2 for pmap.
 for r in $datadir/rgxha_vcf/*.rec2 
@@ -52,6 +44,15 @@ for subgenome in A B C D
 do
 python $scripts/vcf2AB.py rgxha_vcf_test_withcoords.$number$subgenome.vcf $number$subgenome
 done
+done
+
+#Convert VCF to Impute2 ref panel format.
+for number in 1 2 3 4 5 6 7
+do
+for subgenome in A B C D 
+do
+python $scripts/vcf2haps.py rgxha_vcf_test_withcoords.${number}${subgenome}.vcf ${number}${subgenome}.pmap rgxha
+done 
 done
 
 cp -r $datadir/rgxha_vcf $datadir/rgxha_vcf_phasing
@@ -86,3 +87,43 @@ done
 
 Rscript --vanilla $scripts/plots_phasing.R RGxHA_vcf $datadir/rgxha_test_ms_shapeit $datadir/rgxha_vcf_phasing
 Rscript --vanilla $scripts/plots_phasing.R RGxHA_vcf_with_ref $datadir/rgxha_test_ms_shapeit $datadir/rgxha_vcf_phasing_with_ref
+
+#Use bcftools to convert from VCF to Impute2.
+#bcftools=/home/sobczm/bin/bcftools-1.5/bin/bcftools
+#$bcftools convert --gensample bcf rgxha_vcf_test_withcoords.1A.vcf
+
+#Confirm that the VCF file and converted hapfiles do match.
+cd $datadir/rgxha_vcf_phasing_with_ref_test
+for number in 1 2 3 4 5 6 7
+do
+for subgenome in A B C D 
+do
+python $scripts/compare_impute2vcf.py rgxha_vcf_test_withcoords.${number}${subgenome}.vcf ${number}${subgenome}.hap
+done 
+done
+
+#Confirm that the VCF file and the previously converted (and definietely working) hapfiles do match.
+#Generate the Impute2 files with the matching sample names.
+cp -r $datadir/rgxha_test_ms_shapeit $datadir/rgxha_test_ms_shapeit_rgxha_impute2
+list_inds=/home/vicker/octoploid_mapping/consensus_map4/popn_RGxHA/map/conf/popn_order
+for number in 1 2 3 4 5 6 7
+do
+for subgenome in A B C D 
+do
+python $scripts/convert_to_impute2_general.py $datadir/rgxha_test_ms_${number}${subgenome}_orig_AB $datadir/rgxha_test_ms_shapeit_rgxha_impute2/${number}${subgenome}.pmap $list_inds rgxha
+done
+done
+
+#Convert B to Cs in the legend file.
+for leg in $datadir/rgxha_test_ms_shapeit_rgxha_impute2/*.legend
+do
+sed -i 's/B/C/g'
+done
+
+for number in 1 2 3 4 5 6 7
+do
+for subgenome in A B C D 
+do
+python $scripts/compare_impute2vcf.py $datadir/rgxha_vcf_phasing_with_ref_test/rgxha_vcf_test_withcoords.${number}${subgenome}.vcf $datadir/rgxha_test_ms_shapeit_rgxha_impute2/${number}${subgenome}.hap
+done 
+done

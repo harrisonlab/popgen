@@ -58,7 +58,7 @@ def print_output(vcf_data, vcf_alleles, snps):
     #print SAMPLE
     sample_file.write("sample population group sex\n")
     for i in inds:
-        sample_file.write(i + " " + pop_name + " " + "ananassa" + " " + "1" + "\n")
+        sample_file.write(i + "_phased" + " " + pop_name + " " + "ananassa" + " " + "1" + "\n")
     #print HAP
     for snp in keyl: 
        if snp in vcf_data:

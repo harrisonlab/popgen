@@ -63,7 +63,7 @@ with open(list_of_inds) as fh_list_of_inds:
 out_sub3 = r"\1.sample"
 out_sample = re.sub(bare, out_sub3, pmap_file)
 sample_out = open(out_sample, 'w')
-#Create fake ids etc.ab_file
+#Create fake ids etc.
 sample_out.write("sample population group sex\n")
 for z in inds_ids:
     sample_out.write(z + " " + pop_name + " " + "ananassa" + " " + "1" + "\n")
