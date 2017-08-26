@@ -20,13 +20,19 @@ all_data = dd(lambda: dd(str))
 for table in rbb_tables:
     t = open(table)
     out_m = open(table.replace(".tophits", ".match"),'w')
+    out_n = open(table.replace(".tophits", ".nonmatch"),'w')
     for line in t:
         lines = line.split()
         #Check if the line matches the gene of interest - if so output
         if lines[0] in goilst:
             out_m.write(line)
-            all_data[t][lines[0]] = line
+            all_data[table][lines[0]] = line
+    seen_ef = all_data[t].keys()
+    for g in goilst:
+        if g not in seen_ef:
+            out_n.write(g+"\n")
     out_m.close()
+    out_n.close()
 
 #Print out lines where gene of interest present across ALL tables or none of them.
 target = len(rbb_tables)
