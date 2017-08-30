@@ -16,11 +16,13 @@ def convert(ref, alt, haplos):
         return ref
     elif haplos == "1":
         return alt
+    else:
+        return -1
 
 pmap = open(chrom + ".pmap")
 snp_ids = list()
 for line in pmap:
-    lines = line.split()
+    lines = line.strip().split() 
     snp_ids.append(lines[1])
 
 f = open(vcffile)
@@ -30,11 +32,11 @@ for line in f:
         pass
     else:
         gen_array = list()
-        fields = line.split()
+        fields = line.strip().split() 
         uid = fields[2]
         if uid in snp_ids:
-            alt = fields[3]
-            ref = fields[4]
+            ref = fields[3]
+            alt = fields[4]
             for idx in fields[9:]:
                 haplo = idx.split("|")
                 gen_array.extend(haplo)

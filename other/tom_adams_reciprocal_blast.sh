@@ -52,7 +52,7 @@ python $scripts/rbb.py Bc16_genes_incl_ORFeffectors.gene.fasta_vs_${Strain}_gene
 done
 
 #Fish out only RLXLR RBB hits
-my_lits=""
+my_list=""
 for Strain in Bc1 Nov27 Nov5 Nov71 Nov9
 do
 my_list+=" Bc16_vs_${Strain}.tophits"

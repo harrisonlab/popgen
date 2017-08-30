@@ -93,7 +93,7 @@ vcf-concat ${name}_monoordered.vcf ${name}_nocoords.vcf > ${name}_all_nocoords.v
 
 #add map positions
 specify_snp_coords.py ${name}_all_nocoords.vcf ${mapfile} > ${name}_all_withcoords.vcf
-
+specify_snp_coords.py ${name}_nocoords.vcf ${mapfile} > ${name}_withcoords.vcf
 #For FLxCH
 cd $datadir
 mkdir flxch_vcf

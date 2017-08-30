@@ -27,7 +27,7 @@ for table in rbb_tables:
         if lines[0] in goilst:
             out_m.write(line)
             all_data[table][lines[0]] = line
-    seen_ef = all_data[t].keys()
+    seen_ef = all_data[table].keys()
     for g in goilst:
         if g not in seen_ef:
             out_n.write(g+"\n")
@@ -41,8 +41,8 @@ print_none = []
 for gene in goilst:
     counter_all = 0
     counter_none = 0
-    for t in all_data:
-        if gene in all_data[t]:
+    for table in all_data:
+        if gene in all_data[table]:
             counter_all += 1
         else:
             counter_none += 1
@@ -50,6 +50,10 @@ for gene in goilst:
         print_all.append(gene)
     elif counter_none == target:
         print_none.append(gene)
+    else:
+        pass
+
+#print print_all
 
 def print_lines(my_genes, my_data, my_tables, my_suffix):
     for t in my_tables:

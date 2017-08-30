@@ -133,7 +133,7 @@ done
 cp -r $datadir/rgxha_vcf $datadir/rgxha_vcf_rob_impute2
 cd $datadir/rgxha_vcf_rob_impute2
 #Remove old impute2 files
-rm *.hap* rm *.legend* rm *.sample
+rm *.hap* *.legend* *.sample
 for number in 1 2 3 4 5 6 7
 do
 for subgenome in A B C D 

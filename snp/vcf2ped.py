@@ -65,7 +65,7 @@ def vcf_handling(vcf_file):
 
 def print_ped(vcf_data, snps):
     #Go by individual
-    for ind in vcf_data.keys():
+    for ind in inds:
         ped_file.write("fam" + " " + ind + " 0 0 1 0 ")
         #Iterate over genotypes
         for snp in snps:
