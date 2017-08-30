@@ -127,3 +127,39 @@ do
 python $scripts/compare_impute2vcf.py $datadir/rgxha_vcf_phasing_with_ref_test/rgxha_vcf_test_withcoords.${number}${subgenome}.vcf $datadir/rgxha_test_ms_shapeit_rgxha_impute2/${number}${subgenome}.hap
 done 
 done
+
+
+#Generate Impute2 input using Rob's script and check if it improves phasing
+cp -r $datadir/rgxha_vcf $datadir/rgxha_vcf_rob_impute2
+cd $datadir/rgxha_vcf_rob_impute2
+#Remove old impute2 files
+rm *.hap* rm *.legend* rm *.sample
+for number in 1 2 3 4 5 6 7
+do
+for subgenome in A B C D 
+do
+vcf2impute2fmt.py rgxha_vcf_test_withcoords.${number}${subgenome}.vcf ${number}${subgenome}
+done 
+done
+
+#Gunzip legend and hap files.
+for f in *.legend *.hap; do gzip $f; done
+
+#Phase
+cd ..
+export SHAPEIT_EFF_POPN_SIZE=1000
+export SHAPEIT_SEED=${RANDOM}${RANDOM}
+export SHAPEIT_PRUNE=8
+export SHAPEIT_BURN=30
+export SHAPEIT_MAIN=20
+export SHAPEIT_STATES=500
+export SHAPEIT_WINDOW=1.5
+#Phase without reference panels - default settings
+impute_haplotypes2 rgxha_vcf_rob_impute2
+for hapfile in $datadir/rgxha_vcf_rob_impute2/*.haps
+do
+    lg=$(basename ${hapfile} .phased.haps)
+    conv_phased2AB.py  ${hapfile}  > ${hapfile/.phased.haps/_imputed_AB}   
+    compare_haplotypes.py ${hapfile/.phased.haps/_imputed_AB} $datadir/rgxha_vcf_rob_impute2/${lg}_original_vcf  > ${hapfile/.phased.haps/_out}
+done
+Rscript --vanilla $scripts/plots_phasing.R RGxHA_vcf_rob_impute2 $datadir/rgxha_test_ms_shapeit $datadir/rgxha_vcf_rob_impute2
