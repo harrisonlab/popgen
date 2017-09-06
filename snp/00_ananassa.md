@@ -29,3 +29,6 @@
 [improve_haplotyping4.sh](https://github.com/harrisonlab/popgen/blob/master/snp/improve_haplotyping4.sh)
 ### Testing shapeit settings to improve haplotyping based on vcf input. Testing using haplotypes from another population to improve phasing.
 [improve_haplotyping5.sh](https://github.com/harrisonlab/popgen/blob/master/snp/improve_haplotyping5.sh)
+
+### Extended analysis of individual genotypes 2, following fixing of mislabelled samples.
+[analyse_snp_chip_genotypes2.sh](https://github.com/harrisonlab/popgen/blob/master/snp/analyse_snp_chip_genotypes2.sh)
