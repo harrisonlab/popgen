@@ -57,7 +57,9 @@ def read_vcf_filter_sites():
                 #Cross-reference to individuals
                     f_a = f.split(":")
                     #Check there is a non-reference allele somewhere:
-                    if digits.match(f_a[0]):
+                    if re.search('1', f_a[0]):
+                        keep = 1
+                    elif re.search('2', f_a[0]):
                         keep = 1
                 if keep == 1:
                     vcf_out.write(str(line))
