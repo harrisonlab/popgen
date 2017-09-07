@@ -95,6 +95,7 @@ Call different types of structural variants with Lumpy Express ([sub_lumpy.sh](h
 
 ##Summary stats 
 ###Scripts for functional annotation of SNPs, and calculation of general population genetics parameters (Fst, nuclotide diversity, Tajima's D) which can be informative about demographic and selection processes operating on a given gene(s) in tested populations. Methods to detect variant outliers useful for zeroing in on potentially adaptive loci. Analyses available include both haplotype- and nucleotide- based.
+ 
  **Model analysis file:** [fus_variant_annotation.sh](https://github.com/harrisonlab/popgen/blob/master/summary_stats/fus_variant_annotation.sh)
 
 1. Create VCF file subsets only with certain individuals retained for downstream analysis with `/home/sobczm/bin/vcflib/bin/vcfremovesamples` and remove monomorphic (idential) positions in the output with `/home/sobczm/bin/vcftools/bin/vcftools`
