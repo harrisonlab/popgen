@@ -1,6 +1,6 @@
 ## Index to "popgen" analyses available to use
 ### ** Please make sure that the program you are trying to use has its dependencies in the PATH. See: **
-###https://github.com/harrisonlab/popgen/blob/master/programs.md **Top section for R packages and standalone programs set-up**
+### https://github.com/harrisonlab/popgen/blob/master/programs.md **Top section for R packages and standalone programs set-up**
 My current bash profile
 `/home/sobczm/bin/marias_profile`
 
@@ -15,8 +15,8 @@ https://www.dropbox.com/sh/h2urr4fcp5ivu2x/AAC1RsB4X0vSxADrgOF065IBa?dl=0
 4. Clock
 5. Codon
 
-###*Each directory contains a README.md file listing shell scripts which contain a model (example) analysis using scripts in a given directory.
-###*Read the header of each individual script you are trying to exectute to find out about the options, input and output file.
+### *Each directory contains a README.md file listing shell scripts which contain a model (example) analysis using scripts in a given directory.
+### *Read the header of each individual script you are trying to exectute to find out about the options, input and output file.
 
 *What is in each directory? Only listing re-usable analyses*
 
@@ -26,8 +26,8 @@ https://www.dropbox.com/sh/h2urr4fcp5ivu2x/AAC1RsB4X0vSxADrgOF065IBa?dl=0
 4. **Clock:** De novo motif discovery and motif scanning. Orthology analysis and automated generation of ortholog trees. Pairwise, branch-site and branch dN/dS codeml models.
 5. **Codon:** Analysis of gene codon usage and gene duplication levels.
 
-##Phylogenetics
-###Scripts to make a Bayesian phylogenetic tree based on gene sequences.
+## Phylogenetics
+### Scripts to make a Bayesian phylogenetic tree based on gene sequences.
 **Model analysis file:** [BUSCO_analysis.sh](https://github.com/harrisonlab/popgen/blob/master/phylogenetics/BUSCO_analysis.sh)
 
 [sub_BUSCO2.sh](https://github.com/harrisonlab/popgen/blob/master/phylogenetics/sub_BUSCO2.sh) 
@@ -50,11 +50,10 @@ phylogenetic tree (see the model analysis file for a example of an analysis)
 **Model analysis file:** [BEAST_run.sh](https://github.com/harrisonlab/popgen/blob/master/phylogenetics/BEAST_run.sh)
 The BEAST analysis has to be so far set-up by hand. A guide to do so and obtain a final tree is given in the model analysis file above.
 
-##SNP
-###Scripts to call SNPs on multiple individuals using a single genome/transcriptome reference, filter (and downsample) them, and establish the basic population structure. Also, call structural variants.
+## SNP
+### Scripts to call SNPs on multiple individuals using a single genome/transcriptome reference, filter (and downsample) them, and establish the basic population structure. Also, call structural variants.
 
 **Model analysis file:** [pre_SNP_calling_cleanup.sh](https://github.com/harrisonlab/popgen/blob/master/snp/pre_SNP_calling_cleanup.sh)
-
 [sub_pre_snp_calling.sh](https://github.com/harrisonlab/popgen/blob/master/snp/sub_pre_snp_calling.sh)
 Script accepts SAM mappings output by Bowtie2 along with sample ID, and outputs filtered, indexed and ID-tagged BAM files to be used for variant calling
 
@@ -91,10 +90,8 @@ Run the STRUCTURE analysis to test for thelikely number of population clusters (
 **Model analysis file:** [structural_variants.sh](https://github.com/harrisonlab/popgen/blob/master/snp/structural_variants.sh)
 Call different types of structural variants with Lumpy Express ([sub_lumpy.sh](https://github.com/harrisonlab/popgen/blob/master/snp/sub_lumpy.sh)), based on atypical bwa-mem Illumina short-read alignments ([sub_bwa_mem.sh](https://github.com/harrisonlab/popgen/blob/master/snp/sub_bwa_mem.sh)). Followed by genotype calling with SVTyper. Will detect: insertions, deletions, duplications, tandem duplications, copy number variable regions, inversions.
 
-
-
-##Summary stats 
-###Scripts for functional annotation of SNPs, and calculation of general population genetics parameters (Fst, nuclotide diversity, Tajima's D) which can be informative about demographic and selection processes operating on a given gene(s) in tested populations. Methods to detect variant outliers useful for zeroing in on potentially adaptive loci. Analyses available include both haplotype- and nucleotide- based.
+## Summary stats 
+### Scripts for functional annotation of SNPs, and calculation of general population genetics parameters (Fst, nuclotide diversity, Tajima's D) which can be informative about demographic and selection processes operating on a given gene(s) in tested populations. Methods to detect variant outliers useful for zeroing in on potentially adaptive loci. Analyses available include both haplotype- and nucleotide- based.
  
  **Model analysis file:** [fus_variant_annotation.sh](https://github.com/harrisonlab/popgen/blob/master/summary_stats/fus_variant_annotation.sh)
 
@@ -108,7 +105,7 @@ First, build genome database with [build_genome_database.sh](https://github.com/
 **Model analysis file:** [establish_variant_differences.sh](https://github.com/harrisonlab/popgen/blob/master/summary_stats/establish_variant_differences.sh)
 Assumption-free scan for varaints showing high allele frequency differences between populations with [vcf_find_difference_pop.py](https://github.com/harrisonlab/popgen/blob/master/summary_stats/vcf_find_difference_pop.py)
 
-**Model analysis file:** [bayescan_outliers.sh] (https://github.com/harrisonlab/popgen/blob/master/summary_stats/bayescan_outliers.sh)
+**Model analysis file:** [bayescan_outliers.sh](https://github.com/harrisonlab/popgen/blob/master/summary_stats/bayescan_outliers.sh)
 Bayesian multinomial-Dirichlet model based on Fst values in
 [sub_bayescan.sh](https://github.com/harrisonlab/popgen/blob/master/summary_stats/sub_bayescan.sh)
 
@@ -144,13 +141,12 @@ B) whole-genome alignment of our focal species genome and 1-2 outgroups with pro
 
 2. Two scripts to carry out the McDonald-Kreitman test and calculate Fay & Wu's H in Popgenome. The submitted R scripts themselves require customisation for each analysis regarding sample names and their population assingment: [sub_calculate_mkt.sh](https://github.com/harrisonlab/popgen/blob/master/summary_stats/sub_calculate_mkt.sh), [sub_calculate_faywu.sh](https://github.com/harrisonlab/popgen/blob/master/summary_stats/sub_calculate_faywu.sh)
 
-
 **Model analysis file:** [fus_linkage_disequilibrum.sh](https://github.com/harrisonlab/popgen/blob/master/summary_stats/fus_linkage_disequilibrium.sh)
 Use `/home/sobczm/bin/vcftools/bin/vcftools` to calculate D, D' and r2 for SNPs seperated by a specific range of intervals to estimate recombination rates and subsequently visualise the results (D' and r2 versus physical distance, histogram of D' values) using [sub_plot_ld.sh](https://github.com/harrisonlab/popgen/blob/master/summary_stats/sub_plot_ld.sh). Using [sub_ld_plot.sh](https://github.com/harrisonlab/popgen/blob/master/summary_stats/sub_ld_plot.sh) can also visualise the r2 values between individual SNP pairs in a heatmap LD plot. 
 For diploid organisms, the genotypes in the input VCF file have to be phased prior to the start of the analysis using [sub_beagle.sh](https://github.com/harrisonlab/popgen/blob/master/snp/sub_beagle.sh)
 
 
-##Clock
+## Clock
 ### Scripts for gene orthology assignemnt and construction of orthogroup trees; motif scanning, motif discovery and motif enrichment analyses; tests for selection based on dN/ds (nonsynonymous/synonymous) substitution rates across gene coding sequences in different species: pairwise, branch-site, branch models. 
 **Model analysis file:** [clock_ortho.sh](https://github.com/harrisonlab/popgen/blob/master/clock/motif_discovery/clock_ortho.sh)
 [run_orthofinder.sh](https://github.com/harrisonlab/popgen/blob/master/clock/motif_discovery/run_orthofinder.sh)
@@ -177,7 +173,7 @@ Remove any stop codons hanging off the end of CDS sequences to be used in the an
 May want to run [check_proper_cds.py](https://github.com/harrisonlab/popgen/blob/master/codon/check_proper_cds.py) first to also identify any unexpected in-frame stop codons.
 [transalign.sh](https://github.com/harrisonlab/popgen/blob/master/clock/dn_ds/transalign.sh) Align the nucleotide CDS sequences in the codon aware manner and generate gene trees based on their protein alignment.
 
-##Codon
+## Codon
 ### Analysis of codon usage and quantification of codon usage bias in a genome, and genome-wide analysis of gene duplication distribution.
 
 [codonw.sh](https://github.com/harrisonlab/popgen/blob/master/codon/codonw.sh) The basic script which accepts CDS sequences from a given genome and calculates the various metrics of codon usage and bias with the codonw program. The output can be analysed in R, for example see: [codonw_analysis.R](https://github.com/harrisonlab/popgen/blob/master/codon/codonw_analysis.R)
@@ -186,13 +182,13 @@ May want to run [check_proper_cds.py](https://github.com/harrisonlab/popgen/blob
 
 In order to carry out genome duplication analysis, first generate the Blast database of CDS nucleotide sequences, then carry out the self-on-self blastn with [sub_self_blast.sh](https://github.com/harrisonlab/popgen/blob/master/codon/sub_self_blast.sh). Filter the Blast output using [filter_blast.py](https://github.com/harrisonlab/popgen/blob/master/codon/filter_blast.py). Generate dagchainer input with [blast_to_dagchainer.py](https://github.com/harrisonlab/popgen/blob/master/codon/blast_to_dagchainer.py) and parse the genome GFF annotation file with [cds_to_chromosome_coords.py](https://github.com/harrisonlab/popgen/blob/master/codon/cds_to_chromosome_coords.py). Run the dagchainer script found in `/home/sobczm/bin/DAGCHAINER/run_DAG_chainer.pl` and summarize, plot the cleaned up output with [detect_duplications.py](https://github.com/harrisonlab/popgen/blob/master/codon/detect_duplications.py). 
 
-##Nanopore sequencing
+## Nanopore sequencing
 
 [poretools.sh](https://github.com/harrisonlab/popgen/blob/master/other/poretools.sh) MinION run stats, and conversion from FAST5 to FASTQ and FASTA.
 
 [nanook.sh](https://github.com/harrisonlab/popgen/blob/master/other/nanook.sh) Align minION nanopore reads to a reference assembly using marginalign aligner, and generate alignment and sequencing report with nanoOK.
 
-##Miscellaneous 
+## Miscellaneous 
 
 * Reverse complement a DNA sequence. `/home/armita/prog/emboss/EMBOSS-4.0.0/bin/revseq <INPUT> <OUTPUT>`
 * Unwrap all the sequnces in the FASTA file so that they span only 1 line ` awk '!/^>/ { printf "%s", $0; n = "\n" } /^>/ { print n $0; n = "" } END { printf "%s", n }' <INPUT> >temp && mv temp <INPUT>`
