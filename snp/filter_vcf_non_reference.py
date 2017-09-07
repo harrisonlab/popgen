@@ -20,9 +20,6 @@ if args.e:
             lines = line.strip().split()
             target = "\t".join(lines[0:2])
             to_remove[target] = 1
-#Regex for genotype match:
-digits = re.compile('1|2')
-
 def read_vcf():
     vcf_h = open(vcf_file)
     for line in vcf_h:
@@ -35,7 +32,9 @@ def read_vcf():
                 #Cross-reference to individuals
                     f_a = f.split(":")
                     #Check there is a non-refernce allele somewhere:
-                    if digits.match(f_a[0]):
+                    if re.search('1', f_a[0]):
+                        keep = 1
+                    elif re.search('2', f_a[0]):
                         keep = 1
             if keep == 1:
                 vcf_out.write(str(line))

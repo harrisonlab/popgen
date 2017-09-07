@@ -2,7 +2,6 @@
 import sys
 import re
 from sys import argv
-from collections import defaultdict as dd
 from collections import OrderedDict as odd
 #Add sample id to the master strawberry table. Only perfect case-blind matches accepted. 
 script, crown_rot_tb, samples_tb = argv
