@@ -19,7 +19,7 @@ for a in Fragaria_vesca_v1.1.a2_proteins.fasta
 do
 b=$( echo $a | sed -e 's/.fasta/\_nostop.fasta/' )
 sed 's/\*//g' $a > $b
-qsub /home/sobczm/bin/popgen/renseq//sub_interproscan.sh $b
+qsub /home/sobczm/bin/popgen/renseq/sub_interproscan.sh $b
 done
 
 #CDS lengths to use for FPKM calculations
