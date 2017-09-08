@@ -16,3 +16,7 @@ python $scripts/match_up_crown_rot_ids.py crown_rot_data.txt all_clones.txt all_
 #Add sample id to the master strawberry table. Only perfect case-blind matches accepted. 
 python $scripts/add_sample_id.py master_strawberry_spreadsheet.txt all_samples.txt  >master_strawberry_spreadsheet_sample_id.txt
 python $scripts/add_sample_id.py just_sample_names_spreadsheet.txt all_samples.txt  >just_sample_names_spreadsheet_sample_id.txt
+
+#Final referencing the accession DB sample ids in the old version of the strawberry
+#Master Worksheet with the new version.
+python $scripts/cross_check_ref_tables.py strawberry_worksheet_maria.txt strawberry_latest.txt >strawberry_samples_include.txt
