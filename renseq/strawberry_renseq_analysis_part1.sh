@@ -26,3 +26,14 @@ python $scripts/filter_by_two_columns.py ${sample}_vesca_v1.1_nblrrs_augustus_cd
 python $scripts/filter_by_two_columns.py ${sample}_vesca_v1.1_nblrrs_augustus_cds_rbb ${sample}.fasta_vs_vesca_v1.1_nblrrs_augustus_cds_nucl.db_5utr > ${sample}.fasta_vs_vesca_v1.1_nblrrs_augustus_cds_nucl.db_5utr_rbb_filt 
 python $scripts/filter_by_two_columns.py ${sample}_vesca_v1.1_nblrrs_augustus_cds_rbb ${sample}.fasta_vs_vesca_v1.1_nblrrs_augustus_cds_nucl.db_3utr > ${sample}.fasta_vs_vesca_v1.1_nblrrs_augustus_cds_nucl.db_3utr_rbb_filt 
 done
+
+#Plot figures summarising the results above in R.
+Rscript --vanilla $scripts/stats_cds.R S1_ccs_3_99.fasta_vs_vesca_v1.1_nblrrs_augustus_cds_nucl.db_cds_rbb_filt S2_ccs_3_99.fasta_vs_vesca_v1.1_nblrrs_augustus_cds_nucl.db_cds_rbb_filt ccs_3_99.fasta_vs_vesca_v1.1_nblrrs_augustus_cds
+
+Rscript --vanilla $scripts/stats_cds.R S1_HGAP_polished_assembly.fasta_vs_vesca_v1.1_nblrrs_augustus_cds_nucl.db_cds_rbb_filt S2_HGAP_polished_assembly.fasta_vs_vesca_v1.1_nblrrs_augustus_cds_nucl.db_cds_rbb_filt HGAP_polished_assembly.fasta_vs_vesca_v1.1_nblrrs_augustus_cds
+
+for utr in 3 5
+do
+Rscript --vanilla $scripts/stats_utr.R S1_ccs_3_99.fasta_vs_vesca_v1.1_nblrrs_augustus_cds_nucl.db_${utr}utr_rbb_filt S2_ccs_3_99.fasta_vs_vesca_v1.1_nblrrs_augustus_cds_nucl.db_${utr}utr_rbb_filt ccs_3_99.fasta_vs_vesca_v1.1_nblrrs_augustus_ $utr
+Rscript --vanilla $scripts/stats_utr.R S1_HGAP_polished_assembly.fasta_vs_vesca_v1.1_nblrrs_augustus_cds_nucl.db_${utr}utr_rbb_filt S2_HGAP_polished_assembly.fasta_vs_vesca_v1.1_nblrrs_augustus_cds_nucl.db_${utr}utr_rbb_filt HGAP_polished_assembly.fasta_vs_vesca_v1.1_nblrrs_augustus_ $utr
+done
