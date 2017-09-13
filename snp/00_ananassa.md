@@ -31,3 +31,5 @@
 [improve_haplotyping5.sh](https://github.com/harrisonlab/popgen/blob/master/snp/improve_haplotyping5.sh)
 ### Extended analysis of individual genotypes 2, following fixing of mislabelled samples.
 [analyse_snp_chip_genotypes2.sh](https://github.com/harrisonlab/popgen/blob/master/snp/analyse_snp_chip_genotypes2.sh)
+### Local genotype association study for 10-20 markers around major QTLs for crown rot.
+[crown_rot_qtl_markers_local_1.sh](https://github.com/harrisonlab/popgen/blob/master/snp/crown_rot_qtl_markers_local_1.sh)
