@@ -6,7 +6,7 @@ input=/home/sobczm/popgen/renseq/strawberry/reads/Helen_Bates_EMR.RH.ENQ-1704.A.
 #Cultivar1
 mkdir -p $input/assembly
 cd $input/Raw_reads_S1/F06_1/Analysis_Results
-for a in *subreads.fastqcd $input/assembly
+for a in *subreads.fastq
 do
 cd $input/assembly
 cat $a >> $input/assembly/F06_1_S1.fastq
