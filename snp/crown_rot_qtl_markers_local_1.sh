@@ -77,12 +77,36 @@ done
 for vcf in *_nodup.vcf
 do
 $vcftools/vcftools --vcf $vcf --weir-fst-pop d_resistant.txt --weir-fst-pop d_susceptible.txt --out d_${vcf%.vcf}
-done
+dones
 for vcf in *_nodup.vcf
 do
 $vcftools/vcftools --vcf $vcf --weir-fst-pop a_resistant.txt --weir-fst-pop a_intermediate.txt --weir-fst-pop a_susceptible.txt --out a_${vcf%.vcf}
 done
 for vcf in *_nodup.vcf
+do
+$vcftools/vcftools --vcf $vcf --weir-fst-pop c_resistant.txt --weir-fst-pop c_intermediate.txt --weir-fst-pop c_susceptible.txt --out c_${vcf%.vcf}
+done
+
+#Now, remove the known individuals from EMxFE mapping population.
+for vcf in *_nodup.vcf
+do
+$vcflib/vcfremovesamples $vcf 1595 551 554 587 601 577 568 644 675 677 >${vcf%.vcf}_noef.vcf
+done
+
+#And re-do the FST analysis above
+for vcf in *_noef.vcf
+do
+$vcftools/vcftools --vcf $vcf --weir-fst-pop b_resistant.txt --weir-fst-pop b_susceptible.txt --out b_${vcf%.vcf}
+done
+for vcf in *_noef.vcf
+do
+$vcftools/vcftools --vcf $vcf --weir-fst-pop d_resistant.txt --weir-fst-pop d_susceptible.txt --out d_${vcf%.vcf}
+done
+for vcf in *_noef.vcf
+do
+$vcftools/vcftools --vcf $vcf --weir-fst-pop a_resistant.txt --weir-fst-pop a_intermediate.txt --weir-fst-pop a_susceptible.txt --out a_${vcf%.vcf}
+done
+for vcf in *_noef.vcf
 do
 $vcftools/vcftools --vcf $vcf --weir-fst-pop c_resistant.txt --weir-fst-pop c_intermediate.txt --weir-fst-pop c_susceptible.txt --out c_${vcf%.vcf}
 done
