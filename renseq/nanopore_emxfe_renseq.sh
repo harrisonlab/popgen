@@ -83,3 +83,65 @@ awk -F"\t" '$4 > 999 { print $1 }' barcode11_emily.fasta_vs_vesca_v1.1_nblrrs_au
 awk -F"\t" '$4 > 999 { print $1 }' barcode12_fenella.fasta_vs_vesca_v1.1_nblrrs_augustus_mrna_nucl.db | sort | uniq | wc
  395610  395610 14637570
 
+#Demultiplex the unclassified reads (permissive search settings) to see if any barcode11 or barcode12 sequences found there.
+#Concatenate and gzip all FASTQ files in the unclassified bin.
+porechop=/home/armita/prog/porechop/Porechop
+albacoredir=/data/seq_data/minion/2017/20170823_1707_RENseq-Em-Fen/20170823_1714_RENseq-Em-Fen/albacore_output_1.2.4/workspace
+for fast in $albacoredir/unclassified/*.fastq
+do
+cat $fast >>all_unclassified.fastq
+done
+gzip all_unclassified.fastq
+
+#Demultiplex and trim adapters from unclassified reads using porechop
+qsub $scripts/sub_poretools_demultiplex.sh all_unclassified.fastq.gz porechop_unclassified
+#Retrieve additional barcode 11 reads
+gzip -d $input/porechop_unclassified/NB11.fastq.gz
+#Retrive additional barcode 12 reads
+gzip -d $input/porechop_unclassified/NB12.fastq.gz
+
+#Convert to FASTA
+/home/sobczm/bin/seqtk/seqtk seq -a $input/porechop_unclassified/NB11.fastq > $input/porechop_unclassified/NB11.fasta
+/home/sobczm/bin/seqtk/seqtk seq -a $input/porechop_unclassified/NB12.fastq > $input/porechop_unclassified/NB12.fasta
+
+#Split reads and trim adapters using porechop - barcode 11
+gzip barcode11_emily.fastq
+qsub $scripts/sub_poretools_trim.sh barcode11_emily.fastq.gz
+gzip -d barcode11_emily_trim.fastq.gz 
+/home/sobczm/bin/seqtk/seqtk seq -a barcode11_emily_trim.fastq > barcode11_emily_trim.fasta
+
+#Split reads and trim adapters using porechop - barcode 12
+gzip barcode12_fenella.fastq
+qsub $scripts/sub_poretools_trim.sh barcode12_fenella.fastq.gz
+gzip -d barcode12_fenella_trim.fastq.gz
+/home/sobczm/bin/seqtk/seqtk seq -a barcode12_fenella_trim.fastq > barcode12_fenella_trim.fasta
+#Two rounds of nanocorrect of trimmed reads.
+#First concatenate additional (previously unclassified) reads with the main trimmed reads
+cat barcode11_emily_trim.fasta >> barcode11_emily_trimmed_all.fasta
+cat $input/porechop_unclassified/NB11.fasta >> barcode11_emily_trimmed_all.fasta
+
+cat barcode12_fenella_trim.fasta >> barcode12_fenella_trimmed_all.fasta
+cat $input/porechop_unclassified/NB12.fasta >> barcode12_fenella_trimmed_all.fasta
+
+cat barcode11_emily_trim.fastq >> barcode11_emily_trimmed_all.fastq
+cat $input/porechop_unclassified/NB11.fastq >> barcode11_emily_trimmed_all.fastq
+
+cat barcode12_fenella_trim.fastq >> barcode12_fenella_trimmed_all.fastq
+cat $input/porechop_unclassified/NB12.fastq >> barcode12_fenella_trimmed_all.fastq
+
+
+###Generate a dataset with random 75% of reads and put them through all the steps below to check the effect of a lower number of reads on the R gene detection.
+/home/sobczm/bin/seqtk/seqtk sample barcode11_emily_trimmed_all.fastq 450000 > barcode11_emily_trimmed_all_075.fastq
+/home/sobczm/bin/seqtk/seqtk sample barcode12_fenella_trimmed_all.fastq 450000 > barcode12_fenella_trimmed_all_075.fastq
+/home/sobczm/bin/seqtk/seqtk sample barcode11_emily_trimmed_all.fasta 450000 > barcode11_emily_trimmed_all_075.fasta
+/home/sobczm/bin/seqtk/seqtk sample barcode12_fenella_trimmed_all.fasta 450000 > barcode12_fenella_trimmed_all_075.fasta
+#Generate a polished set of reads - two rounds of error correcting should lead to 97% accuracy.
+qsub $scripts/sub_nanocorrect.sh barcode11_emily_trimmed_all.fasta emily_nanocorrect
+qsub $scripts/sub_nanocorrect.sh barcode12_fenella_trimmed_all.fasta fenella_nanocorrect
+qsub $scripts/sub_nanocorrect.sh barcode11_emily_trimmed_all_075.fasta emily_nanocorrect_075
+qsub $scripts/sub_nanocorrect.sh barcode12_fenella_trimmed_all_075.fasta fenella_nanocorrect_075
+
+#Error correction with Canu
+
+
+#Assembly of FASTQ reads with smartdenovo
