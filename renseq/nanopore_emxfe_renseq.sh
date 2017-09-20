@@ -141,7 +141,15 @@ qsub $scripts/sub_nanocorrect.sh barcode12_fenella_trimmed_all.fasta fenella_nan
 qsub $scripts/sub_nanocorrect.sh barcode11_emily_trimmed_all_075.fasta emily_nanocorrect_075
 qsub $scripts/sub_nanocorrect.sh barcode12_fenella_trimmed_all_075.fasta fenella_nanocorrect_075
 
-#Error correction with Canu
+#Read error correction with Canu
+gzip barcode11_emily_trimmed_all.fastq 
+qsub $scripts/sub_canu_correct.sh barcode11_emily_trimmed_all.fastq.gz 25m barcode11_emily_trimmed_all barcode11_emily_trimmed_all
 
+gzip barcode12_fenella_trimmed_all.fastq 
+gzip barcode11_emily_trimmed_all_075.fastq 
+gzip barcode12_fenella_trimmed_all_075.fastq 
+qsub $scripts/sub_canu_correct.sh barcode12_fenella_trimmed_all.fastq.gz 25m barcode12_fenella_trimmed_all barcode12_fenella_trimmed_all
+qsub $scripts/sub_canu_correct.sh barcode11_emily_trimmed_all_075.fastq.gz 25m barcode11_emily_trimmed_all barcode11_emily_trimmed_all_075
+qsub $scripts/sub_canu_correct.sh barcode12_fenella_trimmed_all_075.fastq.gz 25m barcode12_fenella_trimmed_all barcode12_fenella_trimmed_all_075
 
 #Assembly of FASTQ reads with smartdenovo
