@@ -136,10 +136,10 @@ cat $input/porechop_unclassified/NB12.fastq >> barcode12_fenella_trimmed_all.fas
 /home/sobczm/bin/seqtk/seqtk sample barcode11_emily_trimmed_all.fasta 450000 > barcode11_emily_trimmed_all_075.fasta
 /home/sobczm/bin/seqtk/seqtk sample barcode12_fenella_trimmed_all.fasta 450000 > barcode12_fenella_trimmed_all_075.fasta
 #Generate a polished set of reads - two rounds of error correcting should lead to 97% accuracy.
-qsub $scripts/sub_nanocorrect.sh barcode11_emily_trimmed_all.fasta emily_nanocorrect
-qsub $scripts/sub_nanocorrect.sh barcode12_fenella_trimmed_all.fasta fenella_nanocorrect
-qsub $scripts/sub_nanocorrect.sh barcode11_emily_trimmed_all_075.fasta emily_nanocorrect_075
-qsub $scripts/sub_nanocorrect.sh barcode12_fenella_trimmed_all_075.fasta fenella_nanocorrect_075
+qsub $scripts/sub_nanocorrect.sh barcode11_emily_trimmed_all.fasta nanocorrect_emily_nanocorrect
+qsub $scripts/sub_nanocorrect.sh barcode12_fenella_trimmed_all.fasta nanocorrect_fenella_nanocorrect
+qsub $scripts/sub_nanocorrect.sh barcode11_emily_trimmed_all_075.fasta nanocorrect_emily_nanocorrect_075
+qsub $scripts/sub_nanocorrect.sh barcode12_fenella_trimmed_all_075.fasta nanocorrect_fenella_nanocorrect_075
 
 #Read error correction with Canu
 gzip barcode11_emily_trimmed_all.fastq 
