@@ -48,9 +48,9 @@ perl /home/sobczm/bin/vcftools/bin/vcf-stats Fa_all.vcf >Fa_all.stat
 #Honeoye = 1468
 vcflib=/home/sobczm/bin/vcflib/bin
 #Remove the following individuals:
-for vcf in *.vcf
+for vcf in sample_ids_crown_rot.out.vcf
 do
-$vcflib/vcfremovesamples $vcf 1024 1031 2031 1287 1130 1187 1231 1480 1415 2037 676 668 1989 841 852 >${vcf%.vcf}_nodup.vcf
+$vcflib/vcfremovesamples $vcf 1024 2079 1031 2031 1287 1130 1187 1231 1480 1415 2037 676 668 1989 841 852 >${vcf%.vcf}_nodup.vcf
 done
 
 #Classification based on resistance scores
