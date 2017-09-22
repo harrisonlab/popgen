@@ -1,18 +1,21 @@
+#!/bin/bash
+
+# Assemble PacBio data using Canu
+
 #$ -S /bin/bash
 #$ -cwd
 #$ -pe smp 1
-#$ -l virtual_free=1.9G
-#$ -l h=blacklace02.blacklace|blacklace03.blacklace|blacklace04.blacklace|blacklace05.blacklace|blacklace06.blacklace|blacklace07.blacklace|blacklace08.blacklace|blacklace09.blacklace|blacklace10.blacklace|blacklace11.blacklace
-
+#$ -l virtual_free=2G
+#$ -l h=blacklace11.blacklace
 source /home/armita/.profile
-Usage="sub_canu_renseq.sh <reads.fq> <Genome_size[e.g.45m]> <outfile_prefix> <output_directory> [<specification_file.txt>]"
+Usage="sub_canu_correction.sh <reads.fq> <Genome_size[e.g.45m]> <outfile_prefix> <output_directory> [<specification_file.txt>]"
 echo "$Usage"
 
 # ---------------
 # Step 1
 # Collect inputs
 # ---------------
-canu=/home/armita/prog/canu/canu-1.6/Linux-amd64/bin/canu
+
 FastqIn=$1
 Size=$2
 Prefix=$3
@@ -28,43 +31,53 @@ echo "Size - $Size"
 echo "Prefix - $Prefix"
 echo "OutDir - $OutDir"
 
-cpath=$PWD
-mkdir $OutDir
-temp_dir="$TMPDIR"
-mkdir -p $temp_dir
-
-cp $FastqIn $temp_dir
-
-Fastq=$(basename "$FastqIn")
-cd $temp_dir
+CurPath=$PWD
+WorkDir="$TMPDIR"/canu
 
 # ---------------
 # Step 2
 # Run Canu
 # ---------------
 
-$canu \
+mkdir -p $WorkDir
+cd $WorkDir
+Fastq=$(basename $FastqIn)
+cp $CurPath/$FastqIn $Fastq
+
+canu \
   -correct \
   -useGrid=false \
+  $AdditionalCommands \
   -overlapper=mhap \
   -utgReAlign=true \
-  -d $OutDir \
+  -d $WorkDir/assembly \
   -p $Prefix \
   genomeSize="$Size" \
   -nanopore-raw $Fastq \
   2>&1 | tee canu_run_log.txt
 
-  $canu \
+canu \
   -trim \
   -useGrid=false \
+  $AdditionalCommands \
   -overlapper=mhap \
   -utgReAlign=true \
-  -d $OutDir \
+  -d $WorkDir/assembly \
   -p $Prefix \
   genomeSize="$Size" \
-  -nanopore-corrected $OutDir/$Prefix.correctedReads.fasta.gz \
+  -nanopore-corrected assembly/$Prefix.correctedReads.fasta.gz \
   2>&1 | tee canu_run_log.txt
 
-  rm *.fastq
-  cp -r $OutDir/* $cpath/$OutDir
-  rm -rf $temp_dir
+  # canu \
+  #   -trim \
+  #   -useGrid=false \
+  #   $AdditionalCommands \
+  #   -d $WorkDir/assembly \
+  #   -p $Prefix \
+  #   genomeSize="$Size" \
+  #   -nanopore-corrected $Fastq \
+  #   2>&1 | tee canu_run_log.txt
+
+mkdir -p $CurPath/$OutDir
+cp canu_run_log.txt $CurPath/$OutDir/.
+cp $WorkDir/assembly/* $CurPath/$OutDir/.

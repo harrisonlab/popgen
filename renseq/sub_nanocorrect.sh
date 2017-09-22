@@ -13,14 +13,14 @@ echo $Usage
 nanocorrect=/home/sobczm/bin/nanocorrect
 RawReads=$(basename $1)
 Prefix=$2
-CurDir=$PWD
-WorkDir=$TMPDIR/nanocorrect
+#CurDir=$PWD
+#WorkDir=$TMPDIR/nanocorrect
 
-mkdir -p $WorkDir
-cp $1 $WorkDir
-cd $WorkDir
+#mkdir -p $WorkDir
+#cp $1 $WorkDir
+#cd $WorkDir
 
 $nanocorrect/nanocorrect-overlap INPUT=$RawReads NAME=$Prefix
 $nanocorrect/nanocorrect.py nc $Prefix > ${RawReads%.fasta}_nanocorrect.fasta
 
-cp ${RawReads%.fasta}_nanocorrect.fasta $CurDir
+#cp ${RawReads%.fasta}_nanocorrect.fasta $CurDir

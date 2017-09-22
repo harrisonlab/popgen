@@ -153,3 +153,22 @@ qsub $scripts/sub_canu_correct.sh barcode11_emily_trimmed_all_075.fastq.gz 25m b
 qsub $scripts/sub_canu_correct.sh barcode12_fenella_trimmed_all_075.fastq.gz 25m barcode12_fenella_trimmed_all barcode12_fenella_trimmed_all_075
 
 #Assembly of FASTQ reads with smartdenovo
+qsub $scripts/sub_SMARTdenovo.sh barcode12_fenella_trimmed_all/barcode12_fenella_trimmed_all.trimmedReads.fasta.gz smartdenovo_barcode12_fenella_trimmed_all smartdenovo_barcode12_fenella_trimmed_all
+qsub $scripts/sub_SMARTdenovo.sh barcode12_fenella_trimmed_all_075/barcode12_fenella_trimmed_all.trimmedReads.fasta.gz smartdenovo_barcode12_fenella_trimmed_075 smartdenovo_barcode12_fenella_trimmed_075
+qsub $scripts/sub_SMARTdenovo.sh barcode11_emily_trimmed_all/barcode11_emily_trimmed_all.trimmedReads.fasta.gz smartdenovo_barcode11_emily_trimmed_all smartdenovo_barcode11_emily_trimmed_all
+qsub $scripts/sub_SMARTdenovo.sh barcode11_emily_trimmed_all_075/barcode11_emily_trimmed_all.trimmedReads.fasta.gz smartdenovo_barcode11_emily_trimmed_075 smartdenovo_barcode11_emily_trimmed_075
+#Error correction using racon
+ass=smartdenovo_barcode12_fenella_trimmed_all 
+qsub $scripts/sub_racon.sh $ass/$ass.dmo.lay.utg barcode12_fenella_trimmed_all.fastq.gz 10 $ass/racon
+ass=smartdenovo_barcode12_fenella_trimmed_075 
+qsub $scripts/sub_racon.sh $ass/$ass.dmo.lay.utg barcode12_fenella_trimmed_all_075.fastq.gz 10 $ass/racon
+ass=smartdenovo_barcode11_emily_trimmed_all 
+qsub $scripts/sub_racon.sh $ass/$ass.dmo.lay.utg barcode11_emily_trimmed_all.fastq.gz 10 $ass/racon
+ass=smartdenovo_barcode11_emily_trimmed_075
+qsub $scripts/sub_racon.sh $ass/$ass.dmo.lay.utg barcode11_emily_trimmed_all.fastq.gz 10 $ass/racon
+
+#Assembly correction using nanopolish
+
+
+
+#Pilon error correction (Illumina reads)
