@@ -85,14 +85,22 @@ plink --bfile clean-inds-GWA-data --geno 0.5 --make-bed --out clean-GWA-data_str
 
 ##For GWAS analysis, following the tutorial from Renteria et al. (2013)
 #DOI 10.1007/978-1-62703-447-0_8
-#Using GLM, with addditive model
+#Using allelic GWAS, with addditive model
 plink --bfile clean-GWA-data_relaxed --assoc --qt-means --allow-no-sex --adjust --ci 0.95 --out clean-GWA-data_relaxed_1
+plink --bfile clean-GWA-data_stringent --assoc --qt-means  --allow-no-sex --adjust --ci 0.95 --out clean-GWA-data_stringent_1
 #QQ plots
 Rscript --vanilla $scripts/qq.plink.R clean-GWA-data_relaxed_1.qassoc "QQ plot"
-#QQ plots
 Rscript --vanilla $scripts/qq.plink.R clean-GWA-data_stringent_1.qassoc "QQ plot" 
-plink --bfile clean-GWA-data_stringent --assoc --qt-means  --allow-no-sex --adjust --ci 0.95 --out clean-GWA-data_stringent_1
+#QQ plots - see if using FDR (BH) p-values results in a better QQ plot.
+cat clean-GWA-data_relaxed_1.qassoc.adjusted | sed 's/FDR_BH/P/' > clean-GWA-data_relaxed_1.qassoc.adjusted.qq
+Rscript --vanilla $scripts/qq.plink.R clean-GWA-data_relaxed_1.qassoc.adjusted.qq "QQ plot" 
+#Much worse plot - don't try again.
+#QQ plots - see if only retaining SNPs with high % genotypes (95%) results in a better QQ plot.
+plink --bfile clean-inds-GWA-data --geno 0.05 --make-bed --out clean-GWA-data_very_stringent
+plink --bfile clean-GWA-data_very_stringent --assoc --qt-means  --allow-no-sex --adjust --ci 0.95 --out clean-GWA-data_very_stringent
+Rscript --vanilla $scripts/qq.plink.R clean-GWA-data_very_stringent.qassoc "QQ plot"
 
+#The same problem here.
 #Dominant - linear egression
 plink --bfile clean-GWA-data_relaxed --assoc --qt-means --linear dominant --allow-no-sex --adjust --ci 0.95 --out clean-GWA-data_relaxed_2
 plink --bfile clean-GWA-data_stringent --assoc --qt-means --linear dominant --allow-no-sex --adjust --ci 0.95 --out clean-GWA-data_stringent_2
@@ -109,4 +117,20 @@ Rscript --vanilla $scripts/qq.plink.R clean-GWA-data_relaxed_strat.assoc.linear 
 plink --bfile clean-GWA-data_stringent --linear --allow-no-sex --covar mds_covar.txt --adjust --ci 0.95 --out clean-GWA-data_stringent_strat
 #QQ plots
 Rscript --vanilla $scripts/qq.plink.R clean-GWA-data_stringent_strat.assoc.linear "QQ plot"
-#Manhattan plots
+
+##Manhattan plots
+for results in  *qassoc
+do
+cat $results | awk '{$1=$1;print}' OFS='\t' >temp
+cut -f2,1,3,9 temp >${results}_man
+Rscript --vanilla $scripts/manhattan.R ${results}_man
+done
+
+for results in *assoc.linear
+do
+cat $results | awk '{$1=$1;print}' OFS='\t' >temp
+cut -f2,1,3,12 temp >${results}_man
+Rscript --vanilla $scripts/manhattan.R ${results}_man
+done
+
+#Convert all PDFs to PNG.

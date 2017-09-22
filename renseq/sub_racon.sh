@@ -3,6 +3,9 @@
 # Alignment of minion reads to a minion assembly prior to running nanopolish variants
 source /home/armita/.profile
 PATH=${PATH}:/home/armita/prog/racon/racon/bin
+PATH=${PATH}:/home/armita/prog/minimap/minimap
+PATH=${PATH}:/home/armita/prog/minimap/minimap/utils/bin
+PATH=${PATH}:/home/armita/prog/minimap/minimap/utils/plot
 #$ -S /bin/bash
 #$ -cwd
 #$ -pe smp 1
