@@ -112,7 +112,7 @@ Genomic Diversity `/home/sobczm/bin/DivStat`
 
 [LMAP ver. 1.0](http://lmapaml.sourceforge.net/) A collection of perl scripts to automate PAML use. Requires a number of dependencies `/home/sobczm/bin/LMAPv1.0.0/LMAP`
 
-[LoRMA ver. 0.4](https://www.cs.helsinki.fi/u/lmsalmel/LoRMA/)LoRMA is a tool for correcting sequencing errors in long reads such those produced by Pacific Biosciences and Oxford Nanopore sequencing machines `/home/sobczm/bin/LoRMA-0.4`
+[LoRMA ver. 0.4](https://www.cs.helsinki.fi/u/lmsalmel/LoRMA/) LoRMA is a tool for correcting sequencing errors in long reads such those produced by Pacific Biosciences and Oxford Nanopore sequencing machines `/home/sobczm/bin/LoRMA-0.4`
 
 [LUMPY](https://github.com/arq5x/lumpy-sv) A probabilistic framework for structural variant discovery `/home/sobczm/bin/lumpy-sv/bin`
 
