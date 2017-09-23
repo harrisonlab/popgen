@@ -87,7 +87,7 @@ plink --bfile clean-inds-GWA-data --geno 0.5 --make-bed --out clean-GWA-data_str
 #DOI 10.1007/978-1-62703-447-0_8
 #Using allelic GWAS, with addditive model
 plink --bfile clean-GWA-data_relaxed --assoc --qt-means --allow-no-sex --adjust --ci 0.95 --out clean-GWA-data_relaxed_1
-plink --bfile clean-GWA-data_stringent --assoc --qt-means  --allow-no-sex --adjust --ci 0.95 --out clean-GWA-data_stringent_1
+plink --bfile clean-GWA-data_stringent --assoc --qt-means --allow-no-sex --adjust --ci 0.95 --out clean-GWA-data_stringent_1
 #QQ plots
 Rscript --vanilla $scripts/qq.plink.R clean-GWA-data_relaxed_1.qassoc "QQ plot"
 Rscript --vanilla $scripts/qq.plink.R clean-GWA-data_stringent_1.qassoc "QQ plot" 
@@ -134,3 +134,21 @@ Rscript --vanilla $scripts/manhattan.R ${results}_man
 done
 
 #Convert all PDFs to PNG.
+for my_pdf in *.pdf
+do
+convert -verbose -density 500 "${my_pdf}" "${my_pdf%.*}.png"
+done
+
+####Create filtered VCF files to be used as input in TASSEL.
+#Remove individual 880
+vcftools=/home/sobczm/bin/vcftools/bin
+vcflib=/home/sobczm/bin/vcflib/bin
+$vcflib/vcfremovesamples sample_ids_crown_rot.out_nodup_fix.vcf 880 >sample_ids_crown_rot.out_nodup_fix_no880.vcf
+#Remove SNPs with less than 0.05 MAF.
+##Remove SNPs with more than 80% missing data ('relaxed' criterion)
+$vcftools/vcftools --vcf sample_ids_crown_rot.out_nodup_fix_no880.vcf --maf 0.05 --max-missing 0.20 --recode --out sample_ids_crown_rot.out_nodup_fix_no880_relaxed
+##Remove SNPs with more than 50% missing data ('stringent' criterion)
+$vcftools/vcftools --vcf sample_ids_crown_rot.out_nodup_fix_no880.vcf --maf 0.05 --max-missing 0.50 --recode --out sample_ids_crown_rot.out_nodup_fix_no880_stringent
+#Sort VCF files.
+$vcftools/vcf-sort sample_ids_crown_rot.out_nodup_fix_no880_relaxed.recode.vcf >sample_ids_crown_rot.out_nodup_fix_no880_relaxed_sorted.vcf
+$vcftools/vcf-sort sample_ids_crown_rot.out_nodup_fix_no880_stringent.recode.vcf >sample_ids_crown_rot.out_nodup_fix_no880_stringent_sorted.vcf

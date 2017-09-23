@@ -141,6 +141,12 @@ qsub $scripts/sub_nanocorrect.sh barcode12_fenella_trimmed_all.fasta nanocorrect
 qsub $scripts/sub_nanocorrect.sh barcode11_emily_trimmed_all_075.fasta nanocorrect_emily_nanocorrect_075
 qsub $scripts/sub_nanocorrect.sh barcode12_fenella_trimmed_all_075.fasta nanocorrect_fenella_nanocorrect_075
 
+#Cannot make it work, use LoRMA instead.
+qsub $scripts/sub_lorma.sh barcode11_emily_trimmed_all.fasta 
+qsub $scripts/sub_lorma.sh barcode12_fenella_trimmed_all.fasta 
+qsub $scripts/sub_lorma.sh barcode11_emily_trimmed_all_075.fasta 
+qsub $scripts/sub_lorma.sh barcode12_fenella_trimmed_all_075.fasta 
+
 #Read error correction with Canu
 gzip barcode11_emily_trimmed_all.fastq 
 qsub $scripts/sub_canu_correct.sh barcode11_emily_trimmed_all.fastq.gz 25m barcode11_emily_trimmed_all barcode11_emily_trimmed_all
