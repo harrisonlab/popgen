@@ -152,3 +152,32 @@ $vcftools/vcftools --vcf sample_ids_crown_rot.out_nodup_fix_no880.vcf --maf 0.05
 #Sort VCF files.
 $vcftools/vcf-sort sample_ids_crown_rot.out_nodup_fix_no880_relaxed.recode.vcf >sample_ids_crown_rot.out_nodup_fix_no880_relaxed_sorted.vcf
 $vcftools/vcf-sort sample_ids_crown_rot.out_nodup_fix_no880_stringent.recode.vcf >sample_ids_crown_rot.out_nodup_fix_no880_stringent_sorted.vcf
+
+#Analyze the location of candidate SNPs associated with crown rot resistance.
+cd $input/candidates
+#Are they within 1mbp of one of the QTLs?
+for gff in Fa*1mbp.gff
+do
+intersectBed -wa -a gwas_snp_loci.bed -b $gff >gwas_snp_loci_vs_${gff%.gff}
+done
+
+#What genomic feature do they overlap with in vesca?
+#No genes
+intersectBed -wb -a gwas_snp_loci.bed -b Fragaria_vesca_v1.1.a2.mrna.gff3 >gwas_snp_loci_vs_Fragaria_vesca_v1.1.a2.mrna
+
+#Are they within 1mbp of one of the predicted R genes in vesca?
+for a in vesca*.gff3
+do
+intersectBed -wb -a gwas_snp_loci_1mbp.bed -b $a >charlotte_1mbp2_${a%.gff3}_qtl_overlap
+done
+
+for a in vesca*.gff3
+do
+intersectBed -wb -a  gwas_snp_loci_1ookbp.bed -b $a >gwas_snp_loci_100kbp_${a%.gff3}_overlap
+done
+
+for a in vesca*.gff3
+do
+intersectBed -wb -a gwas_snp_loci.bed -b $a >gwas_snp_loci_${a%.gff3}_overlap
+done
+

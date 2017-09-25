@@ -1,7 +1,7 @@
 #!/bin/bash
 scripts=/home/sobczm/bin/popgen/renseq
 input=/home/sobczm/popgen/renseq/strawberry/reads/albacore_emxfe
-
+cd $input
 #Concatenate Extract the confirmed reads with porechop (Barcode 11 and Barcode 12 only now)
 for f in /data/seq_data/minion/2017/20170823_1707_RENseq-Em-Fen/20170823_1714_RENseq-Em-Fen/albacore_output_1.2.4/workspace/barcode11/*.fastq
 do
@@ -142,10 +142,10 @@ qsub $scripts/sub_nanocorrect.sh barcode11_emily_trimmed_all_075.fasta nanocorre
 qsub $scripts/sub_nanocorrect.sh barcode12_fenella_trimmed_all_075.fasta nanocorrect_fenella_nanocorrect_075
 
 #Cannot make it work, use LoRMA instead.
-qsub $scripts/sub_lorma.sh barcode11_emily_trimmed_all.fasta 
-qsub $scripts/sub_lorma.sh barcode12_fenella_trimmed_all.fasta 
-qsub $scripts/sub_lorma.sh barcode11_emily_trimmed_all_075.fasta 
-qsub $scripts/sub_lorma.sh barcode12_fenella_trimmed_all_075.fasta 
+qsub $scripts/sub_lorma.sh barcode11_emily_trimmed_all.fasta  lorma_barcode11_emily_all
+qsub $scripts/sub_lorma.sh barcode12_fenella_trimmed_all.fasta lorma_barcode12_fenella_all
+qsub $scripts/sub_lorma.sh barcode11_emily_trimmed_all_075.fasta lorma_barcode11_emily_075
+qsub $scripts/sub_lorma.sh barcode12_fenella_trimmed_all_075.fasta lorma_barcode12_fenella_075
 
 #Read error correction with Canu
 gzip barcode11_emily_trimmed_all.fastq 
