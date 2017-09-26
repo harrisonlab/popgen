@@ -181,9 +181,9 @@ gzip nanopolish_barcode11_emily.fasta
 gzip nanopolish_barcode12_fenella.fasta 
 #Align reads
 qsub $scripts/sub_bwa_nanopolish.sh smartdenovo_barcode11_emily_trimmed_075/racon/smartdenovo_barcode11_emily_trimmed_075_racon_round_10.fasta nanopolish_barcode11_emily.fasta.gz smartdenovo_barcode11_emily_trimmed_075/nanopolish
-qsub $scripts/sub_bwa_nanopolish.sh smartdenovo_barcode11_emily_trimmed_all/racon/smartdenovo_barcode11_emily_trimmed_all_racon_round_10.fasta nanopolish_barcode11_emily.fasta.gz smartdenovo_barcode11_emily_trimmed_075/nanopolish
+qsub $scripts/sub_bwa_nanopolish.sh smartdenovo_barcode11_emily_trimmed_all/racon/smartdenovo_barcode11_emily_trimmed_all_racon_round_10.fasta nanopolish_barcode11_emily.fasta.gz smartdenovo_barcode11_emily_trimmed_all/nanopolish
 qsub $scripts/sub_bwa_nanopolish.sh smartdenovo_barcode12_fenella_trimmed_075/racon/smartdenovo_barcode12_fenella_trimmed_075_racon_round_10.fasta nanopolish_barcode12_fenella.fasta.gz smartdenovo_barcode12_fenella_trimmed_075/nanopolish
-qsub $scripts/sub_bwa_nanopolish.sh smartdenovo_barcode12_fenella_trimmed_all/racon/smartdenovo_barcode12_fenella_trimmed_all_racon_round_10.fasta nanopolish_barcode12_fenella.fasta.gz smartdenovo_barcode12_fenella_trimmed_075/nanopolish
+qsub $scripts/sub_bwa_nanopolish.sh smartdenovo_barcode12_fenella_trimmed_all/racon/smartdenovo_barcode12_fenella_trimmed_all_racon_round_10.fasta nanopolish_barcode12_fenella.fasta.gz smartdenovo_barcode12_fenella_trimmed_all/nanopolish
 #Submit alignments for nanopolish - variant calling.
 NanoPolishDir=/home/armita/prog/nanopolish/nanopolish/scripts
 python $NanoPolishDir/nanopolish_makerange.py smartdenovo_barcode11_emily_trimmed_075/racon/smartdenovo_barcode11_emily_trimmed_075_racon_round_10.fasta > smartdenovo_barcode11_emily_trimmed_075/nanopolish/nanopolish_range.txt
@@ -196,14 +196,12 @@ RawReads=nanopolish_barcode11_emily.fasta.gz
 AlignedReads=smartdenovo_barcode11_emily_trimmed_075/nanopolish/reads.sorted.bam
 Ploidy=2
 OutDir=smartdenovo_barcode11_emily_trimmed_075/nanopolish
-qsub $scripts/sub_nanopolish_variants.sh $Assembly $RawReads $AlignedReads $Ploidy $Region $OutDir/$Region
-
 for Region in $(cat $OutDir/nanopolish_range.txt | tail -n+21); do
-Jobs=$(qstat | grep 'sub_nanopo' | grep 'qw' | wc -l)
-while [ $Jobs -gt 1 ]; do
+Jobs=$(qstat | grep 'sub_nanopo' | wc -l)
+while [ $Jobs -gt 4 ]; do
 sleep 1m
 printf "."
-Jobs=$(qstat | grep 'sub_nanopo' | grep 'qw' | wc -l)
+Jobs=$(qstat | grep 'sub_nanopo' | wc -l)
 done		
 printf "\n"
 echo $Region
@@ -221,14 +219,13 @@ RawReads=nanopolish_barcode11_emily.fasta.gz
 AlignedReads=smartdenovo_barcode11_emily_trimmed_all/nanopolish/reads.sorted.bam
 Ploidy=2
 OutDir=smartdenovo_barcode11_emily_trimmed_all/nanopolish
-qsub $scripts/sub_nanopolish_variants.sh $Assembly $RawReads $AlignedReads $Ploidy $Region $OutDir/$Region
 
 for Region in $(cat $OutDir/nanopolish_range.txt | tail -n+21); do
-Jobs=$(qstat | grep 'sub_nanopo' | grep 'qw' | wc -l)
-while [ $Jobs -gt 1 ]; do
+Jobs=$(qstat | grep 'sub_nanopo' | wc -l)
+while [ $Jobs -gt 4 ]; do
 sleep 1m
 printf "."
-Jobs=$(qstat | grep 'sub_nanopo' | grep 'qw' | wc -l)
+Jobs=$(qstat | grep 'sub_nanopo' | wc -l)
 done		
 printf "\n"
 echo $Region
@@ -246,14 +243,13 @@ RawReads=nanopolish_barcode12_fenella.fasta.gz
 AlignedReads=smartdenovo_barcode12_fenella_trimmed_075/nanopolish/reads.sorted.bam
 Ploidy=2
 OutDir=smartdenovo_barcode12_fenella_trimmed_075/nanopolish
-qsub $scripts/sub_nanopolish_variants.sh $Assembly $RawReads $AlignedReads $Ploidy $Region $OutDir/$Region
 
 for Region in $(cat $OutDir/nanopolish_range.txt | tail -n+21); do
-Jobs=$(qstat | grep 'sub_nanopo' | grep 'qw' | wc -l)
-while [ $Jobs -gt 1 ]; do
+Jobs=$(qstat | grep 'sub_nanopo' | wc -l)
+while [ $Jobs -gt 4 ]; do
 sleep 1m
 printf "."
-Jobs=$(qstat | grep 'sub_nanopo' | grep 'qw' | wc -l)
+Jobs=$(qstat | grep 'sub_nanopo' | wc -l)
 done		
 printf "\n"
 echo $Region
@@ -271,14 +267,13 @@ RawReads=nanopolish_barcode12_fenella.fasta.gz
 AlignedReads=smartdenovo_barcode12_fenella_trimmed_all/nanopolish/reads.sorted.bam
 Ploidy=2
 OutDir=smartdenovo_barcode12_fenella_trimmed_all/nanopolish
-qsub $scripts/sub_nanopolish_variants.sh $Assembly $RawReads $AlignedReads $Ploidy $Region $OutDir/$Region
 
 for Region in $(cat $OutDir/nanopolish_range.txt | tail -n+21); do
-Jobs=$(qstat | grep 'sub_nanopo' | grep 'qw' | wc -l)
-while [ $Jobs -gt 1 ]; do
+Jobs=$(qstat | grep 'sub_nanopo' | wc -l)
+while [ $Jobs -gt 4 ]; do
 sleep 1m
 printf "."
-Jobs=$(qstat | grep 'sub_nanopo' | grep 'qw' | wc -l)
+Jobs=$(qstat | grep 'sub_nanopo' | wc -l)
 done		
 printf "\n"
 echo $Region
