@@ -34,4 +34,4 @@
 ### Local genotype association study for 10-20 markers around major QTLs for crown rot.
 [crown_rot_qtl_markers_local_1.sh](https://github.com/harrisonlab/popgen/blob/master/snp/crown_rot_qtl_markers_local_1.sh)
 ### GWAS for crown rot using PLINK and TASSEL (GUI)
-[crown_rot_qtl_markers_gwas_1.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/crown_rot_qtl_markers_gwas_1.sh)
+[crown_rot_qtl_markers_gwas_1.sh](https://github.com/harrisonlab/popgen/blob/master/snp/crown_rot_qtl_markers_gwas_1.sh)
