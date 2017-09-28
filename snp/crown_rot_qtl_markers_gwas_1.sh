@@ -101,10 +101,10 @@ plink --bfile clean-GWA-data_very_stringent --assoc --qt-means  --allow-no-sex -
 Rscript --vanilla $scripts/qq.plink.R clean-GWA-data_very_stringent.qassoc "QQ plot"
 
 #The same problem here.
-#Dominant - linear egression
+#Dominant - linear regression
 plink --bfile clean-GWA-data_relaxed --assoc --qt-means --linear dominant --allow-no-sex --adjust --ci 0.95 --out clean-GWA-data_relaxed_2
 plink --bfile clean-GWA-data_stringent --assoc --qt-means --linear dominant --allow-no-sex --adjust --ci 0.95 --out clean-GWA-data_stringent_2
-#Recessive - linear egression
+#Recessive - linear regression
 plink --bfile clean-GWA-data_relaxed --assoc --qt-means --linear recessive --allow-no-sex --adjust --ci 0.95 --out clean-GWA-data_relaxed_3
 plink --bfile clean-GWA-data_stringent --assoc --qt-means --linear recessive --allow-no-sex --adjust --ci 0.95 --out clean-GWA-data_stringent_3
 
