@@ -181,3 +181,13 @@ do
 intersectBed -wb -a gwas_snp_loci.bed -b $a >gwas_snp_loci_${a%.gff3}_overlap
 done
 
+###Call the presence and absence of those SNP in the correct set of strawberry breeding material that is need for decisions at the meeting - just 3 genotyped cultivars EM2157 (DB sample id: 2194, crown rot score: 4.4)
+#EM2192 (DB sample id: 2013, crown rot score 3.95) EM2199 (DB sample id: 2061, crown rot score 3.2). Max crown rot score: 8
+cd $input/targets
+echo "2013" > sbc_samples.txt
+echo "2061" >> sbc_samples.txt
+echo "2194" >> sbc_samples.txt
+python $scripts/ananassa_genotypes_db.py sbc_samples.txt sbc_samples.out
+
+#Output the genotypes in the VCF format with locations substituted  according to map positions relative to vesca 1.1. 
+python $scripts/ananassa_genotypes_vcf.py sbc_samples.out istraw90_vesca_v1.1_snp_positions.gff3

@@ -194,7 +194,7 @@ python $NanoPolishDir/nanopolish_makerange.py smartdenovo_barcode12_fenella_trim
 Assembly=smartdenovo_barcode11_emily_trimmed_075/racon/smartdenovo_barcode11_emily_trimmed_075_racon_round_10.fasta 
 RawReads=nanopolish_barcode11_emily.fasta.gz 
 AlignedReads=smartdenovo_barcode11_emily_trimmed_075/nanopolish/reads.sorted.bam
-Ploidy=2
+Ploidy=8
 OutDir=smartdenovo_barcode11_emily_trimmed_075/nanopolish
 for Region in $(cat $OutDir/nanopolish_range.txt | tail -n+21); do
 Jobs=$(qstat | grep 'sub_nanopo' | wc -l)
@@ -217,7 +217,7 @@ done
 Assembly=smartdenovo_barcode11_emily_trimmed_all/racon/smartdenovo_barcode11_emily_trimmed_all_racon_round_10.fasta 
 RawReads=nanopolish_barcode11_emily.fasta.gz 
 AlignedReads=smartdenovo_barcode11_emily_trimmed_all/nanopolish/reads.sorted.bam
-Ploidy=2
+Ploidy=8
 OutDir=smartdenovo_barcode11_emily_trimmed_all/nanopolish
 
 for Region in $(cat $OutDir/nanopolish_range.txt | tail -n+21); do
@@ -241,7 +241,7 @@ done
 Assembly=smartdenovo_barcode12_fenella_trimmed_075/racon/smartdenovo_barcode12_fenella_trimmed_075_racon_round_10.fasta 
 RawReads=nanopolish_barcode12_fenella.fasta.gz 
 AlignedReads=smartdenovo_barcode12_fenella_trimmed_075/nanopolish/reads.sorted.bam
-Ploidy=2
+Ploidy=8
 OutDir=smartdenovo_barcode12_fenella_trimmed_075/nanopolish
 
 for Region in $(cat $OutDir/nanopolish_range.txt | tail -n+21); do
@@ -265,7 +265,7 @@ done
 Assembly=smartdenovo_barcode12_fenella_trimmed_all/racon/smartdenovo_barcode12_fenella_trimmed_all_racon_round_10.fasta 
 RawReads=nanopolish_barcode12_fenella.fasta.gz 
 AlignedReads=smartdenovo_barcode12_fenella_trimmed_all/nanopolish/reads.sorted.bam
-Ploidy=2
+Ploidy=8
 OutDir=smartdenovo_barcode12_fenella_trimmed_all/nanopolish
 
 for Region in $(cat $OutDir/nanopolish_range.txt | tail -n+21); do

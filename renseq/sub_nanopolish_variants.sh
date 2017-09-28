@@ -53,16 +53,16 @@ cat $Reads | gunzip -cf > reads.fa
 nanopolish variants \
   -t 4 \
   --reads reads.fa \
-  --snps
+  --snps \
   --bam $Aligned \
   --genome $Assembly \
   --ploidy $Ploidy \
   -w $Region \
   --fix-homopolymers \
-  --min-candidate-frequency 0.1\
+  --min-candidate-frequency 0.1 \
   --min-candidate-depth 10 \
-  --calculate-all-support
-  > "$Prefix"_variants.txt
+  --max-haplotypes 1000000 \
+  --calculate-all-support > "$Prefix"_variants.txt
 
 mkdir -p $CurDir/$OutDir
 cp "$Prefix"* $CurDir/$OutDir/.
