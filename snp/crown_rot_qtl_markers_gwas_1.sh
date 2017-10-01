@@ -191,3 +191,26 @@ python $scripts/ananassa_genotypes_db.py sbc_samples.txt sbc_samples.out
 
 #Output the genotypes in the VCF format with locations substituted  according to map positions relative to vesca 1.1. 
 python $scripts/ananassa_genotypes_vcf.py sbc_samples.out istraw90_vesca_v1.1_snp_positions.gff3
+
+#Subset to istraw35 markers filtered for their MAF = 0.05. 
+#First filter out the SNPs.
+plink --bfile clean-GWA-data_stringent --extract istraw35_select_markers.lst --make-bed  --out clean-GWA-data_stringent_35
+#Output as VCF to be used in TASSEL for structure correction
+vcftools=/home/sobczm/bin/vcftools/bin/vcftools
+$vcftools --vcf sample_ids_crown_rot.out_nodup_fix_no880_stringent_sorted.vcf --snps istraw35_select_markers.lst --recode --out sample_ids_crown_rot.out_nodup_fix_no880_stringent_sorted_istraw35
+
+plink --bfile clean-GWA-data_stringent_35 --genome --out raw-GWA-data2
+plink --bfile clean-GWA-data_stringent_35 --read-genome raw-GWA-data2.genome --cluster --mds-plot 4 --silent --out mds2
+
+#Convert wild spacing to tabs
+cat mds2.mds | awk '{$1=$1;print}' OFS='\t' >temp
+mv temp mds2.mds
+
+#Correct for population stratification - include the new MDS results as correction
+awk '{print $1,$2,$4,$5}' mds2.mds > mds_covar2.txt
+plink --bfile clean-GWA-data_relaxed --linear --allow-no-sex --covar mds_covar2.txt --adjust --ci 0.95 --out clean-GWA-data_relaxed_strat2
+#QQ plots
+Rscript --vanilla $scripts/qq.plink.R clean-GWA-data_relaxed_strat2.assoc.linear "QQ plot"
+plink --bfile clean-GWA-data_stringent --linear --allow-no-sex --covar mds_covar2.txt --adjust --ci 0.95 --out clean-GWA-data_stringent_strat2
+#QQ plots
+Rscript --vanilla $scripts/qq.plink.R clean-GWA-data_stringent_strat2.assoc.linear "QQ plot"
