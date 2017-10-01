@@ -1,5 +1,5 @@
 ## *Programs installed locally on Maria's account:* :smile:
-##R packages:
+##  packages:
 Using R version 3.2.2 installed locally:
 ```export PATH=/home/armita/prog/R/R-3.2.2/bin:${PATH}```
 and libraries stored in ```export R_LIBS=/home/sobczm/R/x86_64-pc-linux-gnu-library/3.2:$R_LIBS```
@@ -10,11 +10,11 @@ R
 .libPaths( c( .libPaths(), "/home/sobczm/R/x86_64-pc-linux-gnu-library/3.2") )
 .libPaths( c( .libPaths(), "/home/armita/prog/R/R-3.2.2/library") )
 ```
-##Programs:
-###Source file with all dependencies for the programs below. If in doubt, load all of them into your current shell instance prior to execution of any pipeline by adding the line below to the top of your script:
+## Programs:
+### Source file with all dependencies for the programs below. If in doubt, load all of them into your current shell instance prior to execution of any pipeline by adding the line below to the top of your script:
 ```source /home/sobczm/bin/marias_profile```
 
-###Alternatively, export each dependency to PATH individually by hand
+### Alternatively, export each dependency to PATH individually by hand
 Type ```nano ~/.profile``` to start editing your BASH profile.
 Press ```Alt``` and ```/``` to navigate until the end of the file and paste the export command on a new line, for instance:
 ```export PATH=/home/sobczm/bin/mcl-14-137/bin:${PATH}```. Save changes and exit by pressing ```Ctrl``` and ```x``` followed by  ```y``` and finally ```Return``` (i.e. Enter). 
@@ -40,7 +40,7 @@ For the changes to take place, either type ```source ~/.profile``` or close and 
 
 [WhopGenome](https://cran.r-project.org/web/packages/WhopGenome/index.html): High-Speed Processing of VCF, FASTA and Alignment Data
 
-##Standalone
+## Standalone
 [4P](https://github.com/anbena/4p): 4P (Parallel Processing of Polymorphism Panels) is a software for computing
 population genetics statistics from large SNPs dataset. `/home/sobczm/bin/4p/bin`
 
@@ -210,7 +210,7 @@ export PYTHONPATH="$PYTHONPATH:/home/sobczm/bin/PyVCF/lib/python2.7/site-package
 
 [Weeder ver. 2.0](http://159.149.160.51/modtools/) Discovery of transcription factor binding sites in a set of sequences from co-regulated genes `/home/sobczm/bin/weeder`
 
-##Nanopore sequencing
+## Nanopore sequencing
 [poretools ver. 0.6](https://poretools.readthedocs.io/en/latest/index.html) A toolkit for working with nanopore sequencing data from Oxford Nanopore `/home/sobczm/bin/poretools/poretools` Usage: `python ./poretools`
 
 [marginAlign](https://github.com/benedictpaten/marginAlign) The marginAlign package can be used to align reads to a reference genome and call single nucleotide variations (SNVs). It is specifically tailored for Oxford Nanopore Reads. `/home/sobczm/bin/marginAlign`
