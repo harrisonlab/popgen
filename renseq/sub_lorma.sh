@@ -10,12 +10,10 @@ input_fasta=$1
 OutDir=$2
 
 CurPath=$PWD
-mkdir -p $WorkDir
-cd $WorkDir
+mkdir -p $OutDir
+cd $OutDir
 Fasta=$(basename $input_fasta)
 cp $CurPath/$input_fasta $Fasta
 
 $lorma/lorma.sh -threads 3 $Fasta
 
-mkdir -p $CurPath/$OutDir
-cp $WorkDir/* $CurPath/$OutDir

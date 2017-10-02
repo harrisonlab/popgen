@@ -214,3 +214,9 @@ Rscript --vanilla $scripts/qq.plink.R clean-GWA-data_relaxed_strat2.assoc.linear
 plink --bfile clean-GWA-data_stringent --linear --allow-no-sex --covar mds_covar2.txt --adjust --ci 0.95 --out clean-GWA-data_stringent_strat2
 #QQ plots
 Rscript --vanilla $scripts/qq.plink.R clean-GWA-data_stringent_strat2.assoc.linear "QQ plot"
+
+plink --bfile clean-GWA-data_relaxed --extract high_conf_outliers.txt --recode A --out high_conf_outliers
+plink --bfile clean-GWA-data_relaxed --extract medium_conf_outliers.txt --recode A --out medium_conf_outliers
+plink --bfile clean-GWA-data_relaxed --extract low_conf_outliers.txt --recode A --out low_conf_outliers
+plink --bfile clean-GWA-data_relaxed --extract istraw_35_outliers.txt --recode A --out istraw_35_outliers
+

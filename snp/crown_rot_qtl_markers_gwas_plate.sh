@@ -80,3 +80,10 @@ mv temp clean-inds-GWA-data.lmiss
 R CMD BATCH $scripts/plot_missing_genotypes_plink.R
 cd ../
 done
+
+#Get the genotypes for the select 5 markers for SBC samples.
+python $scripts/ananassa_genotypes_vcf.py sbc_candidates.out istraw90_vesca_v1.1_snp_positions.gff3
+cat sbc_candidates.out.vcf | sed 's/LG//' | sed 's/Unknown/0/' | awk 'NR<3{print $0;next}{print $0| "sort -k1,2"}'  >sbc_candidates.out2.vcf 
+plink --vcf sbc_candidates.out2.vcf --extract istraw_35_outliers.txt --recode A --out sbc_samples_outliers
+cat sbc_samples_outliers.raw | awk '{$1=$1;print}' OFS='\t' >temp
+mv temp sbc_samples_outliers.raw
