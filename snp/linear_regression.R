@@ -1,0 +1,30 @@
+input_file <- "istraw_35_outliers.raw"
+stats <- read.table(input_file, sep="\t", quote='', stringsAsFactors=TRUE,header=TRUE)
+rownames(stats) <- stats$FID
+# make sure R knows genotype is categorical
+stats$Affx.88880888_G <- factor(stats$Affx.88880888_G)
+stats$Affx.88900057_A <- factor(stats$Affx.88900057_A)
+stats$Affx.88900641_T <- factor(stats$Affx.88900641_T)
+stats$Affx.88900655_T <- factor(stats$Affx.88900655_T)
+stats$Affx.88901304_C <- factor(stats$Affx.88901304_C)
+#Add region to the model
+model <- lm(PHENOTYPE ~ Affx.88880888_G + Affx.88900057_A + Affx.88900641_T + Affx.88900655_T + Affx.88901304_C, data=stats)
+library(effects)
+plot(allEffects(model))
+plot(model, pch=16, which=1)
+
+summary(model)$r.squared
+no_missing_data <- na.omit(stats)
+plot(predict(model),no_missing_data$PHENOTYPE) 
+input_file2 <- "plate/sbc_samples_outliers.raw"
+sbc <- read.table(input_file2, sep="\t", quote='', stringsAsFactors=TRUE,header=TRUE)
+rownames(sbc) <- sbc$FID
+keeps <- c("Affx.88880888_G", "Affx.88900057_A", "Affx.88900641_T", "Affx.88900655_T", "Affx.88901304_C")
+just_markers <- sbc[keeps]
+just_markers$Affx.88880888_G <- factor(just_markers$Affx.88880888_G)
+just_markers$Affx.88900057_A <- factor(just_markers$Affx.88900057_A)
+just_markers$Affx.88900641_T <- factor(just_markers$Affx.88900641_T)
+just_markers$Affx.88900655_T <- factor(just_markers$Affx.88900655_T)
+just_markers$Affx.88901304_C <- factor(just_markers$Affx.88901304_C)
+#Prediction with 95% CI
+my_prediction <- predict(model, just_markers, interval="predict")

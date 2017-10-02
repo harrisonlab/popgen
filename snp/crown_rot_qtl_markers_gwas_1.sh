@@ -220,3 +220,5 @@ plink --bfile clean-GWA-data_relaxed --extract medium_conf_outliers.txt --recode
 plink --bfile clean-GWA-data_relaxed --extract low_conf_outliers.txt --recode A --out low_conf_outliers
 plink --bfile clean-GWA-data_relaxed --extract istraw_35_outliers.txt --recode A --out istraw_35_outliers
 
+#Fit a linear model to the 5 istraw35 outliers
+Rscript --vanilla $scripts/linear_regression.R 
