@@ -222,3 +222,9 @@ plink --bfile clean-GWA-data_relaxed --extract istraw_35_outliers.txt --recode A
 
 #Fit a linear model to the 5 istraw35 outliers
 Rscript --vanilla $scripts/linear_regression.R 
+
+#Redraw the Manhattan plots to include the subdivision into individual subgenomes.
+cat clean-GWA-data_relaxed_1.qassoc  | awk '{$1=$1;print}' OFS='\t' >temp
+python $scripts/substitute_genome_manhattan.py vesca2consensus_map_noambiguous_2017-08-22.gff temp 1 0 >test_man
+cat test_man | awk '{gsub("A","1",$1)}1' OFS='\t' | awk '{gsub("B","2",$1)}1' OFS='\t' | awk '{gsub("C","3",$1)}1' OFS='\t' | awk '{gsub("D","4",$1)}1' OFS='\t' | awk '{gsub("3HR","CHR",$1)}1' OFS='\t' >test_man2
+Rscript --vanilla $scripts/manhattan.R test_man2

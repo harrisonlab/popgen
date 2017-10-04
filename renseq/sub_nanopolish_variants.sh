@@ -10,7 +10,6 @@
 #$ -l h=blacklace03.blacklace|blacklace04.blacklace|blacklace05.blacklace|blacklace06.blacklace|blacklace07.blacklace|blacklace08.blacklace|blacklace09.blacklace|blacklace10.blacklace
 # wont submit to node 1, 11
 # #$ -l h=blacklace02.blacklace|blacklace03.blacklace|blacklace04.blacklace|blacklace05.blacklace|blacklace06.blacklace|blacklace07.blacklace|blacklace08.blacklace|blacklace09.blacklace|blacklace10.blacklace
-source /home/armita/.profile
 
 Usage="sub_nanopolish_variants.sh <assembly.fa> <reads.fa.gz> <aligned_ONTreads.sam> <ploidy[e.g.1]> <region> <output_directory>"
 echo "$Usage"
@@ -34,6 +33,7 @@ echo "Aligned reads - $AlignedIn"
 echo "OutDir - $OutDir"
 
 
+
 CurDir=$PWD
 WorkDir=$TMPDIR/nanopolish
 # WorkDir=/tmp/nanopolish
@@ -49,7 +49,11 @@ cp $CurDir/$AlignedIn.bai $Aligned.bai
 cp $CurDir/$ReadsIn $Reads
 
 cat $Reads | gunzip -cf > reads.fa
-
+source /home/sobczm/.generic_profile
+which samtools
+which nanopolish
+#nanopolish=/home/armita/prog/nanopolish/nanopolish_edited/nanopolish
+nanopolish index reads.fa
 nanopolish variants \
   -t 4 \
   --reads reads.fa \
