@@ -22,4 +22,4 @@ mv temp all_everbearer_kinship.genome
 #Plot my distance matrix
 $scripts/similarity_percentage.py all_everbearer_sample_max005.recode_sorted.vcf
 #Visualise the output as heatmap and clustering dendrogram
-Rscript --vanilla $scripts/distance_matrix.R Fus2_canu_contigs_unmasked_filtered_distance.log
+Rscript --vanilla $scripts/distance_matrix.R all_everbearer_sample_max005.recode_sorted_distance.log
