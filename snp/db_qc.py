@@ -59,7 +59,7 @@ for markers in marker_dict:
             istraw35_codes.append(alias_dict[aliases][1])
         for i35 in istraw35_aliases:
             if i35 in genotype_dict:
-                if "1" in genotype_dic[i35]:
+                if "1" in genotype_dict[i35]:
                     i35_counts_p1 += genotype_dict[i35]["1"]
                 if "2" in genotype_dict[i35]:
                     i35_counts_p2 += genotype_dict[i35]["2"]
