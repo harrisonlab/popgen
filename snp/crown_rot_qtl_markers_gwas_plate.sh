@@ -9,7 +9,7 @@ python $scripts/ananassa_genotypes_db.py sbc_candidates.txt sbc_candidates.out
 a="SELECT id, clone_id, file, path, type, batch FROM sample WHERE id in (2194,2013,2061,2163,1943,1991,2087,2218,2185,1949,2047,2049,1907,2230,2053,2206,2208,1931,2027,2123,2171)"
 echo $a | mysql -u marias -h mongo -D strawberry_samples -p$(cat /home/sobczm/bin/mysql_sample_database/login)> sbc_samples.txt
 b="SELECT id, clone_id, file, path, type, batch FROM sample WHERE id in (1468,1341,1196,1203,1420,1255,859,1114,1113,2234,2208,2206,2202,2200,2198,2194,2192,2190,2171,2167,2165,2163,2161,2159,2157,2155,2153,2151,2123,2117,2111,2107,2105,2103,2067,2065,2063,2061,2059,2057,2019,2017,2015,2013,2011,2009,1971,1969,1967,1963,1931,1925,1923,1921,1919,1917,1915,1913,1881,1879,1875,1873,1871,1869,1867,1387,1218,1181,1180,1112,1111,1110,1108,1104,1103,1102,1101,1098,1096,1095,1094,1093,1092,1091,1089,1088,1087,894,892,878,869,860,851,850,842,831,808,677,675,644,601,595,587,577,568,554,551)"
-echo $b| mysql -u marias -h mongo -D strawberry_samples -p$(cat /home/sobczm/bin/mysql_sample_database/login)> sample_ids_crown_rot_nodup_samples.txt
+echo $b | mysql -u marias -h mongo -D strawberry_samples -p$(cat /home/sobczm/bin/mysql_sample_database/login)> sample_ids_crown_rot_nodup_samples.txt
 
 #Modify the path to simple plate name.
 sed -i 's/\/home\/groups\/harrisonlab\/raw_data\/raw_celfiles\/istraw35_1plate_P160793_B1/istraw35_1plate_P160793_B1/' sbc_samples.txt
@@ -95,3 +95,7 @@ cat EM_EMR.out.vcf | sed 's/LG//' | sed 's/Unknown/0/' | awk 'NR<3{print $0;next
 plink --vcf EM_EMR.out2.vcf --extract istraw_35_outliers.txt --recode A --out EM_EMR_outliers
 cat EM_EMR_outliers.raw | awk '{$1=$1;print}' OFS='\t' >temp
 mv temp EM_EMR_outliers.raw
+
+#Print the genotype QC table for all samples.
+cd strawberry_db
+python $scripts/db_qc.py alias genotype sample >qc_table
