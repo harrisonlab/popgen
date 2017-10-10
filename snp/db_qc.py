@@ -8,7 +8,7 @@ from collections import defaultdict
 
 script, alias, genotype, sample = argv
 
-alias_dict = defaultdict(dict)
+alias_dict = defaultdict(list)
 marker_dict = defaultdict(list)
 with open (alias) as alias_h:
     headers = alias_h.readline().strip().split("\t")
@@ -25,9 +25,7 @@ with open (sample) as sample_h:
         lines = line.strip().split("\t")
         sample_dict[lines[0]] = lines[4]
 
-error_log = open("error.log", 'w')
 genotype_dict =  defaultdict(lambda: defaultdict(int))
-duplicate_entries = defaultdict()
 with open (genotype) as genotype_h:
     headers = genotype_h.readline().strip().split("\t")
     for line in genotype_h:
@@ -35,19 +33,10 @@ with open (genotype) as genotype_h:
         pipeline_id = lines[1]
         sample_id = lines[2]
         alias_id = lines[3]
-        #Count up the number of istraw35/istraw90 genotypes available for a given alias_id,
-        #separated by pipeline.
         if pipeline_id == "1":
             genotype_dict[alias_id]["1"] += 1
         elif pipeline_id == "2":
             genotype_dict[alias_id]["2"] += 1
-        unique_string = pipeline_id + " " + sample_id + " " + alias_id
-        if unique_string in duplicate_entries:
-            error_log.write(unique_string + "\n")
-        else:
-            duplicate_entries[unique_string] = 1
-error_log.close()
-
 
 headers = ["marker_id", "istraw35_affx_codes", "istraw90_affx_codes", "istraw35_alias_ids",	"istraw90_alias_ids", "pipeline1_number_istraw35_genotypes", "pipeline2_number_istraw35_genotypes", "pipeline1_number_istraw90_genotypes", "pipeline2_number_istraw90_genotypes"]
 print "\t".join(headers)
@@ -56,6 +45,10 @@ for markers in marker_dict:
     istraw90_aliases = list()
     istraw35_codes = list()
     istraw90_codes = list()
+    i35_counts_p1 = 0
+    i90_counts_p1 = 0
+    i35_counts_p2 = 0
+    i90_counts_p2 = 0
     print markers, " \t",
     for aliases in marker_dict[markers]:
         if alias_dict[aliases][0] == "istraw90":
@@ -64,19 +57,17 @@ for markers in marker_dict:
         elif alias_dict[aliases][0] == "istraw35":
             istraw35_aliases.append(aliases)
             istraw35_codes.append(alias_dict[aliases][1])
-        i35_counts_p1 = 0
-        i90_counts_p1 = 0
-        i35_counts_p2 = 0
-        i90_counts_p2 = 0
         for i35 in istraw35_aliases:
-            if 1 in genotype_dict[i35]:
-                i35_counts_p1 += genotype_dict[i35]['1']
-            if 2 in genotype_dict[i35]:
-                i35_counts_p2 += genotype_dict[i35]['2']
+            if i35 in genotype_dict:
+                if "1" in genotype_dic[i35]:
+                    i35_counts_p1 += genotype_dict[i35]["1"]
+                if "2" in genotype_dict[i35]:
+                    i35_counts_p2 += genotype_dict[i35]["2"]
         for i90 in istraw90_aliases:
-            if 1 in genotype_dict[i90]:
-                i90_counts_p1 += genotype_dict[i90]['1']
-            if 2 in genotype_dict[i90]:
-                i90_counts_p2 += genotype_dict[i90]['2']
+            if i90 in genotype_dict:
+                if "1" in genotype_dict[i90]:
+                    i90_counts_p1 += genotype_dict[i90]["1"]
+                if "2" in genotype_dict[i90]:
+                    i90_counts_p2 += genotype_dict[i90]["2"]
     print ";".join(istraw35_codes), " \t" , ";".join(istraw90_codes), " \t", ";".join(istraw35_aliases), " \t", ";".join(istraw90_aliases), " \t",
-    print i35_counts_p1, " \t", i35_counts_p2,  "\t", i35_counts_p1, " \t", i35_counts_p2
+    print i35_counts_p1, " \t", i35_counts_p2,  "\t", i90_counts_p1, " \t", i90_counts_p2
