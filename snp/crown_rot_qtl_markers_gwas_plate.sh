@@ -96,6 +96,17 @@ plink --vcf EM_EMR.out2.vcf --extract istraw_35_outliers.txt --recode A --out EM
 cat EM_EMR_outliers.raw | awk '{$1=$1;print}' OFS='\t' >temp
 mv temp EM_EMR_outliers.raw
 
+#Get the genotypes for the select 5 markers for all samples in the master strawberry spreadsheet.
+a=all_cultivars_ids
+python $scripts/ananassa_genotypes_db.py $a.txt $a.out
+python $scripts/ananassa_genotypes_vcf.py $a.out istraw90_vesca_v1.1_snp_positions.gff3
+cat $a.out.vcf | sed 's/LG//' | sed 's/Unknown/0/' | awk 'NR<3{print $0;next}{print $0| "sort -k1,2"}'  >$a.out2.vcf 
+plink --vcf $a.out2.vcf --extract istraw_35_outliers.txt --recode A --out ${a}_outliers
+cat ${a}_outliers.raw | awk '{$1=$1;print}' OFS='\t' >temp
+mv temp ${a}_outliers.raw2
+
+#Repeated after fixed the bug in the db table to VCF conversion script.
+
 #Print the genotype QC table for all samples.
 cd strawberry_db
 python $scripts/db_qc.py alias genotype sample >qc_table

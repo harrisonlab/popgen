@@ -62,6 +62,8 @@ for m in markers.keys():
                 gen = "0/1:2"
             elif genotype == "BA":
                 gen = "0/1:2"
+            else:
+                gen = "."
         else:
             gen = "."
         out_h.write("\t" + gen)

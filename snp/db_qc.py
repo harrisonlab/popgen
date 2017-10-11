@@ -69,5 +69,11 @@ for markers in marker_dict:
                     i90_counts_p1 += genotype_dict[i90]["1"]
                 if "2" in genotype_dict[i90]:
                     i90_counts_p2 += genotype_dict[i90]["2"]
+    if (len(istraw35_codes) == 0 and len(istraw35_aliases) == 0):
+        i35_counts_p1 = "NA"
+        i35_counts_p2 = "NA"
+    if (len(istraw90_codes) == 0 and len(istraw90_aliases) == 0):
+        i90_counts_p1 = "NA"
+        i90_counts_p2 = "NA"
     print ";".join(istraw35_codes), " \t" , ";".join(istraw90_codes), " \t", ";".join(istraw35_aliases), " \t", ";".join(istraw90_aliases), " \t",
     print i35_counts_p1, " \t", i35_counts_p2,  "\t", i90_counts_p1, " \t", i90_counts_p2
