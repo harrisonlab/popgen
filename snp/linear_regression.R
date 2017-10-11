@@ -1,4 +1,4 @@
-input_file <- "istraw_35_outliers.raw"
+input_file <- "istraw_35_outliers.raw.txt"
 stats <- read.table(input_file, sep="\t", quote='', stringsAsFactors=TRUE,header=TRUE)
 rownames(stats) <- stats$FID
 # make sure R knows genotype is categorical
@@ -15,8 +15,9 @@ plot(model, pch=16, which=1)
 
 summary(model)$r.squared
 no_missing_data <- na.omit(stats)
-plot(predict(model),no_missing_data$PHENOTYPE) 
-input_file2 <- "plate/sbc_samples_outliers.raw"
+plot(predict(model),no_missing_data$PHENOTYPE,xlab="Predicted score", ylab="Actual score") 
+abline(a=0, b=1)
+input_file2 <- "all_cultivars_ids_outliers.raw2.txt"
 sbc <- read.table(input_file2, sep="\t", quote='', stringsAsFactors=TRUE,header=TRUE)
 rownames(sbc) <- sbc$FID
 keeps <- c("Affx.88880888_G", "Affx.88900057_A", "Affx.88900641_T", "Affx.88900655_T", "Affx.88901304_C")
@@ -28,3 +29,9 @@ just_markers$Affx.88900655_T <- factor(just_markers$Affx.88900655_T)
 just_markers$Affx.88901304_C <- factor(just_markers$Affx.88901304_C)
 #Prediction with 95% CI
 my_prediction <- predict(model, just_markers, interval="predict")
+write.table(my_prediction, file="all_cultivars_predictions.txt", sep="\t", quote=FALSE)
+#Join with cultivar name.
+cultivars = read.table("all_cultivars_ids.txt", sep="\t", quote='', stringsAsFactors=TRUE,header=TRUE)
+rownames(cultivars) <- cultivars$Id
+pred_cultivars <- merge(my_prediction, cultivars, by.x = 0, by.y = 0)
+write.table(pred_cultivars, file="all_cultivars_predictions.txt", sep="\t", quote=FALSE)
