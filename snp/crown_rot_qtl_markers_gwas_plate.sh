@@ -110,3 +110,6 @@ mv temp ${a}_outliers.raw2
 #Print the genotype QC table for all samples.
 cd strawberry_db
 python $scripts/db_qc.py alias genotype sample >qc_table
+python $scripts/db_qc2.py alias 
+python $scripts/db_qc3.py alias 
+python $scripts/db_qc4.py alias 

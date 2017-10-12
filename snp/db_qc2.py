@@ -38,17 +38,19 @@ with open (alias) as alias_h:
 
 for affx in istraw35_markers:
     if len(istraw35_markers[affx]) > 1:
-        multi35.write("\n".join(istraw35_markers[affx]) + "\n")
         markers = istraw35_markers[affx]
+        markers = list(set(markers))
+        multi35.write("\n".join(markers) + "\n")
         for m in markers:
             if m not in istraw90_marker_ids:
                 sec90.write(m + "\n")
 
 for affx in istraw90_markers:
     if len(istraw90_markers[affx]) > 1:
-        multi90.write("\n".join(istraw90_markers[affx]) + "\n")
-    #Check for secondary form.
         markers = istraw90_markers[affx]
+        markers = list(set(markers))
+        multi90.write("\n".join(markers) + "\n")
+    #Check for secondary form.
         for m in markers:
             if m not in istraw35_marker_ids:
                 sec35.write(m + "\n")
