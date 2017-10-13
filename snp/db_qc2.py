@@ -38,6 +38,7 @@ with open (alias) as alias_h:
 
 for affx in istraw35_markers:
     if len(istraw35_markers[affx]) > 1:
+        print len(istraw35_markers[affx])
         markers = istraw35_markers[affx]
         markers = list(set(markers))
         multi35.write("\n".join(markers) + "\n")
@@ -47,6 +48,7 @@ for affx in istraw35_markers:
 
 for affx in istraw90_markers:
     if len(istraw90_markers[affx]) > 1:
+        print len(istraw90_markers[affx])
         markers = istraw90_markers[affx]
         markers = list(set(markers))
         multi90.write("\n".join(markers) + "\n")
