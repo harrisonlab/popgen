@@ -19,11 +19,13 @@ with open (alias) as alias_h:
         marker = lines[4]
         if lines[1] == "istraw90":
             if marker in istraw90_markers:
+                #Flag up multiform markers
                 istraw90_markers[marker] = "90"
             else:
                 istraw90_markers[marker] = affx
         elif lines[1] == "istraw35":
             if marker in istraw35_markers:
+                #Flag up multiform markers
                 istraw35_markers[marker] = "35"
             else:
                 istraw35_markers[marker] = affx

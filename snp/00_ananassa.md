@@ -39,4 +39,5 @@
 [crown_rot_qtl_markers_gwas_plate.sh](https://github.com/harrisonlab/popgen/blob/master/snp/crown_rot_qtl_markers_gwas_plate.sh)
 ### GWAS analysis of everbearer trait
 [everbearer_gwas.sh](https://github.com/harrisonlab/popgen/blob/master/snp/everbearer_gwas.sh)
-
+### Various checks of the ananassa snp chip database - QC. 
+[ananassa_db_qc.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/ananassa_db_qc.sh)
