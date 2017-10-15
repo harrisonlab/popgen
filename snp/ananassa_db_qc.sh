@@ -43,8 +43,3 @@ python $scripts/db_qc4.py alias
 python $scripts/db_qc5.py alias marker
 #Positive control test using fake data to check if script works correctly, as obtained no dupliactes
 python $scripts/db_qc5.py alias_test marker_test
-#Since we have few (~13k) unique (one marker_jd -> one probe -> one Affx code) in the intersect between istraw35 and istraw90 with genotypes on both chips, would like to "rescue" some from the multiform markers. In order to do this, linking between multiform markers on istraw35 and istraw90. Matching up the same alleles, and the same flanking sequence, and keeping those markers in the analysis. Only one such pair per marker id if more available - choose the one with most genotypes on both chips. 
-python $scripts/db_qc6.py alias marker genotype
-
-#In addition, for istraw90 only dataset, look at multiform markers ids present only on that chip, and pick one with the most genotypes.
-python $scripts/db_qc7.py alias marker genotype
