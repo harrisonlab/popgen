@@ -58,3 +58,5 @@ Order of Shell script execution:
 26) [strawberry_renseq_analysis_part1.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/strawberry_renseq_analysis_part1.sh)
 
 27) [nanopore_emxfe_renseq.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/nanopore_emxfe_renseq.sh)
+
+28) [nanopore_emxfe_renseq2.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/nanopore_emxfe_renseq2.sh)

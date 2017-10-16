@@ -2,7 +2,7 @@
 scripts=/home/sobczm/bin/popgen/renseq
 input=/home/sobczm/popgen/renseq/strawberry/reads/albacore_emxfe
 cd $input
-#Concatenate Extract the confirmed reads with porechop (Barcode 11 and Barcode 12 only now)
+#Analyse the confirmed reads (Barcode 11 and Barcode 12 only now). First, copy them across.
 for f in /data/seq_data/minion/2017/20170823_1707_RENseq-Em-Fen/20170823_1714_RENseq-Em-Fen/albacore_output_1.2.4/workspace/barcode11/*.fastq
 do
 cat $f >>$input/barcode11_emily.fastq
@@ -57,11 +57,13 @@ perl /home/sobczm/bin/popgen/other/assemblathon_stats.pl barcode12_fenella.fasta
                              Number of scaffold non-ACGTN nt          0
 
 sh /home/sobczm/bin/popgen/other/run_fastqc.sh barcode11_emily.fastq
+#Histogram of read length.
 cat barcode11_emily.fastq | awk '{if(NR%4==2) print length($1)}' | sort -n > emily_read_length.txt
 sh /home/sobczm/bin/popgen/other/run_fastqc.sh barcode12_fenella.fastq
+#Histogram of read length.
 cat barcode12_fenella.fastq | awk '{if(NR%4==2) print length($1)}' | sort -n  > fenella_read_length.txt
 
-#Blast the raw reads to establish % hits R genes.
+#Blast the raw reads to establish hits R genes.
 #Copy the blast db
 cp -r /home/sobczm/popgen/renseq/strawberry/reads/Helen_Bates_EMR.RH.ENQ-1704.A.01/analysis/vesca_v1.1_nblrrs_augustus_mrna_nucl.db* ./
 
@@ -136,10 +138,10 @@ cat $input/porechop_unclassified/NB12.fastq >> barcode12_fenella_trimmed_all.fas
 /home/sobczm/bin/seqtk/seqtk sample barcode11_emily_trimmed_all.fasta 450000 > barcode11_emily_trimmed_all_075.fasta
 /home/sobczm/bin/seqtk/seqtk sample barcode12_fenella_trimmed_all.fasta 450000 > barcode12_fenella_trimmed_all_075.fasta
 #Generate a polished set of reads - two rounds of error correcting should lead to 97% accuracy.
-qsub $scripts/sub_nanocorrect.sh barcode11_emily_trimmed_all.fasta nanocorrect_emily_nanocorrect
-qsub $scripts/sub_nanocorrect.sh barcode12_fenella_trimmed_all.fasta nanocorrect_fenella_nanocorrect
-qsub $scripts/sub_nanocorrect.sh barcode11_emily_trimmed_all_075.fasta nanocorrect_emily_nanocorrect_075
-qsub $scripts/sub_nanocorrect.sh barcode12_fenella_trimmed_all_075.fasta nanocorrect_fenella_nanocorrect_075
+#qsub $scripts/sub_nanocorrect.sh barcode11_emily_trimmed_all.fasta nanocorrect_emily_nanocorrect
+#qsub $scripts/sub_nanocorrect.sh barcode12_fenella_trimmed_all.fasta nanocorrect_fenella_nanocorrect
+#qsub $scripts/sub_nanocorrect.sh barcode11_emily_trimmed_all_075.fasta nanocorrect_emily_nanocorrect_075
+#qsub $scripts/sub_nanocorrect.sh barcode12_fenella_trimmed_all_075.fasta nanocorrect_fenella_nanocorrect_075
 
 #Cannot make it work, use LoRMA instead.
 qsub $scripts/sub_lorma.sh barcode11_emily_trimmed_all.fasta  lorma_barcode11_emily_all
@@ -147,6 +149,11 @@ qsub $scripts/sub_lorma.sh barcode12_fenella_trimmed_all.fasta lorma_barcode12_f
 qsub $scripts/sub_lorma.sh barcode11_emily_trimmed_all_075.fasta lorma_barcode11_emily_075
 qsub $scripts/sub_lorma.sh barcode12_fenella_trimmed_all_075.fasta lorma_barcode12_fenella_075
 
+#Copy the resulting error-corrected reads from LoRMA.
+cp lorma_barcode12_fenella_all/final.fasta lorma_barcode12_fenella_all.fasta
+gzip lorma_barcode12_fenella_all.fasta
+cp lorma_barcode11_emily_all/final.fasta lorma_barcode11_emily_all.fasta
+gzip lorma_barcode11_emily_all.fasta
 #Read error correction with Canu
 gzip barcode11_emily_trimmed_all.fastq 
 qsub $scripts/sub_canu_correct.sh barcode11_emily_trimmed_all.fastq.gz 25m barcode11_emily_trimmed_all barcode11_emily_trimmed_all
@@ -175,115 +182,41 @@ qsub $scripts/sub_racon.sh $ass/$ass.dmo.lay.utg barcode11_emily_trimmed_all.fas
 
 #Assembly correction using nanopolish
 #Re-extract reads
-qsub $scripts/sub_nanopolish_extract.sh $raw_reads/barcode11 nanopolish_barcode11_emily.fasta
-qsub $scripts/sub_nanopolish_extract.sh $raw_reads/barcode12 nanopolish_barcode12_fenella.fasta
-gzip nanopolish_barcode11_emily.fasta
-gzip nanopolish_barcode12_fenella.fasta 
+#qsub $scripts/sub_nanopolish_extract.sh $raw_reads/barcode11 nanopolish_barcode11_emily.fasta
+#qsub $scripts/sub_nanopolish_extract.sh $raw_reads/barcode12 nanopolish_barcode12_fenella.fasta
+#gzip nanopolish_barcode11_emily.fasta
+#gzip nanopolish_barcode12_fenella.fasta 
 #Align reads
-qsub $scripts/sub_bwa_nanopolish.sh smartdenovo_barcode11_emily_trimmed_075/racon/smartdenovo_barcode11_emily_trimmed_075_racon_round_10.fasta nanopolish_barcode11_emily.fasta.gz smartdenovo_barcode11_emily_trimmed_075/nanopolish
-qsub $scripts/sub_bwa_nanopolish.sh smartdenovo_barcode11_emily_trimmed_all/racon/smartdenovo_barcode11_emily_trimmed_all_racon_round_10.fasta nanopolish_barcode11_emily.fasta.gz smartdenovo_barcode11_emily_trimmed_all/nanopolish
-qsub $scripts/sub_bwa_nanopolish.sh smartdenovo_barcode12_fenella_trimmed_075/racon/smartdenovo_barcode12_fenella_trimmed_075_racon_round_10.fasta nanopolish_barcode12_fenella.fasta.gz smartdenovo_barcode12_fenella_trimmed_075/nanopolish
-qsub $scripts/sub_bwa_nanopolish.sh smartdenovo_barcode12_fenella_trimmed_all/racon/smartdenovo_barcode12_fenella_trimmed_all_racon_round_10.fasta nanopolish_barcode12_fenella.fasta.gz smartdenovo_barcode12_fenella_trimmed_all/nanopolish
+#qsub $scripts/sub_bwa_nanopolish.sh smartdenovo_barcode11_emily_trimmed_075/racon/smartdenovo_barcode11_emily_trimmed_075_racon_round_10.fasta nanopolish_barcode11_emily.fasta.gz smartdenovo_barcode11_emily_trimmed_075/nanopolish
+#qsub $scripts/sub_bwa_nanopolish.sh smartdenovo_barcode11_emily_trimmed_all/racon/smartdenovo_barcode11_emily_trimmed_all_racon_round_10.fasta nanopolish_barcode11_emily.fasta.gz smartdenovo_barcode11_emily_trimmed_all/nanopolish
+#qsub $scripts/sub_bwa_nanopolish.sh smartdenovo_barcode12_fenella_trimmed_075/racon/smartdenovo_barcode12_fenella_trimmed_075_racon_round_10.fasta nanopolish_barcode12_fenella.fasta.gz smartdenovo_barcode12_fenella_trimmed_075/nanopolish
+#qsub $scripts/sub_bwa_nanopolish.sh smartdenovo_barcode12_fenella_trimmed_all/racon/smartdenovo_barcode12_fenella_trimmed_all_racon_round_10.fasta nanopolish_barcode12_fenella.fasta.gz smartdenovo_barcode12_fenella_trimmed_all/nanopolish
 #Submit alignments for nanopolish - variant calling.
-NanoPolishDir=/home/armita/prog/nanopolish/nanopolish/scripts
-python $NanoPolishDir/nanopolish_makerange.py smartdenovo_barcode11_emily_trimmed_075/racon/smartdenovo_barcode11_emily_trimmed_075_racon_round_10.fasta > smartdenovo_barcode11_emily_trimmed_075/nanopolish/nanopolish_range.txt
-python $NanoPolishDir/nanopolish_makerange.py smartdenovo_barcode11_emily_trimmed_all/racon/smartdenovo_barcode11_emily_trimmed_all_racon_round_10.fasta > smartdenovo_barcode11_emily_trimmed_all/nanopolish/nanopolish_range.txt
-python $NanoPolishDir/nanopolish_makerange.py smartdenovo_barcode12_fenella_trimmed_075/racon/smartdenovo_barcode12_fenella_trimmed_075_racon_round_10.fasta > smartdenovo_barcode12_fenella_trimmed_075/nanopolish/nanopolish_range.txt
-python $NanoPolishDir/nanopolish_makerange.py smartdenovo_barcode12_fenella_trimmed_all/racon/smartdenovo_barcode12_fenella_trimmed_all_racon_round_10.fasta > smartdenovo_barcode12_fenella_trimmed_all/nanopolish/nanopolish_range.txt
+#NanoPolishDir=/home/armita/prog/nanopolish/nanopolish/scripts
+#python $NanoPolishDir/nanopolish_makerange.py smartdenovo_barcode11_emily_trimmed_075/racon/smartdenovo_barcode11_emily_trimmed_075_racon_round_10.fasta > smartdenovo_barcode11_emily_trimmed_075/nanopolish/nanopolish_range.txt
 
-Assembly=smartdenovo_barcode11_emily_trimmed_075/racon/smartdenovo_barcode11_emily_trimmed_075_racon_round_10.fasta 
-RawReads=nanopolish_barcode11_emily.fasta.gz 
-AlignedReads=smartdenovo_barcode11_emily_trimmed_075/nanopolish/reads.sorted.bam
-Ploidy=8
-OutDir=smartdenovo_barcode11_emily_trimmed_075/nanopolish
-for Region in $(cat $OutDir/nanopolish_range.txt | tail -n+21); do
-Jobs=$(qstat | grep 'sub_nanopo' | wc -l)
-while [ $Jobs -gt 4 ]; do
-sleep 1m
-printf "."
-Jobs=$(qstat | grep 'sub_nanopo' | wc -l)
-done		
-printf "\n"
-echo $Region
-echo $Region >> nanopolish_log.txt
-qsub $scripts/sub_nanopolish_variants.sh $Assembly $RawReads $AlignedReads $Ploidy $Region $OutDir/$Region
-done
+#Assembly=smartdenovo_barcode11_emily_trimmed_075/racon/smartdenovo_barcode11_emily_trimmed_075_racon_round_10.fasta 
+#RawReads=nanopolish_barcode11_emily.fasta.gz 
+#AlignedReads=smartdenovo_barcode11_emily_trimmed_075/nanopolish/reads.sorted.bam
+#Ploidy=8
+#OutDir=smartdenovo_barcode11_emily_trimmed_075/nanopolish
+#for Region in $(cat $OutDir/nanopolish_range.txt | tail -n+21); do
+#Jobs=$(qstat | grep 'sub_nanopo' | wc -l)
+#while [ $Jobs -gt 4 ]; do
+#sleep 1m
+#printf "."
+#Jobs=$(qstat | grep 'sub_nanopo' | wc -l)
+#done		
+#printf "\n"
+#echo $Region
+#echo $Region >> nanopolish_log.txt
+#qsub $scripts/sub_nanopolish_variants.sh $Assembly $RawReads $AlignedReads $Ploidy $Region $OutDir/$Region
+#done
 
-for variants in $OutDir/*/*.txt
-do
-cat $variants >> $OutDir/nanopolish_all_variants.txt
-done
+#for variants in $OutDir/*/*.txt
+#do
+#cat $variants >> $OutDir/nanopolish_all_variants.txt
+#done
 
-Assembly=smartdenovo_barcode11_emily_trimmed_all/racon/smartdenovo_barcode11_emily_trimmed_all_racon_round_10.fasta 
-RawReads=nanopolish_barcode11_emily.fasta.gz 
-AlignedReads=smartdenovo_barcode11_emily_trimmed_all/nanopolish/reads.sorted.bam
-Ploidy=8
-OutDir=smartdenovo_barcode11_emily_trimmed_all/nanopolish
+###The nanopolish variant calling step is cancelled as despite communication with the author cannot get it to work with data from highly polymorphic polyploid genome.
 
-for Region in $(cat $OutDir/nanopolish_range.txt | tail -n+21); do
-Jobs=$(qstat | grep 'sub_nanopo' | wc -l)
-while [ $Jobs -gt 4 ]; do
-sleep 1m
-printf "."
-Jobs=$(qstat | grep 'sub_nanopo' | wc -l)
-done		
-printf "\n"
-echo $Region
-echo $Region >> nanopolish_log.txt
-qsub $scripts/sub_nanopolish_variants.sh $Assembly $RawReads $AlignedReads $Ploidy $Region $OutDir/$Region
-done
-
-for variants in $OutDir/*/*.txt
-do
-cat $variants >> $OutDir/nanopolish_all_variants.txt
-done
-
-Assembly=smartdenovo_barcode12_fenella_trimmed_075/racon/smartdenovo_barcode12_fenella_trimmed_075_racon_round_10.fasta 
-RawReads=nanopolish_barcode12_fenella.fasta.gz 
-AlignedReads=smartdenovo_barcode12_fenella_trimmed_075/nanopolish/reads.sorted.bam
-Ploidy=8
-OutDir=smartdenovo_barcode12_fenella_trimmed_075/nanopolish
-
-for Region in $(cat $OutDir/nanopolish_range.txt | tail -n+21); do
-Jobs=$(qstat | grep 'sub_nanopo' | wc -l)
-while [ $Jobs -gt 4 ]; do
-sleep 1m
-printf "."
-Jobs=$(qstat | grep 'sub_nanopo' | wc -l)
-done		
-printf "\n"
-echo $Region
-echo $Region >> nanopolish_log.txt
-qsub $scripts/sub_nanopolish_variants.sh $Assembly $RawReads $AlignedReads $Ploidy $Region $OutDir/$Region
-done
-
-for variants in $OutDir/*/*.txt
-do
-cat $variants >> $OutDir/nanopolish_all_variants.txt
-done
-
-Assembly=smartdenovo_barcode12_fenella_trimmed_all/racon/smartdenovo_barcode12_fenella_trimmed_all_racon_round_10.fasta 
-RawReads=nanopolish_barcode12_fenella.fasta.gz 
-AlignedReads=smartdenovo_barcode12_fenella_trimmed_all/nanopolish/reads.sorted.bam
-Ploidy=8
-OutDir=smartdenovo_barcode12_fenella_trimmed_all/nanopolish
-
-for Region in $(cat $OutDir/nanopolish_range.txt | tail -n+21); do
-Jobs=$(qstat | grep 'sub_nanopo' | wc -l)
-while [ $Jobs -gt 4 ]; do
-sleep 1m
-printf "."
-Jobs=$(qstat | grep 'sub_nanopo' | wc -l)
-done		
-printf "\n"
-echo $Region
-echo $Region >> nanopolish_log.txt
-qsub $scripts/sub_nanopolish_variants.sh $Assembly $RawReads $AlignedReads $Ploidy $Region $OutDir/$Region
-done
-
-for variants in $OutDir/*/*.txt
-do
-cat $variants >> $OutDir/nanopolish_all_variants.txt
-done
-
-#Align Illumina reads and carry out variant calling with GATK.
