@@ -1,7 +1,7 @@
 #$ -S /bin/bash
 #$ -cwd
-#$ -pe smp 6
-#$ -l h_vmem=4G
+#$ -pe smp 4
+#$ -l h_vmem=20G
 #$ -l h=blacklace01.blacklace|blacklace02.blacklace|blacklace04.blacklace|blacklace05.blacklace|blacklace06.blacklace|blacklace07.blacklace|blacklace08.blacklace|blacklace09.blacklace|blacklace10.blacklace|blacklace12.blacklace
 
 # Changes required in the script:
@@ -21,5 +21,5 @@ filename=$(basename "$reference")
 
 gatk=/home/sobczm/bin/GenomeAnalysisTK-3.6
 
-java -jar $gatk/GenomeAnalysisTK.jar -R $reference -T HaplotypeCaller -ploidy 8 -nct 6 --allow_potentially_misencoded_quality_scores --defaultBaseQualities 30 -I $input/bwa_canu_emily_all_own/reads.sorted_unique_sorted_rg.bam -I $input/bwa_canu_fenella_all_cross/reads.sorted_unique_sorted_rg.bam -o $output
+java -Xmx20g -jar $gatk/GenomeAnalysisTK.jar -R $reference -T HaplotypeCaller -ploidy 8 -nct 4 -maxAltAlleles 8  --allow_potentially_misencoded_quality_scores --defaultBaseQualities 30 -I $input/bwa_canu_emily_all_own/reads.sorted_unique_sorted_rg.bam -I $input/bwa_canu_fenella_all_cross/reads.sorted_unique_sorted_rg.bam -o $output
 

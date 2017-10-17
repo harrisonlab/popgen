@@ -15,11 +15,11 @@
 
 input=/home/sobczm/popgen/renseq/strawberry/reads/albacore_emxfe
 reference=$input/gatk/smartdenovo_barcode11_emily_trimmed_all_racon_round_10.fasta
-output=$input/gatk/renseq_lorma_emily_ref.vcf
+output=$input/gatk/renseq_canu_emily_ref2.vcf
 
 filename=$(basename "$reference")
 
 gatk=/home/sobczm/bin/GenomeAnalysisTK-3.6
 
-java -Xmx20g -jar $gatk/GenomeAnalysisTK.jar -R $reference -T HaplotypeCaller -ploidy 8 -nct 4 -maxAltAlleles 8  --allow_potentially_misencoded_quality_scores --defaultBaseQualities 30 -I $input/bwa_lorma_emily_all_own/reads.sorted_unique_sorted_rg.bam -I $input/bwa_lorma_fenella_all_cross/reads.sorted_unique_sorted_rg.bam -o $output
+java -Xmx20g -jar $gatk/GenomeAnalysisTK.jar -R $reference -T HaplotypeCaller -ploidy 2 -nct 4 -maxAltAlleles 8  --allow_potentially_misencoded_quality_scores --defaultBaseQualities 30 -I $input/bwa_canu_emily_all_own/reads.sorted_unique_sorted_rg.bam -I $input/bwa_canu_fenella_all_cross/reads.sorted_unique_sorted_rg.bam -o $output
 

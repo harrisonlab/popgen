@@ -57,8 +57,18 @@ samtools faidx gatk/smartdenovo_barcode12_fenella_trimmed_all_racon_round_10.fas
 java -jar /home/sobczm/bin/picard-tools-2.5.0/picard.jar CreateSequenceDictionary R=gatk/smartdenovo_barcode11_emily_trimmed_all_racon_round_10.fasta O=gatk/smartdenovo_barcode11_emily_trimmed_all_racon_round_10.dict
 samtools faidx gatk/smartdenovo_barcode11_emily_trimmed_all_racon_round_10.fasta
 
-#Run GATK variant calling.
+#Run GATK variant calling (ploidy = 8).
 qsub $scripts/sub_gatk_canu_emily.sh
 qsub $scripts/sub_gatk_canu_fenella.sh
 qsub $scripts/sub_gatk_lorma_emily.sh
 qsub $scripts/sub_gatk_lorma_fenella.sh
+
+#Run GATK variant calling (ploidy = 2).
+qsub $scripts/sub_gatk_canu_emily2.sh
+qsub $scripts/sub_gatk_canu_fenella2.sh
+qsub $scripts/sub_gatk_lorma_emily2.sh
+qsub $scripts/sub_gatk_lorma_fenella2.sh
+
+perl /home/sobczm/bin/popgen/other/assemblathon_stats.pl 
+#Histogram of read length.
+cat barcode11_emily.fastq | awk '{if(NR%4==2) print length($1)}' | sort -n
