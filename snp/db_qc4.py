@@ -34,8 +34,8 @@ counter = 0
 for marker in istraw90_markers:
     if marker in istraw35_markers:
         if istraw90_markers[marker] == istraw35_markers[marker]:
-            #counter += 1
-            print marker, "\t", istraw35_markers[marker], "\t", istraw90_markers[marker]
+            counter += 1
+            #print marker, "\t", istraw35_markers[marker], "\t", istraw90_markers[marker]
         else:
             if (istraw90_markers[marker] != "90" and istraw35_markers[marker] != "35"):
                 print marker, "\t", istraw35_markers[marker], "\t", istraw90_markers[marker]

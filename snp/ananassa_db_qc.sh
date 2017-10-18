@@ -74,6 +74,9 @@ mv temp all_samples_kinship.genome
 Rscript --vanilla $scripts/plot_relationship.R 
 Rscript --vanilla $scripts/plot_relationship2.R 
 
+#Filter the rows where clone ids match for both samples being compared.
+head all_samples_kinship_all.genome
+
 #Plot my distance matrix
 $scripts/similarity_percentage.py all_everbearer_sample_max005.recode_sorted.vcf
 #Visualise the output as heatmap and clustering dendrogram

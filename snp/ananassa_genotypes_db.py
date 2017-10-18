@@ -20,7 +20,7 @@ db = MySQLdb.connect(host="mongo",   #192.168.1.100
                      db="strawberry_samples")
 
 cur = db.cursor()
-cur.execute("SELECT g.id, g.pipeline_id, g.sample_id, a.platform, a.probe_id, a.snp_id, a.marker_id, g.genotype, m.ref, m.alt FROM genotype g JOIN alias a ON g.alias_id = a.id JOIN marker m ON a.marker_id = m.id WHERE g.sample_id IN (" + ",".join(("%s",) * len(ids)) + ")", tuple(ids))
+cur.execute("SELECT g.id, g.pipeline_id, g.sample_id, a.platform, a.probe_id, m.name, a.marker_id, g.genotype, m.ref, m.alt FROM genotype g JOIN alias a ON g.alias_id = a.id JOIN marker m ON a.marker_id = m.id WHERE g.sample_id IN (" + ",".join(("%s",) * len(ids)) + ")", tuple(ids))
 
 num_fields = len(cur.description)
 field_names = [i[0] for i in cur.description]

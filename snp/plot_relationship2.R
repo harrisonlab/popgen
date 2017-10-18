@@ -28,4 +28,4 @@ merge1 <- merge(stats, sample_table, by.x="IID1", by.y="id")
 colnames(merge1)[colnames(merge1)=="clone_id"] <- "IID1_clone_id"
 merge2 <- merge(merge1, sample_table, by.x="IID2", by.y="id")
 colnames(merge2)[colnames(merge2)=="clone_id"] <- "IID2_clone_id"
-write.table(merge2, file="all_samples_kinship_all.genome", sep="\t", quote=FALSE)
+write.table(merge2, file="all_samples_kinship_all.genome", sep="\t", quote=FALSE, row.names=FALSE)
