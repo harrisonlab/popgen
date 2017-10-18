@@ -69,6 +69,35 @@ qsub $scripts/sub_gatk_canu_fenella2.sh
 qsub $scripts/sub_gatk_lorma_emily2.sh
 qsub $scripts/sub_gatk_lorma_fenella2.sh
 
-perl /home/sobczm/bin/popgen/other/assemblathon_stats.pl 
-#Histogram of read length.
-cat barcode11_emily.fastq | awk '{if(NR%4==2) print length($1)}' | sort -n
+#Input files to be analyzed.
+cd $input/analysis
+#Canu-corrected reads
+#LoRMA corrected reads
+#SMRT de novo assembly
+
+#Blast the raw reads to establish hits R genes.
+#Copy the blast db
+cp -r /home/sobczm/popgen/renseq/strawberry/reads/Helen_Bates_EMR.RH.ENQ-1704.A.01/analysis/vesca_v1.1_nblrrs_augustus_mrna_nucl.db* ./
+
+for a in barcode11_emily_trimmed_all.trimmedReads.fasta barcode12_fenella_trimmed_all.trimmedReads.fasta lorma_barcode11_emily_all.fasta lorma_barcode12_fenella_all.fasta smartdenovo_barcode11_emily_trimmed_all_racon_round_10.fasta smartdenovo_barcode12_fenella_trimmed_all_racon_round_10.fasta
+do 
+#Remove spaces in FASTA header, and substitute commas with _, as required by BLAST suite.
+sed 's, ,_,g' -i $a
+sed 's/,/_/g' -i $a
+perl /home/sobczm/bin/popgen/other/assemblathon_stats.pl $a > ${a%.fasta}.stat
+qsub $scripts/sub_blastn_renseq.sh $a vesca_v1.1_nblrrs_augustus_mrna_nucl.db
+sh $scripts/sub_nlrparser.sh $(basename $a)
+done
+
+#Create blast databases out of the assemblies
+for assembly in barcode11_emily_trimmed_all.trimmedReads.fasta barcode12_fenella_trimmed_all.trimmedReads.fasta lorma_barcode11_emily_all.fasta lorma_barcode12_fenella_all.fasta smartdenovo_barcode11_emily_trimmed_all_racon_round_10.fasta smartdenovo_barcode12_fenella_trimmed_all_racon_round_10.fasta
+do
+makeblastdb -in $assembly -input_type fasta -dbtype nucl \
+-title "${assembly%.*}"_nucl.db -parse_seqids -out "${assembly%.*}"_nucl.db
+done
+
+#Search the baits sequences against the databases of sequences of Ren-Seq reads/assemblies.
+for db in barcode11_emily_trimmed_all.trimmedReads_nucl.db barcode12_fenella_trimmed_all.trimmedReads_nucl.db lorma_barcode11_emily_all_nucl.db lorma_barcode12_fenella_all_nucl.db smartdenovo_barcode11_emily_trimmed_all_racon_round_10_nucl.db smartdenovo_barcode12_fenella_trimmed_all_racon_round_10_nucl.db
+do
+blastn -outfmt "6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore qlen slen sstrand"  -num_threads 1 -max_target_seqs 1000000000 -evalue 0.0000000001 -query probes-R4-final.fas -db $db >> probes-R4-final.fas_vs_$db
+done

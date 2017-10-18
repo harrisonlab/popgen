@@ -69,7 +69,7 @@ cp -r /home/sobczm/popgen/renseq/strawberry/reads/Helen_Bates_EMR.RH.ENQ-1704.A.
 
 for ass in $input/barcode11_emily.fasta $input/barcode12_fenella.fasta
 do
-    blastn -outfmt "6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore qlen slen sstrand"  -num_threads 1 -max_target_seqs 1 -evalue 0.0000000001 -query $ass -db vesca_v1.1_nblrrs_augustus_mrna_nucl.db >> $(basename $ass)_vs_$db
+    blastn -outfmt "6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore qlen slen sstrand"  -num_threads 1 -max_target_seqs 1 -evalue 0.0000000001 -query $ass -db vesca_v1.1_nblrrs_augustus_mrna_nucl.db >> $(basename $ass)_vs_vesca_v1.1_nblrrs_augustus_mrna_nucl.db
 done
 
 #How many reads have matches?
