@@ -19,6 +19,6 @@ output=$input/gatk/renseq_canu_fenella_ref2.vcf
 
 filename=$(basename "$reference")
 
-gatk=/home/sobczm/bin/GenomeAnalysisTK-3.6
+gatk=/home/sobczm/bin/GenomeAnalysisTK-3.8-0
 
 java -Xmx20g -jar $gatk/GenomeAnalysisTK.jar -R $reference -T HaplotypeCaller -ploidy 2 -nct 4 -maxAltAlleles 8  --allow_potentially_misencoded_quality_scores --defaultBaseQualities 30 -I $input/bwa_canu_emily_all_cross/reads.sorted_unique_sorted_rg.bam -I $input/bwa_canu_fenella_all_own/reads.sorted_unique_sorted_rg.bam -o $output
