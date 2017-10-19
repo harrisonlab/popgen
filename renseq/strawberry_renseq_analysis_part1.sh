@@ -5,7 +5,7 @@ cd $input
 #Following the running of BLAST on RG and Hapil HQ CCS and HGAP assembly against F. vesca NBS-LRRs CDS, we do a reciprocal blast, and carry out a RBB analysis. 
 for db in S1_ccs_3_99_nucl.db S2_ccs_3_99_nucl.db S1_HGAP_polished_assembly_nucl.db S2_HGAP_polished_assembly_nucl.db
 do
-blastn -outfmt "6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore qlen slen sstrand"  -num_threads 1 -max_target_seqs 1000000000 -evalue 0.0000000001 -query vesca_v1.1_nblrrs_augustus_cds.fasta -db $db >> vesca_v1.1_nblrrs_augustus_cds.fasta_vs_$db
+blastn -outfmt "6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore qlen slen sstrand"  -num_threads 1 -max_target_seqs 1 -evalue 0.0000000001 -query vesca_v1.1_nblrrs_augustus_cds.fasta -db $db >> vesca_v1.1_nblrrs_augustus_cds.fasta_vs_$db
 done
 
 #Identify RBB matches.
