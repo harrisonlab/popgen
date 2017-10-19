@@ -85,7 +85,7 @@ do
 sed 's, ,_,g' -i $a
 sed 's/,/_/g' -i $a
 perl /home/sobczm/bin/popgen/other/assemblathon_stats.pl $a > ${a%.fasta}.stat
-qsub $scripts/sub_blastn_renseq.sh $a vesca_v1.1_nblrrs_augustus_mrna_nucl.db
+qsub $scripts/sub_blastn_renseq.sh $a vesca_v1.1_nblrrs_augustus_cds_nucl.db
 sh $scripts/sub_nlrparser.sh $(basename $a)
 done
 
@@ -96,8 +96,16 @@ makeblastdb -in $assembly -input_type fasta -dbtype nucl \
 -title "${assembly%.*}"_nucl.db -parse_seqids -out "${assembly%.*}"_nucl.db
 done
 
-#Search the baits sequences against the databases of sequences of Ren-Seq reads/assemblies.
+#Search the baits sequences and NLR genes against the databases of sequences of Ren-Seq reads/assemblies.
 for db in barcode11_emily_trimmed_all.trimmedReads_nucl.db barcode12_fenella_trimmed_all.trimmedReads_nucl.db lorma_barcode11_emily_all_nucl.db lorma_barcode12_fenella_all_nucl.db smartdenovo_barcode11_emily_trimmed_all_racon_round_10_nucl.db smartdenovo_barcode12_fenella_trimmed_all_racon_round_10_nucl.db
 do
 blastn -outfmt "6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore qlen slen sstrand"  -num_threads 1 -max_target_seqs 1000000000 -evalue 0.0000000001 -query probes-R4-final.fas -db $db >> probes-R4-final.fas_vs_$db
+qsub $scripts/sub_blastn_renseq.sh vesca_v1.1_nblrrs_augustus_cds.fasta $db
+done
+
+#Generate a file with sequence lengths for CDS input files.
+#Note for future reference: BLAST can automatically output these values if fields slen and qlen specified.
+for a in *.fasta
+do
+python $scripts/write_seq_length.py $a
 done

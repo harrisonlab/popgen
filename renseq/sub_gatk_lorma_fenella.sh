@@ -1,7 +1,7 @@
 #$ -S /bin/bash
 #$ -cwd
 #$ -pe smp 4
-#$ -l h_vmem=20G
+#$ -l h_vmem=40G
 #$ -l h=blacklace01.blacklace|blacklace02.blacklace|blacklace04.blacklace|blacklace05.blacklace|blacklace06.blacklace|blacklace07.blacklace|blacklace08.blacklace|blacklace09.blacklace|blacklace10.blacklace|blacklace12.blacklace
 
 # Changes required in the script:
@@ -19,6 +19,6 @@ output=$input/gatk/renseq_lorma_fenella_ref.vcf
 
 filename=$(basename "$reference")
 
-gatk=/home/sobczm/bin/GenomeAnalysisTK-3.6
+gatk=/home/sobczm/bin/GenomeAnalysisTK-3.8-0
 
-java -Xmx20g -jar $gatk/GenomeAnalysisTK.jar -R $reference -T HaplotypeCaller -ploidy 8 -nct 4 -maxAltAlleles 8 --allow_potentially_misencoded_quality_scores --defaultBaseQualities 30 -I $input/bwa_lorma_emily_all_cross/reads.sorted_unique_sorted_rg.bam -I $input/bwa_lorma_fenella_all_own/reads.sorted_unique_sorted_rg.bam -o $output
+java -Xmx40g -jar $gatk/GenomeAnalysisTK.jar -R $reference -T HaplotypeCaller -ploidy 8 -nct 4 -maxAltAlleles 8 --allow_potentially_misencoded_quality_scores --defaultBaseQualities 30 -I $input/bwa_lorma_emily_all_cross/reads.sorted_unique_sorted_rg.bam -I $input/bwa_lorma_fenella_all_own/reads.sorted_unique_sorted_rg.bam -o $output
