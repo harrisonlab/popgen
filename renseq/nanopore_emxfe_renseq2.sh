@@ -109,3 +109,48 @@ for a in *.fasta
 do
 python $scripts/write_seq_length.py $a
 done
+
+for sample in barcode11_emily_trimmed_all.trimmedReads barcode12_fenella_trimmed_all.trimmedReads lorma_barcode11_emily_all lorma_barcode12_fenella_all smartdenovo_barcode11_emily_trimmed_all_racon_round_10 smartdenovo_barcode12_fenella_trimmed_all_racon_round_10
+do
+#Identify RBB matches.
+python /home/sobczm/bin/popgen/other/rbb.py ${sample}.fasta_vs_vesca_v1.1_nblrrs_augustus_cds_nucl.db vesca_v1.1_nblrrs_augustus_cds.fasta_vs_${sample}_nucl.db >${sample}_vesca_v1.1_nblrrs_augustus_cds_rbb
+#Count up the length of CDS, 5' UTR, 3' UTR using the original renseq vs vesca CDS BLAST output
+python $scripts/blast_matches_summary2.py vesca_v1.1_nblrrs_augustus_cds_lengths.txt ${sample}_lengths.txt ${sample}.fasta_vs_vesca_v1.1_nblrrs_augustus_cds_nucl.db > ${sample}.fasta_vs_vesca_v1.1_nblrrs_augustus_cds_nucl.db_cds
+#Filter those results to only retain the RBB hits.
+python $scripts/filter_by_two_columns.py ${sample}_vesca_v1.1_nblrrs_augustus_cds_rbb ${sample}.fasta_vs_vesca_v1.1_nblrrs_augustus_cds_nucl.db_cds > ${sample}.fasta_vs_vesca_v1.1_nblrrs_augustus_cds_nucl.db_cds_rbb_filt
+python $scripts/filter_by_two_columns.py ${sample}_vesca_v1.1_nblrrs_augustus_cds_rbb ${sample}.fasta_vs_vesca_v1.1_nblrrs_augustus_cds_nucl.db_5utr > ${sample}.fasta_vs_vesca_v1.1_nblrrs_augustus_cds_nucl.db_5utr_rbb_filt 
+python $scripts/filter_by_two_columns.py ${sample}_vesca_v1.1_nblrrs_augustus_cds_rbb ${sample}.fasta_vs_vesca_v1.1_nblrrs_augustus_cds_nucl.db_3utr > ${sample}.fasta_vs_vesca_v1.1_nblrrs_augustus_cds_nucl.db_3utr_rbb_filt 
+done
+
+#Plot figures summarising the results above in R.
+Rscript --vanilla $scripts/stats_cds.R barcode11_emily_trimmed_all.trimmedReads.fasta_vs_vesca_v1.1_nblrrs_augustus_cds_nucl.db_cds_rbb_filt barcode12_fenella_trimmed_all.trimmedReads.fasta_vs_vesca_v1.1_nblrrs_augustus_cds_nucl.db_cds_rbb_filt EMFE_canu_vs_vesca_v1.1_nblrrs_augustus_cds
+
+Rscript --vanilla $scripts/stats_cds.R smartdenovo_barcode11_emily_trimmed_all_racon_round_10.fasta_vs_vesca_v1.1_nblrrs_augustus_cds_nucl.db_cds_rbb_filt smartdenovo_barcode12_fenella_trimmed_all_racon_round_10.fasta_vs_vesca_v1.1_nblrrs_augustus_cds_nucl.db_cds_rbb_filt EMFE_smartdenovo_polished_assembly.fasta_vs_vesca_v1.1_nblrrs_augustus_cds
+
+Rscript --vanilla $scripts/stats_cds.R lorma_barcode11_emily_all.fasta_vs_vesca_v1.1_nblrrs_augustus_cds_nucl.db_cds_rbb_filt lorma_barcode12_fenella_all.fasta_vs_vesca_v1.1_nblrrs_augustus_cds_nucl.db_cds_rbb_filt EMFE_lorma_polished_assembly.fasta_vs_vesca_v1.1_nblrrs_augustus_cds
+
+for utr in 3 5
+do
+Rscript --vanilla $scripts/stats_utr.R barcode11_emily_trimmed_all.trimmedReads.fasta_vs_vesca_v1.1_nblrrs_augustus_cds_nucl.db_${utr}utr_rbb_filt barcode12_fenella_trimmed_all.trimmedReads.fasta_vs_vesca_v1.1_nblrrs_augustus_cds_nucl.db_${utr}utr_rbb_filt EMFE_canu_vs_vesca_v1.1_nblrrs_augustus_$utr $utr
+Rscript --vanilla $scripts/stats_utr.R smartdenovo_barcode11_emily_trimmed_all_racon_round_10.fasta_vs_vesca_v1.1_nblrrs_augustus_cds_nucl.db_${utr}utr_rbb_filt smartdenovo_barcode12_fenella_trimmed_all_racon_round_10.fasta_vs_vesca_v1.1_nblrrs_augustus_cds_nucl.db_${utr}utr_rbb_filt EMFE_smartdenovo_vs_vesca_v1.1_nblrrs_augustus_$utr $utr
+Rscript --vanilla $scripts/stats_utr.R lorma_barcode11_emily_all.fasta_vs_vesca_v1.1_nblrrs_augustus_cds_nucl.db_${utr}utr_rbb_filt lorma_barcode12_fenella_all.fasta_vs_vesca_v1.1_nblrrs_augustus_cds_nucl.db_${utr}utr_rbb_filt EMFE_lorma_vs_vesca_v1.1_nblrrs_augustus_$utr $utr
+done
+
+#Convert all to png
+for my_pdf in *.pdf
+do
+convert -verbose -density 500 "${my_pdf}" "${my_pdf%.*}.png"
+done
+
+#Quick analysis of the NLR parser output.
+cd $input/analysis/NLRParser
+for my_table in *.tsv
+do
+echo $my_table >>nlr_summary.txt
+echo "complete" >>nlr_summary.txt
+cat $my_table | awk '$3=="complete" {print $0}' | wc -l >>nlr_summary.txt
+echo "partial" >>nlr_summary.txt
+cat $my_table | awk '$3=="partial" {print $0}' | wc -l >>nlr_summary.txt
+echo "pseudogene" >>nlr_summary.txt
+cat $my_table | awk '$3=="pseudogene" {print $0}' | wc -l >>nlr_summary.txt
+done

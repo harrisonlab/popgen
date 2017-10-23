@@ -11,14 +11,14 @@ rbb_tables = argv[3]
 goilst = {}
 with open (length_genes) as lgh:
     for line in lgh:
-        lines = line.split(",")
+        lines = line.split("\t")
         goilst[lines[0]] = lines[1]
 
 #read in the length of our assembled query genes of interest.
 goilstr = {}
 with open (length_rgenes) as lghr:
     for line in lghr:
-        lines = line.split(",")
+        lines = line.split("\t")
         goilstr[lines[0]] = lines[1]
 
 names=["qseqid", "sseqid", "pident", "aln_length", "mismatch", "gapopen", "qstart", "qend", "sstart", "send", "evalue", "bitscore", "qlen", "slen", "sstrand"]

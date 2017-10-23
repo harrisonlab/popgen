@@ -151,7 +151,7 @@ $vcftools/vcftools --vcf sample_ids_crown_rot.out_nodup_fix_no880.vcf --maf 0.05
 $vcftools/vcftools --vcf sample_ids_crown_rot.out_nodup_fix_no880.vcf --maf 0.05 --max-missing 0.50 --recode --out sample_ids_crown_rot.out_nodup_fix_no880_stringent
 #Sort VCF files.
 $vcftools/vcf-sort sample_ids_crown_rot.out_nodup_fix_no880_relaxed.recode.vcf >sample_ids_crown_rot.out_nodup_fix_no880_relaxed_sorted.vcf
-$vcftools/vcf-sort sample_ids_crown_rot.out_nodup_fix_no880_stringent.recode.vcf >sample_ids_crown_rot.out_nodup_fix_no880_stringent_sorted.vcf
+$vcftools/vcf-sort sample_ids_crown_rot.out_nodup_fix_no880_stringent.recode.vcf >
 
 #Analyze the location of candidate SNPs associated with crown rot resistance.
 cd $input/candidates
