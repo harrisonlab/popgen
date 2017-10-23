@@ -39,24 +39,32 @@ Order of Shell script execution:
 
 17) [apple_renseq_part3.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/apple_renseq_part3.sh)
 
-18) [strawberry_renseq_part1.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/strawberry_renseq_part1.sh)
+18) [apple_renseq_part4.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/apple_renseq_part4.sh)
 
-19) [strawberry_renseq_part2.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/strawberry_renseq_part2.sh)
+19) [apple_renseq_part5.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/apple_renseq_part5.sh)
 
-20) [strawberry_renseq_part3.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/strawberry_renseq_part3.sh)
+20) [apple_renseq_part6.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/apple_renseq_part6.sh)
 
-21) [strawberry_renseq_reads_part1.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/strawberry_renseq_reads_part1.sh)
+21) [apple_renseq_part7.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/apple_renseq_part7.sh)
 
-22) [strawberry_renseq_reads_part2.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/strawberry_renseq_reads_part2.sh)
+22) [strawberry_renseq_part1.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/strawberry_renseq_part1.sh)
 
-23) [strawberry_renseq_reads_part3.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/strawberry_renseq_reads_part3.sh)
+23) [strawberry_renseq_part2.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/strawberry_renseq_part2.sh)
 
-24) [strawberry_renseq_reads_part4.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/strawberry_renseq_reads_part4.sh)
+24) [strawberry_renseq_part3.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/strawberry_renseq_part3.sh)
 
-25) [strawberry_renseq_reads_part5.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/strawberry_renseq_reads_part5.sh)
+25) [strawberry_renseq_reads_part1.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/strawberry_renseq_reads_part1.sh)
 
-26) [strawberry_renseq_analysis_part1.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/strawberry_renseq_analysis_part1.sh)
+26) [strawberry_renseq_reads_part2.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/strawberry_renseq_reads_part2.sh)
 
-27) [nanopore_emxfe_renseq.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/nanopore_emxfe_renseq.sh)
+27) [strawberry_renseq_reads_part3.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/strawberry_renseq_reads_part3.sh)
 
-28) [nanopore_emxfe_renseq2.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/nanopore_emxfe_renseq2.sh)
+28) [strawberry_renseq_reads_part4.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/strawberry_renseq_reads_part4.sh)
+
+29) [strawberry_renseq_reads_part5.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/strawberry_renseq_reads_part5.sh)
+
+30) [strawberry_renseq_analysis_part1.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/strawberry_renseq_analysis_part1.sh)
+
+31) [nanopore_emxfe_renseq.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/nanopore_emxfe_renseq.sh)
+
+32) [nanopore_emxfe_renseq2.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/nanopore_emxfe_renseq2.sh)
