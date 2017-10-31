@@ -1,1 +1,1 @@
-#Using data with case-control (0-1) phenotypes
+# Using data with case-control (0-1) phenotypes
