@@ -42,11 +42,16 @@ done
 
 Convert the resulting files to VCF format to be used in PLINK and TASSEL.
 Have a choice of 3 GFF files for SNP assignment to the position on the chromosome.
+
 A) vesca genome ver. 1.1 $input/istraw90_vesca_v1.1_snp_positions.gff3
+
 B) vesca genome ver. 2.0 $input/istraw90_vesca_v2.0_snp_positions.gff3
+
 C) ananassa genome $input/vesca2consensus_map_noambiguous_2017-08-22.gff --> assignment of positions of significantly fewer number of markers than in vesca.
+
 Need to check back with Rob to get the latest version of those GFF files, as he's working
 on improving them. 
+
 Here, using A) as this version has been used in the past in Charlotte's QTL analysis.
 ```
 gff_file=$input/istraw90_vesca_v1.1_snp_positions.gff3
