@@ -4,7 +4,7 @@ scripts=/home/sobczm/bin/popgen/snp
 input=/home/sobczm/popgen/snp/snp_chip/cr_gwas
 cd $input
 ```
-## Data preparation
+## Initial data preparation
 Select sample ids of individuals to be included in the analysis and extract their
 genotypes from the db. 
 Goal - create 3 datasets:
@@ -60,7 +60,7 @@ do
 qsub $scripts/sub_ananassa_genotypes_vcf.sh $infile $gff_file
 done
 ```
-## Data analysis with PLINK
+## Data preparation with PLINK
 First, plink does not allow chromosome names to start with a letter, so fix that, and sort by coordinates.
 ```
 for infile in ${input_file}.out.vcf ${input_file}_istraw35.out.vcf ${input_file}_istraw90.out.vcf
@@ -208,3 +208,4 @@ do
 plink --bfile $infile --geno 0.5 --make-bed --out ${infile}_stringent >${infile}_strinent.log
 done
 ```
+## GWAS with PLINK
