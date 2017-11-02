@@ -189,7 +189,7 @@ for infile in ${input_file}.out_fix_min05_pheno ${input_file}_istraw35.out_fix_m
 do
 for per_missing in 0.2 0.5
 do
-    plink --file $infile --read-genome ${infile}_${per_missing}.genome --cluster --mds-plot 4 --silent --out ${infile}_${per_missing}
+    plink --bfile ${infile}_${per_missing} --read-genome ${infile}_${per_missing}.genome --cluster --mds-plot 4 --silent --out ${infile}_${per_missing}
 done
 done
 ```
@@ -229,5 +229,140 @@ done
 done
 ```
 
-
 ## GWAS with PLINK
+
+Using allelic GWAS, with addditive model. Output: extension ".adjusted" - adjusted p-values per marker, extension ".qassoc" - raw p-values and other parameters, extension ".means" - useful stats per marker: number of samples with a given genotype and their mean + SD pehenotypic values.
+```
+for infile in ${input_file}.out_fix_min05_pheno ${input_file}_istraw35.out_fix_min05_pheno  ${input_file}_istraw90.out_fix_min05_pheno
+do
+for per_missing in 0.2 0.5
+do
+    plink --bfile ${infile}_${per_missing} --assoc --qt-means --allow-no-sex --adjust --ci 0.95 --out ${infile}_${per_missing}
+    cat ${infile}_${per_missing}.qassoc.adjusted | awk '{$1=$1;print}' OFS='\t' >temp
+    mv temp ${infile}_${per_missing}.qassoc.adjusted  
+    cat ${infile}_${per_missing}.qassoc.means | awk '{$1=$1;print}' OFS='\t' >temp
+    mv temp ${infile}_${per_missing}.qassoc.means
+    cat ${infile}_${per_missing}.qassoc | awk '{$1=$1;print}' OFS='\t' >temp
+    mv temp ${infile}_${per_missing}.qassoc
+
+done
+done 
+```
+QQ plots - to check quality of fit to the GWAS model. Second argument: title of the plot.
+```
+for infile in ${input_file}.out_fix_min05_pheno ${input_file}_istraw35.out_fix_min05_pheno  ${input_file}_istraw90.out_fix_min05_pheno
+do
+for per_missing in 0.2 0.5
+do
+    Rscript --vanilla $scripts/qq.plink.R ${infile}_${per_missing}.qassoc "QQ plot"
+done
+done
+```
+
+Most of the effects of dominant and recessive loci should have been captured above but can also carry out linear regression analysis testing for them explicitly. The results are saved to output files ending with ".linear.adjusted" and ".linear" (non-adjusted p-values)
+```
+for infile in ${input_file}.out_fix_min05_pheno ${input_file}_istraw35.out_fix_min05_pheno  ${input_file}_istraw90.out_fix_min05_pheno
+do
+for per_missing in 0.2 0.5
+do
+    plink --bfile ${infile}_${per_missing}  --linear dominant --allow-no-sex --adjust --ci 0.95 --out ${infile}_${per_missing}_dominant
+    plink --bfile ${infile}_${per_missing}  --linear recessive --allow-no-sex --adjust --ci 0.95 --out ${infile}_${per_missing}_recessive
+    cat ${infile}_${per_missing}_recessive.assoc.linear.adjusted | awk '{$1=$1;print}' OFS='\t' >temp
+    mv temp ${infile}_${per_missing}_recessive.assoc.linear.adjusted
+    cat ${infile}_${per_missing}_recessive.assoc.linear | awk '{$1=$1;print}' OFS='\t' >temp
+    mv temp ${infile}_${per_missing}_recessive.assoc.linear
+    cat ${infile}_${per_missing}_dominant.assoc.linear.adjusted | awk '{$1=$1;print}' OFS='\t' >temp
+    mv temp ${infile}_${per_missing}_dominant.assoc.linear.adjusted
+    cat ${infile}_${per_missing}_dominant.assoc.linear | awk '{$1=$1;print}' OFS='\t' >temp
+    mv temp ${infile}_${per_missing}_dominant.assoc.linear
+done
+done
+```
+Correction for population stratification - include the MDS results as covariates.
+NB: covariates can only be used with the linear and logistic commands, so will use linear regression as a test for association, as linear regression is used for quantitative phenotypes (and logistic for case-control). 
+
+However, first going to re-calculate the IBS and MDS matrix using a further reduced set of markers (max. missing fraction 5%) in order not to reduce the effect of missing data on results. 
+
+```
+for infile in ${input_file}.out_fix_min05_pheno ${input_file}_istraw35.out_fix_min05_pheno ${input_file}_istraw90.out_fix_min05_pheno
+do
+for per_missing in 0.05
+do
+    plink --file $infile --geno $per_missing --make-bed --out ${infile}_${per_missing} >${infile}_${per_missing}.log
+    cp ${infile%.ped}.map ${infile%.ped}_${per_missing}.map
+done
+done
+```
+
+```
+for infile in ${input_file}.out_fix_min05_pheno ${input_file}_istraw35.out_fix_min05_pheno  ${input_file}_istraw90.out_fix_min05_pheno
+do
+for per_missing in 0.05
+do
+    plink --bfile ${infile}_${per_missing} --genome --out ${infile}_${per_missing}
+    plink --bfile ${infile}_${per_missing} --read-genome ${infile}_${per_missing}.genome --cluster --mds-plot 4 --silent --out ${infile}_${per_missing}
+    cat ${infile}_${per_missing}.mds | awk '{$1=$1;print}' OFS='\t' >temp
+    mv temp ${infile}_${per_missing}.mds 
+    Rscript --vanilla $scripts/plot_plink_mds.R ${infile}_${per_missing}.mds
+done
+done
+```
+
+```
+for infile in ${input_file}.out_fix_min05_pheno ${input_file}_istraw35.out_fix_min05_pheno  ${input_file}_istraw90.out_fix_min05_pheno
+do
+for per_missing in 0.2 0.5
+do
+    awk '{print $1,$2,$4,$5}' ${infile}_0.05.mds  > ${infile}_covar.txt
+    plink --bfile ${infile}_${per_missing} --linear --allow-no-sex --covar ${infile}_covar.txt --adjust --ci 0.95 --out ${infile}_${per_missing}_strat
+done
+done
+```
+
+Create the QQ plot.
+```
+for infile in ${input_file}.out_fix_min05_pheno ${input_file}_istraw35.out_fix_min05_pheno  ${input_file}_istraw90.out_fix_min05_pheno
+do
+for per_missing in 0.2 0.5
+do
+    Rscript --vanilla $scripts/qq.plink.R ${infile}_${per_missing}_strat.assoc.linear "QQ plot"
+done
+done
+```
+
+Create Manhattan plots for all GWAS analyses conducted. Requires R library "qqman" installed.
+```
+for results in *qassoc
+do
+cut -f2,1,3,9 $results >${results}_man
+Rscript --vanilla $scripts/manhattan.R ${results}_man
+done
+
+for results in *.assoc.linear
+do
+cut -f2,1,3,12 $results >${results}_man
+Rscript --vanilla $scripts/manhattan.R ${results}_man
+done
+
+```
+
+Convert all PDFs to PNG.
+```
+for my_pdf in *.pdf
+do
+convert -verbose -density 500 "${my_pdf}" "${my_pdf%.*}.png"
+done
+```
+
+## GWAS with TASSEL
+Convert the filtered input files used in Plink GWAS to VCF so that can be used in TASSEL.
+```
+for infile in ${input_file}.out_fix_min05_pheno ${input_file}_istraw35.out_fix_min05_pheno  ${input_file}_istraw90.out_fix_min05_pheno
+do
+for per_missing in 0.2 0.5
+do
+plink --bfile ${infile}_${per_missing} --recode vcf-iid --out ${infile}_${per_missing}
+done
+done
+
+```
