@@ -93,12 +93,47 @@ python $scripts/add_phenotype_ped.py $infile $phenotype_file >${infile%.ped}_phe
 cp ${infile%.ped}.map ${infile%.ped}_pheno.map
 done
 ```
+Calculate the missing genotype rate for each marker. The results of this analysis can be found in files with ".lmiss" extension.
+```
+for infile in ${input_file}.out_fix_min05_pheno ${input_file}_istraw35.out_fix_min05_pheno ${input_file}_istraw90.out_fix_min05_pheno
+do
+plink --file $infile --missing --out ${infile%.ped} >${infile%.ped}.log
+done
+```
+
+Plot a histogram of the missing genotype rate to identify a threshold for extreme genotype failure rate. This can be carried out using the data in column 5 of the .lmiss file.
+But first, convert weird spacing between columns to tabs in PLINK output, as before.
+```
+for infile in ${input_file}.out_fix_min05_pheno ${input_file}_istraw35.out_fix_min05_pheno ${input_file}_istraw90.out_fix_min05_pheno
+do
+cat ${infile}.lmiss | awk '{$1=$1;print}' OFS='\t' >temp
+mv temp ${infile}.lmiss 
+Rscript --vanilla $scripts/plot_missing_genotypes_plink.R ${infile}.lmiss
+done
+```
+
+Remove SNPs with more than a given % of missing data. Here, 50% and 20%. Need to convert to PLINK's BAM format at this point to run the command.
+```
+for infile in ${input_file}.out_fix_min05_pheno ${input_file}_istraw35.out_fix_min05_pheno ${input_file}_istraw90.out_fix_min05_pheno
+do
+for per_missing in 0.2 0.5
+do
+    plink --file $infile --geno $per_missing --make-bed --out ${infile}_${per_missing} >${infile}_${per_missing}.log
+    cp ${infile%.ped}.map ${infile%.ped}_${per_missing}.map
+done
+done
+```
+
+*From this point onwards, using only the subsets filtered for markers with low genotyping rates.*
 Identification of individuals with elevated missing data rates or outlying heterozygosity rate
 ```
 for infile in ${input_file}.out_fix_min05_pheno ${input_file}_istraw35.out_fix_min05_pheno  ${input_file}_istraw90.out_fix_min05_pheno
 do
-plink --file $infile --missing --out ${infile%.ped}
-plink --file $infile --het --out ${infile%.ped}
+for per_missing in 0.2 0.5
+do
+    plink --bfile ${infile}_${per_missing} --missing --out ${infile}_${per_missing}  >${infile}_${per_missing}_post_filtering.log
+    plink --bfile ${infile}_${per_missing} --het --out ${infile}_${per_missing}
+done
 done
 ```
 
@@ -108,7 +143,10 @@ The script below calculates the observed heterozygosity rate per individual usin
 ```
 for infile in ${input_file}.out_fix_min05_pheno ${input_file}_istraw35.out_fix_min05_pheno  ${input_file}_istraw90.out_fix_min05_pheno
 do
-Rscript --vanilla $scripts/imiss-vs-het.Rscript $infile
+for per_missing in 0.2 0.5
+do
+    Rscript --vanilla $scripts/imiss-vs-het.Rscript ${infile}_${per_missing}
+done
 done
 ```
 The graph (extension _het.pdf) suggests one outlier sample with very low heterozygosity, which is suspicious and needs to be removed. In order to find the sample (IID) and family (FID) id of that sample (both ids identical in our analyses), we need to open the table used to make the figure (extension _het.txt) and inspect the values in the columns (F_MISS - ie. Proportion of missing genotypes, meanHet - ie. Heterozygosity rate)
@@ -124,7 +162,10 @@ In some cases, may be useful to calculate pairwise identity-by-descent (IBS - "D
 ```
 for infile in ${input_file}.out_fix_min05_pheno ${input_file}_istraw35.out_fix_min05_pheno  ${input_file}_istraw90.out_fix_min05_pheno
 do
-plink --file $infile --genome --out ${infile%.ped} > ${infile}.log
+for per_missing in 0.2 0.5
+do
+    plink --bfile ${infile}_${per_missing} --genome --out ${infile}_${per_missing}
+done
 done
 ```
 However, in certain cases we may want to filter our closely related individuals in a pair above a certain IBS threshold. 
@@ -134,7 +175,10 @@ Example below - however, not going to filter out the indviduals output below in 
 threshold=0.95
 for infile in ${input_file}.out_fix_min05_pheno ${input_file}_istraw35.out_fix_min05_pheno  ${input_file}_istraw90.out_fix_min05_pheno
 do
-perl $scripts/run-IBS-QC.pl $infile $threshold > ${infile}_to_filter
+for per_missing in 0.2 0.5
+do
+    perl $scripts/run-IBS-QC.pl ${infile}_${per_missing} $threshold > ${infile}_${per_missing}_to_filter
+done
 done
 ```
 
@@ -143,7 +187,10 @@ To estimate population stratification, PLINK offers tools to cluster individuals
 ```
 for infile in ${input_file}.out_fix_min05_pheno ${input_file}_istraw35.out_fix_min05_pheno  ${input_file}_istraw90.out_fix_min05_pheno
 do
-plink --file $infile --read-genome ${infile}.genome --cluster --mds-plot 4 --silent --out ${infile}
+for per_missing in 0.2 0.5
+do
+    plink --file $infile --read-genome ${infile}_${per_missing}.genome --cluster --mds-plot 4 --silent --out ${infile}_${per_missing}
+done
 done
 ```
 
@@ -151,8 +198,11 @@ Convert weird spacing between columns to tabs in PLINK output
 ```
 for infile in ${input_file}.out_fix_min05_pheno ${input_file}_istraw35.out_fix_min05_pheno  ${input_file}_istraw90.out_fix_min05_pheno
 do
-cat ${infile}.mds | awk '{$1=$1;print}' OFS='\t' >temp
-mv temp ${infile}.mds
+for per_missing in 0.2 0.5
+do
+    cat ${infile}_${per_missing}.mds | awk '{$1=$1;print}' OFS='\t' >temp
+    mv temp ${infile}_${per_missing}.mds 
+done
 done
 ```
 MDS plot based on Dimensions 1 and 2. 
@@ -160,52 +210,24 @@ MDS plot based on Dimensions 1 and 2.
 ```
 for infile in ${input_file}.out_fix_min05_pheno ${input_file}_istraw35.out_fix_min05_pheno  ${input_file}_istraw90.out_fix_min05_pheno
 do
-Rscript --vanilla $scripts/plot_plink_mds.R ${infile}.mds
+for per_missing in 0.2 0.5
+do
+    Rscript --vanilla $scripts/plot_plink_mds.R ${infile}_${per_missing}.mds
+done
 done
 ```
 EmxFe samples cluster together but keeping them in the analysis as we are so short for samples in this analysis.
 
 Now, filter select individuals from the analysis (here only sample 880 - F. chiloensis, ignoring samples with high IBS).
-For this step, need to convert to internal BAM file format used by PLINK.
 ```
 for infile in ${input_file}.out_fix_min05_pheno ${input_file}_istraw35.out_fix_min05_pheno  ${input_file}_istraw90.out_fix_min05_pheno
 do
-plink --file $infile --remove to_remove.txt --make-bed --out ${infile}_filtered 
+for per_missing in 0.2 0.5
+do
+    plink --bfile ${infile}_${per_missing} --remove to_remove.txt --make-bed --out ${infile}_${per_missing}_filtered >${infile}_${per_missing}.log
+done
 done
 ```
 
-Calculate the missing genotype rate for each marker. The results of this analysis can be found in files with ".lmiss" extension.
-```
-for infile in ${input_file}.out_fix_min05_pheno_filtered ${input_file}_istraw35.out_fix_min05_pheno_filtered  ${input_file}_istraw90.out_fix_min05_pheno_filtered 
-do
-plink --bfile $infile --missing --out ${infile%.bam}
-done
-```
 
-Plot a histogram of the missing genotype rate to identify a threshold for extreme genotype failure rate. This can be carried out using the data in column 5 of the .lmiss file.
-But first, convert weird spacing between columns to tabs in PLINK output, as before.
-```
-for infile in ${input_file}.out_fix_min05_pheno_filtered ${input_file}_istraw35.out_fix_min05_pheno_filtered  ${input_file}_istraw90.out_fix_min05_pheno_filtered 
-do
-cat ${infile}.lmiss | awk '{$1=$1;print}' OFS='\t' >temp
-mv temp ${infile}.lmiss 
-Rscript --vanilla $scripts/plot_missing_genotypes_plink.R ${infile}.lmiss
-done
-```
-
-Remove SNPs with more than 80% missing data ('relaxed' criterion)
-```
-for infile in ${input_file}.out_fix_min05_pheno_filtered ${input_file}_istraw35.out_fix_min05_pheno_filtered  ${input_file}_istraw90.out_fix_min05_pheno_filtered 
-do
-plink --bfile $infile --geno 0.8 --make-bed --out ${infile}_relaxed >${infile}_relaxed.log
-done
-```
-
-Remove SNPs with more than 50% missing data ('stringent' criterion)
-```
-for infile in ${input_file}.out_fix_min05_pheno_filtered ${input_file}_istraw35.out_fix_min05_pheno_filtered  ${input_file}_istraw90.out_fix_min05_pheno_filtered 
-do
-plink --bfile $infile --geno 0.5 --make-bed --out ${infile}_stringent >${infile}_strinent.log
-done
-```
 ## GWAS with PLINK
