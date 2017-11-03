@@ -20,12 +20,12 @@ Separate GWAS dataset by plate type (datasets A) and B) above)
 awk -F"\t" '$4 == "istraw90" { print $0 }' ${input_file}.out  OFS='\t' >${input_file}_istraw90.out
 awk -F"\t" '$4 == "istraw35" { print $0 }' ${input_file}.out  OFS='\t' >${input_file}_istraw35.out
 ```
-In cases where sample ids belong to the same cultivar (clone), will select the sample with the most genotypes.s
 Save a copy of sample table for reference in scripts.
 ```
 a="SELECT id, clone_id, file, path, type, batch FROM sample"
 echo $a | mysql -u marias -h mongo -D strawberry_samples -p$(cat /home/sobczm/bin/mysql_sample_database/login) >sample.txt
 ```
+In cases where sample ids belong to the same cultivar (clone), will select the sample with the most genotypes.
 ```
 for infile in ${input_file}.out ${input_file}_istraw35.out ${input_file}_istraw90.out
 do
