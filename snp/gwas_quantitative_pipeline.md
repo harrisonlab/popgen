@@ -315,6 +315,11 @@ for per_missing in 0.2 0.5
 do
     awk '{print $1,$2,$4,$5}' ${infile}_0.05.mds  > ${infile}_covar.txt
     plink --bfile ${infile}_${per_missing} --linear --allow-no-sex --covar ${infile}_covar.txt --adjust --ci 0.95 --out ${infile}_${per_missing}_strat
+    cat ${infile}_${per_missing}_strat.assoc.linear.adjusted | awk '{$1=$1;print}' OFS='\t' >temp
+    mv temp ${infile}_${per_missing}_strat.assoc.linear.adjusted
+    cat ${infile}_${per_missing}_strat.assoc.linear | awk '{$1=$1;print}' OFS='\t' >temp
+    mv temp ${infile}_${per_missing}_strat.assoc.linear
+
 done
 done
 ```
@@ -364,5 +369,15 @@ do
 plink --bfile ${infile}_${per_missing} --recode vcf-iid --out ${infile}_${per_missing}
 done
 done
+```
 
+Add header to the file with phenotypes scores, so that it can be read in by TASSEL.
+```
+input_file=crown_rot_scores.txt
+output_file=crown_rot_scores_tassel.txt
+rm $output_file
+echo "<Phenotype>" >> $output_file
+echo -e "taxa\tdata" >> $output_file
+echo -e  "Taxa\tscore" >> $output_file
+cat $input_file >> $output_file 
 ```
