@@ -223,3 +223,115 @@ do
 done
 done
 ```
+## GWAS with PLINK
+
+Using allelic GWAS, with addditive model. Output: extension ".adjusted" - adjusted p-values per marker, extension ".assoc" - raw p-values and other parameters.
+
+```
+for infile in ${input_file}.out_fix_min05_pheno ${input_file}_istraw35.out_fix_min05_pheno  ${input_file}_istraw90.out_fix_min05_pheno
+do
+for per_missing in 0.01 0.05 0.1 0.2 0.5
+do
+    plink --bfile ${infile}_${per_missing} --assoc --qt-means --allow-no-sex --adjust --ci 0.95 --out ${infile}_${per_missing}
+    cat ${infile}_${per_missing}.assoc.adjusted | awk '{$1=$1;print}' OFS='\t' >temp
+    mv temp ${infile}_${per_missing}.assoc.adjusted  
+    cat ${infile}_${per_missing}.assoc | awk '{$1=$1;print}' OFS='\t' >temp
+    mv temp ${infile}_${per_missing}.assoc
+
+done
+done 
+```
+
+Most of the effects of dominant and recessive loci should have been captured above but can also carry out logistic regression analysis testing for them explicitly. The results are saved to output files ending with ".logistic.adjusted" and ".logistic" (non-adjusted p-values)
+
+```
+for infile in ${input_file}.out_fix_min05_pheno ${input_file}_istraw35.out_fix_min05_pheno  ${input_file}_istraw90.out_fix_min05_pheno
+do
+for per_missing in 0.01 0.05 0.1 0.2 0.5
+do
+    plink --bfile ${infile}_${per_missing}  --logistic dominant --allow-no-sex --adjust --ci 0.95 --out ${infile}_${per_missing}_dominant
+    plink --bfile ${infile}_${per_missing}  --logistic recessive --allow-no-sex --adjust --ci 0.95 --out ${infile}_${per_missing}_recessive
+    cat ${infile}_${per_missing}_recessive.assoc.logistic.adjusted | awk '{$1=$1;print}' OFS='\t' >temp
+    mv temp ${infile}_${per_missing}_recessive.assoc.logistic.adjusted
+    cat ${infile}_${per_missing}_recessive.assoc.logistic | awk '{$1=$1;print}' OFS='\t' >temp
+    mv temp ${infile}_${per_missing}_recessive.assoc.logistic
+    cat ${infile}_${per_missing}_dominant.assoc.logistic.adjusted | awk '{$1=$1;print}' OFS='\t' >temp
+    mv temp ${infile}_${per_missing}_dominant.assoc.logistic.adjusted
+    cat ${infile}_${per_missing}_dominant.assoc.logistic | awk '{$1=$1;print}' OFS='\t' >temp
+    mv temp ${infile}_${per_missing}_dominant.assoc.logistic
+done
+done
+```
+Correction for population stratification - include the MDS results as covariates. NB: covariates can only be used with the linear and logistic commands, so will use logistc regression as a test for association, as logistic regression is used for case-control phenotypes (and linear for quantitative).
+
+```
+for infile in ${input_file}.out_fix_min05_pheno ${input_file}_istraw35.out_fix_min05_pheno  ${input_file}_istraw90.out_fix_min05_pheno
+do
+for per_missing in 0.01 0.05 0.1 0.2 0.5
+do
+    awk '{print $1,$2,$4,$5}' ${infile}_0.05.mds  > ${infile}_covar.txt
+    plink --bfile ${infile}_${per_missing} --logistic --allow-no-sex --covar ${infile}_covar.txt --adjust --ci 0.95 --out ${infile}_${per_missing}_strat
+    cat ${infile}_${per_missing}_strat.assoc.logistic.adjusted | awk '{$1=$1;print}' OFS='\t' >temp
+    mv temp ${infile}_${per_missing}_strat.assoc.logistic.adjusted
+    cat ${infile}_${per_missing}_strat.assoc.logistic | awk '{$1=$1;print}' OFS='\t' >temp
+    mv temp ${infile}_${per_missing}_strat.assoc.logistic
+
+done
+done
+```
+
+Create the QQ plot.
+```
+for infile in ${input_file}.out_fix_min05_pheno ${input_file}_istraw35.out_fix_min05_pheno  ${input_file}_istraw90.out_fix_min05_pheno
+do
+for per_missing in 0.01 0.05 0.1 0.2 0.5
+do
+    Rscript --vanilla $scripts/qq.plink.R ${infile}_${per_missing}_strat.assoc.logistic "QQ plot"
+done
+done
+```
+
+Create Manhattan plots for all GWAS analyses conducted. Requires R library "qqman" installed.
+```
+for results in *assoc
+do
+cut -f2,1,3,9 $results >${results}_man
+Rscript --vanilla $scripts/manhattan.R ${results}_man
+done
+
+for results in *.assoc.logistic
+do
+cut -f2,1,3,12 $results >${results}_man
+Rscript --vanilla $scripts/manhattan.R ${results}_man
+done
+```
+
+Convert all PDFs to PNG.
+```
+for my_pdf in *.pdf
+do
+convert -verbose -density 500 "${my_pdf}" "${my_pdf%.*}.png"
+done
+```
+
+## GWAS analysis with TASSEL
+Convert the filtered input files used in Plink GWAS to VCF so that can be used in TASSEL.
+```
+for infile in ${input_file}.out_fix_min05_pheno ${input_file}_istraw35.out_fix_min05_pheno  ${input_file}_istraw90.out_fix_min05_pheno
+do
+for per_missing in 0.01 0.05 0.1 0.2 0.5
+do
+plink --bfile ${infile}_${per_missing} --recode vcf-iid --out ${infile}_${per_missing}
+done
+done
+```
+Add header to the file with phenotypes scores, so that it can be read in by TASSEL.
+```
+input_file=everbearer_scores.txt
+output_file=everbearer_scores_tassel.txt
+rm $output_file
+echo "<Phenotype>" >> $output_file
+echo -e "taxa\tdata" >> $output_file
+echo -e  "Taxa\tscore" >> $output_file
+cat $input_file >> $output_file 
+```
