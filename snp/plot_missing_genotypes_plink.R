@@ -1,7 +1,7 @@
 library("ggplot2")
 library(tools)
 args = commandArgs(trailingOnly=TRUE)
-output <- paste(basename(args[1]), ".pdf", sep="")
+output <- paste(args[1], ".pdf", sep="")
 stats <- read.csv(args[1], sep="\t", quote='', stringsAsFactors=TRUE,header=TRUE)
 basic <- ggplot(data=stats, aes(stats$F_MISS)) + geom_histogram(col="black", position='dodge') + scale_fill_manual(values=c("black")) + xlab("Fraction missing genotypes") + ylab("Number of SNPs") 
 grids <- basic + theme(panel.grid.major = element_line(NA), panel.grid.minor = element_line(NA)) + scale_y_continuous(expand=c(0,0)) 

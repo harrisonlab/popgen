@@ -1,6 +1,6 @@
 library(tools)
 args = commandArgs(trailingOnly=TRUE)
-output <- paste(basename(args[1]), ".pdf", sep="")
+output <- paste(args[1], ".pdf", sep="")
 library("ggplot2")
 library("ggrepel")
 table <- read.csv(args[1], sep="\t", header=TRUE)

@@ -1,11 +1,11 @@
 library(tools)
 args = commandArgs(trailingOnly=TRUE)
-output <- paste(basename(args[1]), "miss_het.pdf", sep="")
-output2 <- paste(basename(args[1]), "miss_het.txt", sep="")
+output <- paste(args[1], "miss_het.pdf", sep="")
+output2 <- paste(args[1], "miss_het.txt", sep="")
 
-imiss=read.table(paste(basename(args[1]), ".imiss", sep=""), h=T)
+imiss=read.table(paste(args[1], ".imiss", sep=""), h=T)
 imiss$logF_MISS = log10(imiss[,6])
-het=read.table(paste(basename(args[1]), ".het", sep=""),h=T)
+het=read.table(paste(args[1], ".het", sep=""),h=T)
 het$meanHet = (het$N.NM. - het$O.HOM.)/het$N.NM.
 library("geneplotter")
 colors  <- densCols(imiss$logF_MISS,het$meanHet)
