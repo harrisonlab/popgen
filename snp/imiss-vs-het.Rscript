@@ -1,7 +1,7 @@
 library(tools)
 args = commandArgs(trailingOnly=TRUE)
-output <- paste(args[1], "miss_het.pdf", sep="")
-output2 <- paste(args[1], "miss_het.txt", sep="")
+output <- paste(args[1], "_miss_het.pdf", sep="")
+output2 <- paste(args[1], "_miss_het.txt", sep="")
 
 imiss=read.table(paste(args[1], ".imiss", sep=""), h=T)
 imiss$logF_MISS = log10(imiss[,6])

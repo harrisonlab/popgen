@@ -62,22 +62,46 @@ do
 cat $infile | sed 's/LG//' | sed 's/Unknown/0/' | awk 'NR<3{print $0;next}{print $0| "sort -k1,2"}'  >${infile%.vcf}_fix.vcf
 done
 
-#Convert VCF to plink format and retain only informative SNPs with minor allele freqeuncy (MAF)of at least 0.05.
+#Convert VCF to plink format.
 #Log messages output by plink are useful and captured here, as they give info such as genotyping rate and number of variants/individuals before and after filtering.
 for infile in vesca2.0/${input_file}.out_fix.vcf vesca2.0/${input_file}_istraw35.out_fix.vcf vesca2.0/${input_file}_istraw90.out_fix.vcf ananassa/${input_file}.out_fix.vcf ananassa/${input_file}_istraw35.out_fix.vcf ananassa/${input_file}_istraw90.out_fix.vcf
 do
-plink --allow-extra-chr --vcf $infile --maf 0.05 --recode --out ${infile%.vcf}_min05 > ${infile%.vcf}_min05.log
+plink --allow-extra-chr --vcf $infile --recode --make-bed --out ${infile%.vcf} >${infile}.log
 done
 
-#Calculate the missing genotype rate for each marker. The results of this analysis can be found in files with ".lmiss" extension.
-for infile in vesca2.0/${input_file}.out_fix_min05 vesca2.0/${input_file}_istraw35.out_fix_min05  vesca2.0/${input_file}_istraw90.out_fix_min05 ananassa/${input_file}.out_fix_min05 ananassa/${input_file}_istraw35.out_fix_min05 ananassa/${input_file}_istraw90.out_fix_min05
+#Identification of individuals with elevated missing data rates or outlying heterozygosity rate
+for infile in vesca2.0/${input_file}.out_fix vesca2.0/${input_file}_istraw35.out_fix  vesca2.0/${input_file}_istraw90.out_fix ananassa/${input_file}.out_fix ananassa/${input_file}_istraw35.out_fix ananassa/${input_file}_istraw90.out_fix
 do
-plink --allow-extra-chr --file $infile --missing --out ${infile%.ped} >${infile%.ped}.log
+    plink --bfile ${infile} --missing --allow-extra-chr --out ${infile}  >${infile}_post_filtering.log
+    plink --bfile ${infile} --het --allow-extra-chr --out ${infile}
+done
+
+#This reates files with extension ".het", in which the third column denotes the observed number of homozygous genotypes [O(Hom)] and the fifth column denotes the number of nonmissing genotypes [N(NM)] per individual.
+#The script below calculates the observed heterozygosity rate per individual using the formula (N(NM) − O(Hom))/N(NM). It then creates a graph in which the observed heterozygosity rate per individual is plotted on the x axis and the proportion of missing SNPs per individuals is plotted on the y axis. The data underlying the graph which can be used to identify the outlier samples is written to file with extension "miss_het.txt"
+#*Note* This script requires "geneplotter" and "tools" R libraries to be installed in your account. 
+for infile in vesca2.0/${input_file}.out_fix vesca2.0/${input_file}_istraw35.out_fix  vesca2.0/${input_file}_istraw90.out_fix ananassa/${input_file}.out_fix ananassa/${input_file}_istraw35.out_fix ananassa/${input_file}_istraw90.out_fix
+do
+    Rscript --vanilla $scripts/imiss-vs-het.Rscript ${infile}
+done
+
+#Sample 474 (Dover) appears to show dramatically  high He rates, and as such will be removed as likely mis-labeled. 
+echo '474 474' >>to_remove.txt
+
+#Now, filter select individuals from the analysis (here only sample 474 - Dover).
+for infile in vesca2.0/${input_file}.out_fix vesca2.0/${input_file}_istraw35.out_fix  vesca2.0/${input_file}_istraw90.out_fix ananassa/${input_file}.out_fix ananassa/${input_file}_istraw35.out_fix ananassa/${input_file}_istraw90.out_fix
+do
+    plink --bfile ${infile} --remove to_remove.txt --allow-extra-chr --make-bed --out ${infile}_filtered1 >${infile}.log
+done
+
+#Calculate the missing genotype rate for each marker. The results of this analysis can be found in files with ".lmiss" extension. 
+for infile in vesca2.0/${input_file}.out_fix_filtered1 vesca2.0/${input_file}_istraw35.out_fix_filtered1  vesca2.0/${input_file}_istraw90.out_fix_filtered1 ananassa/${input_file}.out_fix_filtered1 ananassa/${input_file}_istraw35.out_fix_filtered1 ananassa/${input_file}_istraw90.out_fix_filtered1
+do
+plink --bfile $infile --missing --allow-extra-chr --out ${infile%.ped} >${infile%.ped}.log
 done
 
 #Plot a histogram of the missing genotype rate to identify a threshold for extreme genotype failure rate. This can be carried out using the data in column 5 of the .lmiss file.
 #But first, convert weird spacing between columns to tabs in PLINK output, as before.
-for infile in vesca2.0/${input_file}.out_fix_min05 vesca2.0/${input_file}_istraw35.out_fix_min05  vesca2.0/${input_file}_istraw90.out_fix_min05 ananassa/${input_file}.out_fix_min05 ananassa/${input_file}_istraw35.out_fix_min05 ananassa/${input_file}_istraw90.out_fix_min05
+for infile in vesca2.0/${input_file}.out_fix_filtered1 vesca2.0/${input_file}_istraw35.out_fix_filtered1  vesca2.0/${input_file}_istraw90.out_fix_filtered1 ananassa/${input_file}.out_fix_filtered1 ananassa/${input_file}_istraw35.out_fix_filtered1 ananassa/${input_file}_istraw90.out_fix_filtered1
 do
 cat ${infile}.lmiss | awk '{$1=$1;print}' OFS='\t' >temp
 mv temp ${infile}.lmiss 
@@ -85,41 +109,18 @@ Rscript --vanilla $scripts/plot_missing_genotypes_plink.R ${infile}.lmiss
 done
 
 #Remove SNPs with more than a given % of missing data. Here, 50% and 20%. Need to convert to PLINK's BAM format at this point to run the command.
-for infile in vesca2.0/${input_file}.out_fix_min05 vesca2.0/${input_file}_istraw35.out_fix_min05  vesca2.0/${input_file}_istraw90.out_fix_min05 ananassa/${input_file}.out_fix_min05 ananassa/${input_file}_istraw35.out_fix_min05 ananassa/${input_file}_istraw90.out_fix_min05
+for infile in vesca2.0/${input_file}.out_fix_filtered1 vesca2.0/${input_file}_istraw35.out_fix_filtered1  vesca2.0/${input_file}_istraw90.out_fix_filtered1 ananassa/${input_file}.out_fix_filtered1 ananassa/${input_file}_istraw35.out_fix_filtered1 ananassa/${input_file}_istraw90.out_fix_filtered1
 do
 for per_missing in 0 0.01 0.05 0.1
 do
-    plink --file $infile --allow-extra-chr --geno $per_missing --make-bed --out ${infile}_${per_missing} >${infile}_${per_missing}.log
-    cp ${infile%.ped}.map ${infile%.ped}_${per_missing}.map
+    plink --bfile $infile --allow-extra-chr --geno $per_missing --make-bed --out ${infile}_${per_missing} >${infile}_${per_missing}.log
 done
 done
 
 #*From this point onwards, using only the subsets filtered for markers with low genotyping rates.*
-#Identification of individuals with elevated missing data rates or outlying heterozygosity rate
-for infile in vesca2.0/${input_file}.out_fix_min05 vesca2.0/${input_file}_istraw35.out_fix_min05  vesca2.0/${input_file}_istraw90.out_fix_min05 ananassa/${input_file}.out_fix_min05 ananassa/${input_file}_istraw35.out_fix_min05 ananassa/${input_file}_istraw90.out_fix_min05
-do
-for per_missing in 0 0.01 0.05 0.1
-do
-    plink --bfile ${infile}_${per_missing} --missing --allow-extra-chr --out ${infile}_${per_missing}  >${infile}_${per_missing}_post_filtering.log
-    plink --bfile ${infile}_${per_missing} --het --allow-extra-chr --out ${infile}_${per_missing}
-done
-done
-
-#This reates files with extension ".het", in which the third column denotes the observed number of homozygous genotypes [O(Hom)] and the fifth column denotes the number of nonmissing genotypes [N(NM)] per individual.
-#The script below calculates the observed heterozygosity rate per individual using the formula (N(NM) − O(Hom))/N(NM). It then creates a graph in which the observed heterozygosity rate per individual is plotted on the x axis and the proportion of missing SNPs per individuals is plotted on the y axis.
-#*Note* This script requires "geneplotter" and "tools" R libraries to be installed in your account.
-for infile in vesca2.0/${input_file}.out_fix_min05 vesca2.0/${input_file}_istraw35.out_fix_min05  vesca2.0/${input_file}_istraw90.out_fix_min05 ananassa/${input_file}.out_fix_min05 ananassa/${input_file}_istraw35.out_fix_min05 ananassa/${input_file}_istraw90.out_fix_min05
-do
-for per_missing in 0 0.01 0.05 0.1
-do
-    Rscript --vanilla $scripts/imiss-vs-het.Rscript ${infile}_${per_missing}
-done
-done
-
-#The graph (extension _het.pdf) suggests one outlier sample with very low heterozygosity, which is suspicious and needs to be removed. In order to find the sample (IID) and family (FID) id of that sample (both ids identical in our analyses), we need to open the table used to make the figure (extension _het.txt) and inspect the values in the columns (F_MISS - ie. Proportion of missing genotypes, meanHet - ie. Heterozygosity rate)
 
 #In some cases, may be useful to calculate pairwise identity-by-descent (IBS - "DST" in the table output below) and PI_HAT (measure of identity-by-descent, but estimates only reliable using a big sample of individuals - not reliable here). We may then want to eliminate samples which are too closely related. As we have few samples and a lot of cultivars are inherently derived from a limited genetic pool, ignoring the results of this step here.
-for infile in vesca2.0/${input_file}.out_fix_min05 vesca2.0/${input_file}_istraw35.out_fix_min05  vesca2.0/${input_file}_istraw90.out_fix_min05 ananassa/${input_file}.out_fix_min05 ananassa/${input_file}_istraw35.out_fix_min05 ananassa/${input_file}_istraw90.out_fix_min05
+for infile in vesca2.0/${input_file}.out_fix_filtered1 vesca2.0/${input_file}_istraw35.out_fix_filtered1  vesca2.0/${input_file}_istraw90.out_fix_filtered1 ananassa/${input_file}.out_fix_filtered1 ananassa/${input_file}_istraw35.out_fix_filtered1 ananassa/${input_file}_istraw90.out_fix_filtered1
 do
 for per_missing in 0 0.01 0.05 0.1
 do
@@ -130,58 +131,69 @@ done
 #However, in certain cases we may want to filter our closely related individuals in a pair above a certain IBS threshold. 
 #The code below looks at the individual call rates and outputs the IDs of the individual with the lowest call rate for subsequent removal, if desired.
 threshold=0.90
-for infile in vesca2.0/${input_file}.out_fix_min05 vesca2.0/${input_file}_istraw35.out_fix_min05  vesca2.0/${input_file}_istraw90.out_fix_min05 ananassa/${input_file}.out_fix_min05 ananassa/${input_file}_istraw35.out_fix_min05 ananassa/${input_file}_istraw90.out_fix_min05
+for infile in vesca2.0/${input_file}.out_fix_filtered1 vesca2.0/${input_file}_istraw35.out_fix_filtered1  vesca2.0/${input_file}_istraw90.out_fix_filtered1 ananassa/${input_file}.out_fix_filtered1 ananassa/${input_file}_istraw35.out_fix_filtered1 ananassa/${input_file}_istraw90.out_fix_filtered1
 do
 for per_missing in 0 0.01 0.05 0.1
 do
+    plink --bfile ${infile}_${per_missing} --missing --allow-extra-chr --out ${infile}_${per_missing}  >${infile}_post_filtering.log
     perl $scripts/run-IBS-QC.pl ${infile}_${per_missing} $threshold > ${infile}_${per_missing}_to_filter
 done
 done
 
 #Now, filter select individuals from the analysis (here samples related above 90% level by IBS).
-for infile in vesca2.0/${input_file}.out_fix_min05 vesca2.0/${input_file}_istraw35.out_fix_min05  vesca2.0/${input_file}_istraw90.out_fix_min05 ananassa/${input_file}.out_fix_min05 ananassa/${input_file}_istraw35.out_fix_min05 ananassa/${input_file}_istraw90.out_fix_min05
+for infile in vesca2.0/${input_file}.out_fix_filtered1 vesca2.0/${input_file}_istraw35.out_fix_filtered1  vesca2.0/${input_file}_istraw90.out_fix_filtered1 ananassa/${input_file}.out_fix_filtered1 ananassa/${input_file}_istraw35.out_fix_filtered1 ananassa/${input_file}_istraw90.out_fix_filtered1
 do
 for per_missing in 0 0.01 0.05 0.1
 do
-    plink --bfile ${infile}_${per_missing} --allow-extra-chr --remove ${infile}_${per_missing}_to_filter --make-bed --out ${infile}_${per_missing}_filtered >${infile}_${per_missing}.log
+    plink --bfile ${infile}_${per_missing} --allow-extra-chr --remove ${infile}_${per_missing}_to_filter --make-bed --out ${infile}_${per_missing}_filtered2 >${infile}_${per_missing}.log
+done
+done
+
+#Retain only informative SNPs with minor allele freqeuncy (MAF) of at least 0.05. 
+for infile in vesca2.0/${input_file}.out_fix_filtered1 vesca2.0/${input_file}_istraw35.out_fix_filtered1  vesca2.0/${input_file}_istraw90.out_fix_filtered1 ananassa/${input_file}.out_fix_filtered1 ananassa/${input_file}_istraw35.out_fix_filtered1 ananassa/${input_file}_istraw90.out_fix_filtered1
+do
+for per_missing in 0 0.01 0.05 0.1
+do
+    plink --bfile ${infile}_${per_missing}_filtered2 --maf 0.05 --allow-extra-chr --make-bed --out ${infile}_${per_missing}_filtered2_min05 > ${infile}_${per_missing}_filtered2_min05.log
+    plink --bfile ${infile}_${per_missing}_filtered2_min05 --genome --allow-extra-chr --out ${infile}_${per_missing}_filtered2_min05
 done
 done
 
 #To estimate population stratification, PLINK offers tools to cluster individuals into homogeneous subsets (which is achieved through complete linkage agglomerative clustering based on pair-wise IBS distance) and to perform classical MDS to visualize substructure and provide quantitative indices of population genetic variation that can be used as covariates in subsequent association analysis to control for stratification, instead of using discrete clusters.
-for infile in vesca2.0/${input_file}.out_fix_min05 vesca2.0/${input_file}_istraw35.out_fix_min05  vesca2.0/${input_file}_istraw90.out_fix_min05 ananassa/${input_file}.out_fix_min05 ananassa/${input_file}_istraw35.out_fix_min05 ananassa/${input_file}_istraw90.out_fix_min05
+for infile in vesca2.0/${input_file}.out_fix_filtered1 vesca2.0/${input_file}_istraw35.out_fix_filtered1  vesca2.0/${input_file}_istraw90.out_fix_filtered1 ananassa/${input_file}.out_fix_filtered1 ananassa/${input_file}_istraw35.out_fix_filtered1 ananassa/${input_file}_istraw90.out_fix_filtered1
 do
 for per_missing in 0 0.01 0.05 0.1
 do
-    plink --bfile ${infile}_${per_missing}_filtered --allow-extra-chr --read-genome ${infile}_${per_missing}.genome --cluster --mds-plot 4 --silent --out ${infile}_${per_missing}_filtered
+    plink --bfile ${infile}_${per_missing}_filtered2_min05 --allow-extra-chr --read-genome ${infile}_${per_missing}_filtered2_min05.genome --cluster --mds-plot 4 --silent --out ${infile}_${per_missing}_filtered2_min05
 done
 done
 
 #Convert weird spacing between columns to tabs in PLINK output 
-for infile in vesca2.0/${input_file}.out_fix_min05 vesca2.0/${input_file}_istraw35.out_fix_min05  vesca2.0/${input_file}_istraw90.out_fix_min05 ananassa/${input_file}.out_fix_min05 ananassa/${input_file}_istraw35.out_fix_min05 ananassa/${input_file}_istraw90.out_fix_min05
+for infile in vesca2.0/${input_file}.out_fix_filtered1 vesca2.0/${input_file}_istraw35.out_fix_filtered1  vesca2.0/${input_file}_istraw90.out_fix_filtered1 ananassa/${input_file}.out_fix_filtered1 ananassa/${input_file}_istraw35.out_fix_filtered1 ananassa/${input_file}_istraw90.out_fix_filtered1
 do
 for per_missing in 0 0.01 0.05 0.1
 do
-    cat ${infile}_${per_missing}_filtered.mds | awk '{$1=$1;print}' OFS='\t' >temp
-    mv temp ${infile}_${per_missing}_filtered.mds 
+    cat  ${infile}_${per_missing}_filtered2_min05.mds | awk '{$1=$1;print}' OFS='\t' >temp
+    mv temp  ${infile}_${per_missing}_filtered2_min05.mds 
 done
 done
 
 #MDS plot based on Dimensions 1 and 2. 
 #*Note*  Plotting requires R libraries "ggplot2", ""ggrepel" to be installed.
-for infile in vesca2.0/${input_file}.out_fix_min05 vesca2.0/${input_file}_istraw35.out_fix_min05  vesca2.0/${input_file}_istraw90.out_fix_min05 ananassa/${input_file}.out_fix_min05 ananassa/${input_file}_istraw35.out_fix_min05 ananassa/${input_file}_istraw90.out_fix_min05
+for infile in vesca2.0/${input_file}.out_fix_filtered1 vesca2.0/${input_file}_istraw35.out_fix_filtered1  vesca2.0/${input_file}_istraw90.out_fix_filtered1 ananassa/${input_file}.out_fix_filtered1 ananassa/${input_file}_istraw35.out_fix_filtered1 ananassa/${input_file}_istraw90.out_fix_filtered1
 do
 for per_missing in 0 0.01 0.05 0.1
 do
-    Rscript --vanilla $scripts/plot_plink_mds.R ${infile}_${per_missing}_filtered.mds
+    Rscript --vanilla $scripts/plot_plink_mds.R ${infile}_${per_missing}_filtered2_min05.mds
 done
 done
 
 #Convert the filtered input files used in Plink to VCF so that can be used in other programs.
-for infile in vesca2.0/${input_file}.out_fix_min05 vesca2.0/${input_file}_istraw35.out_fix_min05  vesca2.0/${input_file}_istraw90.out_fix_min05 ananassa/${input_file}.out_fix_min05 ananassa/${input_file}_istraw35.out_fix_min05 ananassa/${input_file}_istraw90.out_fix_min05
+for infile in vesca2.0/${input_file}.out_fix_filtered1 vesca2.0/${input_file}_istraw35.out_fix_filtered1  vesca2.0/${input_file}_istraw90.out_fix_filtered1 ananassa/${input_file}.out_fix_filtered1 ananassa/${input_file}_istraw35.out_fix_filtered1 ananassa/${input_file}_istraw90.out_fix_filtered1
 do
 for per_missing in 0 0.01 0.05 0.1
 do
-plink --bfile ${infile}_${per_missing}_filtered --allow-extra-chr --recode vcf-iid --out ${infile}_${per_missing}_filtered
+plink --bfile ${infile}_${per_missing}_filtered2_min05 --allow-extra-chr --recode vcf-iid --out ${infile}_${per_missing}_filtered2_min05
 done
 done
 
