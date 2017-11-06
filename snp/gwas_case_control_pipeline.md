@@ -86,8 +86,8 @@ awk '{$5 = "1"; print}' $infile > temp
 mv temp $infile
 done
 ```
-Substitute the missing phenotype values for case-control values. 0 denotes a missing value. Here: 1 is everbearer, 2 is non everbearer
-Requires an input table with sample_id in the first column and phenotype value in the second column (see example file below)
+Substitute the missing phenotype values for case-control values. 0 denotes a missing value. Here: 1 is everbearer, 2 is non everbearer.
+Requires an input table with sample_id in the first column and phenotype value in the second column (see example file below).
 ```
 phenotype_file=everbearer_scores.txt
 for infile in ${input_file}.out_fix_min05.ped ${input_file}_istraw35.out_fix_min05.ped ${input_file}_istraw90.out_fix_min05.ped
