@@ -23,7 +23,7 @@ awk -F"\t" '$4 == "istraw35" { print $0 }' ${input_file}.out  OFS='\t' >${input_
 Save a copy of sample table for reference in scripts.
 ```
 a="SELECT id, clone_id, file, path, type, batch FROM sample"
-echo $a | mysql -u marias -h mongo -D strawberry_samples -p$(cat /home/sobczm/bin/mysql_sample_database/login) >sample.txt
+echo $a | mysql -u strawreadonly -h mongo -D strawberry_samples -p$(cat /home/sobczm/.mysql-login) >sample.txt
 ```
 In cases where sample ids belong to the same cultivar (clone), will select the sample with the most genotypes.
 ```
