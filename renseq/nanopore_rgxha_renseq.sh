@@ -9,3 +9,9 @@
 --save_path /home/nanopore/20171030_gridion_Redgauntlet_Hapil-RENseq/reads/recalled \
 --output_format fastq,fast5 \
 --reads_per_fastq_batch 4000
+
+scripts=/home/sobczm/bin/popgen/renseq
+input=/home/sobczm/popgen/renseq/strawberry/reads/albacore_rgxha
+cd $input
+#Copy the reads across and trim the adapters. Separate out RG and HA samples.
+scp -r nanopore@nanopore:/home/nanopore/20171030_gridion_Redgauntlet_Hapil-RENseq/reads/recalled ./

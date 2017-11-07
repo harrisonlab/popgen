@@ -11,11 +11,11 @@ script, id_list, output = argv
 with open (id_list) as id_listh:
     ids = id_listh.read().splitlines()
 
-with open ("/home/sobczm/bin/mysql_sample_database/login", "r") as myfile:
+with open ("/home/sobczm/.mysql-login", "r") as myfile:
     password = myfile.read().strip()
 
 db = MySQLdb.connect(host="mongo",   #192.168.1.100
-                     user="marias",
+                     user="strawreadonly",
                      passwd=password,
                      db="strawberry_samples")
 
