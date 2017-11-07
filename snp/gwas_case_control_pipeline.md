@@ -1,4 +1,4 @@
-# Using data with case-control (0-1) phenotypes. As an example, using everbearer trait.
+# Using data with case-control (1-2) phenotypes. As an example, using everbearer trait.
 
 ```
 scripts=/home/sobczm/bin/popgen/snp
