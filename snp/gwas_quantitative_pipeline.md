@@ -49,10 +49,9 @@ B) vesca genome ver. 2.0 $input/istraw90_vesca_v2.0_snp_positions.gff3
 
 C) ananassa genome $input/vesca2consensus_map_noambiguous_2017-08-22.gff --> assignment of positions of significantly fewer number of markers than in vesca.
 
-Need to check back with Rob to get the latest version of those GFF files, as he's working
-on improving them. 
+Need to check back with Rob to get the latest version of those GFF files, as he's working on improving them. For now, copy the GFF files across from my directory into your working directory. 
 
-Here, using A) as this version has been used in the past in Charlotte's QTL analysis.
+Here, using A) as this version has been used in the past in Charlotte's QTL analysis. 
 ```
 gff_file=$input/istraw90_vesca_v1.1_snp_positions.gff3
 for infile in ${input_file}.out ${input_file}_istraw35.out ${input_file}_istraw90.out

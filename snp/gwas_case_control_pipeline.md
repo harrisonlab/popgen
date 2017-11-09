@@ -51,12 +51,11 @@ B) vesca genome ver. 2.0 $input/istraw90_vesca_v2.0_snp_positions.gff3
 
 C) ananassa genome $input/vesca2consensus_map_noambiguous_2017-08-22.gff --> assignment of positions of significantly fewer number of markers than in vesca.
 
-Need to check back with Rob to get the latest version of those GFF files, as he's working
-on improving them. 
+Need to check back with Rob to get the latest version of those GFF files, as he's working on improving them. For now, copy the GFF files across from my directory into your working directory. 
 
 Here, using B)
 ```
-gff_file=istraw90_vesca_v2.0_snp_positions.gff3
+gff_file=$input/istraw90_vesca_v2.0_snp_positions.gff3
 for infile in ${input_file}.out ${input_file}_istraw35.out ${input_file}_istraw90.out
 do
 qsub $scripts/sub_ananassa_genotypes_vcf.sh $infile $gff_file
