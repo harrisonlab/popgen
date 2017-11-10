@@ -69,4 +69,4 @@ Order of Shell script execution:
 
 32) [nanopore_emxfe_renseq2.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/nanopore_emxfe_renseq2.sh)
 
-33) [nanopore_rgxha_renseq.sh] (https://github.com/harrisonlab/popgen/blob/master/renseq/nanopore_rgxha_renseq.sh)
+33) [nanopore_rgxha_renseq.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/nanopore_rgxha_renseq.sh)
