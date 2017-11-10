@@ -42,6 +42,6 @@
 ### GWAS pipeline - case vs. control (example: everbearer trait)
 [gwas_case_control_pipeline.md](https://github.com/harrisonlab/popgen/blob/master/snp/gwas_case_control_pipeline.md)
 ### GWAS pipeline - quantitative phenotype (example: crown rot resistance)
-[gwas_quantitative_pipeline.md] (https://github.com/harrisonlab/popgen/blob/master/snp/gwas_quantitative_pipeline.md)
+[gwas_quantitative_pipeline.md](https://github.com/harrisonlab/popgen/blob/master/snp/gwas_quantitative_pipeline.md)
 ### GWAS analysis of everbearer trait
 [everbearer_gwas.sh](https://github.com/harrisonlab/popgen/blob/master/snp/everbearer_gwas.sh)
