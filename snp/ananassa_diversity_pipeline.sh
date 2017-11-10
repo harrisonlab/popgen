@@ -202,3 +202,13 @@ for my_pdf in vesca2.0/*.pdf ananassa/*.pdf
 do
 convert -verbose -density 500 "${my_pdf}" "${my_pdf%.*}.png"
 done
+
+#Optional: seperate out the results for different filtering options used (one combination - one subdirectory)
+for infile in vesca2.0/${input_file}.out vesca2.0/${input_file}_istraw35.out  vesca2.0/${input_file}_istraw90.out ananassa/${input_file}.out ananassa/${input_file}_istraw35.out ananassa/${input_file}_istraw90.out
+do
+for per_missing in 0 0.01 0.05 0.1
+do
+    mkdir -p ${infile}/${per_missing}
+    mv ${infile}*${per_missing}_* ${infile}/${per_missing}
+done
+done 
