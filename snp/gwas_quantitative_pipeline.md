@@ -368,6 +368,7 @@ do
     mv ${infile}_${per_missing}* $infile/$per_missing
 done
 done 
+```
 
 ## GWAS with TASSEL
 Convert the filtered input files used in Plink GWAS to VCF so that can be used in TASSEL.
@@ -376,7 +377,7 @@ for infile in ${input_file}.out_fix_min05_pheno ${input_file}_istraw35.out_fix_m
 do
 for per_missing in 0.2 0.5
 do
-plink --bfile ${infile}_${per_missing} --recode vcf-iid --out ${infile}_${per_missing}
+    plink --bfile ${infile}_${per_missing} --recode vcf-iid --out ${infile}_${per_missing}
 done
 done
 ```
