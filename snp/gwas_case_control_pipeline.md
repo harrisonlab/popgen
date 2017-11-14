@@ -210,8 +210,6 @@ do
 done
 done
 ```
-EmxFe samples cluster together but keeping them in the analysis as we are so short for samples in this analysis.
-
 Now, filter select individuals from the analysis (here samples related above 90% level by IBS).
 ```
 for infile in ${input_file}.out_fix_min05_pheno ${input_file}_istraw35.out_fix_min05_pheno  ${input_file}_istraw90.out_fix_min05_pheno

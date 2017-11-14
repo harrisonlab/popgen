@@ -2,7 +2,7 @@
 scripts=/home/sobczm/bin/popgen/snp
 input=/home/sobczm/popgen/snp/snp_chip/diversity
 cd $input 
-#This pipeline is only for F. ananassa without F. chiloensis and F. virginiana. 
+#This pipeline is only for F. ananassa without F. chiloensis and F. virginiana. After it is finished, re-run including F. chiloensis and viriginiana samples (input_file=master_list_191917_withWT.txt)
 #Select sample ids of individuals to be included in the analysis and extract their
 #genotypes from the db. 
 #Goal - create 3 datasets:
