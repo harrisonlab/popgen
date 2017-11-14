@@ -368,6 +368,7 @@ do
     mv ${infile}_${per_missing}* $infile/$per_missing
 done
 done 
+```
 
 ## GWAS with TASSEL
 Convert the filtered input files used in Plink GWAS to VCF so that can be used in TASSEL.
