@@ -376,7 +376,7 @@ for infile in ${input_file}.out_fix_min05_pheno ${input_file}_istraw35.out_fix_m
 do
 for per_missing in 0.2 0.5
 do
-plink --bfile ${infile}_${per_missing} --recode vcf-iid --out ${infile}_${per_missing}
+    plink --bfile ${infile}_${per_missing} --recode vcf-iid --out ${infile}_${per_missing}
 done
 done
 ```
