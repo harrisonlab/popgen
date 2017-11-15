@@ -5,7 +5,7 @@
 #$ -cwd
 #$ -pe smp 8
 #$ -l virtual_free=1.2G
-#$ -l h=blacklace01.blacklace|blacklace02.blacklace|blacklace03.blacklace|blacklace04.blacklace|blacklace05.blacklace|blacklace06.blacklace|blacklace07.blacklace|blacklace08.blacklace|blacklace09.blacklace|blacklace10.blacklace
+#$ -l h=blacklace01.blacklace|blacklace02.blacklace|blacklace03.blacklace|blacklace04.blacklace|blacklace05.blacklace|blacklace06.blacklace|blacklace07.blacklace|blacklace08.blacklace|blacklace09.blacklace|blacklace10.blacklace|blacklace11.blacklace
 
 
 Usage="sub_star.sh InGenome.fa InReadF.fa InReadR.fa Output_directory [GeneLocations.gff]"

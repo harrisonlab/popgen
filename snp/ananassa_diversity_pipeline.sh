@@ -112,7 +112,7 @@ done
 #Remove SNPs with more than a given % of missing data. Here, 50% and 20%. Need to convert to PLINK's BAM format at this point to run the command.
 for infile in vesca2.0/${input_file}.out_fix_filtered1 vesca2.0/${input_file}_istraw35.out_fix_filtered1  vesca2.0/${input_file}_istraw90.out_fix_filtered1 ananassa/${input_file}.out_fix_filtered1 ananassa/${input_file}_istraw35.out_fix_filtered1 ananassa/${input_file}_istraw90.out_fix_filtered1
 do
-for per_missing in 0 0.01 0.05 0.1
+for per_missing in 0 0.01 0.05 0.1 0.2
 do
     plink --bfile $infile --allow-extra-chr --geno $per_missing --make-bed --out ${infile}_${per_missing} >${infile}_${per_missing}.log
 done
@@ -123,7 +123,7 @@ done
 #In some cases, may be useful to calculate pairwise identity-by-descent (IBS - "DST" in the table output below) and PI_HAT (measure of identity-by-descent, but estimates only reliable using a big sample of individuals - not reliable here). We may then want to eliminate samples which are too closely related. As we have few samples and a lot of cultivars are inherently derived from a limited genetic pool, ignoring the results of this step here.
 for infile in vesca2.0/${input_file}.out_fix_filtered1 vesca2.0/${input_file}_istraw35.out_fix_filtered1  vesca2.0/${input_file}_istraw90.out_fix_filtered1 ananassa/${input_file}.out_fix_filtered1 ananassa/${input_file}_istraw35.out_fix_filtered1 ananassa/${input_file}_istraw90.out_fix_filtered1
 do
-for per_missing in 0 0.01 0.05 0.1
+for per_missing in 0 0.01 0.05 0.1 0.2
 do
     plink --bfile ${infile}_${per_missing} --allow-extra-chr --genome --out ${infile}_${per_missing}
 done
@@ -134,7 +134,7 @@ done
 threshold=0.90
 for infile in vesca2.0/${input_file}.out_fix_filtered1 vesca2.0/${input_file}_istraw35.out_fix_filtered1  vesca2.0/${input_file}_istraw90.out_fix_filtered1 ananassa/${input_file}.out_fix_filtered1 ananassa/${input_file}_istraw35.out_fix_filtered1 ananassa/${input_file}_istraw90.out_fix_filtered1
 do
-for per_missing in 0 0.01 0.05 0.1
+for per_missing in 0 0.01 0.05 0.1 0.2
 do
     plink --bfile ${infile}_${per_missing} --missing --allow-extra-chr --out ${infile}_${per_missing}  >${infile}_post_filtering.log
     perl $scripts/run-IBS-QC.pl ${infile}_${per_missing} $threshold > ${infile}_${per_missing}_to_filter
@@ -144,38 +144,29 @@ done
 #Now, filter select individuals from the analysis (here samples related above 90% level by IBS).
 for infile in vesca2.0/${input_file}.out_fix_filtered1 vesca2.0/${input_file}_istraw35.out_fix_filtered1  vesca2.0/${input_file}_istraw90.out_fix_filtered1 ananassa/${input_file}.out_fix_filtered1 ananassa/${input_file}_istraw35.out_fix_filtered1 ananassa/${input_file}_istraw90.out_fix_filtered1
 do
-for per_missing in 0 0.01 0.05 0.1
+for per_missing in 0 0.01 0.05 0.1 0.2
 do
     plink --bfile ${infile}_${per_missing} --allow-extra-chr --remove ${infile}_${per_missing}_to_filter --make-bed --out ${infile}_${per_missing}_filtered2 >${infile}_${per_missing}.log
-done
-done
-
-#Retain only informative SNPs with minor allele freqeuncy (MAF) of at least 0.05. 
-for infile in vesca2.0/${input_file}.out_fix_filtered1 vesca2.0/${input_file}_istraw35.out_fix_filtered1  vesca2.0/${input_file}_istraw90.out_fix_filtered1 ananassa/${input_file}.out_fix_filtered1 ananassa/${input_file}_istraw35.out_fix_filtered1 ananassa/${input_file}_istraw90.out_fix_filtered1
-do
-for per_missing in 0 0.01 0.05 0.1
-do
-    plink --bfile ${infile}_${per_missing}_filtered2 --maf 0.05 --allow-extra-chr --make-bed --out ${infile}_${per_missing}_filtered2_min05 > ${infile}_${per_missing}_filtered2_min05.log
-    plink --bfile ${infile}_${per_missing}_filtered2_min05 --genome --allow-extra-chr --out ${infile}_${per_missing}_filtered2_min05
 done
 done
 
 #To estimate population stratification, PLINK offers tools to cluster individuals into homogeneous subsets (which is achieved through complete linkage agglomerative clustering based on pair-wise IBS distance) and to perform classical MDS to visualize substructure and provide quantitative indices of population genetic variation that can be used as covariates in subsequent association analysis to control for stratification, instead of using discrete clusters.
 for infile in vesca2.0/${input_file}.out_fix_filtered1 vesca2.0/${input_file}_istraw35.out_fix_filtered1  vesca2.0/${input_file}_istraw90.out_fix_filtered1 ananassa/${input_file}.out_fix_filtered1 ananassa/${input_file}_istraw35.out_fix_filtered1 ananassa/${input_file}_istraw90.out_fix_filtered1
 do
-for per_missing in 0 0.01 0.05 0.1
+for per_missing in 0 0.01 0.05 0.1 0.2
 do
-    plink --bfile ${infile}_${per_missing}_filtered2_min05 --allow-extra-chr --read-genome ${infile}_${per_missing}_filtered2_min05.genome --cluster --mds-plot 4 --silent --out ${infile}_${per_missing}_filtered2_min05
+    plink --bfile ${infile}_${per_missing}_filtered2 --allow-extra-chr --genome --out ${infile}_${per_missing}_filtered2 
+    plink --bfile ${infile}_${per_missing}_filtered2 --allow-extra-chr --read-genome ${infile}_${per_missing}_filtered2.genome --cluster --mds-plot 4 --silent --out ${infile}_${per_missing}_filtered2
 done
 done
 
 #Convert weird spacing between columns to tabs in PLINK output 
 for infile in vesca2.0/${input_file}.out_fix_filtered1 vesca2.0/${input_file}_istraw35.out_fix_filtered1  vesca2.0/${input_file}_istraw90.out_fix_filtered1 ananassa/${input_file}.out_fix_filtered1 ananassa/${input_file}_istraw35.out_fix_filtered1 ananassa/${input_file}_istraw90.out_fix_filtered1
 do
-for per_missing in 0 0.01 0.05 0.1
+for per_missing in 0 0.01 0.05 0.1 0.2
 do
-    cat  ${infile}_${per_missing}_filtered2_min05.mds | awk '{$1=$1;print}' OFS='\t' >temp
-    mv temp  ${infile}_${per_missing}_filtered2_min05.mds 
+    cat ${infile}_${per_missing}_filtered2.mds | awk '{$1=$1;print}' OFS='\t' >temp
+    mv temp  ${infile}_${per_missing}_filtered2.mds 
 done
 done
 
@@ -183,18 +174,18 @@ done
 #*Note*  Plotting requires R libraries "ggplot2", ""ggrepel" to be installed.
 for infile in vesca2.0/${input_file}.out_fix_filtered1 vesca2.0/${input_file}_istraw35.out_fix_filtered1  vesca2.0/${input_file}_istraw90.out_fix_filtered1 ananassa/${input_file}.out_fix_filtered1 ananassa/${input_file}_istraw35.out_fix_filtered1 ananassa/${input_file}_istraw90.out_fix_filtered1
 do
-for per_missing in 0 0.01 0.05 0.1
+for per_missing in 0 0.01 0.05 0.1 0.2
 do
-    Rscript --vanilla $scripts/plot_plink_mds.R ${infile}_${per_missing}_filtered2_min05.mds
+    Rscript --vanilla $scripts/plot_plink_mds.R ${infile}_${per_missing}_filtered2.mds
 done
 done
 
 #Convert the filtered input files used in Plink to VCF so that can be used in other programs.
 for infile in vesca2.0/${input_file}.out_fix_filtered1 vesca2.0/${input_file}_istraw35.out_fix_filtered1  vesca2.0/${input_file}_istraw90.out_fix_filtered1 ananassa/${input_file}.out_fix_filtered1 ananassa/${input_file}_istraw35.out_fix_filtered1 ananassa/${input_file}_istraw90.out_fix_filtered1
 do
-for per_missing in 0 0.01 0.05 0.1
+for per_missing in 0 0.01 0.05 0.1 0.2
 do
-plink --bfile ${infile}_${per_missing}_filtered2_min05 --allow-extra-chr --recode vcf-iid --out ${infile}_${per_missing}_filtered2_min05
+plink --bfile ${infile}_${per_missing}_filtered2 --allow-extra-chr --recode vcf-iid --out ${infile}_${per_missing}_filtered2
 done
 done
 
@@ -207,7 +198,7 @@ done
 #Optional: seperate out the results for different filtering options used (one combination - one subdirectory)
 for infile in vesca2.0/${input_file}.out vesca2.0/${input_file}_istraw35.out  vesca2.0/${input_file}_istraw90.out ananassa/${input_file}.out ananassa/${input_file}_istraw35.out ananassa/${input_file}_istraw90.out
 do
-for per_missing in 0 0.01 0.05 0.1
+for per_missing in 0 0.01 0.05 0.1 0.2
 do
     mkdir -p ${infile}/${per_missing}
     mv ${infile}*${per_missing}_* ${infile}/${per_missing}
