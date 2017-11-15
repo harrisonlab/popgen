@@ -3,6 +3,7 @@
 ```
 scripts=/home/sobczm/bin/popgen/snp
 input=/home/sobczm/popgen/snp/snp_chip/everbearer_gwas
+cd $input
 ```
 ## Initial data preparation
 Select sample ids of individuals to be included in the analysis and extract their
@@ -311,18 +312,6 @@ convert -verbose -density 500 "${my_pdf}" "${my_pdf%.*}.png"
 done
 ```
 
-Optional: seperate out the results for different filtering options used (one combination - one subdirectory)
-```
-for infile in ${input_file}.out_fix_min05_pheno ${input_file}_istraw35.out_fix_min05_pheno  ${input_file}_istraw90.out_fix_min05_pheno
-do
-for per_missing in 0.01 0.05 0.1 0.2 0.5
-do
-    mkdir -p ${infile}/${per_missing}
-    mv ${infile}_${per_missing}* $infile/$per_missing
-done
-done 
-
-```
 
 ## GWAS analysis with TASSEL
 Convert the filtered input files used in Plink GWAS to VCF so that can be used in TASSEL.
@@ -344,4 +333,17 @@ echo "<Phenotype>" >> $output_file
 echo -e "taxa\tdata" >> $output_file
 echo -e  "Taxa\tscore" >> $output_file
 cat $input_file >> $output_file 
+```
+
+Optional: seperate out the results for different filtering options used (one combination - one subdirectory)
+```
+for infile in ${input_file}.out_fix_min05_pheno ${input_file}_istraw35.out_fix_min05_pheno  ${input_file}_istraw90.out_fix_min05_pheno
+do
+for per_missing in 0.01 0.05 0.1 0.2 0.5
+do
+    mkdir -p ${infile}/${per_missing}
+    mv ${infile}_${per_missing}* $infile/$per_missing
+done
+done 
+
 ```
