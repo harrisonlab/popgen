@@ -99,7 +99,6 @@ do
     plink --file ${infile} --missing --allow-extra-chr --make-bed --out ${infile}  >${infile}_post_filtering.log
     plink --file ${infile} --het --allow-extra-chr --make-bed --out ${infile}
 done
-
 ```
 
 This reates files with extension ".het", in which the third column denotes the observed number of homozygous genotypes [O(Hom)] and the fifth column denotes the number of nonmissing genotypes [N(NM)] per individual.
@@ -217,7 +216,7 @@ do
 for per_missing in 0.05 0.2 0.5
 do
     cat  ${infile}_${per_missing}.mds | awk '{$1=$1;print}' OFS='\t' >temp
-    mv temp  ${infile}_${per_missing}.mds 
+    mv temp ${infile}_${per_missing}.mds 
 done
 done
 ```
