@@ -80,3 +80,56 @@ done
 #Create tables matching up sample library names, sample conditions to filenames with reads.
 cd $input/genomite_samples
 Rscript --vanilla genomite_samples.R
+
+#Create Star genome indices.
+cd $input/assemblies/mite
+STAR --runMode genomeGenerate --genomeDir ./ --genomeFastaFiles tetur_200909.fa --sjdbGTFfile tetur_current.gff3 --sjdbGTFtagExonParentTranscript Parent --sjdbOverhang 100 --genomeSAindexNbases 12 --runThreadN 10
+cd $input/assemblies/strawberry
+STAR --runMode genomeGenerate --genomeDir ./ --genomeFastaFiles Fragaria_vesca_v2.0.a1_pseudomolecules.fasta --sjdbGTFfile f.vesca2.0.a2.gff3 --sjdbGTFtagExonParentTranscript Parent --sjdbOverhang 100 --genomeSAindexNbases 12 --runThreadN 10
+
+#Map reads to the diploid strawberry genome
+cd $input/Genomite3 
+indexed_assembly=$input/assemblies/strawberry
+samples=$input/genomite_samples/genomite3_sample
+while read line; do
+	if [ $count -eq 0 ]; then
+		((count += 1)) # skip the first line with header
+	else
+        Jobs=$(qstat | grep 'sub_star_g' | wc -l)
+        while [ $Jobs -gt 20 ]
+        do
+            sleep 10
+            printf "."
+            Jobs=$(qstat | grep 'sub_star_g' | wc -l)
+        done
+		set -- $line
+		# create output directory
+		out_dir=''$input'/Genomite3/'$3'_'$4'_'$5'_'$6'h_'$7'/'
+		mkdir -p $out_dir
+		qsub $scripts/sub_star_genomite.sh $indexed_assembly $reads $reads2 $out_dir
+	fi
+done < $samples
+
+
+#Map reads to the mite genome
+cd $input/Genomite4 
+indexed_assembly=$input/assemblies/mite
+samples=$input/genomite_samples/genomite4_sample
+while read line; do
+	if [ $count -eq 0 ]; then
+		((count += 1)) # skip the first line with header
+	else
+        Jobs=$(qstat | grep 'sub_star_g' | wc -l)
+        while [ $Jobs -gt 20 ]
+        do
+            sleep 10
+            printf "."
+            Jobs=$(qstat | grep 'sub_star_g' | wc -l)
+        done
+		set -- $line
+		# create output directory
+		out_dir=''$input'/Genomite3/'$3'_'$4'_'$5'_'$6'h_'$7'/'
+		mkdir -p $out_dir
+		qsub $scripts/sub_star_genomite.sh $indexed_assembly $reads $reads2 $out_dir
+	fi
+done < $samples
