@@ -122,7 +122,29 @@ do
 done < $samples
 
 #Collect mapping stats
+#strawberry
+for File in $(ls ${input}/Genomite3/strawberry*/Log.final.out); do
+Sample=$(echo $File | rev | cut -f2 -d '/' | rev | sed 's/vesca_//');
+InputReads=$(cat $File | grep 'Number of input reads' | cut -f2);
+ReadNumU=$(cat $File | grep 'Uniquely' | grep 'number' | cut -f2);
+ReadPercU=$(cat $File | grep 'Uniquely' | grep '%' | cut -f2);
+ReadNumM=$(cat $File | grep 'multiple' | grep 'Number' | cut -f2);
+ReadPercM=$(cat $File | grep 'multiple' | grep '%' | cut -f2);
+Mismatch=$(cat $File | grep 'Mismatch rate per base' | grep '%' | cut -f2);
+echo -e "$Sample""\t""$InputReads""\t" "$ReadNumU""\t""$ReadPercU""\t""$ReadNumM""\t""$ReadPercM""\t""$Mismatch";  
+done
 
+#mite
+for File in $(ls ${input}/Genomite4/mite*/Log.final.out); do
+Sample=$(echo $File | rev | cut -f2 -d '/' | rev | sed 's/vesca_//');
+InputReads=$(cat $File | grep 'Number of input reads' | cut -f2);
+ReadNumU=$(cat $File | grep 'Uniquely' | grep 'number' | cut -f2);
+ReadPercU=$(cat $File | grep 'Uniquely' | grep '%' | cut -f2);
+ReadNumM=$(cat $File | grep 'multiple' | grep 'Number' | cut -f2);
+ReadPercM=$(cat $File | grep 'multiple' | grep '%' | cut -f2);
+Mismatch=$(cat $File | grep 'Mismatch rate per base' | grep '%' | cut -f2);
+echo -e "$Sample""\t""$InputReads""\t" "$ReadNumU""\t""$ReadPercU""\t""$ReadNumM""\t""$ReadPercM""\t""$Mismatch";  
+done
 
 
 #Count reads with HTSeq
