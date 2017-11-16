@@ -120,3 +120,28 @@ do
         qsub $scripts/sub_star_genomite.sh $indexed_assembly $PWD/$1 $PWD/$2 $out_dir
     fi
 done < $samples
+
+#Collect mapping stats
+
+
+
+#Count reads with HTSeq
+cd $input
+
+#strawberry
+strandedness="reverse"
+gff=/home/sobczm/popgen/rnaseq/genomite/assemblies/strawberry/f.vesca2.0.a2.gff3
+for input_dir in ${input}/Genomite3/strawberry*
+do
+output=$(basename $input_dir)
+qsub $scripts/sub_htseq.sh $strandedness ${input_dir}/Aligned.sortedByCoord.out.bam $gff ./htseq_out/${output}.out
+done
+
+#mite
+strandedness="reverse"
+gff=/home/sobczm/popgen/rnaseq/genomite/assemblies/mite/tetur_current.gff3
+for input_dir in ${input}/Genomite4/mite*
+do
+output=$(basename $input_dir)
+qsub $scripts/sub_htseq.sh $strandedness ${input_dir}/Aligned.sortedByCoord.out.bam $gff ./htseq_out/${output}.out
+done
