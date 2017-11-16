@@ -1,6 +1,3 @@
-#!/bin/bash
-#Align RNAseq data with genome using STAR
-
 #$ -S /bin/bash
 #$ -cwd
 #$ -pe smp 8
@@ -17,17 +14,23 @@ echo $Usage
 # ---------------
 
 InGenome=$(basename $1)
+echo $InGenome
 InReadF=$(basename $2)
+echo $InReadF
 InReadR=$(basename $3)
+echo $InReadR
 out_dir=$4
-
+echo $out_dir
 
 # Set working directory
 CurDir=$PWD
 WorkDir=$TMPDIR/star
+mkdir -p $WorkDir
+mkdir -p $out_dir
 
 # Copy over input files
 cd $WorkDir
+echo $PWD
 
 cp -r $1 ./
 cp $2 ./
@@ -54,7 +57,7 @@ STAR \
 
 samtools index Aligned.sortedByCoord.out.bam
 
-rm -rf $InGenome
-rm $InReadF
-rm $InReadR
+rm -rf $WorkDir/$InGenome
+rm $WorkDir/$InReadF
+rm $WorkDir/$InReadR
 cp -r $WorkDir/* $out_dir

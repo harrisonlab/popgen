@@ -91,23 +91,16 @@ STAR --runMode genomeGenerate --genomeDir ./ --genomeFastaFiles Fragaria_vesca_v
 cd $input/Genomite3 
 indexed_assembly=$input/assemblies/strawberry
 samples=$input/genomite_samples/genomite3_sample
-while read line; do
-	if [ $count -eq 0 ]; then
-		((count += 1)) # skip the first line with header
-	else
-        Jobs=$(qstat | grep 'sub_star_g' | wc -l)
-        while [ $Jobs -gt 20 ]
-        do
-            sleep 10
-            printf "."
-            Jobs=$(qstat | grep 'sub_star_g' | wc -l)
-        done
-		set -- $line
-		# create output directory
-		out_dir=''$input'/Genomite3/'$3'_'$4'_'$5'_'$6'h_'$7'/'
-		mkdir -p $out_dir
-		qsub $scripts/sub_star_genomite.sh $indexed_assembly $reads $reads2 $out_dir
-	fi
+while read line
+do
+    if [ $count == 0 ]
+    then
+        ((count += 1)) 
+    else
+        set -- $line
+        out_dir=''$input'/Genomite3/'$3'_'$4'_'$5'_'$6'h_'$7'/'
+        qsub $scripts/sub_star_genomite.sh $indexed_assembly $PWD/$1 $PWD/$2 $out_dir
+    fi
 done < $samples
 
 
@@ -115,21 +108,15 @@ done < $samples
 cd $input/Genomite4 
 indexed_assembly=$input/assemblies/mite
 samples=$input/genomite_samples/genomite4_sample
-while read line; do
-	if [ $count -eq 0 ]; then
-		((count += 1)) # skip the first line with header
-	else
-        Jobs=$(qstat | grep 'sub_star_g' | wc -l)
-        while [ $Jobs -gt 20 ]
-        do
-            sleep 10
-            printf "."
-            Jobs=$(qstat | grep 'sub_star_g' | wc -l)
-        done
-		set -- $line
-		# create output directory
-		out_dir=''$input'/Genomite3/'$3'_'$4'_'$5'_'$6'h_'$7'/'
-		mkdir -p $out_dir
-		qsub $scripts/sub_star_genomite.sh $indexed_assembly $reads $reads2 $out_dir
-	fi
+while read line
+do
+    if [ $count == 0 ]
+    then
+        ((count += 1)) 
+    else
+        set -- $line
+        out_dir=''$input'/Genomite4/'$3'_'$4'_'$5'_'$6'h_'$7'/'
+        echo $out_dir
+        qsub $scripts/sub_star_genomite.sh $indexed_assembly $PWD/$1 $PWD/$2 $out_dir
+    fi
 done < $samples
