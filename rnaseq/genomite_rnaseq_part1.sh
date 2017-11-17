@@ -151,7 +151,20 @@ ReadNumM=$(cat $File | grep 'multiple' | grep 'Number' | cut -f2);
 ReadPercM=$(cat $File | grep 'multiple' | grep '%' | cut -f2);
 Mismatch=$(cat $File | grep 'Mismatch rate per base' | grep '%' | cut -f2);
 echo -e "$Sample""\t""$InputReads""\t" "$ReadNumU""\t""$ReadPercU""\t""$ReadNumM""\t""$ReadPercM""\t""$Mismatch";  
-done >strawberry_mapping_stats.txt
+done >strawberry_mapping_stats_ver2.txt
+
+#strawberry ver. 1.1
+for File in $(ls ${input}/Genomite3/strawberry2/strawberry1.1/strawberry*/Log.final.out); do
+Sample=$(echo $File | rev | cut -f2 -d '/' | rev | sed 's/vesca_//');
+InputReads=$(cat $File | grep 'Number of input reads' | cut -f2);
+ReadNumU=$(cat $File | grep 'Uniquely' | grep 'number' | cut -f2);
+ReadPercU=$(cat $File | grep 'Uniquely' | grep '%' | cut -f2);
+ReadNumM=$(cat $File | grep 'multiple' | grep 'Number' | cut -f2);
+ReadPercM=$(cat $File | grep 'multiple' | grep '%' | cut -f2);
+Mismatch=$(cat $File | grep 'Mismatch rate per base' | grep '%' | cut -f2);
+echo -e "$Sample""\t""$InputReads""\t" "$ReadNumU""\t""$ReadPercU""\t""$ReadNumM""\t""$ReadPercM""\t""$Mismatch";  
+done >strawberry_mapping_stats_ver2.txt
+
 
 #mite
 for File in $(ls ${input}/Genomite4/mite*/Log.final.out); do
@@ -169,12 +182,25 @@ done >mite_mapping_stats.txt
 #Count reads with HTSeq
 cd $input
 #strawberry ver. 2.0
-#strandedness="reverse"
-gff=/home/sobczm/popgen/rnaseq/genomite/assemblies/strawberry/f.vesca2.0.a2.gff3
+strandedness="reverse"
+gff=/home/sobczm/popgen/rnaseq/genomite/assemblies/strawberry2/f.vesca2.0.a2.gff3
 for input_dir in ${input}/Genomite3/strawberry2/strawberry*
 do
 output=$(basename $input_dir)
 qsub $scripts/sub_htseq.sh $strandedness ${input_dir}/Aligned.sortedByCoord.out.bam $gff ./htseq_out/${output}.out
+done
+
+#Only 10-20% mapped reads counted to annotated feature. Something wrong with ver 2 genome annotations. That is why going to use strawberry 1.1 genome below - on the plus side, it shows higher mapping rate as well. 
+
+#First, need to fix formatting in the GFF file to be compatible with HTSeq.
+sed 's/comment="overlaps bad segment.*//' $input/assemblies/strawberry1.1/Fragaria_vesca_v1.1.a2.gff3 > $input/assemblies/strawberry1.1/Fragaria_vesca_v1.1.a2.fixed.gff3
+
+strandedness="reverse"
+gff=/home/sobczm/popgen/rnaseq/genomite/assemblies/strawberry1.1/Fragaria_vesca_v1.1.a2.fixed.gff3
+for input_dir in ${input}/Genomite3/strawberry1.1/strawberry*
+do
+output=$(basename $input_dir)
+qsub $scripts/sub_htseq.sh $strandedness ${input_dir}/Aligned.sortedByCoord.out.bam $gff ./htseq_out/${output}_ver1.1.out
 done
 
 #mite

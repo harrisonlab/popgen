@@ -41,5 +41,5 @@ featureCounts \
   -o "$Prefix"_featurecounts.txt \
   $InBam
 
-rm $WorkDir/$InBam $WorkDir/$InGff
-cp -r $WorkDir/* $CurDir
+cp -r $WorkDir/*txt* $CurDir
+rm -rf $WorkDir
