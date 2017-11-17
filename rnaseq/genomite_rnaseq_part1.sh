@@ -84,12 +84,14 @@ Rscript --vanilla genomite_samples.R
 #Create Star genome indices.
 cd $input/assemblies/mite
 STAR --runMode genomeGenerate --genomeDir ./ --genomeFastaFiles tetur_200909.fa --sjdbGTFfile tetur_current.gff3 --sjdbGTFtagExonParentTranscript Parent --sjdbOverhang 100 --genomeSAindexNbases 12 --runThreadN 10
-cd $input/assemblies/strawberry
+cd $input/assemblies/strawberry2
 STAR --runMode genomeGenerate --genomeDir ./ --genomeFastaFiles Fragaria_vesca_v2.0.a1_pseudomolecules.fasta --sjdbGTFfile f.vesca2.0.a2.gff3 --sjdbGTFtagExonParentTranscript Parent --sjdbOverhang 100 --genomeSAindexNbases 12 --runThreadN 10
+cd $input/assemblies/strawberry1.1
+STAR --runMode genomeGenerate --genomeDir ./ --genomeFastaFiles fvesca_v1.1_all.fa --sjdbGTFfile Fragaria_vesca_v1.1.a2.gff3 --sjdbGTFtagExonParentTranscript Parent --sjdbOverhang 100 --genomeSAindexNbases 12 --runThreadN 10
 
-#Map reads to the diploid strawberry genome
+#Map reads to the diploid strawberry genome ver 2.0
 cd $input/Genomite3 
-indexed_assembly=$input/assemblies/strawberry
+indexed_assembly=$input/assemblies/strawberry2
 samples=$input/genomite_samples/genomite3_sample
 while read line
 do
@@ -98,7 +100,24 @@ do
         ((count += 1)) 
     else
         set -- $line
-        out_dir=''$input'/Genomite3/'$3'_'$4'_'$5'_'$6'h_'$7'/'
+        out_dir=''$input'/Genomite3/strawberry2/'$3'_'$4'_'$5'_'$6'h_'$7'/'
+        qsub $scripts/sub_star_genomite.sh $indexed_assembly $PWD/$1 $PWD/$2 $out_dir
+    fi
+done < $samples
+
+
+#Map reads to the diploid strawberry genome ver 1.1
+cd $input/Genomite3 
+indexed_assembly=$input/assemblies/strawberry1.1
+samples=$input/genomite_samples/genomite3_sample
+while read line
+do
+    if [ $count == 0 ]
+    then
+        ((count += 1)) 
+    else
+        set -- $line
+        out_dir=''$input'/Genomite3/strawberry1.1/'$3'_'$4'_'$5'_'$6'h_'$7'/'
         qsub $scripts/sub_star_genomite.sh $indexed_assembly $PWD/$1 $PWD/$2 $out_dir
     fi
 done < $samples
@@ -122,8 +141,8 @@ do
 done < $samples
 
 #Collect mapping stats
-#strawberry
-for File in $(ls ${input}/Genomite3/strawberry*/Log.final.out); do
+#strawberry ver. 2
+for File in $(ls ${input}/Genomite3/strawberry2/strawberry*/Log.final.out); do
 Sample=$(echo $File | rev | cut -f2 -d '/' | rev | sed 's/vesca_//');
 InputReads=$(cat $File | grep 'Number of input reads' | cut -f2);
 ReadNumU=$(cat $File | grep 'Uniquely' | grep 'number' | cut -f2);
@@ -132,7 +151,7 @@ ReadNumM=$(cat $File | grep 'multiple' | grep 'Number' | cut -f2);
 ReadPercM=$(cat $File | grep 'multiple' | grep '%' | cut -f2);
 Mismatch=$(cat $File | grep 'Mismatch rate per base' | grep '%' | cut -f2);
 echo -e "$Sample""\t""$InputReads""\t" "$ReadNumU""\t""$ReadPercU""\t""$ReadNumM""\t""$ReadPercM""\t""$Mismatch";  
-done
+done >strawberry_mapping_stats.txt
 
 #mite
 for File in $(ls ${input}/Genomite4/mite*/Log.final.out); do
@@ -144,16 +163,15 @@ ReadNumM=$(cat $File | grep 'multiple' | grep 'Number' | cut -f2);
 ReadPercM=$(cat $File | grep 'multiple' | grep '%' | cut -f2);
 Mismatch=$(cat $File | grep 'Mismatch rate per base' | grep '%' | cut -f2);
 echo -e "$Sample""\t""$InputReads""\t" "$ReadNumU""\t""$ReadPercU""\t""$ReadNumM""\t""$ReadPercM""\t""$Mismatch";  
-done
+done >mite_mapping_stats.txt
 
 
 #Count reads with HTSeq
 cd $input
-
-#strawberry
-strandedness="reverse"
+#strawberry ver. 2.0
+#strandedness="reverse"
 gff=/home/sobczm/popgen/rnaseq/genomite/assemblies/strawberry/f.vesca2.0.a2.gff3
-for input_dir in ${input}/Genomite3/strawberry*
+for input_dir in ${input}/Genomite3/strawberry2/strawberry*
 do
 output=$(basename $input_dir)
 qsub $scripts/sub_htseq.sh $strandedness ${input_dir}/Aligned.sortedByCoord.out.bam $gff ./htseq_out/${output}.out

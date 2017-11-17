@@ -20,7 +20,7 @@ Prefix=$3
 
 CurDir=$PWD
 WorkDir=$TMPDIR/featureCounts
-
+mkdir -p $WorkDir
 cd $WorkDir
 
 cp $1 ./
