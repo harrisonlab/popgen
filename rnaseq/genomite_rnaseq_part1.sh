@@ -154,7 +154,7 @@ echo -e "$Sample""\t""$InputReads""\t" "$ReadNumU""\t""$ReadPercU""\t""$ReadNumM
 done >strawberry_mapping_stats_ver2.txt
 
 #strawberry ver. 1.1
-for File in $(ls ${input}/Genomite3/strawberry2/strawberry1.1/strawberry*/Log.final.out); do
+for File in $(ls ${input}/Genomite3/strawberry1.1/strawberry*/Log.final.out); do
 Sample=$(echo $File | rev | cut -f2 -d '/' | rev | sed 's/vesca_//');
 InputReads=$(cat $File | grep 'Number of input reads' | cut -f2);
 ReadNumU=$(cat $File | grep 'Uniquely' | grep 'number' | cut -f2);
@@ -163,7 +163,7 @@ ReadNumM=$(cat $File | grep 'multiple' | grep 'Number' | cut -f2);
 ReadPercM=$(cat $File | grep 'multiple' | grep '%' | cut -f2);
 Mismatch=$(cat $File | grep 'Mismatch rate per base' | grep '%' | cut -f2);
 echo -e "$Sample""\t""$InputReads""\t" "$ReadNumU""\t""$ReadPercU""\t""$ReadNumM""\t""$ReadPercM""\t""$Mismatch";  
-done >strawberry_mapping_stats_ver2.txt
+done >strawberry_mapping_stats_ver1.1.txt
 
 
 #mite
@@ -211,3 +211,54 @@ do
 output=$(basename $input_dir)
 qsub $scripts/sub_htseq.sh $strandedness ${input_dir}/Aligned.sortedByCoord.out.bam $gff ./htseq_out/${output}.out
 done
+
+#Sample subFeatureCount script run to obtain the gene lengths etc. used to format input for DESeq.
+cd $input/htseq_out
+gff=/home/sobczm/popgen/rnaseq/genomite/assemblies/strawberry1.1/Fragaria_vesca_v1.1.a2.fixed.gff3
+qsub $scripts/sub_featureCounts.sh /home/sobczm/popgen/rnaseq/genomite/Genomite3/strawberry1.1/strawberry_nostress_nomite_3h_2/Aligned.sortedByCoord.out.bam $gff fc_strawberry_nostress_nomite_3h_2_ver1
+
+gff=/home/sobczm/popgen/rnaseq/genomite/assemblies/mite/tetur_current.gff3
+qsub $scripts/sub_featureCounts.sh /home/sobczm/popgen/rnaseq/genomite/Genomite4/mite_nostress_nonadapted_3h_5/Aligned.sortedByCoord.out.bam $gff fc_mite_nostress_nonadapted_3h_5
+
+python $scripts/htseq2featurecount.py fc_strawberry_nostress_nomite_3h_2_ver1_featurecounts.txt strawberry_nostress_nomite_3h_2_ver1.1.out
+#Parse HTSeq output to obtain FeatureCount-like output tables.
+#strawberry ver1.1
+for strawberry in *ver1.1.out
+do
+python $scripts/htseq2featurecount.py  fc_strawberry_nostress_nomite_3h_2_ver1_featurecounts.txt $strawberry
+done
+#mite
+for mite in mite*.out
+do
+python $scripts/htseq2featurecount.py  fc_mite_nostress_nonadapted_3h_5_featurecounts.txt $mite
+sed -i '1s/.out//' ${mite%.out}_fc.out
+done
+
+#QC of RNA-Seq results with DESeq2
+#strawberry
+cd $input/htseq_out/strawberry
+Rscript --vanilla $scripts/DeSeq_Genomite3.R
+
+#mite
+cd $input/htseq_out/mite
+Rscript --vanilla $scripts/DeSeq_Genomite4.R
+
+#Collapse technical reps
+cd $input/genomite_samples
+Rscript --vanilla join_sample_reps_ids.R
+
+cd $input/htseq_out/strawberry
+python $scripts/merge_tech_reps.py $input/genomite_samples/strawberry_tech_replicates.txt _ver1.1_fc.out
+
+cd $input/htseq_out/mite
+python $scripts/merge_tech_reps.py $input/genomite_samples/mite_tech_replicates.txt _fc.out
+
+#Use those merged samples to carry out basic DeSeq QC.
+cd $input/htseq_out/strawberry_merged
+python $scripts/print_merged_samples_table.py $input/genomite_samples/strawberry_tech_replicates.txt >strawberry_deseq_samples.txt
+Rscript --vanilla $scripts/DeSeq_Genomite3.R
+
+cd $input/htseq_out/mite_merged
+python $scripts/print_merged_samples_table.py $input/genomite_samples/mite_tech_replicates.txt >mite_deseq_samples.txt
+Rscript --vanilla $scripts/DeSeq_Genomite4.R
+
