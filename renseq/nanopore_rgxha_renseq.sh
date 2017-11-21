@@ -19,7 +19,7 @@ scp -r nanopore@nanopore:/home/nanopore/20171030_gridion_Redgauntlet_Hapil-RENse
 ~/.local/bin/read_fast5_basecaller.py \
 --flowcell FLO-MIN107 \
 --kit SQK-LSK108 \
---input /data/scratch/nanopore_tmp_data/sobczm/20171030_gridion_Redgauntlet_Hapil-RENseq/reads \
+--input /data/scratch/nanopore_tmp_data/sobczm/reads \
 --recursive \
 --worker_threads 12 \
 --save_path /home/nanopore/20171030_gridion_Redgauntlet_Hapil-RENseq/1d \
