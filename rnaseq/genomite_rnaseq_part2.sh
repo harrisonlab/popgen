@@ -77,3 +77,33 @@ Rscript --vanilla $scripts/2_strawberry_dge.R
 Rscript --vanilla $scripts/3_strawberry_pca.R 
 #Run Vlad's script for DEG and visualisation - selection of samples
 python $scripts/targets.py >Targets.txt
+
+
+#Carry out reciprocal Best BLAST between CDS sequences from Fragaria vesca genome ver 1.0 and 1.1a2 to be able to transfer GO annotations from the former to the latter.
+cd $input/annotation
+
+#Make nucleotide BLAST db of all genomes.
+for assembly in *.fasta *.fna
+do
+makeblastdb -in $assembly -input_type fasta -dbtype nucl -title "${assembly%.*}"_nucl.db -parse_seqids -out "${assembly%.*}"_nucl.db
+done
+
+#Run BLAST for vesca 1.0 against vesca 1.1a2
+db=Fragaria_vesca_v1.1.a2_cds_removed_nucl.db
+query=fvesca_v1.0_genemark_hybrid.fna
+blastn -outfmt "6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore qlen slen sstrand"  -num_threads 1 -max_target_seqs 100 -evalue 0.0000000001 -query $query -db $db >> ${query}_vs_${db}
+
+
+#And vice versa
+db=fvesca_v1.0_genemark_hybrid_nucl.db
+query=Fragaria_vesca_v1.1.a2_cds_removed.fasta
+blastn -outfmt "6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore qlen slen sstrand"  -num_threads 1 -max_target_seqs 100 -evalue 0.0000000001 -query $query -db $db >> ${query}_vs_${db}
+
+#Identify RBB matches
+python /home/sobczm/bin/popgen/other/rbb.py Fragaria_vesca_v1.1.a2_cds_removed.fasta_vs_fvesca_v1.0_genemark_hybrid_nucl.db fvesca_v1.0_genemark_hybrid.fna_vs_Fragaria_vesca_v1.1.a2_cds_removed_nucl.db >strawberry1.1_vs_1.0.tophits
+
+#Parsing the GO mapping files from the vesca ver 1.0 assembly and "Genome-Scale Transcriptomic Insights into Early-Stage Fruit Development in Woodland Strawberry Fragaria vesca" paper into simple tabulated format used by Vlad's scripts
+python $scripts/strawberry_go_mapping.py fvesca_v1.0_hybrid_interpro_go_data.txt tpc111732_annotation_strawberry.txt >vesca1.0_GO_annotation.txt
+
+#Substitute vesca1.0 gene ids for vesca1.1 gene ids using the results of RBB
+python $scripts/substitute_vesca_genome.py strawberry1.1_vs_1.0.tophits vesca1.0_GO_annotation.txt >vesca11_annotation-current.txt

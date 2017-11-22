@@ -233,4 +233,3 @@ do
 python $scripts/htseq2featurecount.py  fc_mite_nostress_nonadapted_3h_5_featurecounts.txt $mite
 sed -i '1s/.out//' ${mite%.out}_fc.out
 done
-
