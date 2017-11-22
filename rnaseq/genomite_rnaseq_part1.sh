@@ -291,7 +291,7 @@ mv *AD*.out ./merged
 
 ##Generate Targets table as per V. Zhurov scripts - for DEG in R.
 cd $input/htseq_out/mite_htseq_merged/merged
-python $scripts/targets.py >tetur_targets.txt
+python $scripts/targets.py >Targets.txt
 
 cd $input/htseq_out/strawberry_htseq_merged/merged
-python $scripts/targets.py >vesca11_targets.txt
+python $scripts/targets.py >Targets.txt
