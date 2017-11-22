@@ -76,5 +76,4 @@ Rscript --vanilla $scripts/1_strawberry_data_normalisation.R
 Rscript --vanilla $scripts/2_strawberry_dge.R
 Rscript --vanilla $scripts/3_strawberry_pca.R 
 #Run Vlad's script for DEG and visualisation - selection of samples
-=======
 python $scripts/targets.py >Targets.txt
