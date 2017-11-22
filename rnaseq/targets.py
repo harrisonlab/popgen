@@ -17,7 +17,7 @@ for my_file in input_files:
     stress = categories[1]
     print stress, "\t",  
     time = categories[3]
-    print time.replace("h", ""),
+    print time.replace("h", ""), "\t", 
     conditions = mite + stress + time
     if conditions in batches:
         batches[conditions] += 1
