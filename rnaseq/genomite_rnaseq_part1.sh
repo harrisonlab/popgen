@@ -295,3 +295,15 @@ python $scripts/targets.py >tetur_targets.txt
 
 cd $input/htseq_out/strawberry_htseq_merged/merged
 python $scripts/targets.py >vesca11_targets.txt
+
+#Run Vlad's script for DEG and visualisation - all original samples
+cd $input/htseq_out/mite_htseq_merged/merged
+Rscript --vanilla $scripts/1_mite_data_normalisation.R 
+Rscript --vanilla $scripts/2_mite_dge.R
+Rscript --vanilla $scripts/3_mite_pca.R 
+
+cd $input/htseq_out/strawberry_htseq_merged/merged
+Rscript --vanilla $scripts/1_strawberry_data_normalisation.R 
+Rscript --vanilla $scripts/2_strawberry_dge.R
+Rscript --vanilla $scripts/3_strawberry_pca.R 
+#Run Vlad's script for DEG and visualisation - selection of samples
