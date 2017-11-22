@@ -291,9 +291,10 @@ mv *AD*.out ./merged
 
 ##Generate Targets table as per V. Zhurov scripts - for DEG in R.
 cd $input/htseq_out/mite_htseq_merged/merged
-python $scripts/targets.py >tetur_targets.txt
+python $scripts/targets.py >Targets.txt
 
 cd $input/htseq_out/strawberry_htseq_merged/merged
+<<<<<<< HEAD
 python $scripts/targets.py >vesca11_targets.txt
 
 #Run Vlad's script for DEG and visualisation - all original samples
@@ -307,3 +308,6 @@ Rscript --vanilla $scripts/1_strawberry_data_normalisation.R
 Rscript --vanilla $scripts/2_strawberry_dge.R
 Rscript --vanilla $scripts/3_strawberry_pca.R 
 #Run Vlad's script for DEG and visualisation - selection of samples
+=======
+python $scripts/targets.py >Targets.txt
+>>>>>>> c90f1c53e4146d309bd97c9769f8155fd8313044
