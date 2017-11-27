@@ -109,7 +109,7 @@ mv temp ${infile}.lmiss
 Rscript --vanilla $scripts/plot_missing_genotypes_plink.R ${infile}.lmiss
 done
 
-#Remove SNPs with more than a given % of missing data. Here, 50% and 20%. Need to convert to PLINK's BAM format at this point to run the command.
+#Remove SNPs with more than a given % of missing data. Here, 0%, 1%, 5%, 10% and 20%. Need to convert to PLINK's BAM format at this point to run the command.
 for infile in vesca2.0/${input_file}.out_fix_filtered1 vesca2.0/${input_file}_istraw35.out_fix_filtered1  vesca2.0/${input_file}_istraw90.out_fix_filtered1 ananassa/${input_file}.out_fix_filtered1 ananassa/${input_file}_istraw35.out_fix_filtered1 ananassa/${input_file}_istraw90.out_fix_filtered1
 do
 for per_missing in 0 0.01 0.05 0.1 0.2
@@ -200,7 +200,7 @@ for infile in vesca2.0/${input_file}.out vesca2.0/${input_file}_istraw35.out  ve
 do
 for per_missing in 0 0.01 0.05 0.1 0.2
 do
-    mkdir -p ${infile}/${per_missing}
-    mv ${infile}*${per_missing}_* ${infile}/${per_missing}
+    #mkdir -p ${infile}/${per_missing}
+    mv ${infile}*${per_missing}* ${infile}/${per_missing}
 done
 done 
