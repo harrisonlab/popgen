@@ -38,9 +38,9 @@
 ### Re-analysis of GWAS and SBC genotypes focussing on plate provenance
 [crown_rot_qtl_markers_gwas_plate.sh](https://github.com/harrisonlab/popgen/blob/master/snp/crown_rot_qtl_markers_gwas_plate.sh)
 ### Various checks of the ananassa snp chip database - QC. 
-[ananassa_db_qc.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/ananassa_db_qc.sh)
+[ananassa_db_qc.sh](https://github.com/harrisonlab/popgen/blob/master/snp/ananassa_db_qc.sh)
 ### Ananassa nucleotide diversity pipeline
-[ananassa_diversity_pipeline.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/ananassa_diversity_pipeline.sh)
+[ananassa_diversity_pipeline.sh](https://github.com/harrisonlab/popgen/blob/master/snp/ananassa_diversity_pipeline.sh)
 ### GWAS pipeline - case vs. control (example: everbearer trait)
 [gwas_case_control_pipeline.md](https://github.com/harrisonlab/popgen/blob/master/snp/gwas_case_control_pipeline.md)
 ### GWAS pipeline - quantitative phenotype (example: crown rot resistance)

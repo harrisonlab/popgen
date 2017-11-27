@@ -200,7 +200,35 @@ for infile in vesca2.0/${input_file}.out vesca2.0/${input_file}_istraw35.out  ve
 do
 for per_missing in 0 0.01 0.05 0.1 0.2
 do
-    #mkdir -p ${infile}/${per_missing}
+    mkdir -p ${infile}/${per_missing}
     mv ${infile}*${per_missing}* ${infile}/${per_missing}
 done
 done 
+
+#Split the VCF file by chromomsome.
+for infile in vesca2.0/${input_file}.out vesca2.0/${input_file}_istraw35.out  vesca2.0/${input_file}_istraw90.out ananassa/${input_file}.out ananassa/${input_file}_istraw35.out ananassa/${input_file}_istraw90.out
+do
+for per_missing in 0 0.01 0.05 0.1 0.2
+do
+my_infile=$(basename $infile)
+vcf=${my_infile}_fix_filtered1_${per_missing}_filtered2.vcf
+java -jar /home/sobczm/bin/snpEff/SnpSift.jar split ${infile}/${per_missing}/${vcf}
+done
+done
+
+#Calculate the nucleotide diversity by chromosome.
+vcftools=/home/sobczm/bin/vcftools/bin
+for infile in vesca2.0/${input_file}.out vesca2.0/${input_file}_istraw35.out  vesca2.0/${input_file}_istraw90.out ananassa/${input_file}.out ananassa/${input_file}_istraw35.out ananassa/${input_file}_istraw90.out
+do
+for per_missing in 0 0.01 0.05 0.1 0.2
+do
+cd ${infile}/${per_missing}
+for vcf in *.vcf
+do
+    $vcftools/vcftools --vcf $vcf --site-pi --out ${vcf%.vcf}.pi
+done
+cd $input
+done
+done
+
+#Split each VCF file by syn, nonsyn and 4-fold degenerate sites.
