@@ -1,6 +1,7 @@
 #!/bin/bash
 scripts=/home/sobczm/bin/popgen/snp
 input=/home/sobczm/popgen/snp/snp_chip/diversity
+input_file=master_list_191917.txt
 cd $input 
 #This pipeline is only for F. ananassa without F. chiloensis and F. virginiana. After it is finished, re-run including F. chiloensis and viriginiana samples (input_file=master_list_191917_withWT.txt)
 #Select sample ids of individuals to be included in the analysis and extract their
@@ -9,8 +10,6 @@ cd $input
 #A) istraw35 samples only
 #B) istraw90 samples only
 #C) joint analysis of istraw35 and istraw90 samples - use intersection of istraw35 and istraw90 markers
-
-input_file=master_list_191917.txt
 qsub $scripts/sub_ananassa_genotypes_db.sh $input_file ${input_file}.out
 
 #Separate GWAS dataset by plate type (datasets A) and B) above)
@@ -231,4 +230,139 @@ cd $input
 done
 done
 
-#Split each VCF file by syn, nonsyn and 4-fold degenerate sites.
+#Calculate summary statistics
+for infile in vesca2.0/${input_file}.out vesca2.0/${input_file}_istraw35.out  vesca2.0/${input_file}_istraw90.out ananassa/${input_file}.out ananassa/${input_file}_istraw35.out ananassa/${input_file}_istraw90.out
+do
+for per_missing in 0 0.01 0.05 0.1 0.2
+do
+cd ${infile}/${per_missing}
+for pi in *.pi
+do
+    Rscript --vanilla $scripts/summary_distribution.R $pi
+done
+cd $input
+done
+done
+
+#Collect the results per chromosome in one file.
+for infile in vesca2.0/${input_file}.out vesca2.0/${input_file}_istraw35.out  vesca2.0/${input_file}_istraw90.out ananassa/${input_file}.out ananassa/${input_file}_istraw35.out ananassa/${input_file}_istraw90.out
+do
+for per_missing in 0 0.01 0.05 0.1 0.2
+do
+cd ${infile}/${per_missing}
+my_infile=$(basename $infile)
+rm ${my_infile}_fix_filtered1_${per_missing}_filtered2.all.stats
+echo "Chrom Min.  1st_Qu. Median  Mean    3rd_Qu. Max." >>${my_infile}_fix_filtered1_${per_missing}_filtered2.all.stats
+for number in 1 2 3 4 5 5 7
+do
+    for letter in A B C D
+    do
+        current=${my_infile}_fix_filtered1_${per_missing}_filtered2.${number}${letter}.pi.sites.stat 
+        echo -e "${number}${letter}\t\c" >>${my_infile}_fix_filtered1_${per_missing}_filtered2.all.stats
+        cat $current >>${my_infile}_fix_filtered1_${per_missing}_filtered2.all.stats
+    done
+done
+#Convert spaces to tabs
+cat ${my_infile}_fix_filtered1_${per_missing}_filtered2.all.stats | awk '{$1=$1;print}' OFS='\t' >temp
+mv temp ${my_infile}_fix_filtered1_${per_missing}_filtered2.all.stats 
+cd $input
+done
+done
+
+#Plot the distributions using boxplots
+for infile in vesca2.0/${input_file}.out vesca2.0/${input_file}_istraw35.out  vesca2.0/${input_file}_istraw90.out ananassa/${input_file}.out ananassa/${input_file}_istraw35.out ananassa/${input_file}_istraw90.out
+do
+for per_missing in 0 0.01 0.05 0.1 0.2
+do
+cd ${infile}/${per_missing}
+for pi in *.all.stats
+do
+    Rscript --vanilla $scripts/pi_boxplot_chrom.R $pi
+done
+cd $input
+done
+done
+
+#Add cultivar names to VCF header.
+for infile in vesca2.0/${input_file}.out vesca2.0/${input_file}_istraw35.out  vesca2.0/${input_file}_istraw90.out ananassa/${input_file}.out ananassa/${input_file}_istraw35.out ananassa/${input_file}_istraw90.out
+do
+for per_missing in 0 0.01 0.05 0.1 0.2
+do
+cd ${infile}/${per_missing}
+for vcf in *.vcf
+do
+    python $scripts/vcf_append_cultivar.py $input/MASTER_Strawberry_List_19_10_17_sample_names.txt $vcf >temp
+    mv temp $vcf
+done
+cd $input
+done
+done
+
+#Calculate heterozygosity by chromosome.
+vcftools=/home/sobczm/bin/vcftools/bin
+for infile in vesca2.0/${input_file}.out vesca2.0/${input_file}_istraw35.out  vesca2.0/${input_file}_istraw90.out ananassa/${input_file}.out ananassa/${input_file}_istraw35.out ananassa/${input_file}_istraw90.out
+do
+for per_missing in 0 0.01 0.05 0.1 0.2
+do
+cd ${infile}/${per_missing}
+for vcf in *.vcf
+do
+    $vcftools/vcftools --vcf $vcf --het --out ${vcf%.vcf}.het
+done
+cd $input
+done
+done
+
+#Calculate pi by chromosome in 100kbp windows.
+vcftools=/home/sobczm/bin/vcftools/bin
+for infile in vesca2.0/${input_file}.out vesca2.0/${input_file}_istraw35.out  vesca2.0/${input_file}_istraw90.out ananassa/${input_file}.out ananassa/${input_file}_istraw35.out ananassa/${input_file}_istraw90.out
+do
+for per_missing in 0 0.01 0.05 0.1 0.2
+do
+cd ${infile}/${per_missing}
+for vcf in *.vcf
+do
+    $vcftools/vcftools --vcf $vcf --window-pi 5000000 --window-pi-step 50000- --out ${vcf%.vcf}
+done
+cd $input
+done
+done
+
+#Plot PCA
+for infile in vesca2.0/${input_file}.out vesca2.0/${input_file}_istraw35.out  vesca2.0/${input_file}_istraw90.out ananassa/${input_file}.out ananassa/${input_file}_istraw35.out ananassa/${input_file}_istraw90.out
+do
+for per_missing in 0 0.01 0.05 0.1 0.2
+do
+cd ${infile}/${per_missing}
+my_infile=$(basename $infile)
+vcf=${my_infile}_fix_filtered1_${per_missing}_filtered2.vcf
+Rscript --vanilla $scripts/pca_big.R $vcf
+cd $input
+done
+done
+
+#Plot NJ
+for infile in vesca2.0/${input_file}.out vesca2.0/${input_file}_istraw35.out  vesca2.0/${input_file}_istraw90.out ananassa/${input_file}.out ananassa/${input_file}_istraw35.out ananassa/${input_file}_istraw90.out
+do
+for per_missing in 0 
+do
+cd ${infile}/${per_missing}
+my_infile=$(basename $infile)
+vcf=${my_infile}_fix_filtered1_${per_missing}_filtered2.vcf
+$scripts/nj_tree_big.sh master_list_191917.txt.out_fix_filtered1_0_filtered2.vcf 2
+cd $input
+done
+done
+
+#Plot heatmap distance matrix
+for infile in vesca2.0/${input_file}.out vesca2.0/${input_file}_istraw35.out  vesca2.0/${input_file}_istraw90.out ananassa/${input_file}.out ananassa/${input_file}_istraw35.out ananassa/${input_file}_istraw90.out
+do
+for per_missing in 0 
+do
+cd ${infile}/${per_missing}
+my_infile=$(basename $infile)
+vcf=${my_infile}_fix_filtered1_${per_missing}_filtered2.vcf
+$scripts/similarity_percentage.py $vcf
+Rscript --vanilla $scripts/distance_matrix.R ${vcf%.vcf}_distance.log 50 50
+done
+done

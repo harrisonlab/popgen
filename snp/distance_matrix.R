@@ -9,7 +9,6 @@
 ##This script takes a bit of work to produce the plot matching the size of your dataset. 
 ##The following parameters inside the script may have to be changed:
 #Margins - Specify the margins size before running the heatmap.2 command
-# par(mar=c(9,6,6,4)+0.1) 
 #cexRow - Row label size
 #cexCol - Column label size
 #notecex - Size of values within individual cells
@@ -34,8 +33,9 @@ distance = read.table(args[1], header=T, stringsAsFactors=F)
 mypalette<-brewer.pal(9, "YlGn")
 #Ramp up the color palette
 cols <- colorRampPalette (mypalette) (100)
+par(mar=c(30,5,5,30)+0.1) 
 pdf(output, as.numeric(args[2]), as.numeric(args[3]))
 heatmap.2(as.matrix(distance),dendrogram="col", cellnote=as.matrix(distance),
-          notecol="black",col=cols,scale="none",key=TRUE, keysize=0.75,
-          density.info="none", trace="none", cexRow=1.0, cexCol=1.0, notecex=1.0)
+          notecol="black",col=cols,scale="none",key=TRUE, keysize=0.75, margins=c(15,15),
+          density.info="none", trace="none", cexRow=1, cexCol=1, notecex=0.7)
 dev.off()
