@@ -313,6 +313,21 @@ cd $input
 done
 done
 
+#Plot heterozygosity by sample.
+for infile in vesca2.0/${input_file}.out vesca2.0/${input_file}_istraw35.out  vesca2.0/${input_file}_istraw90.out ananassa/${input_file}.out ananassa/${input_file}_istraw35.out ananassa/${input_file}_istraw90.out
+do
+for per_missing in 0 0.01 0.05 0.1 0.2
+do
+cd ${infile}/${per_missing}
+for het in *.het
+do
+    Rscript --vanilla $scripts/heterozygosity_plot.R $het
+done
+cd $input
+done
+done
+
+
 #Calculate pi by chromosome in 1 Mbp windows 
 vcftools=/home/sobczm/bin/vcftools/bin
 for infile in vesca2.0/${input_file}.out vesca2.0/${input_file}_istraw35.out  vesca2.0/${input_file}_istraw90.out ananassa/${input_file}.out ananassa/${input_file}_istraw35.out ananassa/${input_file}_istraw90.out
