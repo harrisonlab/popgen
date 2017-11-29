@@ -313,7 +313,7 @@ cd $input
 done
 done
 
-#Calculate pi by chromosome in 100kbp windows.
+#Calculate pi by chromosome in 1 Mbp windows 
 vcftools=/home/sobczm/bin/vcftools/bin
 for infile in vesca2.0/${input_file}.out vesca2.0/${input_file}_istraw35.out  vesca2.0/${input_file}_istraw90.out ananassa/${input_file}.out ananassa/${input_file}_istraw35.out ananassa/${input_file}_istraw90.out
 do
@@ -322,7 +322,7 @@ do
 cd ${infile}/${per_missing}
 for vcf in *.vcf
 do
-    $vcftools/vcftools --vcf $vcf --window-pi 5000000 --window-pi-step 50000- --out ${vcf%.vcf}
+    $vcftools/vcftools --vcf $vcf --window-pi 1000000 --window-pi-step 200000 --out ${vcf%.vcf}
 done
 cd $input
 done
@@ -357,12 +357,10 @@ done
 #Plot heatmap distance matrix
 for infile in vesca2.0/${input_file}.out vesca2.0/${input_file}_istraw35.out  vesca2.0/${input_file}_istraw90.out ananassa/${input_file}.out ananassa/${input_file}_istraw35.out ananassa/${input_file}_istraw90.out
 do
-for per_missing in 0 
-do
-cd ${infile}/${per_missing}
+cd ${infile}/0
 my_infile=$(basename $infile)
-vcf=${my_infile}_fix_filtered1_${per_missing}_filtered2.vcf
+vcf=${my_infile}_fix_filtered1_0_filtered2.vcf
 $scripts/similarity_percentage.py $vcf
 Rscript --vanilla $scripts/distance_matrix.R ${vcf%.vcf}_distance.log 50 50
-done
+cd $input
 done
