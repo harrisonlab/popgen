@@ -327,7 +327,6 @@ cd $input
 done
 done
 
-
 #Calculate pi by chromosome in 1 Mbp windows 
 vcftools=/home/sobczm/bin/vcftools/bin
 for infile in vesca2.0/${input_file}.out vesca2.0/${input_file}_istraw35.out  vesca2.0/${input_file}_istraw90.out ananassa/${input_file}.out ananassa/${input_file}_istraw35.out ananassa/${input_file}_istraw90.out
@@ -338,6 +337,20 @@ cd ${infile}/${per_missing}
 for vcf in *.vcf
 do
     $vcftools/vcftools --vcf $vcf --window-pi 1000000 --window-pi-step 200000 --out ${vcf%.vcf}
+done
+cd $input
+done
+done
+
+#Plot pi by chromosome in 1 Mbp windows 
+for infile in vesca2.0/${input_file}.out vesca2.0/${input_file}_istraw35.out  vesca2.0/${input_file}_istraw90.out ananassa/${input_file}.out ananassa/${input_file}_istraw35.out ananassa/${input_file}_istraw90.out
+do
+for per_missing in 0 0.01 0.05 0.1 0.2
+do
+cd ${infile}/${per_missing}
+for window in *.windowed.pi
+do
+    Rscript --vanilla $scripts/pi_plot_sliding_window_vcftools.R $window
 done
 cd $input
 done
@@ -378,4 +391,44 @@ vcf=${my_infile}_fix_filtered1_0_filtered2.vcf
 $scripts/similarity_percentage.py $vcf
 Rscript --vanilla $scripts/distance_matrix.R ${vcf%.vcf}_distance.log 50 50
 cd $input
+done
+
+#fastStructure analysis
+s=1
+f=20
+for infile in vesca2.0/${input_file}.out vesca2.0/${input_file}_istraw35.out vesca2.0/${input_file}_istraw90.out 
+do
+for per_missing in 0 0.1 
+do
+cd ${infile}/${per_missing}
+my_infile=$(basename $infile)
+vcf=${my_infile}_fix_filtered1_${per_missing}_filtered2.vcf
+plink --allow-extra-chr --const-fid 0 --vcf $vcf --recode --make-bed --out ${vcf%.vcf} >${vcf%.vcf}.log
+for i in $(seq $s $f) #input range of K values tested
+do
+    qsub $scripts/sub_fast_structure.sh ${vcf%.vcf} $i
+done
+cd $input
+done
+done
+
+#Parse the results to obtain optimal K values and produce Distruct-like plots.
+structure=/home/sobczm/bin/fastStructure
+s=1 #minimum number of considered clusters
+f=20 #maximum number of considered clusters
+for infile in vesca2.0/${input_file}.out vesca2.0/${input_file}_istraw35.out vesca2.0/${input_file}_istraw90.out 
+do
+for per_missing in 0 0.1 
+do
+cd ${infile}/${per_missing}
+my_infile=$(basename $infile)
+vcf=${my_infile}_fix_filtered1_${per_missing}_filtered2.vcf
+python $structure/chooseK.py --input=${vcf%.vcf} >${vcf%.vcf}_K_choice
+cut -f2 ${vcf%.vcf}.fam | cut -d" " -f2 >${vcf%.vcf}.lab
+for i in $(seq $s $f)
+do 
+    python $structure/distruct_mod.py -K $i --input=${input_file%.vcf} --output=${input_file%.vcf}_${i}.svg --title K$i --popfile=${input_file%.vcf}.lab
+done
+cd $input
+done
 done
