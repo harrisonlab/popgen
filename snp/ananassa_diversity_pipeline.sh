@@ -427,7 +427,7 @@ python $structure/chooseK.py --input=${vcf%.vcf} >${vcf%.vcf}_K_choice
 cut -f2 ${vcf%.vcf}.fam | cut -d" " -f2 >${vcf%.vcf}.lab
 for i in $(seq $s $f)
 do 
-    python $structure/distruct_mod.py -K $i --input=${input_file%.vcf} --output=${input_file%.vcf}_${i}.svg --title K$i --popfile=${input_file%.vcf}.lab
+    python $structure/distruct_mod.py -K $i --input=${vcf%.vcf} --output=${vcf%.vcf}_${i}.svg --title K$i --popfile=${vcf%.vcf}.lab
 done
 cd $input
 done
