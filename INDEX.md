@@ -14,6 +14,7 @@ https://www.dropbox.com/sh/h2urr4fcp5ivu2x/AAC1RsB4X0vSxADrgOF065IBa?dl=0
 3. Summary stats
 4. Clock
 5. Codon
+6. Renseq
 
 ### *Each directory contains a README.md file listing shell scripts which contain a model (example) analysis using scripts in a given directory.
 ### *Read the header of each individual script you are trying to exectute to find out about the options, input and output file.
@@ -49,6 +50,19 @@ phylogenetic tree (see the model analysis file for a example of an analysis)
 
 **Model analysis file:** [BEAST_run.sh](https://github.com/harrisonlab/popgen/blob/master/phylogenetics/BEAST_run.sh)
 The BEAST analysis has to be so far set-up by hand. A guide to do so and obtain a final tree is given in the model analysis file above.
+
+## Renseq
+### Various Renseq analyses on onion, apple and strawberry
+**Model analysis file:** [apple_renseq_part5.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/apple_renseq_part5.sh) [apple_renseq_part6.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/apple_renseq_part6.sh) Prediction of various classes of resistance genes with RGAugury followed with bait design towards the exons. 
+
+**Model analysis file:** [strawberry_renseq_reads_part2.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/strawberry_renseq_reads_part2.sh) Analysis of PacBio Renseq data on EMR's cluster and triticum (generation of 99% CCS reads and HGAP assembly - see also M&M: https://docs.google.com/document/d/171F5fKQh_caV3QMHMS3TYmS9t74ZQhODlymIxQy5HtU/edit)
+
+**Model analysis file:** [nanopore_emxfe_renseq.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/nanopore_emxfe_renseq.sh) Basic QC and assembly, aseembly polishing, error correction of Nanopore RenSeq data 
+
+**Model analysis file:** [nanopore_emxfe_renseq2.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/nanopore_emxfe_renseq2.sh) Variant calling of Ren-Seq Nanopore data with GATK. Evaluation of Ren-Seq completeness with BLAST on original baits and vesca genes CDS sequences and plotting of the results. NLR-Parser analysis.
+
+**Onion RenSeq** The result of Mycoarray QC for SLRK and NBS baits, along with filtered bait sequences sent for production are in: `/home/sobczm/popgen/renseq/input/transcriptomes/really_really_final_baits/revised_design_Mar2017`
+
 
 ## SNP
 ### Scripts to call SNPs on multiple individuals using a single genome/transcriptome reference, filter (and downsample) them, and establish the basic population structure. Also, call structural variants.
