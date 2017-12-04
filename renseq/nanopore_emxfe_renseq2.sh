@@ -16,7 +16,7 @@ cd $input
 #4) 10 rounds of assembly polishing  using racon
 
 #Current goals.
-#Analyze LoRMA-corrected reads on their own.
+#Analyze LoRMA-corrected reads on their own. (subsequently dropped due to low quality)
 #Call variants on the assembly from Pipeline B - using LoRMA-corrected reads as well as Canu-corrected reads as input.
 #Illumina reads on hold now - not available yet. 
 
@@ -33,7 +33,7 @@ qsub $scripts/sub_bwa_nanopolish.sh smartdenovo_barcode11_emily_trimmed_all/raco
 qsub $scripts/sub_bwa_nanopolish.sh smartdenovo_barcode11_emily_trimmed_all/racon/smartdenovo_barcode11_emily_trimmed_all_racon_round_10.fasta barcode11_emily_trimmed_all/barcode11_emily_trimmed_all.trimmedReads.fasta.gz bwa_canu_emily_all_own
 qsub $scripts/sub_bwa_nanopolish.sh smartdenovo_barcode12_fenella_trimmed_all/racon/smartdenovo_barcode12_fenella_trimmed_all_racon_round_10.fasta barcode11_emily_trimmed_all/barcode11_emily_trimmed_all.trimmedReads.fasta.gz bwa_canu_emily_all_cross
 
-###Map LoRMA-corrected reads 
+###Map LoRMA-corrected reads (subsequently dropped due to low quality)
 qsub $scripts/sub_bwa_nanopolish.sh smartdenovo_barcode11_emily_trimmed_all/racon/smartdenovo_barcode11_emily_trimmed_all_racon_round_10.fasta lorma_barcode11_emily_all.fasta.gz bwa_lorma_emily_all_own
 qsub $scripts/sub_bwa_nanopolish.sh smartdenovo_barcode12_fenella_trimmed_all/racon/smartdenovo_barcode12_fenella_trimmed_all_racon_round_10.fasta lorma_barcode11_emily_all.fasta.gz bwa_lorma_emily_all_cross
 qsub $scripts/sub_bwa_nanopolish.sh smartdenovo_barcode12_fenella_trimmed_all/racon/smartdenovo_barcode12_fenella_trimmed_all_racon_round_10.fasta lorma_barcode12_fenella_all.fasta.gz bwa_lorma_fenella_all_own
