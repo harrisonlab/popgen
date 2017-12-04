@@ -78,7 +78,6 @@ Rscript --vanilla $scripts/3_strawberry_pca.R
 #Run Vlad's script for DEG and visualisation - selection of samples
 python $scripts/targets.py >Targets.txt
 
-
 #Carry out reciprocal Best BLAST between CDS sequences from Fragaria vesca genome ver 1.0 and 1.1a2 to be able to transfer GO annotations from the former to the latter.
 cd $input/annotation
 
@@ -92,7 +91,6 @@ done
 db=Fragaria_vesca_v1.1.a2_cds_removed_nucl.db
 query=fvesca_v1.0_genemark_hybrid.fna
 blastn -outfmt "6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore qlen slen sstrand"  -num_threads 1 -max_target_seqs 100 -evalue 0.0000000001 -query $query -db $db >> ${query}_vs_${db}
-
 
 #And vice versa
 db=fvesca_v1.0_genemark_hybrid_nucl.db
