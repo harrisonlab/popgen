@@ -13,11 +13,9 @@ do
 cat $f >>$input/barcode12_fenella.fastq
 done
 
-
 #Convert to FASTA
 /home/sobczm/bin/seqtk/seqtk seq -a barcode11_emily.fastq > barcode11_emily.fasta
 /home/sobczm/bin/seqtk/seqtk seq -a barcode12_fenella.fastq > barcode12_fenella.fasta
-
 
 #What is read length?
 perl /home/sobczm/bin/popgen/other/assemblathon_stats.pl barcode11_emily.fasta
@@ -131,7 +129,6 @@ cat $input/porechop_unclassified/NB11.fastq >> barcode11_emily_trimmed_all.fastq
 cat barcode12_fenella_trim.fastq >> barcode12_fenella_trimmed_all.fastq
 cat $input/porechop_unclassified/NB12.fastq >> barcode12_fenella_trimmed_all.fastq
 
-
 ###Generate a dataset with random 75% of reads and put them through all the steps below to check the effect of a lower number of reads on the R gene detection.
 /home/sobczm/bin/seqtk/seqtk sample barcode11_emily_trimmed_all.fastq 450000 > barcode11_emily_trimmed_all_075.fastq
 /home/sobczm/bin/seqtk/seqtk sample barcode12_fenella_trimmed_all.fastq 450000 > barcode12_fenella_trimmed_all_075.fastq
@@ -143,7 +140,8 @@ cat $input/porechop_unclassified/NB12.fastq >> barcode12_fenella_trimmed_all.fas
 #qsub $scripts/sub_nanocorrect.sh barcode11_emily_trimmed_all_075.fasta nanocorrect_emily_nanocorrect_075
 #qsub $scripts/sub_nanocorrect.sh barcode12_fenella_trimmed_all_075.fasta nanocorrect_fenella_nanocorrect_075
 
-#Cannot make it work, use LoRMA instead.
+#Cannot make nanocorrect work, use LoRMA instead. <-- LoRMA algorithm does not work correctly here either
+#and resulted in severly reduced number of output reads (<10% of the original number)
 qsub $scripts/sub_lorma.sh barcode11_emily_trimmed_all.fasta  lorma_barcode11_emily_all
 qsub $scripts/sub_lorma.sh barcode12_fenella_trimmed_all.fasta lorma_barcode12_fenella_all
 qsub $scripts/sub_lorma.sh barcode11_emily_trimmed_all_075.fasta lorma_barcode11_emily_075
@@ -170,6 +168,7 @@ qsub $scripts/sub_SMARTdenovo.sh barcode12_fenella_trimmed_all/barcode12_fenella
 qsub $scripts/sub_SMARTdenovo.sh barcode12_fenella_trimmed_all_075/barcode12_fenella_trimmed_all.trimmedReads.fasta.gz smartdenovo_barcode12_fenella_trimmed_075 smartdenovo_barcode12_fenella_trimmed_075
 qsub $scripts/sub_SMARTdenovo.sh barcode11_emily_trimmed_all/barcode11_emily_trimmed_all.trimmedReads.fasta.gz smartdenovo_barcode11_emily_trimmed_all smartdenovo_barcode11_emily_trimmed_all
 qsub $scripts/sub_SMARTdenovo.sh barcode11_emily_trimmed_all_075/barcode11_emily_trimmed_all.trimmedReads.fasta.gz smartdenovo_barcode11_emily_trimmed_075 smartdenovo_barcode11_emily_trimmed_075
+
 #Error correction using racon
 ass=smartdenovo_barcode12_fenella_trimmed_all 
 qsub $scripts/sub_racon.sh $ass/$ass.dmo.lay.utg barcode12_fenella_trimmed_all.fastq.gz 10 $ass/racon
@@ -180,7 +179,7 @@ qsub $scripts/sub_racon.sh $ass/$ass.dmo.lay.utg barcode11_emily_trimmed_all.fas
 ass=smartdenovo_barcode11_emily_trimmed_075
 qsub $scripts/sub_racon.sh $ass/$ass.dmo.lay.utg barcode11_emily_trimmed_all.fastq.gz 10 $ass/racon
 
-#Assembly correction using nanopolish
+#Assembly correction using nanopolish - Does not work with highly polyploid data
 #Re-extract reads
 #qsub $scripts/sub_nanopolish_extract.sh $raw_reads/barcode11 nanopolish_barcode11_emily.fasta
 #qsub $scripts/sub_nanopolish_extract.sh $raw_reads/barcode12 nanopolish_barcode12_fenella.fasta
