@@ -165,6 +165,15 @@ B) whole-genome alignment of our focal species genome and 1-2 outgroups with pro
 Use `/home/sobczm/bin/vcftools/bin/vcftools` to calculate D, D' and r2 for SNPs seperated by a specific range of intervals to estimate recombination rates and subsequently visualise the results (D' and r2 versus physical distance, histogram of D' values) using [sub_plot_ld.sh](https://github.com/harrisonlab/popgen/blob/master/summary_stats/sub_plot_ld.sh). Using [sub_ld_plot.sh](https://github.com/harrisonlab/popgen/blob/master/summary_stats/sub_ld_plot.sh) can also visualise the r2 values between individual SNP pairs in a heatmap LD plot. 
 For diploid organisms, the genotypes in the input VCF file have to be phased prior to the start of the analysis using [sub_beagle.sh](https://github.com/harrisonlab/popgen/blob/master/snp/sub_beagle.sh)
 
+## SNP chip
+### Analysis of ananassa istraw35 and istraw90 SNP chip data of available cultivars
+[00_ananassa.md](https://github.com/harrisonlab/popgen/blob/master/snp/00_ananassa.md) List of files with all analyses carried out, including haplotyping
+
+**Model analysis file:** [gwas_quantitative_pipeline_ver2.md] (https://github.com/harrisonlab/popgen/blob/master/snp/gwas_quantitative_pipeline_ver2.md) GWAS analysis with Plink on quantiative phenotypes - example crown rot scores
+
+**Model analysis file:** [gwas_case_control_pipeline_ver2.md] (https://github.com/harrisonlab/popgen/blob/master/snp/gwas_case_control_pipeline_ver2.md) GWAS analysis with Plink on case-control phenotypes - example everbearer trait
+
+**Model analysis file:** [ananassa_diversity_pipeline.sh](https://github.com/harrisonlab/popgen/blob/master/snp/ananassa_diversity_pipeline.sh) Diversity analysis of SNP chip data (initial data filtering, nucleotide diversity, heterozygosity, PCA, fastStructure, NJ tree, heatmap of IBS)
 
 ## Clock
 ### Scripts for gene orthology assignemnt and construction of orthogroup trees; motif scanning, motif discovery and motif enrichment analyses; tests for selection based on dN/ds (nonsynonymous/synonymous) substitution rates across gene coding sequences in different species: pairwise, branch-site, branch models. 
