@@ -49,6 +49,9 @@ gunzip -d S1_HGAP_polished_assembly.fasta.gz
 mv ./016449/data/polished_assembly.fasta.gz S2_HGAP_polished_assembly.fasta.gz
 gunzip -d S2_HGAP_polished_assembly.fasta.gz
 
+####STOP
+####Failed attempts at other analyses follow below:
+
 ##Polish the RG Canu assembly with Pilon using Illumina reads,
 # [Carried out on EMR cluster]
 reads=/home/groups/harrisonlab/project_files/fragaria_x_ananassa/octoseq/PE
