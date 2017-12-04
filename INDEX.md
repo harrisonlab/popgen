@@ -63,6 +63,11 @@ The BEAST analysis has to be so far set-up by hand. A guide to do so and obtain 
 
 **Onion RenSeq** The result of Mycoarray QC for SLRK and NBS baits, along with filtered bait sequences sent for production are in: `/home/sobczm/popgen/renseq/input/transcriptomes/really_really_final_baits/revised_design_Mar2017`
 
+## RNA-Seq
+
+### Analysis of Genomite RNA-Seq data before second confirmation of mixed-up samples
+[genomite_rnaseq_part1.sh](https://github.com/harrisonlab/popgen/blob/master/rnaseq/genomite_rnaseq_part1.sh)
+[genomite_rnaseq_part2.sh](https://github.com/harrisonlab/popgen/blob/master/rnaseq/genomite_rnaseq_part2.sh)
 
 ## SNP
 ### Scripts to call SNPs on multiple individuals using a single genome/transcriptome reference, filter (and downsample) them, and establish the basic population structure. Also, call structural variants.
