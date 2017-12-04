@@ -65,7 +65,7 @@ The BEAST analysis has to be so far set-up by hand. A guide to do so and obtain 
 
 ## RNA-Seq
 
-### Analysis of Genomite RNA-Seq data before second confirmation of mixed-up samples
+### Analysis of Genomite RNA-Seq data before confirmation of mixed-up samples
 [genomite_rnaseq_part1.sh](https://github.com/harrisonlab/popgen/blob/master/rnaseq/genomite_rnaseq_part1.sh)
 [genomite_rnaseq_part2.sh](https://github.com/harrisonlab/popgen/blob/master/rnaseq/genomite_rnaseq_part2.sh)
 
