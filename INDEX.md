@@ -107,8 +107,8 @@ Downsample the VCF file with SNPs prior to analysis with the STRUCTURE program.
 
 Run the STRUCTURE analysis to test for thelikely number of population clusters (K) (can be in the range of: K=1 up to K=number of individuals tested), summarise the results with StructureHarvester and CLUMPP, visualise with DISTRUCT. 
 
-**Model analysis file:** [structural_variants.sh](https://github.com/harrisonlab/popgen/blob/master/snp/structural_variants.sh)
-Call different types of structural variants with Lumpy Express ([sub_lumpy.sh](https://github.com/harrisonlab/popgen/blob/master/snp/sub_lumpy.sh)), based on atypical bwa-mem Illumina short-read alignments ([sub_bwa_mem.sh](https://github.com/harrisonlab/popgen/blob/master/snp/sub_bwa_mem.sh)). Followed by genotype calling with SVTyper. Will detect: insertions, deletions, duplications, tandem duplications, copy number variable regions, inversions.
+**Model analysis file:** [fast_structure_analysis.sh](https://github.com/harrisonlab/popgen/blob/master/snp/fast_structure_analysis.sh)
+Fast STRUCTURE analysis using simplified model from Raj et al. (2014) https://doi.org/10.1534/genetics.114.164350 . Allows use of millions of markers without down-sampling.
 
 ## Summary stats 
 ### Scripts for functional annotation of SNPs, and calculation of general population genetics parameters (Fst, nuclotide diversity, Tajima's D) which can be informative about demographic and selection processes operating on a given gene(s) in tested populations. Methods to detect variant outliers useful for zeroing in on potentially adaptive loci. Analyses available include both haplotype- and nucleotide- based.
