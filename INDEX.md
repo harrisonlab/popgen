@@ -71,8 +71,7 @@ The BEAST analysis has to be so far set-up by hand. A guide to do so and obtain 
 [genomite_rnaseq_part2.sh](https://github.com/harrisonlab/popgen/blob/master/rnaseq/genomite_rnaseq_part2.sh)
 
 ## SNP
-### Scripts to call SNPs on multiple individuals using a single genome/transcriptome reference, filter (and downsample) them, and establish the basic population structure. Also, call structural variants.
-
+### Scripts to call SNPs on multiple individuals using a single genome/transcriptome reference, filter (and downsample) them, and establish the basic population structure. 
 **Model analysis file:** [pre_SNP_calling_cleanup.sh](https://github.com/harrisonlab/popgen/blob/master/snp/pre_SNP_calling_cleanup.sh)
 [sub_pre_snp_calling.sh](https://github.com/harrisonlab/popgen/blob/master/snp/sub_pre_snp_calling.sh)
 Script accepts SAM mappings output by Bowtie2 along with sample ID, and outputs filtered, indexed and ID-tagged BAM files to be used for variant calling
@@ -108,6 +107,7 @@ Downsample the VCF file with SNPs prior to analysis with the STRUCTURE program.
 Run the STRUCTURE analysis to test for thelikely number of population clusters (K) (can be in the range of: K=1 up to K=number of individuals tested), summarise the results with StructureHarvester and CLUMPP, visualise with DISTRUCT. 
 
 **Model analysis file:** [fast_structure_analysis.sh](https://github.com/harrisonlab/popgen/blob/master/snp/fast_structure_analysis.sh)
+
 Fast STRUCTURE analysis using simplified model from Raj et al. (2014) https://doi.org/10.1534/genetics.114.164350 . Allows use of millions of markers without down-sampling.
 
 ## Summary stats 
