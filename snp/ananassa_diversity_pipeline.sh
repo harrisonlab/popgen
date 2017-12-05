@@ -3,7 +3,7 @@ scripts=/home/sobczm/bin/popgen/snp
 input=/home/sobczm/popgen/snp/snp_chip/diversity
 input_file=master_list_191917.txt
 cd $input 
-#This pipeline is only for F. ananassa without F. chiloensis and F. virginiana. After it is finished, re-run including F. chiloensis and viriginiana samples (input_file=master_list_191917_withWT.txt)
+#This pipeline is only for F. ananassa without F. chiloensis and F. virginiana. After it is finished, re-run including F. chiloensis and viriginiana samples in directory: diversity_withWT #input_file=master_list_191917_withWT.txt
 #Select sample ids of individuals to be included in the analysis and extract their
 #genotypes from the db. 
 #Goal - create 3 datasets:
@@ -47,6 +47,7 @@ for infile in ${input_file}.out ${input_file}_istraw35.out ${input_file}_istraw9
 do
 qsub $scripts/sub_ananassa_genotypes_vcf.sh $infile $gff_file
 done
+mkdir vesca2.0
 mv *.vcf vesca2.0
 
 gff_file=vesca2consensus_map_noambiguous_2017-08-22.gff
@@ -54,6 +55,7 @@ for infile in ${input_file}.out ${input_file}_istraw35.out ${input_file}_istraw9
 do
 qsub $scripts/sub_ananassa_genotypes_vcf.sh $infile $gff_file
 done
+mkdir ananassa
 mv *.vcf ananassa
 
 #First, plink does not allow chromosome names to start with a letter, so fix that, and sort by coordinates.
@@ -119,7 +121,7 @@ done
 
 #*From this point onwards, using only the subsets filtered for markers with low genotyping rates.*
 
-#In some cases, may be useful to calculate pairwise identity-by-descent (IBS - "DST" in the table output below) and PI_HAT (measure of identity-by-descent, but estimates only reliable using a big sample of individuals - not reliable here). We may then want to eliminate samples which are too closely related. As we have few samples and a lot of cultivars are inherently derived from a limited genetic pool, ignoring the results of this step here.
+#In some cases, may be useful to calculate pairwise identity-by-descent (IBS - "DST" in the table output below) and PI_HAT (measure of identity-by-descent, but estimates only reliable using a big sample of individuals - not reliable here). We may then want to eliminate samples which are too closely related. As we have few samples and a lot of cultivars are inherently derived from a limited genetic pool, 
 for infile in vesca2.0/${input_file}.out_fix_filtered1 vesca2.0/${input_file}_istraw35.out_fix_filtered1  vesca2.0/${input_file}_istraw90.out_fix_filtered1 ananassa/${input_file}.out_fix_filtered1 ananassa/${input_file}_istraw35.out_fix_filtered1 ananassa/${input_file}_istraw90.out_fix_filtered1
 do
 for per_missing in 0 0.01 0.05 0.1 0.2
@@ -186,12 +188,6 @@ for per_missing in 0 0.01 0.05 0.1 0.2
 do
 plink --bfile ${infile}_${per_missing}_filtered2 --allow-extra-chr --recode vcf-iid --out ${infile}_${per_missing}_filtered2
 done
-done
-
-#Convert all PDFs to PNG.
-for my_pdf in vesca2.0/*.pdf ananassa/*.pdf
-do
-convert -verbose -density 500 "${my_pdf}" "${my_pdf%.*}.png"
 done
 
 #Optional: seperate out the results for different filtering options used (one combination - one subdirectory)
@@ -403,6 +399,9 @@ do
 cd ${infile}/${per_missing}
 my_infile=$(basename $infile)
 vcf=${my_infile}_fix_filtered1_${per_missing}_filtered2.vcf
+mkdir fast_structure
+cp $vcf fast_structure
+cd fast_structure
 plink --allow-extra-chr --const-fid 0 --vcf $vcf --recode --make-bed --out ${vcf%.vcf} >${vcf%.vcf}.log
 for i in $(seq $s $f) #input range of K values tested
 do
@@ -420,7 +419,7 @@ for infile in vesca2.0/${input_file}.out vesca2.0/${input_file}_istraw35.out ves
 do
 for per_missing in 0 0.1 
 do
-cd ${infile}/${per_missing}
+cd ${infile}/${per_missing}/fast_structure
 my_infile=$(basename $infile)
 vcf=${my_infile}_fix_filtered1_${per_missing}_filtered2.vcf
 python $structure/chooseK.py --input=${vcf%.vcf} >${vcf%.vcf}_K_choice
@@ -428,6 +427,25 @@ cut -f2 ${vcf%.vcf}.fam | cut -d" " -f2 >${vcf%.vcf}.lab
 for i in $(seq $s $f)
 do 
     python $structure/distruct_mod.py -K $i --input=${vcf%.vcf} --output=${vcf%.vcf}_${i}.svg --title K$i --popfile=${vcf%.vcf}.lab
+done
+cd $input
+done
+done
+
+#Convert all PDFs to PNG.
+for infile in vesca2.0/${input_file}.out vesca2.0/${input_file}_istraw35.out  vesca2.0/${input_file}_istraw90.out ananassa/${input_file}.out ananassa/${input_file}_istraw35.out ananassa/${input_file}_istraw90.out
+do
+for per_missing in 0 0.01 0.05 0.1 0.2
+do
+cd ${infile}/${per_missing}
+for my_pdf in *.pdf
+do
+    convert -verbose -density 500 "${my_pdf}" "${my_pdf%.*}.png"
+done
+cd ${infile}/${per_missing}/fast_structure
+for my_pdf in *.pdf
+do
+    convert -verbose -density 500 "${my_pdf}" "${my_pdf%.*}.png"
 done
 cd $input
 done

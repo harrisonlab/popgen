@@ -3,6 +3,7 @@
 ```
 scripts=/home/sobczm/bin/popgen/snp
 input=/home/sobczm/popgen/snp/snp_chip/everbearer_gwas2
+input_file=everbearer_list.txt
 ```
 ## Initial data preparation
 Select sample ids of individuals to be included in the analysis and extract their
@@ -12,7 +13,6 @@ A) istraw35 samples only
 B) istraw90 samples only
 C) joint analysis of istraw35 and istraw90 samples - use intersection of istraw35 and istraw90 markers
 ```
-input_file=everbearer_list.txt
 qsub $scripts/sub_ananassa_genotypes_db.sh $input_file ${input_file}.out
 ```
 
@@ -368,5 +368,5 @@ do
     mv ${infile}_${per_missing}* $infile/$per_missing
 done
 done 
-
 ```
+
