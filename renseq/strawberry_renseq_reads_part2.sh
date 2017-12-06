@@ -2,14 +2,14 @@
 scripts=/home/sobczm/bin/popgen/renseq
 input=/home/sobczm/files/Helen_Bates_EMR.RH.ENQ-1704.A.01
 
-####Note: analysis carried out on NIAB's triticum.
-
+#Carried out on blacklace11
 ###Trim Illumina adaptors from raw PacBio reads using a script from Giolai et al. (2016)
 cd $input/Raw_reads_S1/F06_1/Analysis_Results
 for a in *.bax.h5; do $scripts/trim-h5.py $a; done
 cd $input/Raw_reads_S2/G06_1/Analysis_Results
 for a in *.bax.h5; do $scripts/trim-h5.py $a; done
 
+####Note: this analysis carried out on NIAB's triticum.
 #Prepare CCS at 99% accuracy from minimum 3 reads pass
 bb=/home/sobczm/bin/pitchfork/workspace/bax2bam/bin
 ccs=/home/sobczm/bin/unanimity/build/ccs 
