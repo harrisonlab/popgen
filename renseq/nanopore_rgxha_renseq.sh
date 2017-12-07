@@ -27,3 +27,22 @@ scp -r nanopore@nanopore:/home/nanopore/20171030_gridion_Redgauntlet_Hapil-RENse
 --reads_per_fastq_batch 4000
 
 #Trim the adapters. Separate out RG and HA samples.
+input=/home/sobczm/popgen/renseq/strawberry/reads/albacore_rgxha
+scripts=/home/sobczm/bin/popgen/renseq
+cd $input
+
+#In this analysis, will combine 1d2 'pass' reads with 1d 'pass' reads, and in the case of reads called as 'pass' in those, will prioritise 1d2 over 1d.
+
+#Concatenate reads: 1D2
+for f in $input/pass/*.fastq
+do
+cat $f >>$input/rgxha_1d2_reads.fastq
+done
+
+#Concatenate reads: 1D
+for f in $input/20171030_gridion_Redgauntlet_Hapil-RENseq/1d/workspace/pass/*.fastq
+do
+cat $f >>$input/rgxha_1d_reads.fastq
+done
+
+python $scripts/combine_1d_1d2_pass.py rgxha_1d2_reads.fastq rgxha_1d_reads.fastq >rgxha_1d2_1d_combined.fastq
