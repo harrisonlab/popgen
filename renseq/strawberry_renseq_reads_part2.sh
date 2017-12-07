@@ -22,7 +22,6 @@ $ccs --minLength=1000 --minPredictedAccuracy=0.99 S1.bam.subreads.bam S1_ccs_3_9
 cd /home/sobczm/files/Helen_Bates_EMR.RH.ENQ-1704.A.01/Raw_reads_S2/G06_1/Analysis_Results
 LD_LIBRARY_PATH=/home/sobczm/bin/pitchfork/deployment/lib $bb/bax2bam -o S2.bam m170127_093129_42165_c101119912550000001823252505221733_s1_p0.1.bax.h5 m170127_093129_42165_c101119912550000001823252505221733_s1_p0.2.bax.h5 m170127_093129_42165_c101119912550000001823252505221733_s1_p0.3.bax.h5
 $ccs --minLength=1000 --minPredictedAccuracy=0.99 S2.bam.subreads.bam S2_ccs_3_99.bam
-$ccs --minLength=1000 --minPredictedAccuracy=0.99 S2.bam.subreads.bam S2_ccs_3_99.bam
 ##CCS generated from only 20% sequences, in the majority of cases (50%) due to insufficient number of complete passes. Try to lower down to 2 passes, and see what happens.
 $ccs --minLength=1000 --minPasses=2 --minPredictedAccuracy=0.99 S2.bam.subreads.bam S2_ccs_2_99.bam
 #No difference observed so sticking with 3 passes.
