@@ -46,3 +46,10 @@ cat $f >>$input/rgxha_1d_reads.fastq
 done
 
 python $scripts/combine_1d_1d2_pass.py rgxha_1d2_reads.fastq rgxha_1d_reads.fastq >rgxha_1d2_1d_combined.fastq
+
+#Run unmodified porechop on those reads
+qsub $scripts/sub_poretools_demultiplex.sh rgxha_1d2_1d_combined.fastq.gz porechop_native
+#As expected, no Nanopore barcodes detected.
+#Now, running modified porechop with custom Illumina barcodes using modified porechop version from https://github.com/Psy-Fer/Porechop
+#As the Illumina barcodes differ only by 5 nucleotides it is too difficult for reads to be binned correctly - Nanopore barcodes are designed to maximize sequence differences.
+#The modified adapter file used for that is located in /home/sobczm/bin/porechop_alt/Porechop/alt_adapters.py

@@ -40,3 +40,24 @@ bedtools bamtofastq -i S3_ccs_3_99.bam -fq S3_ccs_3_99.fastq
 bedtools bamtofastq -i S4_ccs_3_99.bam -fq S4_ccs_3_99.fastq
 /home/sobczm/bin/seqtk/seqtk seq -a S3_ccs_3_99.fastq > S3_ccs_3_99.fasta
 /home/sobczm/bin/seqtk/seqtk seq -a S4_ccs_3_99.fastq > S4_ccs_3_99.fasta
+
+#Concatenate raw reads and trim adaptors
+for reads in $input/Helen_Bates_EMR_RH_ENQ-1704_A_01_S3/2017_10_25_PSEQ1569_406/SAM32001_PRO1514_S3_HMWDNA_Emily/raw_reads/D01_1/Analysis_Results/*subreads.fastq
+do
+cat $reads >> $input/assembly/D06_1_S3.fastq
+done
+
+for reads in $input/Helen_Bates_EMR_RH_ENQ-1704_A_01_S4/2017_10_25_PSEQ1569_406/SAM32002_PRO1514_S4_HMWDNA_Fenella/raw_reads/E01_1/Analysis_Results/*subreads.fastq
+do
+cat $reads >> $input/assembly/E06_1_S4.fastq
+done
+
+#Tar the reads and submit for QC check and adaptor trimming.
+for a in *.fastq; do gzip $a; done
+qsub $scripts/sub_read_qc_single_pacbio.sh $input/assembly/D06_1_S3.fastq.gz
+qsub $scripts/sub_read_qc_single_pacbio.sh $input/assembly/E06_1_S4.fastq.gz
+
+#Canu assembly
+qsub $scripts/sub_canu_renseq.sh D06_1_S3_trim.fq.gz 1m D06_S3 D06_assembly
+qsub $scripts/sub_canu_renseq.sh E06_1_S4_trim.fq.gz 1m E06_S4 E06_assembly
+
