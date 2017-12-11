@@ -175,7 +175,7 @@ For diploid organisms, the genotypes in the input VCF file have to be phased pri
 
 **Model analysis file:** [ananassa_diversity_pipeline.sh](https://github.com/harrisonlab/popgen/blob/master/snp/ananassa_diversity_pipeline.sh) Diversity analysis of SNP chip data (initial data filtering, nucleotide diversity, heterozygosity, PCA, fastStructure, NJ tree, heatmap of IBS)
 
-**Model analysis file:** [linear_regression.R] (https://github.com/harrisonlab/popgen/blob/master/snp/linear_regression.R) R script to fit linear regression model to 5 select SNP markers predictive of crown rot resistance. No missing data allowed for any marker. In order to generate input for the script, follow lines 99-106 in [crown_rot_qtl_markers_gwas_plate.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/crown_rot_qtl_markers_gwas_plate.sh)
+**Model analysis file:** [linear_regression.R] (https://github.com/harrisonlab/popgen/blob/master/snp/linear_regression.R) R script to fit linear regression model to 5 select SNP markers predictive of crown rot resistance. No missing data allowed for any marker. In order to generate input for the script, follow lines 101-109 in [crown_rot_qtl_markers_gwas_plate.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/crown_rot_qtl_markers_gwas_plate.sh)
 
 ## Clock
 ### Scripts for gene orthology assignemnt and construction of orthogroup trees; motif scanning, motif discovery and motif enrichment analyses; tests for selection based on dN/ds (nonsynonymous/synonymous) substitution rates across gene coding sequences in different species: pairwise, branch-site, branch models. 
