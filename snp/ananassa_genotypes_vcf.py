@@ -20,7 +20,6 @@ with open (table) as table_h:
     fieldno = len(headers)
     for line in table_h:
         lines = line.strip().split("\t")
-        print lines
         markers[lines[5]] = [lines[-2], lines[-1]]
         individuals[lines[2]] = 1
         for x in (range(1,fieldno)):
