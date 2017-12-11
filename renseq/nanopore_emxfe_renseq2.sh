@@ -77,7 +77,7 @@ cd $input/analysis
 
 #Blast the raw reads to establish hits R genes.
 #Copy the blast db
-cp -r /home/sobczm/popgen/renseq/strawberry/reads/Helen_Bates_EMR.RH.ENQ-1704.A.01/analysis/vesca_v1.1_nblrrs_augustus_mrna_nucl.db* ./
+cp -r /home/sobczm/popgen/renseq/strawberry/reads/Helen_Bates_EMR.RH.ENQ-1704.A.01/analysis/vesca_v1.1_nblrrs_augustus_cds_nucl.db* ./
 
 for a in barcode11_emily_trimmed_all.trimmedReads.fasta barcode12_fenella_trimmed_all.trimmedReads.fasta lorma_barcode11_emily_all.fasta lorma_barcode12_fenella_all.fasta smartdenovo_barcode11_emily_trimmed_all_racon_round_10.fasta smartdenovo_barcode12_fenella_trimmed_all_racon_round_10.fasta
 do 
