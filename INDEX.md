@@ -55,11 +55,11 @@ The BEAST analysis has to be so far set-up by hand. A guide to do so and obtain 
 ### Various Renseq analyses on onion, apple and strawberry
 **Model analysis file:** [apple_renseq_part5.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/apple_renseq_part5.sh) [apple_renseq_part6.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/apple_renseq_part6.sh) Prediction of various classes of resistance genes with RGAugury followed with bait design towards the exons. 
 
-**Model analysis file:** [strawberry_renseq_reads_part2.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/strawberry_renseq_reads_part2.sh) Analysis of PacBio Renseq data on EMR's cluster and triticum (generation of 99% CCS reads and HGAP assembly - see also M&M: https://docs.google.com/document/d/171F5fKQh_caV3QMHMS3TYmS9t74ZQhODlymIxQy5HtU/edit)
+**Model analysis file:** [strawberry_renseq_reads_part2.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/strawberry_renseq_reads_part2.sh) Analysis of PacBio RG and Hapil Renseq data on EMR's cluster and triticum (generation of 99% CCS reads and HGAP assembly - see also M&M: https://docs.google.com/document/d/171F5fKQh_caV3QMHMS3TYmS9t74ZQhODlymIxQy5HtU/edit). Script with steps undertaken for Emily and Fenella Pacbio reads is in [pacbio_emxfe.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/pacbio_emxfe.sh)
 
-**Model analysis file:** [nanopore_emxfe_renseq.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/nanopore_emxfe_renseq.sh) Basic QC and assembly, aseembly polishing, error correction of Nanopore RenSeq data 
+**Model analysis file:** [nanopore_emxfe_renseq.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/nanopore_emxfe_renseq.sh) Basic QC and assembly, aseembly polishing, error correction of Nanopore RenSeq data. Script with steps undertaken for RG and Hapil 1^2D reads is in [nanopore_rgxha_renseq.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/nanopore_rgxha_renseq.sh)
 
-**Model analysis file:** [nanopore_emxfe_renseq2.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/nanopore_emxfe_renseq2.sh) Variant calling of Ren-Seq Nanopore data with GATK. Evaluation of Ren-Seq completeness with BLAST on original baits and vesca genes CDS sequences and plotting of the results. NLR-Parser analysis.
+**Model analysis file:** [nanopore_emxfe_renseq2.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/nanopore_emxfe_renseq2.sh) Variant calling of Ren-Seq Nanopore data with GATK. Evaluation of Ren-Seq completeness with BLAST on original baits and vesca genes CDS sequences and plotting of the results. NLR-Parser analysis. 
 
 **Onion RenSeq** The result of Mycoarray QC for SLRK and NBS baits, along with filtered bait sequences sent for production are in: `/home/sobczm/popgen/renseq/input/transcriptomes/really_really_final_baits/revised_design_Mar2017`
 
@@ -174,6 +174,8 @@ For diploid organisms, the genotypes in the input VCF file have to be phased pri
 **Model analysis file:** [gwas_case_control_pipeline_ver2.md](https://github.com/harrisonlab/popgen/blob/master/snp/gwas_case_control_pipeline_ver2.md) GWAS analysis with Plink on case-control phenotypes - example everbearer trait
 
 **Model analysis file:** [ananassa_diversity_pipeline.sh](https://github.com/harrisonlab/popgen/blob/master/snp/ananassa_diversity_pipeline.sh) Diversity analysis of SNP chip data (initial data filtering, nucleotide diversity, heterozygosity, PCA, fastStructure, NJ tree, heatmap of IBS)
+
+**Model analysis file:** [linear_regression.R] (https://github.com/harrisonlab/popgen/blob/master/snp/linear_regression.R) R script to fit linear regression model to 5 select SNP markers predictive of crown rot resistance. No missing data allowed for any marker. In order to generate input for the script, follow lines 101-109 in [crown_rot_qtl_markers_gwas_plate.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/crown_rot_qtl_markers_gwas_plate.sh)
 
 ## Clock
 ### Scripts for gene orthology assignemnt and construction of orthogroup trees; motif scanning, motif discovery and motif enrichment analyses; tests for selection based on dN/ds (nonsynonymous/synonymous) substitution rates across gene coding sequences in different species: pairwise, branch-site, branch models. 
