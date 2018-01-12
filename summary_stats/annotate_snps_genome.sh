@@ -17,7 +17,7 @@
 vcf=$1
 genome_name=$2
 
-snpeff=/home/sobczm/bin/snpEff
+snpeff=/home/adamst/prog/snpEff
 scripts=/home/sobczm/bin/popgen
 
 java -Xmx4g -jar $snpeff/snpEff.jar -v -ud 0 $genome_name $vcf > ${vcf%.vcf}_annotated.vcf
