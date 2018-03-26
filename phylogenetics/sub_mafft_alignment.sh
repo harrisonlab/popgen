@@ -1,6 +1,6 @@
 #$ -S /bin/bash
 #$ -cwd
-#$ -pe smp 6
+#$ -pe smp 8
 #$ -l h_vmem=1G
 #$ -l h=blacklace01.blacklace|blacklace02.blacklace|blacklace04.blacklace|blacklace05.blacklace|blacklace06.blacklace|blacklace07.blacklace|blacklace08.blacklace|blacklace09.blacklace|blacklace10.blacklace|blacklace12.blacklace
 
@@ -14,7 +14,7 @@ for input in *.fasta
 do
 filename=$(basename "$input")
 output="${filename%.*}_aligned.fasta"
-$mafft_path --localpair --maxiterate 1000 $input >$output
+$mafft_path --thread 8 --localpair --maxiterate 1000 $input >$output
 done
 
 #Convert to single line FASTA for easy parsing
