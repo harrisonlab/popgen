@@ -8,7 +8,7 @@ fasta=$1
 gff=$2
 genome_name=$3
 
-snpeff=/home/sobczm/bin/snpEff
+snpeff=/home/adamst/prog/snpEff
 
 #Add the following lines to the section with databases:
 echo "#" $genome_name genome >> $snpeff/snpEff.config

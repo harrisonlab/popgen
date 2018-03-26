@@ -14,6 +14,7 @@ https://www.dropbox.com/sh/h2urr4fcp5ivu2x/AAC1RsB4X0vSxADrgOF065IBa?dl=0
 3. Summary stats
 4. Clock
 5. Codon
+6. Renseq
 
 ### *Each directory contains a README.md file listing shell scripts which contain a model (example) analysis using scripts in a given directory.
 ### *Read the header of each individual script you are trying to exectute to find out about the options, input and output file.
@@ -50,9 +51,27 @@ phylogenetic tree (see the model analysis file for a example of an analysis)
 **Model analysis file:** [BEAST_run.sh](https://github.com/harrisonlab/popgen/blob/master/phylogenetics/BEAST_run.sh)
 The BEAST analysis has to be so far set-up by hand. A guide to do so and obtain a final tree is given in the model analysis file above.
 
-## SNP
-### Scripts to call SNPs on multiple individuals using a single genome/transcriptome reference, filter (and downsample) them, and establish the basic population structure. Also, call structural variants.
+## Renseq
+### Various Renseq analyses on onion, apple and strawberry
+**Model analysis file:** [apple_renseq_part5.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/apple_renseq_part5.sh) [apple_renseq_part6.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/apple_renseq_part6.sh) Prediction of various classes of resistance genes with RGAugury followed with bait design towards the exons. 
 
+**Model analysis file:** [strawberry_renseq_reads_part2.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/strawberry_renseq_reads_part2.sh) Analysis of PacBio RG and Hapil Renseq data on EMR's cluster and triticum (generation of 99% CCS reads and HGAP assembly - see also M&M: https://docs.google.com/document/d/171F5fKQh_caV3QMHMS3TYmS9t74ZQhODlymIxQy5HtU/edit). Script with steps undertaken for Emily and Fenella Pacbio reads is in [pacbio_emxfe.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/pacbio_emxfe.sh)
+
+**Model analysis file:** [nanopore_emxfe_renseq.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/nanopore_emxfe_renseq.sh) Basic QC and assembly, aseembly polishing, error correction of Nanopore RenSeq data. Script with steps undertaken for RG and Hapil 1^2D reads is in [nanopore_rgxha_renseq.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/nanopore_rgxha_renseq.sh)
+
+**Model analysis file:** [nanopore_emxfe_renseq2.sh](https://github.com/harrisonlab/popgen/blob/master/renseq/nanopore_emxfe_renseq2.sh) Variant calling of Ren-Seq Nanopore data with GATK. Evaluation of Ren-Seq completeness with BLAST on original baits and vesca genes CDS sequences and plotting of the results. NLR-Parser analysis. 
+
+**Onion RenSeq** The result of Mycoarray QC for SLRK and NBS baits, along with filtered bait sequences sent for production are in: `/home/sobczm/popgen/renseq/input/transcriptomes/really_really_final_baits/revised_design_Mar2017`
+
+## RNA-Seq
+
+### Analysis of Genomite RNA-Seq data before confirmation of mixed-up samples
+[genomite_rnaseq_part1.sh](https://github.com/harrisonlab/popgen/blob/master/rnaseq/genomite_rnaseq_part1.sh)
+
+[genomite_rnaseq_part2.sh](https://github.com/harrisonlab/popgen/blob/master/rnaseq/genomite_rnaseq_part2.sh)
+
+## SNP
+### Scripts to call SNPs on multiple individuals using a single genome/transcriptome reference, filter (and downsample) them, and establish the basic population structure. 
 **Model analysis file:** [pre_SNP_calling_cleanup.sh](https://github.com/harrisonlab/popgen/blob/master/snp/pre_SNP_calling_cleanup.sh)
 [sub_pre_snp_calling.sh](https://github.com/harrisonlab/popgen/blob/master/snp/sub_pre_snp_calling.sh)
 Script accepts SAM mappings output by Bowtie2 along with sample ID, and outputs filtered, indexed and ID-tagged BAM files to be used for variant calling
@@ -87,8 +106,9 @@ Downsample the VCF file with SNPs prior to analysis with the STRUCTURE program.
 
 Run the STRUCTURE analysis to test for thelikely number of population clusters (K) (can be in the range of: K=1 up to K=number of individuals tested), summarise the results with StructureHarvester and CLUMPP, visualise with DISTRUCT. 
 
-**Model analysis file:** [structural_variants.sh](https://github.com/harrisonlab/popgen/blob/master/snp/structural_variants.sh)
-Call different types of structural variants with Lumpy Express ([sub_lumpy.sh](https://github.com/harrisonlab/popgen/blob/master/snp/sub_lumpy.sh)), based on atypical bwa-mem Illumina short-read alignments ([sub_bwa_mem.sh](https://github.com/harrisonlab/popgen/blob/master/snp/sub_bwa_mem.sh)). Followed by genotype calling with SVTyper. Will detect: insertions, deletions, duplications, tandem duplications, copy number variable regions, inversions.
+**Model analysis file:** [fast_structure_analysis.sh](https://github.com/harrisonlab/popgen/blob/master/snp/fast_structure_analysis.sh)
+
+Fast STRUCTURE analysis using simplified model from Raj et al. (2014) https://doi.org/10.1534/genetics.114.164350 . Allows use of millions of markers without down-sampling.
 
 ## Summary stats 
 ### Scripts for functional annotation of SNPs, and calculation of general population genetics parameters (Fst, nuclotide diversity, Tajima's D) which can be informative about demographic and selection processes operating on a given gene(s) in tested populations. Methods to detect variant outliers useful for zeroing in on potentially adaptive loci. Analyses available include both haplotype- and nucleotide- based.
@@ -145,6 +165,17 @@ B) whole-genome alignment of our focal species genome and 1-2 outgroups with pro
 Use `/home/sobczm/bin/vcftools/bin/vcftools` to calculate D, D' and r2 for SNPs seperated by a specific range of intervals to estimate recombination rates and subsequently visualise the results (D' and r2 versus physical distance, histogram of D' values) using [sub_plot_ld.sh](https://github.com/harrisonlab/popgen/blob/master/summary_stats/sub_plot_ld.sh). Using [sub_ld_plot.sh](https://github.com/harrisonlab/popgen/blob/master/summary_stats/sub_ld_plot.sh) can also visualise the r2 values between individual SNP pairs in a heatmap LD plot. 
 For diploid organisms, the genotypes in the input VCF file have to be phased prior to the start of the analysis using [sub_beagle.sh](https://github.com/harrisonlab/popgen/blob/master/snp/sub_beagle.sh)
 
+## SNP chip
+### Analysis of ananassa istraw35 and istraw90 SNP chip data of available cultivars
+[00_ananassa.md](https://github.com/harrisonlab/popgen/blob/master/snp/00_ananassa.md) List of files with all analyses carried out, including haplotyping
+
+**Model analysis file:** [gwas_quantitative_pipeline_ver2.md](https://github.com/harrisonlab/popgen/blob/master/snp/gwas_quantitative_pipeline_ver2.md) GWAS analysis with Plink on quantiative phenotypes - example crown rot scores
+
+**Model analysis file:** [gwas_case_control_pipeline_ver2.md](https://github.com/harrisonlab/popgen/blob/master/snp/gwas_case_control_pipeline_ver2.md) GWAS analysis with Plink on case-control phenotypes - example everbearer trait
+
+**Model analysis file:** [ananassa_diversity_pipeline.sh](https://github.com/harrisonlab/popgen/blob/master/snp/ananassa_diversity_pipeline.sh) Diversity analysis of SNP chip data (initial data filtering, nucleotide diversity, heterozygosity, PCA, fastStructure, NJ tree, heatmap of IBS)
+
+**Model analysis file:** [linear_regression.R](https://github.com/harrisonlab/popgen/blob/master/snp/linear_regression.R) R script to fit linear regression model to 5 select SNP markers predictive of crown rot resistance. No missing data allowed for any marker. In order to generate input for the script, follow lines 101-109 in [crown_rot_qtl_markers_gwas_plate.sh] (https://github.com/harrisonlab/popgen/blob/master/snp/crown_rot_qtl_markers_gwas_plate.sh) and then instructions at the top of this R script.
 
 ## Clock
 ### Scripts for gene orthology assignemnt and construction of orthogroup trees; motif scanning, motif discovery and motif enrichment analyses; tests for selection based on dN/ds (nonsynonymous/synonymous) substitution rates across gene coding sequences in different species: pairwise, branch-site, branch models. 

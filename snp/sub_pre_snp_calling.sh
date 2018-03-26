@@ -14,6 +14,7 @@
 #OUTPUT:
 # Indexed BAM file with suffix "nodup_rg" to be fed into SNP calling with GATK.
 #############################################
+source /home/sobczm/.profile
 input_sam=$1
 prefix=$2
 filename=$(basename "$input_sam")

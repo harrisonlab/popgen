@@ -1,0 +1,8 @@
+library(tools)
+args = commandArgs(trailingOnly=TRUE)
+output <- paste(args[1], ".pdf", sep="")
+library("ggplot2")
+library("ggrepel")
+table <- read.csv(args[1], sep="\t", header=TRUE)
+pca_plot <- ggplot(table, aes(table$C1,table$C2), fill="red") + geom_point(size=2) + geom_text_repel(aes(label=table$FID)) + xlab("Dimension 1") + ylab("Dimension 2")
+ggsave(output, pca_plot, dpi=300, height=7, width=7)

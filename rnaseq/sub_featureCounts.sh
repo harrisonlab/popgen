@@ -20,7 +20,7 @@ Prefix=$3
 
 CurDir=$PWD
 WorkDir=$TMPDIR/featureCounts
-
+mkdir -p $WorkDir
 cd $WorkDir
 
 cp $1 ./
@@ -41,5 +41,5 @@ featureCounts \
   -o "$Prefix"_featurecounts.txt \
   $InBam
 
-rm $WorkDir/$InBam $WorkDir/$InGff
-cp -r $WorkDir/* $CurDir
+cp -r $WorkDir/*txt* $CurDir
+rm -rf $WorkDir

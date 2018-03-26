@@ -31,3 +31,17 @@
 [improve_haplotyping5.sh](https://github.com/harrisonlab/popgen/blob/master/snp/improve_haplotyping5.sh)
 ### Extended analysis of individual genotypes 2, following fixing of mislabelled samples.
 [analyse_snp_chip_genotypes2.sh](https://github.com/harrisonlab/popgen/blob/master/snp/analyse_snp_chip_genotypes2.sh)
+### Local genotype association study for 10-20 markers around major QTLs for crown rot.
+[crown_rot_qtl_markers_local_1.sh](https://github.com/harrisonlab/popgen/blob/master/snp/crown_rot_qtl_markers_local_1.sh)
+### GWAS for crown rot using PLINK and TASSEL (GUI)
+[crown_rot_qtl_markers_gwas_1.sh](https://github.com/harrisonlab/popgen/blob/master/snp/crown_rot_qtl_markers_gwas_1.sh)
+### Re-analysis of GWAS and SBC genotypes focussing on plate provenance
+[crown_rot_qtl_markers_gwas_plate.sh](https://github.com/harrisonlab/popgen/blob/master/snp/crown_rot_qtl_markers_gwas_plate.sh)
+### Various checks of the ananassa snp chip database - QC. 
+[ananassa_db_qc.sh](https://github.com/harrisonlab/popgen/blob/master/snp/ananassa_db_qc.sh)
+### Ananassa nucleotide diversity pipeline
+[ananassa_diversity_pipeline.sh](https://github.com/harrisonlab/popgen/blob/master/snp/ananassa_diversity_pipeline.sh)
+### GWAS pipeline - case vs. control (example: everbearer trait)
+[gwas_case_control_pipeline.md](https://github.com/harrisonlab/popgen/blob/master/snp/gwas_case_control_pipeline.md)
+### GWAS pipeline - quantitative phenotype (example: crown rot resistance)
+[gwas_quantitative_pipeline.md](https://github.com/harrisonlab/popgen/blob/master/snp/gwas_quantitative_pipeline.md)

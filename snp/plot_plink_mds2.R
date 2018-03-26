@@ -1,0 +1,7 @@
+library("ggplot2")
+library("ggrepel")
+table <- read.csv("mds.mds", sep="\t", header=TRUE)
+table2 <- read.csv("sample_ids_crown_rot_nodup_samples.txt", sep="\t", header=TRUE)
+myfulldata = merge(table, table2)
+pca_plot <- ggplot(myfulldata, aes(x=C1,y=C2,color=path)) + geom_point(size=2) + xlab("Dimension 1") + ylab("Dimension 2") + geom_text_repel(aes(label=myfulldata$FID))
+ggsave("mds2.pdf", pca_plot, dpi=300, height=7, width=12)

@@ -20,10 +20,10 @@ with open (table) as table_h:
     fieldno = len(headers)
     for line in table_h:
         lines = line.strip().split("\t")
-        markers[lines[5]] = lines[-1]
+        markers[lines[5]] = [lines[-2], lines[-1]]
         individuals[lines[2]] = 1
         for x in (range(1,fieldno)):
-            table_dict[lines[5]][lines[2]] = lines[-2]
+            table_dict[lines[5]][lines[2]] = lines[-3]
 
 #Open the GFF file and print the output VCF file
 positions = defaultdict()
@@ -45,10 +45,9 @@ for m in markers.keys():
     else:
         chrom = "Unknown"
         pos = str(start + 1)
-    alleles = markers[m].split("/")
-    ref = alleles[0]
+    ref = markers[m][0]
     if ref == "": ref = "."
-    alt = alleles[1]
+    alt = markers[m][1]
     if alt == "": alt = "."
     out_h.write(chrom + "\t" + pos + "\t" + m + "\t" + ref + "\t" + alt + "\t" + "." + "\t" + "." + "\t" + "." + "\t" + "GT:DP" )
     #Iterate over individuals
@@ -63,6 +62,8 @@ for m in markers.keys():
                 gen = "0/1:2"
             elif genotype == "BA":
                 gen = "0/1:2"
+            else:
+                gen = "."
         else:
             gen = "."
         out_h.write("\t" + gen)
