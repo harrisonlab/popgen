@@ -10,12 +10,13 @@
 input=$1
 k=$2
 
-if [ -z "$3" ]
+if [ "$3" = "logistic" ]
 then
-    model=simple
-else
     model=logistic
+else
+    model=simple
 fi
+
 
 structure=/home/sobczm/bin/fastStructure
 python $structure/structure.py -K $k --input $input --output $input --prior $model
