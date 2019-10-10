@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 
-#Print a bootstrapped (100x) Newick tree based on input FASTA alignment.
+#Print a bootstrapped (1000x) Newick tree based on input FASTA alignment.
 #First argument (required): input FASTA alignment file
 
 args = commandArgs(trailingOnly=TRUE)
@@ -17,8 +17,8 @@ out <- read.dna(input, format="fasta")
 f <- function(x) njs(dist.dna(x))
 #Construct initial tree
 tree <- f(out)
-#100 bootrstrap replicates
-bstrees <- boot.phylo(tree, out, f, trees = TRUE)$trees
+#1000 bootrstrap replicates
+bstrees <- boot.phylo(tree, out, f, B = 1000, trees = TRUE)$trees
 ## get proportions of each bipartition and draw the tree, printing it to a PDF file
 boot <- prop.clades(tree, bstrees)
 tree_pdf <- paste(file_path_sans_ext(input), "_nj.pdf", sep="")
